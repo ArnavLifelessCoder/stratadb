@@ -27,7 +27,20 @@ std::uint32_t ReferenceCrc32c(std::string_view bytes, std::uint32_t initial = 0)
   return ~crc;
 }
 
-TEST(Crc32cTest, Rfc3720AppendixB4Vectors) {
+class Crc32cPathsTest : public ::testing::TestWithParam<bool> {
+ protected:
+  void SetUp() override {
+    if (GetParam() && !HasSse42Crc32c()) {
+      GTEST_SKIP() << "SSE4.2 is unavailable on this CPU";
+    }
+  }
+  std::uint32_t Crc32c(std::string_view bytes) { return ExtendCrc32c(0, bytes); }
+  std::uint32_t ExtendCrc32c(std::uint32_t crc, std::string_view bytes) {
+    return GetParam() ? ExtendCrc32cSse42(crc, bytes) : ExtendCrc32cTable(crc, bytes);
+  }
+};
+
+TEST_P(Crc32cPathsTest, Rfc3720AppendixB4Vectors) {
   // RFC 3720 B.4 prints CRC octets in wire order, least significant octet first.
   // https://www.rfc-editor.org/rfc/rfc3720#appendix-B.4
   EXPECT_EQ(Crc32c(std::string(32, '\0')), 0x8a9136aaU);
@@ -71,7 +84,7 @@ TEST(Crc32cTest, EverySplitAndSingleBitChange) {
   }
 }
 
-TEST(Crc32cTest, RandomizedDifferentialAgainstBitwiseReference) {
+TEST_P(Crc32cPathsTest, RandomizedDifferentialAgainstBitwiseReference) {
   SCOPED_TRACE(::testing::Message() << "seed=" << test::seed);
   std::mt19937_64 random(test::seed);
   for (int iteration = 0; iteration < 1024; ++iteration) {
@@ -87,6 +100,8 @@ TEST(Crc32cTest, RandomizedDifferentialAgainstBitwiseReference) {
     EXPECT_EQ(ExtendCrc32c(initial, bytes), ReferenceCrc32c(bytes, initial));
   }
 }
+
+INSTANTIATE_TEST_SUITE_P(TableAndSse42, Crc32cPathsTest, ::testing::Bool());
 
 }  // namespace
 }  // namespace lsm::internal

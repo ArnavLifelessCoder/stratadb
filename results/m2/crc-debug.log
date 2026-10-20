@@ -1,0 +1,41 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (4.1s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/7] Linking CXX static library lib\gtest.lib
+[2/7] Linking CXX static library lib\gmock.lib
+[3/7] Linking CXX static library lib\gmock_main.lib
+[4/7] Linking CXX static library lib\gtest_main.lib
+[5/7] Building CXX object CMakeFiles\lsm.dir\src\util\crc32c.cpp.obj
+[6/7] Linking CXX static library lsm.lib
+[7/7] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = *Crc32c*
+[==========] Running 6 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from Crc32cTest
+[ RUN      ] Crc32cTest.EmptyAndCanonicalCheckValue
+[       OK ] Crc32cTest.EmptyAndCanonicalCheckValue (0 ms)
+[ RUN      ] Crc32cTest.EverySplitAndSingleBitChange
+[       OK ] Crc32cTest.EverySplitAndSingleBitChange (0 ms)
+[----------] 2 tests from Crc32cTest (0 ms total)
+
+[----------] 4 tests from TableAndSse42/Crc32cPathsTest
+[ RUN      ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/0
+[       OK ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/0 (0 ms)
+[ RUN      ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/1
+[       OK ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/1 (0 ms)
+[ RUN      ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/0
+[       OK ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/0 (463 ms)
+[ RUN      ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/1
+[       OK ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/1 (431 ms)
+[----------] 4 tests from TableAndSse42/Crc32cPathsTest (894 ms total)
+
+[----------] Global test environment tear-down
+[==========] 6 tests from 2 test suites ran. (896 ms total)
+[  PASSED  ] 6 tests.
