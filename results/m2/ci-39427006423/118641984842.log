@@ -1,0 +1,549 @@
+﻿2026-10-20T13:02:16.4429303Z Current runner version: '2.337.0'
+2026-10-20T13:02:16.4456076Z ##[group]Runner Image Provisioner
+2026-10-20T13:02:16.4457388Z Hosted Compute Agent
+2026-10-20T13:02:16.4458025Z Version: 20261015.610
+2026-10-20T13:02:16.4458667Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+2026-10-20T13:02:16.4459500Z Build Date: 2026-10-14T17:06:54Z
+2026-10-20T13:02:16.4460205Z Worker ID: {e2c60392-05cb-42a3-8e92-4cff2fff87ea}
+2026-10-20T13:02:16.4461064Z Region: westus2
+2026-10-20T13:02:16.4461642Z Cloud: Azure
+2026-10-20T13:02:16.4462174Z ##[endgroup]
+2026-10-20T13:02:16.4463958Z ##[group]Operating System
+2026-10-20T13:02:16.4464614Z Ubuntu
+2026-10-20T13:02:16.4465249Z 24.04.5
+2026-10-20T13:02:16.4465806Z LTS
+2026-10-20T13:02:16.4466329Z ##[endgroup]
+2026-10-20T13:02:16.4467266Z ##[group]Runner Image
+2026-10-20T13:02:16.4467960Z Image: ubuntu-24.04
+2026-10-20T13:02:16.4468694Z Version: 20261018.339.1
+2026-10-20T13:02:16.4469991Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261018.339/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-20T13:02:16.4472068Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261018.339
+2026-10-20T13:02:16.4473077Z ##[endgroup]
+2026-10-20T13:02:16.4474315Z ##[group]GITHUB_TOKEN Permissions
+2026-10-20T13:02:16.4476548Z Contents: read
+2026-10-20T13:02:16.4477506Z Metadata: read
+2026-10-20T13:02:16.4478115Z ##[endgroup]
+2026-10-20T13:02:16.4480577Z Secret source: Actions
+2026-10-20T13:02:16.4481633Z Cache mode: write
+2026-10-20T13:02:16.4482403Z Prepare workflow directory
+2026-10-20T13:02:16.4892819Z Prepare all required actions
+2026-10-20T13:02:16.4948409Z Getting action download info
+2026-10-20T13:02:16.8640425Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+2026-10-20T13:02:16.9832610Z Download action repository 'actions/setup-python@v6' (SHA:ece7cb06caefa5fff74198d8649806c4678c61a1)
+2026-10-20T13:02:17.0613713Z Download action repository 'actions/upload-artifact@v6' (SHA:b7c566a772e6b6bfb58ed0dc250532a479d7789f)
+2026-10-20T13:02:17.2736892Z Complete job name: test (ubuntu-24.04, debug)
+2026-10-20T13:02:17.3673968Z ##[group]Run actions/checkout@v5
+2026-10-20T13:02:17.3674908Z with:
+2026-10-20T13:02:17.3675391Z   repository: ArnavLifelessCoder/stratadb
+2026-10-20T13:02:17.3679583Z   token: ***
+2026-10-20T13:02:17.3680042Z   ssh-strict: true
+2026-10-20T13:02:17.3680489Z   ssh-user: git
+2026-10-20T13:02:17.3680989Z   persist-credentials: true
+2026-10-20T13:02:17.3681501Z   clean: true
+2026-10-20T13:02:17.3681950Z   sparse-checkout-cone-mode: true
+2026-10-20T13:02:17.3682468Z   fetch-depth: 1
+2026-10-20T13:02:17.3682906Z   fetch-tags: false
+2026-10-20T13:02:17.3683348Z   show-progress: true
+2026-10-20T13:02:17.3683810Z   lfs: false
+2026-10-20T13:02:17.3684228Z   submodules: false
+2026-10-20T13:02:17.3684679Z   set-safe-directory: true
+2026-10-20T13:02:17.3685191Z   allow-unsafe-pr-checkout: false
+2026-10-20T13:02:17.3686084Z ##[endgroup]
+2026-10-20T13:02:17.4792622Z Syncing repository: ArnavLifelessCoder/stratadb
+2026-10-20T13:02:17.4795731Z ##[group]Getting Git version info
+2026-10-20T13:02:17.4797425Z Working directory is '/home/runner/work/stratadb/stratadb'
+2026-10-20T13:02:17.4799427Z [command]/usr/bin/git version
+2026-10-20T13:02:17.4919433Z git version 2.55.0
+2026-10-20T13:02:17.4949766Z ##[endgroup]
+2026-10-20T13:02:17.4958791Z Temporarily overriding HOME='/home/runner/work/_temp/bef7c983-68fd-4385-a3ea-25ee54ac3300' before making global git config changes
+2026-10-20T13:02:17.4961037Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T13:02:17.4965114Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/stratadb/stratadb
+2026-10-20T13:02:17.5057957Z Deleting the contents of '/home/runner/work/stratadb/stratadb'
+2026-10-20T13:02:17.5070619Z ##[group]Initializing the repository
+2026-10-20T13:02:17.5079936Z [command]/usr/bin/git init /home/runner/work/stratadb/stratadb
+2026-10-20T13:02:17.5243360Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-20T13:02:17.5246079Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-20T13:02:17.5248107Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-20T13:02:17.5249786Z hint: call:
+2026-10-20T13:02:17.5250694Z hint:
+2026-10-20T13:02:17.5251765Z hint: 	git config --global init.defaultBranch <name>
+2026-10-20T13:02:17.5253007Z hint:
+2026-10-20T13:02:17.5254151Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-20T13:02:17.5255852Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-20T13:02:17.5257753Z hint:
+2026-10-20T13:02:17.5258767Z hint: 	git branch -m <name>
+2026-10-20T13:02:17.5259798Z hint:
+2026-10-20T13:02:17.5260979Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-20T13:02:17.5262933Z Initialized empty Git repository in /home/runner/work/stratadb/stratadb/.git/
+2026-10-20T13:02:17.5266515Z [command]/usr/bin/git remote add origin https://github.com/ArnavLifelessCoder/stratadb
+2026-10-20T13:02:17.5340521Z ##[endgroup]
+2026-10-20T13:02:17.5342080Z ##[group]Disabling automatic garbage collection
+2026-10-20T13:02:17.5346219Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-20T13:02:17.5398261Z ##[endgroup]
+2026-10-20T13:02:17.5399685Z ##[group]Setting up auth
+2026-10-20T13:02:17.5410418Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T13:02:17.5478339Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T13:02:17.5957861Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T13:02:17.6010036Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T13:02:17.6266844Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T13:02:17.6313308Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T13:02:17.6567954Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-20T13:02:17.6618849Z ##[endgroup]
+2026-10-20T13:02:17.6619811Z ##[group]Fetching the repository
+2026-10-20T13:02:17.6629011Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9cbe618f51da4ae4cb8252be8235943147fac3e3:refs/remotes/origin/m2
+2026-10-20T13:02:18.0536275Z From https://github.com/ArnavLifelessCoder/stratadb
+2026-10-20T13:02:18.0538081Z  * [new ref]         9cbe618f51da4ae4cb8252be8235943147fac3e3 -> origin/m2
+2026-10-20T13:02:18.0544303Z ##[endgroup]
+2026-10-20T13:02:18.0545267Z ##[group]Determining the checkout info
+2026-10-20T13:02:18.0547462Z ##[endgroup]
+2026-10-20T13:02:18.0553937Z [command]/usr/bin/git sparse-checkout disable
+2026-10-20T13:02:18.0619283Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-20T13:02:18.0661300Z ##[group]Checking out the ref
+2026-10-20T13:02:18.0665810Z [command]/usr/bin/git checkout --progress --force -B m2 refs/remotes/origin/m2
+2026-10-20T13:02:18.0803752Z Switched to a new branch 'm2'
+2026-10-20T13:02:18.0811664Z branch 'm2' set up to track 'origin/m2'.
+2026-10-20T13:02:18.0816569Z ##[endgroup]
+2026-10-20T13:02:18.0869075Z [command]/usr/bin/git log -1 --format=%H
+2026-10-20T13:02:18.0903111Z 9cbe618f51da4ae4cb8252be8235943147fac3e3
+2026-10-20T13:02:18.1190131Z ##[group]Run cmake --preset debug
+2026-10-20T13:02:18.1190866Z [36;1mcmake --preset debug[0m
+2026-10-20T13:02:18.1382130Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:02:18.1382765Z ##[endgroup]
+2026-10-20T13:02:20.9838524Z Preset CMake variables:
+2026-10-20T13:02:20.9840718Z 
+2026-10-20T13:02:20.9841373Z   BUILD_TESTING="ON"
+2026-10-20T13:02:20.9842943Z   CMAKE_BUILD_TYPE="Debug"
+2026-10-20T13:02:20.9843831Z   CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+2026-10-20T13:02:20.9849075Z 
+2026-10-20T13:02:20.9849477Z -- The CXX compiler identification is GNU 13.3.0
+2026-10-20T13:02:21.4455983Z -- Detecting CXX compiler ABI info
+2026-10-20T13:02:21.9563093Z -- Detecting CXX compiler ABI info - done
+2026-10-20T13:02:21.9733366Z -- Check for working CXX compiler: /usr/bin/c++ - skipped
+2026-10-20T13:02:21.9892903Z -- Detecting CXX compile features
+2026-10-20T13:02:22.0132509Z -- Detecting CXX compile features - done
+2026-10-20T13:02:22.1599420Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-20T13:02:22.2767256Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+2026-10-20T13:02:22.3114494Z -- Found Threads: TRUE
+2026-10-20T13:02:24.6095666Z -- The C compiler identification is GNU 13.3.0
+2026-10-20T13:02:24.6712258Z -- Detecting C compiler ABI info
+2026-10-20T13:02:24.7644107Z -- Detecting C compiler ABI info - done
+2026-10-20T13:02:24.7836860Z -- Check for working C compiler: /usr/bin/cc - skipped
+2026-10-20T13:02:24.7841224Z -- Detecting C compile features
+2026-10-20T13:02:24.7846192Z -- Detecting C compile features - done
+2026-10-20T13:02:24.8844921Z -- Configuring done (5.1s)
+2026-10-20T13:02:24.9191705Z -- Generating done (0.0s)
+2026-10-20T13:02:24.9198338Z -- Build files have been written to: /home/runner/work/stratadb/stratadb/build/debug
+2026-10-20T13:02:24.9306042Z ##[group]Run cmake --build --preset debug
+2026-10-20T13:02:24.9306439Z [36;1mcmake --build --preset debug[0m
+2026-10-20T13:02:24.9360565Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:02:24.9360855Z ##[endgroup]
+2026-10-20T13:02:25.3498303Z [1/32] Building CXX object CMakeFiles/lsm.dir/src/util/hash.cpp.o
+2026-10-20T13:02:25.4518150Z [2/32] Building CXX object CMakeFiles/lsm.dir/src/util/crc32c.cpp.o
+2026-10-20T13:02:25.5924042Z [3/32] Building CXX object CMakeFiles/lsm.dir/src/util/varint.cpp.o
+2026-10-20T13:02:25.6276910Z [4/32] Building CXX object CMakeFiles/lsm.dir/src/status.cpp.o
+2026-10-20T13:02:25.8788432Z [5/32] Building CXX object CMakeFiles/lsm.dir/src/write_batch.cpp.o
+2026-10-20T13:02:27.8358414Z [6/32] Building CXX object CMakeFiles/lsm.dir/src/platform/posix.cpp.o
+2026-10-20T13:02:28.1383517Z [7/32] Building CXX object CMakeFiles/lsm.dir/src/wal.cpp.o
+2026-10-20T13:02:28.2128311Z [8/32] Building CXX object CMakeFiles/lsm.dir/src/memtable.cpp.o
+2026-10-20T13:02:28.6798423Z [9/32] Building CXX object CMakeFiles/lsm.dir/src/db.cpp.o
+2026-10-20T13:02:29.8468007Z [10/32] Linking CXX static library liblsm.a
+2026-10-20T13:02:30.5378389Z [11/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/test_main.cpp.o
+2026-10-20T13:02:30.7196920Z [12/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/status_test.cpp.o
+2026-10-20T13:02:31.5048582Z [13/32] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+2026-10-20T13:02:31.6085978Z [14/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/slice_test.cpp.o
+2026-10-20T13:02:33.9448616Z [15/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/crc32c_test.cpp.o
+2026-10-20T13:02:34.4863927Z [16/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/hash_test.cpp.o
+2026-10-20T13:02:35.6678324Z [17/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/memtable_test.cpp.o
+2026-10-20T13:02:35.7448361Z [18/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/varint_test.cpp.o
+2026-10-20T13:02:35.9808225Z [19/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/write_batch_test.cpp.o
+2026-10-20T13:02:37.1383299Z [20/32] Building CXX object CMakeFiles/lsm_db_process.dir/tests/db_process.cpp.o
+2026-10-20T13:02:38.4098467Z [21/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/platform_test.cpp.o
+2026-10-20T13:02:38.6528051Z [22/32] Linking CXX executable lsm_db_process
+2026-10-20T13:02:38.9678096Z [23/32] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+2026-10-20T13:02:39.1689180Z [24/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/wal_test.cpp.o
+2026-10-20T13:02:39.1991679Z [25/32] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+2026-10-20T13:02:39.2299089Z [26/32] Linking CXX static library lib/libgtest.a
+2026-10-20T13:02:39.3727874Z [27/32] Linking CXX static library lib/libgmock.a
+2026-10-20T13:02:39.4313344Z [28/32] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+2026-10-20T13:02:39.4890486Z [29/32] Linking CXX static library lib/libgmock_main.a
+2026-10-20T13:02:39.5154091Z [30/32] Linking CXX static library lib/libgtest_main.a
+2026-10-20T13:02:39.7194839Z [31/32] Building CXX object CMakeFiles/lsm_tests.dir/tests/db_test.cpp.o
+2026-10-20T13:02:39.9057717Z [32/32] Linking CXX executable lsm_tests
+2026-10-20T13:02:39.9108222Z ##[group]Run ctest --preset debug --verbose --output-log results/ci-Linux-debug.log
+2026-10-20T13:02:39.9108898Z [36;1mctest --preset debug --verbose --output-log results/ci-Linux-debug.log[0m
+2026-10-20T13:02:39.9159917Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:02:39.9160181Z ##[endgroup]
+2026-10-20T13:02:41.3898021Z UpdateCTestConfiguration  from :/home/runner/work/stratadb/stratadb/DartConfiguration.tcl
+2026-10-20T13:02:41.5876170Z UpdateCTestConfiguration  from :/home/runner/work/stratadb/stratadb/build/debug/DartConfiguration.tcl
+2026-10-20T13:02:41.5877521Z Parse Config file:/home/runner/work/stratadb/stratadb/build/debug/DartConfiguration.tcl
+2026-10-20T13:02:41.6029093Z Test project /home/runner/work/stratadb/stratadb/build/debug
+2026-10-20T13:02:41.6036063Z Constructing a list of tests
+2026-10-20T13:02:41.6499647Z Done constructing a list of tests
+2026-10-20T13:02:41.6500264Z Updating test list for fixtures
+2026-10-20T13:02:41.6504124Z Added 0 tests to meet fixture requirements
+2026-10-20T13:02:41.7041983Z Checking test dependency graph...
+2026-10-20T13:02:41.7042480Z Checking test dependency graph end
+2026-10-20T13:02:41.7549074Z test 1
+2026-10-20T13:02:41.7549483Z     Start 1: lsm_tests
+2026-10-20T13:02:41.7549689Z 
+2026-10-20T13:02:41.7549989Z 1: Test command: /home/runner/work/stratadb/stratadb/build/debug/lsm_tests
+2026-10-20T13:02:41.7550681Z 1: Working Directory: /home/runner/work/stratadb/stratadb/build/debug
+2026-10-20T13:02:41.7769730Z 1: Test timeout computed to be: 600
+2026-10-20T13:02:41.7795061Z 1: Randomized test seed: 24301
+2026-10-20T13:02:41.7795652Z 1: [==========] Running 46 tests from 12 test suites.
+2026-10-20T13:02:41.7796435Z 1: [----------] Global test environment set-up.
+2026-10-20T13:02:41.7797237Z 1: [----------] 3 tests from StatusTest
+2026-10-20T13:02:41.7797812Z 1: [ RUN      ] StatusTest.DefaultIsSuccess
+2026-10-20T13:02:41.7798448Z 1: [       OK ] StatusTest.DefaultIsSuccess (0 ms)
+2026-10-20T13:02:41.7799149Z 1: [ RUN      ] StatusTest.ErrorsKeepCodeAndMessage
+2026-10-20T13:02:41.7799720Z 1: [       OK ] StatusTest.ErrorsKeepCodeAndMessage (0 ms)
+2026-10-20T13:02:41.7800289Z 1: [ RUN      ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently
+2026-10-20T13:02:41.7800975Z 1: [       OK ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently (0 ms)
+2026-10-20T13:02:41.7801548Z 1: [----------] 3 tests from StatusTest (0 ms total)
+2026-10-20T13:02:41.7801912Z 1: 
+2026-10-20T13:02:41.7802160Z 1: [----------] 4 tests from SliceTest
+2026-10-20T13:02:41.7802648Z 1: [ RUN      ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes
+2026-10-20T13:02:41.7803352Z 1: [       OK ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes (0 ms)
+2026-10-20T13:02:41.7803984Z 1: [ RUN      ] SliceTest.AllSingleBytesHaveUnsignedOrdering
+2026-10-20T13:02:41.7843685Z 1: [       OK ] SliceTest.AllSingleBytesHaveUnsignedOrdering (4 ms)
+2026-10-20T13:02:41.7844315Z 1: [ RUN      ] SliceTest.EmptyAndPrefixOrdering
+2026-10-20T13:02:41.7844840Z 1: [       OK ] SliceTest.EmptyAndPrefixOrdering (0 ms)
+2026-10-20T13:02:41.7845465Z 1: [ RUN      ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing
+2026-10-20T13:02:41.7846220Z 1: [       OK ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing (0 ms)
+2026-10-20T13:02:41.7847649Z 1: [----------] 4 tests from SliceTest (4 ms total)
+2026-10-20T13:02:41.7848316Z 1: 
+2026-10-20T13:02:41.7848827Z 1: [----------] 2 tests from Crc32cTest
+2026-10-20T13:02:41.7849520Z 1: [ RUN      ] Crc32cTest.EmptyAndCanonicalCheckValue
+2026-10-20T13:02:41.7850283Z 1: [       OK ] Crc32cTest.EmptyAndCanonicalCheckValue (0 ms)
+2026-10-20T13:02:41.7851008Z 1: [ RUN      ] Crc32cTest.EverySplitAndSingleBitChange
+2026-10-20T13:02:41.7851756Z 1: [       OK ] Crc32cTest.EverySplitAndSingleBitChange (0 ms)
+2026-10-20T13:02:41.7852437Z 1: [----------] 2 tests from Crc32cTest (0 ms total)
+2026-10-20T13:02:41.7853025Z 1: 
+2026-10-20T13:02:41.7853516Z 1: [----------] 3 tests from HashTest
+2026-10-20T13:02:41.7854420Z 1: [ RUN      ] HashTest.EmptyAndTextVectors
+2026-10-20T13:02:41.7855052Z 1: [       OK ] HashTest.EmptyAndTextVectors (0 ms)
+2026-10-20T13:02:41.7855853Z 1: [ RUN      ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment
+2026-10-20T13:02:41.7876712Z 1: [       OK ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment (3 ms)
+2026-10-20T13:02:41.7877911Z 1: [ RUN      ] HashTest.LengthAndEmbeddedNulsAreSignificant
+2026-10-20T13:02:41.7878703Z 1: [       OK ] HashTest.LengthAndEmbeddedNulsAreSignificant (0 ms)
+2026-10-20T13:02:41.7879404Z 1: [----------] 3 tests from HashTest (3 ms total)
+2026-10-20T13:02:41.7879897Z 1: 
+2026-10-20T13:02:41.7880378Z 1: [----------] 6 tests from VarintTest/0, where TypeParam = unsigned int
+2026-10-20T13:02:41.7881150Z 1: [ RUN      ] VarintTest/0.GoldenWireBytesAndAppendSemantics
+2026-10-20T13:02:41.7881903Z 1: [       OK ] VarintTest/0.GoldenWireBytesAndAppendSemantics (0 ms)
+2026-10-20T13:02:41.7882712Z 1: [ RUN      ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix
+2026-10-20T13:02:41.7883610Z 1: [       OK ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix (0 ms)
+2026-10-20T13:02:41.7884482Z 1: [ RUN      ] VarintTest/0.RejectsMalformedWithoutChangingArguments
+2026-10-20T13:02:41.7885343Z 1: [       OK ] VarintTest/0.RejectsMalformedWithoutChangingArguments (0 ms)
+2026-10-20T13:02:41.7886199Z 1: [ RUN      ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding
+2026-10-20T13:02:41.9386926Z 1: [       OK ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding (150 ms)
+2026-10-20T13:02:41.9388100Z 1: [ RUN      ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference
+2026-10-20T13:02:42.0123644Z 1: [       OK ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference (73 ms)
+2026-10-20T13:02:42.0124505Z 1: [ RUN      ] VarintTest/0.ConcatenatedStream
+2026-10-20T13:02:42.0125098Z 1: [       OK ] VarintTest/0.ConcatenatedStream (0 ms)
+2026-10-20T13:02:42.0125711Z 1: [----------] 6 tests from VarintTest/0 (224 ms total)
+2026-10-20T13:02:42.0126255Z 1: 
+2026-10-20T13:02:42.0126756Z 1: [----------] 6 tests from VarintTest/1, where TypeParam = unsigned long
+2026-10-20T13:02:42.0127779Z 1: [ RUN      ] VarintTest/1.GoldenWireBytesAndAppendSemantics
+2026-10-20T13:02:42.0128570Z 1: [       OK ] VarintTest/1.GoldenWireBytesAndAppendSemantics (0 ms)
+2026-10-20T13:02:42.0129388Z 1: [ RUN      ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix
+2026-10-20T13:02:42.0132981Z 1: [       OK ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix (0 ms)
+2026-10-20T13:02:42.0133900Z 1: [ RUN      ] VarintTest/1.RejectsMalformedWithoutChangingArguments
+2026-10-20T13:02:42.0134783Z 1: [       OK ] VarintTest/1.RejectsMalformedWithoutChangingArguments (0 ms)
+2026-10-20T13:02:42.0135655Z 1: [ RUN      ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding
+2026-10-20T13:02:42.1939668Z 1: [       OK ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding (180 ms)
+2026-10-20T13:02:42.1940696Z 1: [ RUN      ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference
+2026-10-20T13:02:42.2697967Z 1: [       OK ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference (75 ms)
+2026-10-20T13:02:42.2698820Z 1: [ RUN      ] VarintTest/1.ConcatenatedStream
+2026-10-20T13:02:42.2699761Z 1: [       OK ] VarintTest/1.ConcatenatedStream (0 ms)
+2026-10-20T13:02:42.2700342Z 1: [----------] 6 tests from VarintTest/1 (257 ms total)
+2026-10-20T13:02:42.2700849Z 1: 
+2026-10-20T13:02:42.2701182Z 1: [----------] 3 tests from WriteBatchTest
+2026-10-20T13:02:42.2701820Z 1: [ RUN      ] WriteBatchTest.OwnsDataPreservesOrderAndRoundTrips
+2026-10-20T13:02:42.2721013Z 1: [       OK ] WriteBatchTest.OwnsDataPreservesOrderAndRoundTrips (2 ms)
+2026-10-20T13:02:42.2722176Z 1: [ RUN      ] WriteBatchTest.RejectsTruncationInvalidTypesTrailingBytesAndSequenceOverflow
+2026-10-20T13:02:42.2723561Z 1: [       OK ] WriteBatchTest.RejectsTruncationInvalidTypesTrailingBytesAndSequenceOverflow (0 ms)
+2026-10-20T13:02:42.2724716Z 1: [ RUN      ] WriteBatchTest.RandomBytesNeverProduceUnstableDecodes
+2026-10-20T13:02:42.2893914Z 1: [       OK ] WriteBatchTest.RandomBytesNeverProduceUnstableDecodes (17 ms)
+2026-10-20T13:02:42.2894797Z 1: [----------] 3 tests from WriteBatchTest (19 ms total)
+2026-10-20T13:02:42.2895331Z 1: 
+2026-10-20T13:02:42.2895664Z 1: [----------] 3 tests from MemTableTest
+2026-10-20T13:02:42.2896469Z 1: [ RUN      ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership
+2026-10-20T13:02:42.2897891Z 1: [       OK ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership (0 ms)
+2026-10-20T13:02:42.2898894Z 1: [ RUN      ] MemTableTest.RandomVersionsMatchMapReference
+2026-10-20T13:02:42.3265845Z 1: [       OK ] MemTableTest.RandomVersionsMatchMapReference (37 ms)
+2026-10-20T13:02:42.3267763Z 1: [ RUN      ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions
+2026-10-20T13:02:42.3372133Z 1: [       OK ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions (10 ms)
+2026-10-20T13:02:42.3372662Z 1: [----------] 3 tests from MemTableTest (47 ms total)
+2026-10-20T13:02:42.3372964Z 1: 
+2026-10-20T13:02:42.3373179Z 1: [----------] 2 tests from PlatformTest
+2026-10-20T13:02:42.3373628Z 1: [ RUN      ] PlatformTest.SyncRenameReplaceTruncateAppendAndUnicodePaths
+2026-10-20T13:02:42.3451549Z 1: [       OK ] PlatformTest.SyncRenameReplaceTruncateAppendAndUnicodePaths (7 ms)
+2026-10-20T13:02:42.3452451Z 1: [ RUN      ] PlatformTest.ExclusiveLockAndErrors
+2026-10-20T13:02:42.3453454Z 1: [       OK ] PlatformTest.ExclusiveLockAndErrors (0 ms)
+2026-10-20T13:02:42.3454095Z 1: [----------] 2 tests from PlatformTest (8 ms total)
+2026-10-20T13:02:42.3454608Z 1: 
+2026-10-20T13:02:42.3454935Z 1: [----------] 6 tests from WalTest
+2026-10-20T13:02:42.3455707Z 1: [ RUN      ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend
+2026-10-20T13:02:42.3456867Z 1: WAL recovery: truncated 1 tail bytes at offset 20
+2026-10-20T13:02:42.3457855Z 1: WAL recovery: truncated 2 tail bytes at offset 20
+2026-10-20T13:02:42.3458481Z 1: WAL recovery: truncated 3 tail bytes at offset 20
+2026-10-20T13:02:42.3459187Z 1: WAL recovery: truncated 4 tail bytes at offset 20
+2026-10-20T13:02:42.3459918Z 1: WAL recovery: truncated 5 tail bytes at offset 20
+2026-10-20T13:02:42.3460602Z 1: WAL recovery: truncated 6 tail bytes at offset 20
+2026-10-20T13:02:42.3461325Z 1: WAL recovery: truncated 7 tail bytes at offset 20
+2026-10-20T13:02:42.3462011Z 1: WAL recovery: truncated 8 tail bytes at offset 20
+2026-10-20T13:02:42.3462623Z 1: WAL recovery: truncated 9 tail bytes at offset 20
+2026-10-20T13:02:42.3463338Z 1: WAL recovery: truncated 10 tail bytes at offset 20
+2026-10-20T13:02:42.3463984Z 1: WAL recovery: truncated 11 tail bytes at offset 20
+2026-10-20T13:02:42.3464680Z 1: WAL recovery: truncated 12 tail bytes at offset 20
+2026-10-20T13:02:42.3465291Z 1: WAL recovery: truncated 13 tail bytes at offset 20
+2026-10-20T13:02:42.3465921Z 1: WAL recovery: truncated 14 tail bytes at offset 20
+2026-10-20T13:02:42.3466394Z 1: WAL recovery: truncated 15 tail bytes at offset 20
+2026-10-20T13:02:42.3467144Z 1: WAL recovery: truncated 16 tail bytes at offset 20
+2026-10-20T13:02:42.3467811Z 1: WAL recovery: truncated 17 tail bytes at offset 20
+2026-10-20T13:02:42.3468372Z 1: WAL recovery: truncated 18 tail bytes at offset 20
+2026-10-20T13:02:42.3468880Z 1: WAL recovery: truncated 19 tail bytes at offset 20
+2026-10-20T13:02:42.3469199Z 1: WAL recovery: truncated 20 tail bytes at offset 20
+2026-10-20T13:02:42.3469683Z 1: [       OK ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend (1 ms)
+2026-10-20T13:02:42.3470345Z 1: [ RUN      ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord
+2026-10-20T13:02:42.3471039Z 1: [       OK ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord (0 ms)
+2026-10-20T13:02:42.3471618Z 1: [ RUN      ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch
+2026-10-20T13:02:42.3472411Z 1: [       OK ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch (0 ms)
+2026-10-20T13:02:42.3473108Z 1: [ RUN      ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends
+2026-10-20T13:02:42.3474978Z 1: [       OK ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends (0 ms)
+2026-10-20T13:02:42.3475561Z 1: [ RUN      ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate
+2026-10-20T13:02:42.3476050Z 1: [       OK ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate (0 ms)
+2026-10-20T13:02:42.3476523Z 1: [ RUN      ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes
+2026-10-20T13:02:42.3477270Z 1: [       OK ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes (0 ms)
+2026-10-20T13:02:42.3477799Z 1: [----------] 6 tests from WalTest (1 ms total)
+2026-10-20T13:02:42.3478073Z 1: 
+2026-10-20T13:02:42.3478262Z 1: [----------] 4 tests from DBTest
+2026-10-20T13:02:42.3478607Z 1: [ RUN      ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay
+2026-10-20T13:02:53.0906604Z 1: DB differential: 10000 seeds, 64 operations per seed, base seed 24301
+2026-10-20T13:02:53.0907578Z 1: [       OK ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay (10743 ms)
+2026-10-20T13:02:53.0908168Z 1: [ RUN      ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen
+2026-10-20T13:02:53.1061446Z 1: [       OK ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen (15 ms)
+2026-10-20T13:02:53.1062136Z 1: [ RUN      ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen
+2026-10-20T13:02:53.1105393Z 1: WAL recovery: truncated 4 tail bytes at offset 22
+2026-10-20T13:02:53.1117570Z 1: [       OK ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen (5 ms)
+2026-10-20T13:02:53.1118756Z 1: [ RUN      ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches
+2026-10-20T13:02:53.2366194Z 1: [       OK ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches (124 ms)
+2026-10-20T13:02:53.2367758Z 1: [----------] 4 tests from DBTest (10889 ms total)
+2026-10-20T13:02:53.2368269Z 1: 
+2026-10-20T13:02:53.2368685Z 1: [----------] 4 tests from TableAndSse42/Crc32cPathsTest
+2026-10-20T13:02:53.2369448Z 1: [ RUN      ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/0
+2026-10-20T13:02:53.2370326Z 1: [       OK ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/0 (0 ms)
+2026-10-20T13:02:53.2371042Z 1: [ RUN      ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/1
+2026-10-20T13:02:53.2371760Z 1: [       OK ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/1 (0 ms)
+2026-10-20T13:02:53.2372632Z 1: [ RUN      ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/0
+2026-10-20T13:02:53.6041042Z 1: [       OK ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/0 (367 ms)
+2026-10-20T13:02:53.6042122Z 1: [ RUN      ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/1
+2026-10-20T13:02:53.9454075Z 1: [       OK ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/1 (341 ms)
+2026-10-20T13:02:53.9454989Z 1: [----------] 4 tests from TableAndSse42/Crc32cPathsTest (708 ms total)
+2026-10-20T13:02:53.9455496Z 1: 
+2026-10-20T13:02:53.9455787Z 1: [----------] Global test environment tear-down
+2026-10-20T13:02:53.9456289Z 1: [==========] 46 tests from 12 test suites ran. (12165 ms total)
+2026-10-20T13:02:53.9456751Z 1: [  PASSED  ] 46 tests.
+2026-10-20T13:02:53.9464249Z 1/5 Test #1: lsm_tests ........................   Passed   12.17 sec
+2026-10-20T13:02:53.9815581Z test 2
+2026-10-20T13:02:53.9816002Z     Start 2: seed_maximum
+2026-10-20T13:02:53.9816322Z 
+2026-10-20T13:02:53.9817258Z 2: Test command: /home/runner/work/stratadb/stratadb/build/debug/lsm_tests "--seed=18446744073709551615" "--gtest_filter=StatusTest.DefaultIsSuccess"
+2026-10-20T13:02:53.9818287Z 2: Working Directory: /home/runner/work/stratadb/stratadb/build/debug
+2026-10-20T13:02:53.9818791Z 2: Test timeout computed to be: 1500
+2026-10-20T13:02:53.9840811Z 2: Randomized test seed: 18446744073709551615
+2026-10-20T13:02:53.9841516Z 2: Note: Google Test filter = StatusTest.DefaultIsSuccess
+2026-10-20T13:02:53.9842224Z 2: [==========] Running 1 test from 1 test suite.
+2026-10-20T13:02:53.9842699Z 2: [----------] Global test environment set-up.
+2026-10-20T13:02:53.9843294Z 2: [----------] 1 test from StatusTest
+2026-10-20T13:02:53.9843732Z 2: [ RUN      ] StatusTest.DefaultIsSuccess
+2026-10-20T13:02:53.9844418Z 2: [       OK ] StatusTest.DefaultIsSuccess (0 ms)
+2026-10-20T13:02:53.9844863Z 2: [----------] 1 test from StatusTest (0 ms total)
+2026-10-20T13:02:53.9845227Z 2: 
+2026-10-20T13:02:53.9845494Z 2: [----------] Global test environment tear-down
+2026-10-20T13:02:53.9845912Z 2: [==========] 1 test from 1 test suite ran. (0 ms total)
+2026-10-20T13:02:53.9846476Z 2: [  PASSED  ] 1 test.
+2026-10-20T13:02:53.9847224Z 2/5 Test #2: seed_maximum .....................   Passed    0.00 sec
+2026-10-20T13:02:53.9847660Z test 3
+2026-10-20T13:02:53.9847901Z     Start 3: seed_reject_empty
+2026-10-20T13:02:53.9848110Z 
+2026-10-20T13:02:53.9848422Z 3: Test command: /home/runner/work/stratadb/stratadb/build/debug/lsm_tests "--seed="
+2026-10-20T13:02:53.9849346Z 3: Working Directory: /home/runner/work/stratadb/stratadb/build/debug
+2026-10-20T13:02:53.9850134Z 3: Test timeout computed to be: 10
+2026-10-20T13:02:53.9867832Z 3: Invalid --seed: expected an unsigned decimal 64-bit integer
+2026-10-20T13:02:53.9870548Z 3/5 Test #3: seed_reject_empty ................   Passed    0.00 sec
+2026-10-20T13:02:53.9872426Z test 4
+2026-10-20T13:02:53.9873036Z     Start 4: seed_reject_text
+2026-10-20T13:02:53.9873365Z 
+2026-10-20T13:02:53.9873845Z 4: Test command: /home/runner/work/stratadb/stratadb/build/debug/lsm_tests "--seed=invalid"
+2026-10-20T13:02:53.9874874Z 4: Working Directory: /home/runner/work/stratadb/stratadb/build/debug
+2026-10-20T13:02:53.9875282Z 4: Test timeout computed to be: 10
+2026-10-20T13:02:53.9891429Z 4: Invalid --seed: expected an unsigned decimal 64-bit integer
+2026-10-20T13:02:53.9893864Z 4/5 Test #4: seed_reject_text .................   Passed    0.00 sec
+2026-10-20T13:02:53.9895603Z test 5
+2026-10-20T13:02:53.9895985Z     Start 5: seed_reject_overflow
+2026-10-20T13:02:53.9896306Z 
+2026-10-20T13:02:53.9896868Z 5: Test command: /home/runner/work/stratadb/stratadb/build/debug/lsm_tests "--seed=18446744073709551616"
+2026-10-20T13:02:53.9898350Z 5: Working Directory: /home/runner/work/stratadb/stratadb/build/debug
+2026-10-20T13:02:53.9898757Z 5: Test timeout computed to be: 10
+2026-10-20T13:02:53.9913651Z 5: Invalid --seed: expected an unsigned decimal 64-bit integer
+2026-10-20T13:02:53.9916085Z 5/5 Test #5: seed_reject_overflow .............   Passed    0.00 sec
+2026-10-20T13:02:53.9919829Z 
+2026-10-20T13:02:53.9920143Z 100% tests passed, 0 tests failed out of 5
+2026-10-20T13:02:53.9920515Z 
+2026-10-20T13:02:53.9920691Z Total Test time (real) =  12.39 sec
+2026-10-20T13:02:54.1139611Z ##[group]Run actions/setup-python@v6
+2026-10-20T13:02:54.1139909Z with:
+2026-10-20T13:02:54.1140112Z   python-version: 3.13
+2026-10-20T13:02:54.1140339Z   check-latest: false
+2026-10-20T13:02:54.1142980Z   token: ***
+2026-10-20T13:02:54.1143196Z   update-environment: true
+2026-10-20T13:02:54.1143440Z   allow-prereleases: false
+2026-10-20T13:02:54.1143679Z   freethreaded: false
+2026-10-20T13:02:54.1143895Z ##[endgroup]
+2026-10-20T13:02:54.2517984Z ##[group]Installed versions
+2026-10-20T13:02:54.2620439Z Successfully set up CPython (3.13.16)
+2026-10-20T13:02:54.2621544Z ##[endgroup]
+2026-10-20T13:02:54.2798192Z ##[group]Run executable=build/debug/lsm_db_process
+2026-10-20T13:02:54.2798600Z [36;1mexecutable=build/debug/lsm_db_process[0m
+2026-10-20T13:02:54.2799001Z [36;1mif [ "$RUNNER_OS" = Windows ]; then executable="$executable.exe"; fi[0m
+2026-10-20T13:02:54.2799610Z [36;1mpython tests/crash_smoke.py --executable "$executable" --output results/crash-Linux-debug.json[0m
+2026-10-20T13:02:54.2966093Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-20T13:02:54.2966469Z env:
+2026-10-20T13:02:54.2966752Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:02:54.2967518Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:02:54.2967970Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:02:54.2968351Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:02:54.2968727Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:02:54.2969182Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:02:54.2969506Z ##[endgroup]
+2026-10-20T13:02:55.0218798Z {
+2026-10-20T13:02:55.0219352Z   "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+2026-10-20T13:02:55.0219917Z   "system": "Linux",
+2026-10-20T13:02:55.0220252Z   "seed": 24301,
+2026-10-20T13:02:55.0220591Z   "scope": "M2 smoke; not the M6 campaign",
+2026-10-20T13:02:55.0221021Z   "cycles": [
+2026-10-20T13:02:55.0221286Z     {
+2026-10-20T13:02:55.0221554Z       "sync": true,
+2026-10-20T13:02:55.0221871Z       "acknowledged": 28,
+2026-10-20T13:02:55.0222244Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0222624Z       "recovery_output": ""
+2026-10-20T13:02:55.0222969Z     },
+2026-10-20T13:02:55.0223255Z     {
+2026-10-20T13:02:55.0223528Z       "sync": true,
+2026-10-20T13:02:55.0223988Z       "acknowledged": 88,
+2026-10-20T13:02:55.0224359Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0224729Z       "recovery_output": ""
+2026-10-20T13:02:55.0225078Z     },
+2026-10-20T13:02:55.0225389Z     {
+2026-10-20T13:02:55.0225651Z       "sync": true,
+2026-10-20T13:02:55.0226010Z       "acknowledged": 62,
+2026-10-20T13:02:55.0226361Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0226728Z       "recovery_output": ""
+2026-10-20T13:02:55.0227329Z     },
+2026-10-20T13:02:55.0227605Z     {
+2026-10-20T13:02:55.0227868Z       "sync": true,
+2026-10-20T13:02:55.0228194Z       "acknowledged": 35,
+2026-10-20T13:02:55.0228553Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0228922Z       "recovery_output": ""
+2026-10-20T13:02:55.0229259Z     },
+2026-10-20T13:02:55.0229512Z     {
+2026-10-20T13:02:55.0229772Z       "sync": true,
+2026-10-20T13:02:55.0230088Z       "acknowledged": 84,
+2026-10-20T13:02:55.0230443Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0230870Z       "recovery_output": ""
+2026-10-20T13:02:55.0231210Z     },
+2026-10-20T13:02:55.0231489Z     {
+2026-10-20T13:02:55.0231774Z       "sync": true,
+2026-10-20T13:02:55.0232100Z       "acknowledged": 63,
+2026-10-20T13:02:55.0232513Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0232895Z       "recovery_output": ""
+2026-10-20T13:02:55.0233236Z     },
+2026-10-20T13:02:55.0233497Z     {
+2026-10-20T13:02:55.0233771Z       "sync": false,
+2026-10-20T13:02:55.0234101Z       "acknowledged": 92,
+2026-10-20T13:02:55.0234456Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0234843Z       "recovery_output": ""
+2026-10-20T13:02:55.0235192Z     },
+2026-10-20T13:02:55.0235455Z     {
+2026-10-20T13:02:55.0235722Z       "sync": false,
+2026-10-20T13:02:55.0236058Z       "acknowledged": 71,
+2026-10-20T13:02:55.0236413Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0236789Z       "recovery_output": ""
+2026-10-20T13:02:55.0237311Z     },
+2026-10-20T13:02:55.0237671Z     {
+2026-10-20T13:02:55.0237950Z       "sync": false,
+2026-10-20T13:02:55.0238284Z       "acknowledged": 49,
+2026-10-20T13:02:55.0238663Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0239216Z       "recovery_output": "WAL recovery: truncated 6 tail bytes at offset 8186\n"
+2026-10-20T13:02:55.0240435Z     },
+2026-10-20T13:02:55.0240724Z     {
+2026-10-20T13:02:55.0241003Z       "sync": false,
+2026-10-20T13:02:55.0241342Z       "acknowledged": 88,
+2026-10-20T13:02:55.0241824Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0242215Z       "recovery_output": ""
+2026-10-20T13:02:55.0242593Z     },
+2026-10-20T13:02:55.0242868Z     {
+2026-10-20T13:02:55.0243125Z       "sync": false,
+2026-10-20T13:02:55.0243424Z       "acknowledged": 54,
+2026-10-20T13:02:55.0243782Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0244171Z       "recovery_output": ""
+2026-10-20T13:02:55.0244539Z     },
+2026-10-20T13:02:55.0244832Z     {
+2026-10-20T13:02:55.0245112Z       "sync": false,
+2026-10-20T13:02:55.0245441Z       "acknowledged": 38,
+2026-10-20T13:02:55.0245832Z       "kill_returncode": -9,
+2026-10-20T13:02:55.0246229Z       "recovery_output": ""
+2026-10-20T13:02:55.0246601Z     }
+2026-10-20T13:02:55.0246874Z   ]
+2026-10-20T13:02:55.0247369Z }
+2026-10-20T13:02:55.0369622Z ##[group]Run actions/upload-artifact@v6
+2026-10-20T13:02:55.0369936Z with:
+2026-10-20T13:02:55.0370140Z   name: tests-Linux-debug
+2026-10-20T13:02:55.0370505Z   path: results/ci-*.log
+results/crash-*.json
+build/debug/Testing/Temporary/
+
+2026-10-20T13:02:55.0370901Z   if-no-files-found: warn
+2026-10-20T13:02:55.0371134Z   compression-level: 6
+2026-10-20T13:02:55.0371357Z   overwrite: false
+2026-10-20T13:02:55.0371570Z   include-hidden-files: false
+2026-10-20T13:02:55.0371800Z env:
+2026-10-20T13:02:55.0372055Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:02:55.0372491Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:02:55.0372913Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:02:55.0373292Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:02:55.0373671Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:02:55.0374092Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:02:55.0374420Z ##[endgroup]
+2026-10-20T13:02:55.2066634Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-20T13:02:55.2069421Z The least common ancestor is /home/runner/work/stratadb/stratadb. This will be the root directory of the artifact
+2026-10-20T13:02:55.2070637Z With the provided path, there will be 4 files uploaded
+2026-10-20T13:02:55.2075819Z Artifact name is valid!
+2026-10-20T13:02:55.2076572Z Root directory input is valid!
+2026-10-20T13:02:55.6082063Z Beginning upload of artifact content to blob storage
+2026-10-20T13:02:55.9383562Z Uploaded bytes 5856
+2026-10-20T13:02:56.0154729Z Finished uploading artifact content to blob storage!
+2026-10-20T13:02:56.0156552Z SHA256 digest of uploaded artifact zip is 0c165ed95cf940ff5b7f4f36d29f029638f73eb113891853894b865ca74e4eb1
+2026-10-20T13:02:56.0158452Z Finalizing artifact upload
+2026-10-20T13:02:56.4471056Z Artifact tests-Linux-debug.zip successfully finalized. Artifact ID 12266915818
+2026-10-20T13:02:56.4472218Z Artifact tests-Linux-debug has been successfully uploaded! Final size is 5856 bytes. Artifact ID is 12266915818
+2026-10-20T13:02:56.4476570Z Artifact download URL: https://github.com/ArnavLifelessCoder/stratadb/actions/runs/39427006423/artifacts/12266915818
+2026-10-20T13:02:56.4671731Z Post job cleanup.
+2026-10-20T13:02:56.6133228Z Post job cleanup.
+2026-10-20T13:02:56.7057908Z [command]/usr/bin/git version
+2026-10-20T13:02:56.7095659Z git version 2.55.0
+2026-10-20T13:02:56.7140023Z Temporarily overriding HOME='/home/runner/work/_temp/a4dbe9a3-c514-490a-a485-65200d8a87c8' before making global git config changes
+2026-10-20T13:02:56.7141510Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T13:02:56.7145091Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/stratadb/stratadb
+2026-10-20T13:02:56.7190748Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T13:02:56.7230153Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T13:02:56.7501162Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T13:02:56.7577695Z http.https://github.com/.extraheader
+2026-10-20T13:02:56.7590068Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-20T13:02:56.7641710Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T13:02:56.7905681Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T13:02:56.7952485Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T13:02:56.8370829Z Cleaning up orphan processes
+

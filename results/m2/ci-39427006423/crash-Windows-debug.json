@@ -1,0 +1,80 @@
+{
+  "platform": "Windows-2025Server-10.0.26100-SP0",
+  "system": "Windows",
+  "seed": 24301,
+  "scope": "M2 smoke; not the M6 campaign",
+  "cycles": [
+    {
+      "sync": true,
+      "acknowledged": 28,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": true,
+      "acknowledged": 88,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": true,
+      "acknowledged": 62,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": true,
+      "acknowledged": 35,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": true,
+      "acknowledged": 84,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": true,
+      "acknowledged": 63,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": false,
+      "acknowledged": 92,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": false,
+      "acknowledged": 71,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": false,
+      "acknowledged": 49,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": false,
+      "acknowledged": 88,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": false,
+      "acknowledged": 54,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    },
+    {
+      "sync": false,
+      "acknowledged": 38,
+      "kill_returncode": 1,
+      "recovery_output": ""
+    }
+  ]
+}
