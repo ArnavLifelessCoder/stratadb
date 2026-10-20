@@ -1,0 +1,20 @@
+{
+  "recorded_utc": "2026-10-20T15:50:47.1076875Z",
+  "platform": "Windows",
+  "os": "Microsoft Windows 11 Home",
+  "os_version": "10.0.26300.0",
+  "architecture": "X64",
+  "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics        ",
+  "logical_processors": 32,
+  "source_commit": "e4c689ff02496d20ab940390343c569ad11de638",
+  "source_status": [],
+  "presets": [
+    "debug",
+    "asan"
+  ],
+  "result": "passed_after_retry",
+  "retry": "ASan seed_reject_overflow printed the expected rejection but exceeded its 10-second process-exit timeout. The unchanged test passed on rerun; full initial output and retry are retained.",
+  "compiler": "MSVC 19.44.35229.0",
+  "cmake": "cmake version 3.31.6-msvc6",
+  "ninja": "1.12.1"
+}

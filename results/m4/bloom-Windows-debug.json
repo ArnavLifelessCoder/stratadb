@@ -1,0 +1,64 @@
+{
+  "recorded_utc": "2026-10-20T15:50:46.284398+00:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "compiler": "MSVC 19.44.35229.0",
+  "flags": "/Od /Zi /RTC1 /W4 /WX",
+  "source_commit": "e4c689ff02496d20ab940390343c569ad11de638",
+  "source_status": "",
+  "trials": [
+    {
+      "seed": 24301,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1634,
+      "actual": 0.00817,
+      "theoretical": 0.00819372
+    },
+    {
+      "seed": 24302,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1614,
+      "actual": 0.00807,
+      "theoretical": 0.00819372
+    },
+    {
+      "seed": 24303,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1643,
+      "actual": 0.008215,
+      "theoretical": 0.00819372
+    },
+    {
+      "seed": 24304,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1624,
+      "actual": 0.00812,
+      "theoretical": 0.00819372
+    },
+    {
+      "seed": 24305,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1610,
+      "actual": 0.00805,
+      "theoretical": 0.00819372
+    }
+  ],
+  "total_queries": 1000000,
+  "total_positives": 8125,
+  "aggregate_fpr": 0.008125
+}
