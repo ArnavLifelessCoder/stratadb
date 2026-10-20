@@ -94,6 +94,7 @@ if(BUILD_TESTING)
     tests/mapping_test.cpp
     tests/table_test.cpp
     tests/version_set_test.cpp
+    tests/flush_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)

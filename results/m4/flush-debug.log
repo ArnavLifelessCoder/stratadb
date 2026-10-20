@@ -1,0 +1,47 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (17.0s)
+-- Generating done (1.1s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/6] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[2/6] Linking CXX static library lsm.lib
+[3/6] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+[4/6] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[5/6] Linking CXX executable lsm_db_process.exe
+[6/6] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = FlushTest.*:DBTest.Empty*:DBTest.Torn*
+[==========] Running 9 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from DBTest
+[ RUN      ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen
+[       OK ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen (837 ms)
+[ RUN      ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen
+WAL recovery: truncated 4 tail bytes at offset 22
+[       OK ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen (889 ms)
+[----------] 2 tests from DBTest (1726 ms total)
+
+[----------] 7 tests from FlushTest
+[ RUN      ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles
+[       OK ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles (70 ms)
+[ RUN      ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap
+[       OK ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap (9479 ms)
+[ RUN      ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables
+[       OK ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables (808 ms)
+[ RUN      ] FlushTest.RecoversRotationAndUncommittedTablePublication
+[       OK ] FlushTest.RecoversRotationAndUncommittedTablePublication (1669 ms)
+[ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+[       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (1539 ms)
+[ RUN      ] FlushTest.MissingReferencedWalOrTableIsCorruption
+[       OK ] FlushTest.MissingReferencedWalOrTableIsCorruption (1461 ms)
+[ RUN      ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes
+[       OK ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes (1245 ms)
+[----------] 7 tests from FlushTest (16275 ms total)
+
+[----------] Global test environment tear-down
+[==========] 9 tests from 2 test suites ran. (18017 ms total)
+[  PASSED  ] 9 tests.

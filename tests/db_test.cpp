@@ -11,6 +11,7 @@
 #include "platform/file.hpp"
 #include "temp_directory.hpp"
 #include "test_support.hpp"
+#include "version_set.hpp"
 
 namespace lsm {
 namespace {
@@ -123,7 +124,7 @@ TEST(DBTest, EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen) {
   const auto stats = db->GetStats();
   EXPECT_EQ(stats.wal_syncs, 4U);
   EXPECT_GT(stats.disk_bytes_written, stats.user_bytes_written);
-  EXPECT_TRUE(stats.level_file_counts.empty());
+  EXPECT_EQ(stats.level_file_counts, std::vector<std::uint64_t>{0});
   EXPECT_GT(stats.memtable_bytes, big.size());
   db.reset();
   ASSERT_TRUE(DB::Open({}, path, &db).ok());
@@ -141,7 +142,7 @@ TEST(DBTest, TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen) {
   ASSERT_TRUE(db->Put({true}, "key", "value").ok());
   db.reset();
   std::unique_ptr<platform::File> file;
-  ASSERT_TRUE(platform::File::Open(directory.path() / "WAL", false, file).ok());
+  ASSERT_TRUE(platform::File::Open(internal::WalPath(directory.path(), 2), false, file).ok());
   ASSERT_TRUE(file->Append("torn").ok());
   ASSERT_TRUE(file->Sync().ok());
   file.reset();
@@ -149,7 +150,7 @@ TEST(DBTest, TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen) {
   EXPECT_EQ(db->GetStats().recovered_tail_bytes, 4U);
   ASSERT_TRUE(db->Put({true}, "other", "value").ok());
   db.reset();
-  ASSERT_TRUE(platform::File::Open(directory.path() / "WAL", false, file).ok());
+  ASSERT_TRUE(platform::File::Open(internal::WalPath(directory.path(), 2), false, file).ok());
   std::string bytes;
   ASSERT_TRUE(file->ReadAll(bytes).ok());
   bytes[0] ^= 1;
@@ -159,7 +160,7 @@ TEST(DBTest, TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen) {
   file.reset();
   EXPECT_EQ(DB::Open({}, directory.path(), &db).code(), StatusCode::kCorruption);
   EXPECT_EQ(db, nullptr);
-  EXPECT_EQ(std::filesystem::file_size(directory.path() / "WAL"), bytes.size());
+  EXPECT_EQ(std::filesystem::file_size(internal::WalPath(directory.path(), 2)), bytes.size());
 }
 
 TEST(DBTest, ConcurrentWritersAndReadersNeverExposePartialBatches) {
