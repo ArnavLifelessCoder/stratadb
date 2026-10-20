@@ -52,6 +52,11 @@ target_sources(lsm PRIVATE src/write_batch.cpp)
 target_sources(lsm PRIVATE src/memtable.cpp)
 find_package(Threads REQUIRED)
 target_link_libraries(lsm PUBLIC Threads::Threads)
+if(WIN32)
+  target_sources(lsm PRIVATE src/platform/windows.cpp)
+else()
+  target_sources(lsm PRIVATE src/platform/posix.cpp)
+endif()
 add_library(lsm::lsm ALIAS lsm)
 target_include_directories(lsm PUBLIC include PRIVATE src)
 lsm_strict_warnings(lsm)
@@ -75,6 +80,7 @@ if(BUILD_TESTING)
     tests/varint_test.cpp
     tests/write_batch_test.cpp
     tests/memtable_test.cpp
+    tests/platform_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)
