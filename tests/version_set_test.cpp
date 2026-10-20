@@ -282,6 +282,38 @@ TEST(ManifestTest, BootstrapCountersIncludeInitialManifestAndCurrentWrites) {
   EXPECT_EQ(versions->BytesWritten(), expected);
 }
 
+TEST(ManifestTest, HigherLevelsAreIndexedByKeyAndRejectOverlappingRanges) {
+  test::TempDirectory directory;
+  std::unique_ptr<VersionSet> versions;
+  ASSERT_TRUE(VersionSet::Open(directory.path(), versions).ok());
+  auto edit = versions->State().metadata;
+  edit.next_file = 5;
+  edit.last_sequence = 2;
+  edit.flushed_sequence = 2;
+  for (const auto number : {3U, 4U}) {
+    const std::string key = number == 3 ? "z" : "a";
+    const std::vector<table::Entry> entries{
+        {.key = table::InternalKey(key, number - 2, WriteBatch::Type::kPut), .value = "value"}};
+    const auto path = TablePath(directory.path(), number);
+    ASSERT_TRUE(table::WriteTable(path, entries).ok());
+    edit.added.push_back({.number = number,
+                          .level = 1,
+                          .size = std::filesystem::file_size(path),
+                          .smallest = key,
+                          .largest = key,
+                          .reader = {}});
+  }
+  ASSERT_TRUE(versions->Apply(edit).ok());
+  const auto version = versions->State().version;
+  EXPECT_EQ(version->levels[1], (std::vector<std::size_t>{1, 0}));
+  edit = versions->State().metadata;
+  edit.next_file = 6;
+  edit.added.push_back(
+      {.number = 5, .level = 1, .size = 1, .smallest = "a", .largest = "z", .reader = {}});
+  EXPECT_EQ(versions->Apply(edit).code(), StatusCode::kInvalidArgument);
+  EXPECT_EQ(versions->State().version, version);
+}
+
 TEST(ManifestTest, IncompleteBootstrapPreservesTheAlreadyPublishedWal) {
   test::TempDirectory directory;
   ASSERT_TRUE(WriteAtomicFile(WalPath(directory.path(), 2), "existing WAL bytes").ok());

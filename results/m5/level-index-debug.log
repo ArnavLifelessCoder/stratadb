@@ -1,0 +1,90 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (9.9s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/14] Building CXX object CMakeFiles\lsm.dir\src\file_cleanup.cpp.obj
+[2/14] Building CXX object CMakeFiles\lsm.dir\src\iterator.cpp.obj
+[3/14] Building CXX object CMakeFiles\lsm.dir\src\compaction.cpp.obj
+[4/14] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[5/14] Building CXX object CMakeFiles\lsm.dir\src\version_set.cpp.obj
+[6/14] Linking CXX static library lsm.lib
+[7/14] Building CXX object CMakeFiles\lsm_tests.dir\tests\cleanup_test.cpp.obj
+[8/14] Building CXX object CMakeFiles\lsm_tests.dir\tests\iterator_test.cpp.obj
+[9/14] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+[10/14] Building CXX object CMakeFiles\lsm_tests.dir\tests\version_set_test.cpp.obj
+[11/14] Building CXX object CMakeFiles\lsm_tests.dir\tests\compaction_test.cpp.obj
+[12/14] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[13/14] Linking CXX executable lsm_db_process.exe
+[14/14] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = ManifestTest.*:CompactionTest.*
+[==========] Running 17 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 11 tests from ManifestTest
+[ RUN      ] ManifestTest.ReadersKeepThePublishedStateWhileSyncIsBlocked
+[       OK ] ManifestTest.ReadersKeepThePublishedStateWhileSyncIsBlocked (37 ms)
+[ RUN      ] ManifestTest.ConcurrentReadersObserveCompletePublishedEdits
+[       OK ] ManifestTest.ConcurrentReadersObserveCompletePublishedEdits (32 ms)
+[ RUN      ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput
+[       OK ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput (0 ms)
+[ RUN      ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected
+Manifest recovery: truncated 1 tail bytes
+Manifest recovery: truncated 2 tail bytes
+Manifest recovery: truncated 3 tail bytes
+Manifest recovery: truncated 4 tail bytes
+Manifest recovery: truncated 5 tail bytes
+Manifest recovery: truncated 6 tail bytes
+Manifest recovery: truncated 7 tail bytes
+Manifest recovery: truncated 8 tail bytes
+Manifest recovery: truncated 9 tail bytes
+Manifest recovery: truncated 10 tail bytes
+Manifest recovery: truncated 11 tail bytes
+Manifest recovery: truncated 12 tail bytes
+Manifest recovery: truncated 13 tail bytes
+Manifest recovery: truncated 14 tail bytes
+Manifest recovery: truncated 15 tail bytes
+Manifest recovery: truncated 16 tail bytes
+Manifest recovery: truncated 17 tail bytes
+Manifest recovery: truncated 18 tail bytes
+Manifest recovery: truncated 512 tail bytes
+[       OK ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected (1 ms)
+[ RUN      ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion
+[       OK ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion (0 ms)
+[ RUN      ] ManifestTest.RejectsRegressingCountersAndInvalidFileState
+[       OK ] ManifestTest.RejectsRegressingCountersAndInvalidFileState (0 ms)
+[ RUN      ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership
+[       OK ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership (217 ms)
+[ RUN      ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites
+[       OK ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites (85 ms)
+[ RUN      ] ManifestTest.HigherLevelsAreIndexedByKeyAndRejectOverlappingRanges
+[       OK ] ManifestTest.HigherLevelsAreIndexedByKeyAndRejectOverlappingRanges (173 ms)
+[ RUN      ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal
+[       OK ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal (129 ms)
+[ RUN      ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase
+[       OK ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase (140 ms)
+[----------] 11 tests from ManifestTest (819 ms total)
+
+[----------] 6 tests from CompactionTest
+[ RUN      ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only
+[       OK ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only (0 ms)
+[ RUN      ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey
+[       OK ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey (0 ms)
+[ RUN      ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams
+[       OK ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams (32 ms)
+[ RUN      ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection
+[       OK ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection (0 ms)
+[ RUN      ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference
+[       OK ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference (3428 ms)
+[ RUN      ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput
+[       OK ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput (0 ms)
+[----------] 6 tests from CompactionTest (3461 ms total)
+
+[----------] Global test environment tear-down
+[==========] 17 tests from 2 test suites ran. (4281 ms total)
+[  PASSED  ] 17 tests.

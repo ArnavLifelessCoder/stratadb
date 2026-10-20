@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <atomic>
 #include <filesystem>
 #include <memory>
@@ -20,6 +21,8 @@ struct TableMetadata {
 
 struct Version {
   std::vector<TableMetadata> files;
+  // Indices into files: L0 by file number, higher levels by smallest user key.
+  std::array<std::vector<std::size_t>, 7> levels;
 };
 
 struct VersionEdit {

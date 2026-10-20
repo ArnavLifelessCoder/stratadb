@@ -67,6 +67,23 @@ auto ApplyTo(const ManifestState& current, const VersionEdit& edit, ManifestStat
     }
   }
   std::ranges::sort(version->files, {}, &TableMetadata::number);
+  for (auto& level : version->levels) {
+    level.clear();
+  }
+  for (std::size_t index = 0; index < version->files.size(); ++index) {
+    version->levels[version->files[index].level].push_back(index);
+  }
+  for (std::size_t level = 1; level < version->levels.size(); ++level) {
+    auto& indices = version->levels[level];
+    std::ranges::sort(indices, [&](auto left, auto right) {
+      return version->files[left].smallest < version->files[right].smallest;
+    });
+    for (std::size_t index = 1; index < indices.size(); ++index) {
+      if (version->files[indices[index - 1]].largest >= version->files[indices[index]].smallest) {
+        return Status::Corruption("overlapping tables above L0");
+      }
+    }
+  }
   output.metadata = edit;
   output.metadata.added.clear();
   output.metadata.removed.clear();
