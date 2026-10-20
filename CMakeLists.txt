@@ -47,7 +47,7 @@ function(lsm_strict_warnings target)
   endif()
 endfunction()
 
-add_library(lsm src/status.cpp)
+add_library(lsm src/status.cpp src/util/crc32c.cpp)
 add_library(lsm::lsm ALIAS lsm)
 target_include_directories(lsm PUBLIC include PRIVATE src)
 lsm_strict_warnings(lsm)
@@ -62,7 +62,12 @@ if(BUILD_TESTING)
     GIT_TAG 52eb8108c5bdec04579160ae17225d66034bd723 # v1.17.0
   )
   FetchContent_MakeAvailable(googletest)
-  add_executable(lsm_tests tests/test_main.cpp tests/status_test.cpp tests/slice_test.cpp)
+  add_executable(lsm_tests
+    tests/test_main.cpp
+    tests/status_test.cpp
+    tests/slice_test.cpp
+    tests/crc32c_test.cpp
+  )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)
   lsm_strict_warnings(lsm_tests)

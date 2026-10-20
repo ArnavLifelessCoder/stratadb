@@ -1,0 +1,31 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (2.9s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/4] Building CXX object CMakeFiles\lsm.dir\src\util\crc32c.cpp.obj
+[2/4] Linking CXX static library lsm.lib
+[3/4] Building CXX object CMakeFiles\lsm_tests.dir\tests\crc32c_test.cpp.obj
+[4/4] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = Crc32cTest.*
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from Crc32cTest
+[ RUN      ] Crc32cTest.Rfc3720AppendixB4Vectors
+[       OK ] Crc32cTest.Rfc3720AppendixB4Vectors (0 ms)
+[ RUN      ] Crc32cTest.EmptyAndCanonicalCheckValue
+[       OK ] Crc32cTest.EmptyAndCanonicalCheckValue (0 ms)
+[ RUN      ] Crc32cTest.EverySplitAndSingleBitChange
+[       OK ] Crc32cTest.EverySplitAndSingleBitChange (0 ms)
+[ RUN      ] Crc32cTest.RandomizedDifferentialAgainstBitwiseReference
+[       OK ] Crc32cTest.RandomizedDifferentialAgainstBitwiseReference (465 ms)
+[----------] 4 tests from Crc32cTest (466 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (466 ms total)
+[  PASSED  ] 4 tests.
