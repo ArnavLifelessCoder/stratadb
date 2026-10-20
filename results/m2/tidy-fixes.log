@@ -1,0 +1,1035 @@
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:9:12: error: enum 'StatusCode' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size,-warnings-as-errors]
+    9 | enum class StatusCode { kOk, kNotFound, kInvalidArgument, kCorruption, kIOError };
+      |            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:15:17: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   15 |   static Status NotFound(std::string message) {
+      |          ~~~~~~ ^
+      |          auto                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:15:10: note: FIX-IT applied suggested code changes
+   15 |   static Status NotFound(std::string message) {
+      |          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:15:46: note: FIX-IT applied suggested code changes
+   15 |   static Status NotFound(std::string message) {
+      |                                              ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:16:12: error: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list,-warnings-as-errors]
+   16 |     return Status(StatusCode::kNotFound, std::move(message));
+      |            ^~~~~~~                                         ~
+      |            {                                               }
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:16:12: note: FIX-IT applied suggested code changes
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:16:60: note: FIX-IT applied suggested code changes
+   16 |     return Status(StatusCode::kNotFound, std::move(message));
+      |                                                            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:18:17: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   18 |   static Status InvalidArgument(std::string message) {
+      |          ~~~~~~ ^
+      |          auto                                        -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:18:10: note: FIX-IT applied suggested code changes
+   18 |   static Status InvalidArgument(std::string message) {
+      |          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:18:53: note: FIX-IT applied suggested code changes
+   18 |   static Status InvalidArgument(std::string message) {
+      |                                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:19:12: error: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list,-warnings-as-errors]
+   19 |     return Status(StatusCode::kInvalidArgument, std::move(message));
+      |            ^~~~~~~                                                ~
+      |            {                                                      }
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:19:12: note: FIX-IT applied suggested code changes
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:19:67: note: FIX-IT applied suggested code changes
+   19 |     return Status(StatusCode::kInvalidArgument, std::move(message));
+      |                                                                   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:21:17: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   21 |   static Status Corruption(std::string message) {
+      |          ~~~~~~ ^
+      |          auto                                   -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:21:10: note: FIX-IT applied suggested code changes
+   21 |   static Status Corruption(std::string message) {
+      |          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:21:48: note: FIX-IT applied suggested code changes
+   21 |   static Status Corruption(std::string message) {
+      |                                                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:22:12: error: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list,-warnings-as-errors]
+   22 |     return Status(StatusCode::kCorruption, std::move(message));
+      |            ^~~~~~~                                           ~
+      |            {                                                 }
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:22:12: note: FIX-IT applied suggested code changes
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:22:62: note: FIX-IT applied suggested code changes
+   22 |     return Status(StatusCode::kCorruption, std::move(message));
+      |                                                              ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:24:17: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   24 |   static Status IOError(std::string message) {
+      |          ~~~~~~ ^
+      |          auto                                -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:24:10: note: FIX-IT applied suggested code changes
+   24 |   static Status IOError(std::string message) {
+      |          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:24:45: note: FIX-IT applied suggested code changes
+   24 |   static Status IOError(std::string message) {
+      |                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:25:12: error: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list,-warnings-as-errors]
+   25 |     return Status(StatusCode::kIOError, std::move(message));
+      |            ^~~~~~~                                        ~
+      |            {                                              }
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:25:12: note: FIX-IT applied suggested code changes
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:25:59: note: FIX-IT applied suggested code changes
+   25 |     return Status(StatusCode::kIOError, std::move(message));
+      |                                                           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:28:22: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   28 |   [[nodiscard]] bool ok() const noexcept { return code_ == StatusCode::kOk; }
+      |                 ~~~~ ^
+      |                 auto                     -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:28:17: note: FIX-IT applied suggested code changes
+   28 |   [[nodiscard]] bool ok() const noexcept { return code_ == StatusCode::kOk; }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:28:41: note: FIX-IT applied suggested code changes
+   28 |   [[nodiscard]] bool ok() const noexcept { return code_ == StatusCode::kOk; }
+      |                                         ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:29:22: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   29 |   [[nodiscard]] bool IsNotFound() const noexcept { return code_ == StatusCode::kNotFound; }
+      |                 ~~~~ ^
+      |                 auto                             -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:29:17: note: FIX-IT applied suggested code changes
+   29 |   [[nodiscard]] bool IsNotFound() const noexcept { return code_ == StatusCode::kNotFound; }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:29:49: note: FIX-IT applied suggested code changes
+   29 |   [[nodiscard]] bool IsNotFound() const noexcept { return code_ == StatusCode::kNotFound; }
+      |                                                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:30:28: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   30 |   [[nodiscard]] StatusCode code() const noexcept { return code_; }
+      |                 ~~~~~~~~~~ ^
+      |                 auto                             -> StatusCode
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:30:17: note: FIX-IT applied suggested code changes
+   30 |   [[nodiscard]] StatusCode code() const noexcept { return code_; }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:30:49: note: FIX-IT applied suggested code changes
+   30 |   [[nodiscard]] StatusCode code() const noexcept { return code_; }
+      |                                                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:31:34: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   31 |   [[nodiscard]] std::string_view message() const noexcept { return message_; }
+      |                 ~~~~~~~~~~~~~~~~ ^
+      |                 auto                                      -> std::string_view
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:31:17: note: FIX-IT applied suggested code changes
+   31 |   [[nodiscard]] std::string_view message() const noexcept { return message_; }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:31:58: note: FIX-IT applied suggested code changes
+   31 |   [[nodiscard]] std::string_view message() const noexcept { return message_; }
+      |                                                          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:32:29: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   32 |   [[nodiscard]] std::string ToString() const;
+      |                 ~~~~~~~~~~~ ^               
+      |                 auto                         -> std::string
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:32:17: note: FIX-IT applied suggested code changes
+   32 |   [[nodiscard]] std::string ToString() const;
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:32:45: note: FIX-IT applied suggested code changes
+   32 |   [[nodiscard]] std::string ToString() const;
+      |                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\status.cpp:5:21: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+    5 | std::string Status::ToString() const {
+      | ~~~~~~~~~~~         ^
+      | auto                                 -> std::string
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\status.cpp:5:1: note: FIX-IT applied suggested code changes
+    5 | std::string Status::ToString() const {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\status.cpp:5:37: note: FIX-IT applied suggested code changes
+    5 | std::string Status::ToString() const {
+      |                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:8:20: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+    8 | [[nodiscard]] bool HasSse42Crc32c() noexcept;
+      |               ~~~~ ^                        
+      |               auto                           -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:8:15: note: FIX-IT applied suggested code changes
+    8 | [[nodiscard]] bool HasSse42Crc32c() noexcept;
+      |               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:8:45: note: FIX-IT applied suggested code changes
+    8 | [[nodiscard]] bool HasSse42Crc32c() noexcept;
+      |                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:9:29: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+    9 | [[nodiscard]] std::uint32_t ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexcept;
+      |               ~~~~~~~~~~~~~ ^                                                                    
+      |               auto                                                                                -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:9:15: note: FIX-IT applied suggested code changes
+    9 | [[nodiscard]] std::uint32_t ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexcept;
+      |               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:9:98: note: FIX-IT applied suggested code changes
+    9 | [[nodiscard]] std::uint32_t ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexcept;
+      |                                                                                                  ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:11:29: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   11 | [[nodiscard]] std::uint32_t ExtendCrc32cSse42(std::uint32_t crc, std::string_view bytes) noexcept;
+      |               ~~~~~~~~~~~~~ ^                                                                    
+      |               auto                                                                                -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:11:15: note: FIX-IT applied suggested code changes
+   11 | [[nodiscard]] std::uint32_t ExtendCrc32cSse42(std::uint32_t crc, std::string_view bytes) noexcept;
+      |               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:11:98: note: FIX-IT applied suggested code changes
+   11 | [[nodiscard]] std::uint32_t ExtendCrc32cSse42(std::uint32_t crc, std::string_view bytes) noexcept;
+      |                                                                                                  ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:15:29: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   15 | [[nodiscard]] std::uint32_t ExtendCrc32c(std::uint32_t crc, std::string_view bytes) noexcept;
+      |               ~~~~~~~~~~~~~ ^                                                               
+      |               auto                                                                           -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:15:15: note: FIX-IT applied suggested code changes
+   15 | [[nodiscard]] std::uint32_t ExtendCrc32c(std::uint32_t crc, std::string_view bytes) noexcept;
+      |               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:15:93: note: FIX-IT applied suggested code changes
+   15 | [[nodiscard]] std::uint32_t ExtendCrc32c(std::uint32_t crc, std::string_view bytes) noexcept;
+      |                                                                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:16:36: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   16 | [[nodiscard]] inline std::uint32_t Crc32c(std::string_view bytes) noexcept {
+      |                      ~~~~~~~~~~~~~ ^
+      |                      auto                                                  -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:16:22: note: FIX-IT applied suggested code changes
+   16 | [[nodiscard]] inline std::uint32_t Crc32c(std::string_view bytes) noexcept {
+      |                      ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/crc32c.hpp:16:75: note: FIX-IT applied suggested code changes
+   16 | [[nodiscard]] inline std::uint32_t Crc32c(std::string_view bytes) noexcept {
+      |                                                                           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:32:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   32 | std::uint32_t ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                                                -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:32:1: note: FIX-IT applied suggested code changes
+   32 | std::uint32_t ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexcept {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:32:84: note: FIX-IT applied suggested code changes
+   32 | std::uint32_t ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexcept {
+      |                                                                                    ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:40:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   40 | bool HasSse42Crc32c() noexcept {
+      | ~~~~ ^
+      | auto                           -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:40:1: note: FIX-IT applied suggested code changes
+   40 | bool HasSse42Crc32c() noexcept {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:40:31: note: FIX-IT applied suggested code changes
+   40 | bool HasSse42Crc32c() noexcept {
+      |                               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:56:1: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   55 | std::uint32_t
+      | ~~~~~~~~~~~~~
+      | auto
+   56 | ExtendCrc32cSse42(std::uint32_t crc, std::string_view bytes) noexcept {
+      | ^
+      |                                                                       -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:55:1: note: FIX-IT applied suggested code changes
+   55 | std::uint32_t
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:56:70: note: FIX-IT applied suggested code changes
+   56 | ExtendCrc32cSse42(std::uint32_t crc, std::string_view bytes) noexcept {
+      |                                                                      ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:75:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   75 | std::uint32_t ExtendCrc32c(std::uint32_t crc, std::string_view bytes) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                                           -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:75:1: note: FIX-IT applied suggested code changes
+   75 | std::uint32_t ExtendCrc32c(std::uint32_t crc, std::string_view bytes) noexcept {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:75:79: note: FIX-IT applied suggested code changes
+   75 | std::uint32_t ExtendCrc32c(std::uint32_t crc, std::string_view bytes) noexcept {
+      |                                                                               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/hash.hpp:10:29: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   10 | [[nodiscard]] std::uint64_t Hash64(std::string_view bytes, std::uint32_t seed = 0) noexcept;
+      |               ~~~~~~~~~~~~~ ^                                                              
+      |               auto                                                                          -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/hash.hpp:10:15: note: FIX-IT applied suggested code changes
+   10 | [[nodiscard]] std::uint64_t Hash64(std::string_view bytes, std::uint32_t seed = 0) noexcept;
+      |               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/hash.hpp:10:92: note: FIX-IT applied suggested code changes
+   10 | [[nodiscard]] std::uint64_t Hash64(std::string_view bytes, std::uint32_t seed = 0) noexcept;
+      |                                                                                            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:12:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   12 | std::uint64_t LoadLittleEndian(std::string_view bytes) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                            -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:12:1: note: FIX-IT applied suggested code changes
+   12 | std::uint64_t LoadLittleEndian(std::string_view bytes) noexcept {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:12:64: note: FIX-IT applied suggested code changes
+   12 | std::uint64_t LoadLittleEndian(std::string_view bytes) noexcept {
+      |                                                                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:20:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   20 | std::uint64_t MixFirst(std::uint64_t word) noexcept { return std::rotl(word * kC1, 31) * kC2; }
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:20:1: note: FIX-IT applied suggested code changes
+   20 | std::uint64_t MixFirst(std::uint64_t word) noexcept { return std::rotl(word * kC1, 31) * kC2; }
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:20:52: note: FIX-IT applied suggested code changes
+   20 | std::uint64_t MixFirst(std::uint64_t word) noexcept { return std::rotl(word * kC1, 31) * kC2; }
+      |                                                    ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:22:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   22 | std::uint64_t MixSecond(std::uint64_t word) noexcept { return std::rotl(word * kC2, 33) * kC1; }
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                 -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:22:1: note: FIX-IT applied suggested code changes
+   22 | std::uint64_t MixSecond(std::uint64_t word) noexcept { return std::rotl(word * kC2, 33) * kC1; }
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:22:53: note: FIX-IT applied suggested code changes
+   22 | std::uint64_t MixSecond(std::uint64_t word) noexcept { return std::rotl(word * kC2, 33) * kC1; }
+      |                                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:24:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   24 | std::uint64_t Finalize(std::uint64_t word) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:24:1: note: FIX-IT applied suggested code changes
+   24 | std::uint64_t Finalize(std::uint64_t word) noexcept {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:24:52: note: FIX-IT applied suggested code changes
+   24 | std::uint64_t Finalize(std::uint64_t word) noexcept {
+      |                                                    ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:34:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   34 | std::uint64_t Hash64(std::string_view bytes, std::uint32_t seed) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                                      -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:34:1: note: FIX-IT applied suggested code changes
+   34 | std::uint64_t Hash64(std::string_view bytes, std::uint32_t seed) noexcept {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:34:74: note: FIX-IT applied suggested code changes
+   34 | std::uint64_t Hash64(std::string_view bytes, std::uint32_t seed) noexcept {
+      |                                                                          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/varint.hpp:15:20: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   15 | [[nodiscard]] bool ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept;
+      |               ~~~~ ^                                                                      
+      |               auto                                                                         -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/varint.hpp:15:15: note: FIX-IT applied suggested code changes
+   15 | [[nodiscard]] bool ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept;
+      |               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/varint.hpp:15:91: note: FIX-IT applied suggested code changes
+   15 | [[nodiscard]] bool ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept;
+      |                                                                                           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/varint.hpp:16:20: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   16 | [[nodiscard]] bool ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept;
+      |               ~~~~ ^                                                                      
+      |               auto                                                                         -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/varint.hpp:16:15: note: FIX-IT applied suggested code changes
+   16 | [[nodiscard]] bool ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept;
+      |               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util/varint.hpp:16:91: note: FIX-IT applied suggested code changes
+   16 | [[nodiscard]] bool ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept;
+      |                                                                                           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:19:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   19 | bool Consume(std::string_view& input, UInt& value) noexcept {
+      | ~~~~ ^
+      | auto                                                        -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:19:1: note: FIX-IT applied suggested code changes
+   19 | bool Consume(std::string_view& input, UInt& value) noexcept {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:19:60: note: FIX-IT applied suggested code changes
+   19 | bool Consume(std::string_view& input, UInt& value) noexcept {
+      |                                                            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:49:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   49 | bool ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept {
+      | ~~~~ ^
+      | auto                                                                         -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:49:1: note: FIX-IT applied suggested code changes
+   49 | bool ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:49:77: note: FIX-IT applied suggested code changes
+   49 | bool ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept {
+      |                                                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:53:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   53 | bool ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept {
+      | ~~~~ ^
+      | auto                                                                         -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:53:1: note: FIX-IT applied suggested code changes
+   53 | bool ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:53:77: note: FIX-IT applied suggested code changes
+   53 | bool ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept {
+      |                                                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:9:12: error: enum 'StatusCode' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size,-warnings-as-errors]
+    9 | enum class StatusCode { kOk, kNotFound, kInvalidArgument, kCorruption, kIOError };
+      |            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:23:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   23 |   Status Put(std::string_view key, std::string_view value);
+      |   ~~~~~~ ^                                                
+      |   auto                                                     -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:23:3: note: FIX-IT applied suggested code changes
+   23 |   Status Put(std::string_view key, std::string_view value);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:23:59: note: FIX-IT applied suggested code changes
+   23 |   Status Put(std::string_view key, std::string_view value);
+      |                                                           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:24:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   24 |   Status Delete(std::string_view key);
+      |   ~~~~~~ ^                           
+      |   auto                                -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:24:3: note: FIX-IT applied suggested code changes
+   24 |   Status Delete(std::string_view key);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:24:38: note: FIX-IT applied suggested code changes
+   24 |   Status Delete(std::string_view key);
+      |                                      ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:26:29: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   26 |   [[nodiscard]] std::size_t Count() const noexcept { return entries_.size(); }
+      |                 ~~~~~~~~~~~ ^
+      |                 auto                               -> std::size_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:26:17: note: FIX-IT applied suggested code changes
+   26 |   [[nodiscard]] std::size_t Count() const noexcept { return entries_.size(); }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:26:51: note: FIX-IT applied suggested code changes
+   26 |   [[nodiscard]] std::size_t Count() const noexcept { return entries_.size(); }
+      |                                                   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:27:43: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   27 |   [[nodiscard]] const std::vector<Entry>& Entries() const noexcept { return entries_; }
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+      |                 auto                                               -> const std::vector<Entry>&
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:27:17: note: FIX-IT applied suggested code changes
+   27 |   [[nodiscard]] const std::vector<Entry>& Entries() const noexcept { return entries_; }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:27:67: note: FIX-IT applied suggested code changes
+   27 |   [[nodiscard]] const std::vector<Entry>& Entries() const noexcept { return entries_; }
+      |                                                                   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:13:20: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   13 | Status WriteBatch::Put(std::string_view key, std::string_view value) {
+      | ~~~~~~             ^
+      | auto                                                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:13:1: note: FIX-IT applied suggested code changes
+   13 | Status WriteBatch::Put(std::string_view key, std::string_view value) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:13:69: note: FIX-IT applied suggested code changes
+   13 | Status WriteBatch::Put(std::string_view key, std::string_view value) {
+      |                                                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:17:22: error: use designated initializer list to initialize 'Entry' [modernize-use-designated-initializers,-warnings-as-errors]
+   17 |   entries_.push_back({Type::kPut, std::string(key), std::string(value)});
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                       .type=      .key=             .value=
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:17:23: note: FIX-IT applied suggested code changes
+   17 |   entries_.push_back({Type::kPut, std::string(key), std::string(value)});
+      |                       ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:17:35: note: FIX-IT applied suggested code changes
+   17 |   entries_.push_back({Type::kPut, std::string(key), std::string(value)});
+      |                                   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:17:53: note: FIX-IT applied suggested code changes
+   17 |   entries_.push_back({Type::kPut, std::string(key), std::string(value)});
+      |                                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:17:3: note: aggregate type is defined here
+   17 |   struct Entry {
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:21:20: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   21 | Status WriteBatch::Delete(std::string_view key) {
+      | ~~~~~~             ^
+      | auto                                            -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:21:1: note: FIX-IT applied suggested code changes
+   21 | Status WriteBatch::Delete(std::string_view key) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:21:48: note: FIX-IT applied suggested code changes
+   21 | Status WriteBatch::Delete(std::string_view key) {
+      |                                                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:25:22: error: use designated initializer list to initialize 'Entry' [modernize-use-designated-initializers,-warnings-as-errors]
+   25 |   entries_.push_back({Type::kDelete, std::string(key), {}});
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                       .type=         .key=             .value=
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:25:23: note: FIX-IT applied suggested code changes
+   25 |   entries_.push_back({Type::kDelete, std::string(key), {}});
+      |                       ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:25:38: note: FIX-IT applied suggested code changes
+   25 |   entries_.push_back({Type::kDelete, std::string(key), {}});
+      |                                      ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:25:56: note: FIX-IT applied suggested code changes
+   25 |   entries_.push_back({Type::kDelete, std::string(key), {}});
+      |                                                        ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:17:3: note: aggregate type is defined here
+   17 |   struct Entry {
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:31:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   31 | bool ConsumeString(std::string_view& input, std::string_view& value) {
+      | ~~~~ ^
+      | auto                                                                 -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:31:1: note: FIX-IT applied suggested code changes
+   31 | bool ConsumeString(std::string_view& input, std::string_view& value) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:31:69: note: FIX-IT applied suggested code changes
+   31 | bool ConsumeString(std::string_view& input, std::string_view& value) {
+      |                                                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:42:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   42 | Status EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& output) {
+      | ~~~~~~ ^
+      | auto                                                                                     -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:42:1: note: FIX-IT applied suggested code changes
+   42 | Status EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& output) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:42:89: note: FIX-IT applied suggested code changes
+   42 | Status EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& output) {
+      |                                                                                         ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:71:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   71 | Status DecodeBatch(std::string_view input, std::uint64_t& sequence, WriteBatch& batch) {
+      | ~~~~~~ ^
+      | auto                                                                                   -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:71:1: note: FIX-IT applied suggested code changes
+   71 | Status DecodeBatch(std::string_view input, std::uint64_t& sequence, WriteBatch& batch) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:71:87: note: FIX-IT applied suggested code changes
+   71 | Status DecodeBatch(std::string_view input, std::uint64_t& sequence, WriteBatch& batch) {
+      |                                                                                       ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.hpp:13:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   13 | Status EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& output);
+      | ~~~~~~ ^                                                                                
+      | auto                                                                                     -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.hpp:13:1: note: FIX-IT applied suggested code changes
+   13 | Status EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& output);
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.hpp:13:89: note: FIX-IT applied suggested code changes
+   13 | Status EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& output);
+      |                                                                                         ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.hpp:14:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   14 | Status DecodeBatch(std::string_view input, std::uint64_t& sequence, WriteBatch& batch);
+      | ~~~~~~ ^                                                                              
+      | auto                                                                                   -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.hpp:14:1: note: FIX-IT applied suggested code changes
+   14 | Status DecodeBatch(std::string_view input, std::uint64_t& sequence, WriteBatch& batch);
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.hpp:14:87: note: FIX-IT applied suggested code changes
+   14 | Status DecodeBatch(std::string_view input, std::uint64_t& sequence, WriteBatch& batch);
+      |                                                                                       ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:9:12: error: enum 'StatusCode' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size,-warnings-as-errors]
+    9 | enum class StatusCode { kOk, kNotFound, kInvalidArgument, kCorruption, kIOError };
+      |            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:9:16: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+    9 | bool MemTable::Before(const Node& node, std::string_view key, std::uint64_t tag) {
+      | ~~~~           ^
+      | auto                                                                             -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:9:1: note: FIX-IT applied suggested code changes
+    9 | bool MemTable::Before(const Node& node, std::string_view key, std::uint64_t tag) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:9:81: note: FIX-IT applied suggested code changes
+    9 | bool MemTable::Before(const Node& node, std::string_view key, std::uint64_t tag) {
+      |                                                                                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:14:27: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   14 | MemTable::Node* MemTable::Find(std::string_view key, std::uint64_t tag,
+      | ~~~~~~~~~~~~~~~           ^
+      | auto
+   15 |                                std::array<Node*, kHeight>* previous) const {
+      |                                                                            -> MemTable::Node*
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:14:1: note: FIX-IT applied suggested code changes
+   14 | MemTable::Node* MemTable::Find(std::string_view key, std::uint64_t tag,
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:15:75: note: FIX-IT applied suggested code changes
+   15 |                                std::array<Node*, kHeight>* previous) const {
+      |                                                                           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:33:17: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   33 | void* MemTable::Allocate(std::size_t bytes) {
+      | ~~~~~           ^
+      | auto                                        -> void*
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:33:1: note: FIX-IT applied suggested code changes
+   33 | void* MemTable::Allocate(std::size_t bytes) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:33:44: note: FIX-IT applied suggested code changes
+   33 | void* MemTable::Allocate(std::size_t bytes) {
+      |                                            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:53:18: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   53 | Status MemTable::Insert(std::uint64_t sequence, WriteBatch::Type type, std::string_view key,
+      | ~~~~~~           ^
+      | auto
+   54 |                         std::string_view value) {
+      |                                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:53:1: note: FIX-IT applied suggested code changes
+   53 | Status MemTable::Insert(std::uint64_t sequence, WriteBatch::Type type, std::string_view key,
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:54:48: note: FIX-IT applied suggested code changes
+   54 |                         std::string_view value) {
+      |                                                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:93:18: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   93 | Status MemTable::Get(std::string_view key, std::uint64_t sequence, std::string& value) const {
+      | ~~~~~~           ^
+      | auto                                                                                         -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:93:1: note: FIX-IT applied suggested code changes
+   93 | Status MemTable::Get(std::string_view key, std::uint64_t sequence, std::string& value) const {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:93:93: note: FIX-IT applied suggested code changes
+   93 | Status MemTable::Get(std::string_view key, std::uint64_t sequence, std::string& value) const {
+      |                                                                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:23:13: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   23 |   MemTable& operator=(const MemTable&) = delete;
+      |   ~~~~~~~~~ ^
+      |   auto                                 -> MemTable&
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:23:3: note: FIX-IT applied suggested code changes
+   23 |   MemTable& operator=(const MemTable&) = delete;
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:23:39: note: FIX-IT applied suggested code changes
+   23 |   MemTable& operator=(const MemTable&) = delete;
+      |                                       ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:25:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   25 |   Status Insert(std::uint64_t sequence, WriteBatch::Type type, std::string_view key,
+      |   ~~~~~~ ^
+      |   auto
+   26 |                 std::string_view value);
+      |                                        
+      |                                         -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:25:3: note: FIX-IT applied suggested code changes
+   25 |   Status Insert(std::uint64_t sequence, WriteBatch::Type type, std::string_view key,
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:26:40: note: FIX-IT applied suggested code changes
+   26 |                 std::string_view value);
+      |                                        ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:27:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   27 |   Status Get(std::string_view key, std::uint64_t sequence, std::string& value) const;
+      |   ~~~~~~ ^                                                                          
+      |   auto                                                                               -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:27:3: note: FIX-IT applied suggested code changes
+   27 |   Status Get(std::string_view key, std::uint64_t sequence, std::string& value) const;
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:27:85: note: FIX-IT applied suggested code changes
+   27 |   Status Get(std::string_view key, std::uint64_t sequence, std::string& value) const;
+      |                                                                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:28:29: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   28 |   [[nodiscard]] std::size_t MemoryUsage() const noexcept { return allocated_.load(); }
+      |                 ~~~~~~~~~~~ ^
+      |                 auto                                     -> std::size_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:28:17: note: FIX-IT applied suggested code changes
+   28 |   [[nodiscard]] std::size_t MemoryUsage() const noexcept { return allocated_.load(); }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:28:57: note: FIX-IT applied suggested code changes
+   28 |   [[nodiscard]] std::size_t MemoryUsage() const noexcept { return allocated_.load(); }
+      |                                                         ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:39:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   39 |   static bool Before(const Node& node, std::string_view key, std::uint64_t tag);
+      |          ~~~~ ^                                                                
+      |          auto                                                                   -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:39:10: note: FIX-IT applied suggested code changes
+   39 |   static bool Before(const Node& node, std::string_view key, std::uint64_t tag);
+      |          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:39:80: note: FIX-IT applied suggested code changes
+   39 |   static bool Before(const Node& node, std::string_view key, std::uint64_t tag);
+      |                                                                                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:40:9: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   40 |   Node* Find(std::string_view key, std::uint64_t tag,
+      |   ~~~~~ ^
+      |   auto
+   41 |              std::array<Node*, kHeight>* previous = nullptr) const;
+      |                                                                   
+      |                                                                    -> Node*
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:40:3: note: FIX-IT applied suggested code changes
+   40 |   Node* Find(std::string_view key, std::uint64_t tag,
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:41:67: note: FIX-IT applied suggested code changes
+   41 |              std::array<Node*, kHeight>* previous = nullptr) const;
+      |                                                                   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:42:9: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   42 |   void* Allocate(std::size_t bytes);
+      |   ~~~~~ ^                          
+      |   auto                              -> void*
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:42:3: note: FIX-IT applied suggested code changes
+   42 |   void* Allocate(std::size_t bytes);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.hpp:42:36: note: FIX-IT applied suggested code changes
+   42 |   void* Allocate(std::size_t bytes);
+      |                                    ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:9:12: error: enum 'StatusCode' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size,-warnings-as-errors]
+    9 | enum class StatusCode { kOk, kNotFound, kInvalidArgument, kCorruption, kIOError };
+      |            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:18:17: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   18 |   static Status Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out);
+      |          ~~~~~~ ^                                                                               
+      |          auto                                                                                    -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:18:10: note: FIX-IT applied suggested code changes
+   18 |   static Status Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out);
+      |          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:18:97: note: FIX-IT applied suggested code changes
+   18 |   static Status Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out);
+      |                                                                                                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:19:18: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   19 |   virtual Status ReadAll(std::string& output) = 0;
+      |           ~~~~~~ ^
+      |           auto                                -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:19:11: note: FIX-IT applied suggested code changes
+   19 |   virtual Status ReadAll(std::string& output) = 0;
+      |           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:19:46: note: FIX-IT applied suggested code changes
+   19 |   virtual Status ReadAll(std::string& output) = 0;
+      |                                              ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:20:18: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   20 |   virtual Status Append(std::string_view bytes) = 0;
+      |           ~~~~~~ ^
+      |           auto                                  -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:20:11: note: FIX-IT applied suggested code changes
+   20 |   virtual Status Append(std::string_view bytes) = 0;
+      |           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:20:48: note: FIX-IT applied suggested code changes
+   20 |   virtual Status Append(std::string_view bytes) = 0;
+      |                                                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:21:18: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   21 |   virtual Status Sync() = 0;
+      |           ~~~~~~ ^
+      |           auto          -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:21:11: note: FIX-IT applied suggested code changes
+   21 |   virtual Status Sync() = 0;
+      |           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:21:24: note: FIX-IT applied suggested code changes
+   21 |   virtual Status Sync() = 0;
+      |                        ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:22:18: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   22 |   virtual Status Truncate(std::uint64_t size) = 0;
+      |           ~~~~~~ ^
+      |           auto                                -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:22:11: note: FIX-IT applied suggested code changes
+   22 |   virtual Status Truncate(std::uint64_t size) = 0;
+      |           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:22:46: note: FIX-IT applied suggested code changes
+   22 |   virtual Status Truncate(std::uint64_t size) = 0;
+      |                                              ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:23:18: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   23 |   virtual Status Lock() = 0;
+      |           ~~~~~~ ^
+      |           auto          -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:23:11: note: FIX-IT applied suggested code changes
+   23 |   virtual Status Lock() = 0;
+      |           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:23:24: note: FIX-IT applied suggested code changes
+   23 |   virtual Status Lock() = 0;
+      |                        ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:27:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   27 | Status CreateDirectories(const std::filesystem::path& path);
+      | ~~~~~~ ^                                                   
+      | auto                                                        -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:27:1: note: FIX-IT applied suggested code changes
+   27 | Status CreateDirectories(const std::filesystem::path& path);
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:27:60: note: FIX-IT applied suggested code changes
+   27 | Status CreateDirectories(const std::filesystem::path& path);
+      |                                                            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:29:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   29 | Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to);
+      | ~~~~~~ ^                                                                               
+      | auto                                                                                    -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:29:1: note: FIX-IT applied suggested code changes
+   29 | Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to);
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform/file.hpp:29:88: note: FIX-IT applied suggested code changes
+   29 | Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to);
+      |                                                                                        ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:19:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   19 | std::uint32_t Fixed32(std::string_view bytes) {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                          -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:19:1: note: FIX-IT applied suggested code changes
+   19 | std::uint32_t Fixed32(std::string_view bytes) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:19:46: note: FIX-IT applied suggested code changes
+   19 | std::uint32_t Fixed32(std::string_view bytes) {
+      |                                              ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:28:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   28 | bool HasLaterRecord(std::string_view bytes, std::uint64_t last_sequence) {
+      | ~~~~ ^
+      | auto                                                                     -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:28:1: note: FIX-IT applied suggested code changes
+   28 | bool HasLaterRecord(std::string_view bytes, std::uint64_t last_sequence) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:28:73: note: FIX-IT applied suggested code changes
+   28 | bool HasLaterRecord(std::string_view bytes, std::uint64_t last_sequence) {
+      |                                                                         ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:49:13: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   49 | Status Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) {
+      | ~~~~~~      ^
+      | auto                                                                           -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:49:1: note: FIX-IT applied suggested code changes
+   49 | Status Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:49:79: note: FIX-IT applied suggested code changes
+   49 | Status Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) {
+      |                                                                               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:79:13: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   79 | Status Wal::RepairTail(std::size_t offset, std::size_t size) {
+      | ~~~~~~      ^
+      | auto                                                         -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:79:1: note: FIX-IT applied suggested code changes
+   79 | Status Wal::RepairTail(std::size_t offset, std::size_t size) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:79:61: note: FIX-IT applied suggested code changes
+   79 | Status Wal::RepairTail(std::size_t offset, std::size_t size) {
+      |                                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:93:13: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   93 | Status Wal::Replay(MemTable& table, std::uint64_t& last_sequence) {
+      | ~~~~~~      ^
+      | auto                                                              -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:93:1: note: FIX-IT applied suggested code changes
+   93 | Status Wal::Replay(MemTable& table, std::uint64_t& last_sequence) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:93:66: note: FIX-IT applied suggested code changes
+   93 | Status Wal::Replay(MemTable& table, std::uint64_t& last_sequence) {
+      |                                                                  ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:16:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   16 |   Status Append(const WriteBatch& batch, std::uint64_t sequence, bool sync);
+      |   ~~~~~~ ^                                                                 
+      |   auto                                                                      -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:16:3: note: FIX-IT applied suggested code changes
+   16 |   Status Append(const WriteBatch& batch, std::uint64_t sequence, bool sync);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:16:76: note: FIX-IT applied suggested code changes
+   16 |   Status Append(const WriteBatch& batch, std::uint64_t sequence, bool sync);
+      |                                                                            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:17:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   17 |   Status Replay(MemTable& table, std::uint64_t& last_sequence);
+      |   ~~~~~~ ^                                                    
+      |   auto                                                         -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:17:3: note: FIX-IT applied suggested code changes
+   17 |   Status Replay(MemTable& table, std::uint64_t& last_sequence);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:17:63: note: FIX-IT applied suggested code changes
+   17 |   Status Replay(MemTable& table, std::uint64_t& last_sequence);
+      |                                                               ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:18:31: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   18 |   [[nodiscard]] std::uint64_t BytesWritten() const { return bytes_written_; }
+      |                 ~~~~~~~~~~~~~ ^
+      |                 auto                               -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:18:17: note: FIX-IT applied suggested code changes
+   18 |   [[nodiscard]] std::uint64_t BytesWritten() const { return bytes_written_; }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:18:51: note: FIX-IT applied suggested code changes
+   18 |   [[nodiscard]] std::uint64_t BytesWritten() const { return bytes_written_; }
+      |                                                   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:19:31: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   19 |   [[nodiscard]] std::uint64_t SyncCount() const { return sync_count_; }
+      |                 ~~~~~~~~~~~~~ ^
+      |                 auto                            -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:19:17: note: FIX-IT applied suggested code changes
+   19 |   [[nodiscard]] std::uint64_t SyncCount() const { return sync_count_; }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:19:48: note: FIX-IT applied suggested code changes
+   19 |   [[nodiscard]] std::uint64_t SyncCount() const { return sync_count_; }
+      |                                                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:20:31: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   20 |   [[nodiscard]] std::uint64_t TruncatedBytes() const { return truncated_bytes_; }
+      |                 ~~~~~~~~~~~~~ ^
+      |                 auto                                 -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:20:17: note: FIX-IT applied suggested code changes
+   20 |   [[nodiscard]] std::uint64_t TruncatedBytes() const { return truncated_bytes_; }
+      |                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:20:53: note: FIX-IT applied suggested code changes
+   20 |   [[nodiscard]] std::uint64_t TruncatedBytes() const { return truncated_bytes_; }
+      |                                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:23:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   23 |   Status RepairTail(std::size_t offset, std::size_t size);
+      |   ~~~~~~ ^                                               
+      |   auto                                                    -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:23:3: note: FIX-IT applied suggested code changes
+   23 |   Status RepairTail(std::size_t offset, std::size_t size);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.hpp:23:58: note: FIX-IT applied suggested code changes
+   23 |   Status RepairTail(std::size_t offset, std::size_t size);
+      |                                                          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:48:17: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   48 |   static Status Open(const Options&, const std::filesystem::path&, std::unique_ptr<DB>* out);
+      |          ~~~~~~ ^                                                                           
+      |          auto                                                                                -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:48:10: note: FIX-IT applied suggested code changes
+   48 |   static Status Open(const Options&, const std::filesystem::path&, std::unique_ptr<DB>* out);
+      |          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:48:93: note: FIX-IT applied suggested code changes
+   48 |   static Status Open(const Options&, const std::filesystem::path&, std::unique_ptr<DB>* out);
+      |                                                                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:51:7: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   51 |   DB& operator=(const DB&) = delete;
+      |   ~~~ ^
+      |   auto                     -> DB&
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:51:3: note: FIX-IT applied suggested code changes
+   51 |   DB& operator=(const DB&) = delete;
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:51:27: note: FIX-IT applied suggested code changes
+   51 |   DB& operator=(const DB&) = delete;
+      |                           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:53:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   53 |   Status Put(const WriteOptions&, std::string_view key, std::string_view value);
+      |   ~~~~~~ ^                                                                     
+      |   auto                                                                          -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:53:3: note: FIX-IT applied suggested code changes
+   53 |   Status Put(const WriteOptions&, std::string_view key, std::string_view value);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:53:80: note: FIX-IT applied suggested code changes
+   53 |   Status Put(const WriteOptions&, std::string_view key, std::string_view value);
+      |                                                                                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:54:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   54 |   Status Delete(const WriteOptions&, std::string_view key);
+      |   ~~~~~~ ^                                                
+      |   auto                                                     -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:54:3: note: FIX-IT applied suggested code changes
+   54 |   Status Delete(const WriteOptions&, std::string_view key);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:54:59: note: FIX-IT applied suggested code changes
+   54 |   Status Delete(const WriteOptions&, std::string_view key);
+      |                                                           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:55:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   55 |   Status Write(const WriteOptions&, WriteBatch* batch);
+      |   ~~~~~~ ^                                            
+      |   auto                                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:55:3: note: FIX-IT applied suggested code changes
+   55 |   Status Write(const WriteOptions&, WriteBatch* batch);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:55:55: note: FIX-IT applied suggested code changes
+   55 |   Status Write(const WriteOptions&, WriteBatch* batch);
+      |                                                       ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:56:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   56 |   Status Get(const ReadOptions&, std::string_view key, std::string* value);
+      |   ~~~~~~ ^                                                                
+      |   auto                                                                     -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:56:3: note: FIX-IT applied suggested code changes
+   56 |   Status Get(const ReadOptions&, std::string_view key, std::string* value);
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:56:75: note: FIX-IT applied suggested code changes
+   56 |   Status Get(const ReadOptions&, std::string_view key, std::string* value);
+      |                                                                           ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:57:9: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   57 |   Stats GetStats();
+      |   ~~~~~ ^         
+      |   auto             -> Stats
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:57:3: note: FIX-IT applied suggested code changes
+   57 |   Stats GetStats();
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/db.hpp:57:19: note: FIX-IT applied suggested code changes
+   57 |   Stats GetStats();
+      |                   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:9:12: error: enum 'StatusCode' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size,-warnings-as-errors]
+    9 | enum class StatusCode { kOk, kNotFound, kInvalidArgument, kCorruption, kIOError };
+      |            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:28:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   28 | Status DB::Open(const Options&, const std::filesystem::path& path, std::unique_ptr<DB>* out) {
+      | ~~~~~~     ^
+      | auto                                                                                         -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:28:1: note: FIX-IT applied suggested code changes
+   28 | Status DB::Open(const Options&, const std::filesystem::path& path, std::unique_ptr<DB>* out) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:28:93: note: FIX-IT applied suggested code changes
+   28 | Status DB::Open(const Options&, const std::filesystem::path& path, std::unique_ptr<DB>* out) {
+      |                                                                                             ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:84:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   84 | Status DB::Put(const WriteOptions& options, std::string_view key, std::string_view value) {
+      | ~~~~~~     ^
+      | auto                                                                                      -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:84:1: note: FIX-IT applied suggested code changes
+   84 | Status DB::Put(const WriteOptions& options, std::string_view key, std::string_view value) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:84:90: note: FIX-IT applied suggested code changes
+   84 | Status DB::Put(const WriteOptions& options, std::string_view key, std::string_view value) {
+      |                                                                                          ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:90:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   90 | Status DB::Delete(const WriteOptions& options, std::string_view key) {
+      | ~~~~~~     ^
+      | auto                                                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:90:1: note: FIX-IT applied suggested code changes
+   90 | Status DB::Delete(const WriteOptions& options, std::string_view key) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:90:69: note: FIX-IT applied suggested code changes
+   90 | Status DB::Delete(const WriteOptions& options, std::string_view key) {
+      |                                                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:96:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   96 | Status DB::Write(const WriteOptions& options, WriteBatch* batch) {
+      | ~~~~~~     ^
+      | auto                                                             -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:96:1: note: FIX-IT applied suggested code changes
+   96 | Status DB::Write(const WriteOptions& options, WriteBatch* batch) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:96:65: note: FIX-IT applied suggested code changes
+   96 | Status DB::Write(const WriteOptions& options, WriteBatch* batch) {
+      |                                                                 ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:131:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  131 | Status DB::Get(const ReadOptions& options, std::string_view key, std::string* value) {
+      | ~~~~~~     ^
+      | auto                                                                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:131:1: note: FIX-IT applied suggested code changes
+  131 | Status DB::Get(const ReadOptions& options, std::string_view key, std::string* value) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:131:85: note: FIX-IT applied suggested code changes
+  131 | Status DB::Get(const ReadOptions& options, std::string_view key, std::string* value) {
+      |                                                                                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:138:11: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  138 | Stats DB::GetStats() {
+      | ~~~~~     ^
+      | auto                 -> Stats
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:138:1: note: FIX-IT applied suggested code changes
+  138 | Stats DB::GetStats() {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:138:21: note: FIX-IT applied suggested code changes
+  138 | Stats DB::GetStats() {
+      |                     ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/status.hpp:9:12: error: enum 'StatusCode' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size,-warnings-as-errors]
+    9 | enum class StatusCode { kOk, kNotFound, kInvalidArgument, kCorruption, kIOError };
+      |            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:14:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   14 | Status Error(std::string_view operation) {
+      | ~~~~~~ ^
+      | auto                                     -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:14:1: note: FIX-IT applied suggested code changes
+   14 | Status Error(std::string_view operation) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:14:41: note: FIX-IT applied suggested code changes
+   14 | Status Error(std::string_view operation) {
+      |                                         ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:24:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   24 |   Status ReadAll(std::string& output) override {
+      |   ~~~~~~ ^
+      |   auto                                -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:24:3: note: FIX-IT applied suggested code changes
+   24 |   Status ReadAll(std::string& output) override {
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:24:38: note: FIX-IT applied suggested code changes
+   24 |   Status ReadAll(std::string& output) override {
+      |                                      ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:53:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   53 |   Status Append(std::string_view bytes) override {
+      |   ~~~~~~ ^
+      |   auto                                  -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:53:3: note: FIX-IT applied suggested code changes
+   53 |   Status Append(std::string_view bytes) override {
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:53:40: note: FIX-IT applied suggested code changes
+   53 |   Status Append(std::string_view bytes) override {
+      |                                        ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:72:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   72 |   Status Sync() override {
+      |   ~~~~~~ ^
+      |   auto          -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:72:3: note: FIX-IT applied suggested code changes
+   72 |   Status Sync() override {
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:72:16: note: FIX-IT applied suggested code changes
+   72 |   Status Sync() override {
+      |                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:76:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   76 |   Status Truncate(std::uint64_t size) override {
+      |   ~~~~~~ ^
+      |   auto                                -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:76:3: note: FIX-IT applied suggested code changes
+   76 |   Status Truncate(std::uint64_t size) override {
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:76:38: note: FIX-IT applied suggested code changes
+   76 |   Status Truncate(std::uint64_t size) override {
+      |                                      ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:88:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   88 |   Status Lock() override {
+      |   ~~~~~~ ^
+      |   auto          -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:88:3: note: FIX-IT applied suggested code changes
+   88 |   Status Lock() override {
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:88:16: note: FIX-IT applied suggested code changes
+   88 |   Status Lock() override {
+      |                ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:101:14: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  101 | Status File::Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out) {
+      | ~~~~~~       ^
+      | auto                                                                                          -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:101:1: note: FIX-IT applied suggested code changes
+  101 | Status File::Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:101:94: note: FIX-IT applied suggested code changes
+  101 | Status File::Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out) {
+      |                                                                                              ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:113:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  113 | Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) {
+      | ~~~~~~ ^
+      | auto                                                                                    -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:113:1: note: FIX-IT applied suggested code changes
+  113 | Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:113:88: note: FIX-IT applied suggested code changes
+  113 | Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) {
+      |                                                                                        ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:119:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  119 | Status CreateDirectories(const std::filesystem::path& path) {
+      | ~~~~~~ ^
+      | auto                                                        -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:119:1: note: FIX-IT applied suggested code changes
+  119 | Status CreateDirectories(const std::filesystem::path& path) {
+      | ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:119:60: note: FIX-IT applied suggested code changes
+  119 | Status CreateDirectories(const std::filesystem::path& path) {
+      |                                                            ^

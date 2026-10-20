@@ -25,7 +25,8 @@ struct DB::Impl {
 DB::DB(std::unique_ptr<Impl> impl) : impl_(std::move(impl)) {}
 DB::~DB() = default;
 
-Status DB::Open(const Options&, const std::filesystem::path& path, std::unique_ptr<DB>* out) {
+auto DB::Open(const Options&, const std::filesystem::path& path, std::unique_ptr<DB>* out)
+    -> Status {
   if (out == nullptr || path.empty()) {
     return Status::InvalidArgument("Open requires a directory and output pointer");
   }
@@ -81,19 +82,19 @@ Status DB::Open(const Options&, const std::filesystem::path& path, std::unique_p
   return {};
 }
 
-Status DB::Put(const WriteOptions& options, std::string_view key, std::string_view value) {
+auto DB::Put(const WriteOptions& options, std::string_view key, std::string_view value) -> Status {
   WriteBatch batch;
   const auto status = batch.Put(key, value);
   return status.ok() ? Write(options, &batch) : status;
 }
 
-Status DB::Delete(const WriteOptions& options, std::string_view key) {
+auto DB::Delete(const WriteOptions& options, std::string_view key) -> Status {
   WriteBatch batch;
   const auto status = batch.Delete(key);
   return status.ok() ? Write(options, &batch) : status;
 }
 
-Status DB::Write(const WriteOptions& options, WriteBatch* batch) {
+auto DB::Write(const WriteOptions& options, WriteBatch* batch) -> Status {
   if (batch == nullptr) {
     return Status::InvalidArgument("null batch");
   }
@@ -128,14 +129,14 @@ Status DB::Write(const WriteOptions& options, WriteBatch* batch) {
   return {};
 }
 
-Status DB::Get(const ReadOptions& options, std::string_view key, std::string* value) {
+auto DB::Get(const ReadOptions& options, std::string_view key, std::string* value) -> Status {
   if (value == nullptr || options.snapshot != nullptr) {
     return Status::InvalidArgument("Get requires an output; snapshots are unavailable in M2");
   }
   return impl_->table.Get(key, impl_->sequence.load(std::memory_order_acquire), *value);
 }
 
-Stats DB::GetStats() {
+auto DB::GetStats() -> Stats {
   const std::lock_guard guard(impl_->writer);
   Stats stats;
   stats.user_bytes_written = impl_->user_bytes;

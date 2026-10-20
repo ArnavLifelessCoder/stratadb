@@ -6,30 +6,32 @@
 
 namespace lsm {
 
-enum class StatusCode { kOk, kNotFound, kInvalidArgument, kCorruption, kIOError };
+// Preserve the public error-code representation established in M1.
+// NOLINTNEXTLINE(performance-enum-size)
+enum class StatusCode : int { kOk, kNotFound, kInvalidArgument, kCorruption, kIOError };
 
 // Success has no message. Errors carry an owned message, including embedded NULs.
 class [[nodiscard]] Status {
  public:
   Status() = default;
-  static Status NotFound(std::string message) {
-    return Status(StatusCode::kNotFound, std::move(message));
+  static auto NotFound(std::string message) -> Status {
+    return {StatusCode::kNotFound, std::move(message)};
   }
-  static Status InvalidArgument(std::string message) {
-    return Status(StatusCode::kInvalidArgument, std::move(message));
+  static auto InvalidArgument(std::string message) -> Status {
+    return {StatusCode::kInvalidArgument, std::move(message)};
   }
-  static Status Corruption(std::string message) {
-    return Status(StatusCode::kCorruption, std::move(message));
+  static auto Corruption(std::string message) -> Status {
+    return {StatusCode::kCorruption, std::move(message)};
   }
-  static Status IOError(std::string message) {
-    return Status(StatusCode::kIOError, std::move(message));
+  static auto IOError(std::string message) -> Status {
+    return {StatusCode::kIOError, std::move(message)};
   }
 
-  [[nodiscard]] bool ok() const noexcept { return code_ == StatusCode::kOk; }
-  [[nodiscard]] bool IsNotFound() const noexcept { return code_ == StatusCode::kNotFound; }
-  [[nodiscard]] StatusCode code() const noexcept { return code_; }
-  [[nodiscard]] std::string_view message() const noexcept { return message_; }
-  [[nodiscard]] std::string ToString() const;
+  [[nodiscard]] auto ok() const noexcept -> bool { return code_ == StatusCode::kOk; }
+  [[nodiscard]] auto IsNotFound() const noexcept -> bool { return code_ == StatusCode::kNotFound; }
+  [[nodiscard]] auto code() const noexcept -> StatusCode { return code_; }
+  [[nodiscard]] auto message() const noexcept -> std::string_view { return message_; }
+  [[nodiscard]] auto ToString() const -> std::string;
 
  private:
   Status(StatusCode code, std::string message) : code_(code), message_(std::move(message)) {}

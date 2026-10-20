@@ -1,0 +1,246 @@
+61191 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:28:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   28 | Status DB::Open(const Options&, const std::filesystem::path& path, std::unique_ptr<DB>* out) {
+      | ~~~~~~     ^
+      | auto                                                                                         -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:84:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   84 | Status DB::Put(const WriteOptions& options, std::string_view key, std::string_view value) {
+      | ~~~~~~     ^
+      | auto                                                                                      -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:90:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   90 | Status DB::Delete(const WriteOptions& options, std::string_view key) {
+      | ~~~~~~     ^
+      | auto                                                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:96:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   96 | Status DB::Write(const WriteOptions& options, WriteBatch* batch) {
+      | ~~~~~~     ^
+      | auto                                                             -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:131:12: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  131 | Status DB::Get(const ReadOptions& options, std::string_view key, std::string* value) {
+      | ~~~~~~     ^
+      | auto                                                                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:138:11: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  138 | Stats DB::GetStats() {
+      | ~~~~~     ^
+      | auto                 -> Stats
+Suppressed 61185 warnings (61185 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+6 warnings treated as errors
+46350 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:9:16: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+    9 | bool MemTable::Before(const Node& node, std::string_view key, std::uint64_t tag) {
+      | ~~~~           ^
+      | auto                                                                             -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:14:27: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   14 | MemTable::Node* MemTable::Find(std::string_view key, std::uint64_t tag,
+      | ~~~~~~~~~~~~~~~           ^
+      | auto
+   15 |                                std::array<Node*, kHeight>* previous) const {
+      |                                                                            -> MemTable::Node*
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:33:17: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   33 | void* MemTable::Allocate(std::size_t bytes) {
+      | ~~~~~           ^
+      | auto                                        -> void*
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:38:44: error: performing an implicit widening conversion to type 'std::size_t' (aka 'unsigned long long') of a multiplication performed in type 'int' [bugprone-implicit-widening-of-multiplication-result,-warnings-as-errors]
+   38 |     const auto size = std::max(std::size_t{64 * 1024}, bytes);
+      |                                            ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:38:44: note: make conversion explicit to silence this warning
+    4 |     const auto size = std::max(std::size_t{64 * 1024}, bytes);
+      |                                            ^~~~~~~~~
+      |                                            static_cast<std::size_t>( )
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:38:44: note: perform multiplication in a wider type
+   38 |     const auto size = std::max(std::size_t{64 * 1024}, bytes);
+      |                                            ^~
+      |                                            static_cast<long long>( )
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:39:40: error: do not declare C-style arrays, use std::array<> instead [modernize-avoid-c-arrays,-warnings-as-errors]
+   39 |     blocks_.push_back(std::make_unique<std::byte[]>(size));
+      |                                        ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:53:18: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   53 | Status MemTable::Insert(std::uint64_t sequence, WriteBatch::Type type, std::string_view key,
+      | ~~~~~~           ^
+      | auto
+   54 |                         std::string_view value) {
+      |                                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\memtable.cpp:93:18: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   93 | Status MemTable::Get(std::string_view key, std::uint64_t sequence, std::string& value) const {
+      | ~~~~~~           ^
+      | auto                                                                                         -> Status
+Suppressed 46342 warnings (46342 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+7 warnings treated as errors
+84907 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:14:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   14 | Status Error(std::string_view operation) {
+      | ~~~~~~ ^
+      | auto                                     -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:24:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   24 |   Status ReadAll(std::string& output) override {
+      |   ~~~~~~ ^
+      |   auto                                -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:53:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   53 |   Status Append(std::string_view bytes) override {
+      |   ~~~~~~ ^
+      |   auto                                  -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:72:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   72 |   Status Sync() override {
+      |   ~~~~~~ ^
+      |   auto          -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:76:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   76 |   Status Truncate(std::uint64_t size) override {
+      |   ~~~~~~ ^
+      |   auto                                -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:88:10: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   88 |   Status Lock() override {
+      |   ~~~~~~ ^
+      |   auto          -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:101:14: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  101 | Status File::Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out) {
+      | ~~~~~~       ^
+      | auto                                                                                          -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:113:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  113 | Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) {
+      | ~~~~~~ ^
+      | auto                                                                                    -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\windows.cpp:119:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+  119 | Status CreateDirectories(const std::filesystem::path& path) {
+      | ~~~~~~ ^
+      | auto                                                        -> Status
+Suppressed 84898 warnings (84898 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+9 warnings treated as errors
+27983 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\status.cpp:5:21: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+    5 | std::string Status::ToString() const {
+      | ~~~~~~~~~~~         ^
+      | auto                                 -> std::string
+Suppressed 27982 warnings (27982 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 warning treated as error
+23636 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:32:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   32 | std::uint32_t ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                                                -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:40:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   40 | bool HasSse42Crc32c() noexcept {
+      | ~~~~ ^
+      | auto                           -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:42:3: error: do not declare C-style arrays, use std::array<> instead [modernize-avoid-c-arrays,-warnings-as-errors]
+   42 |   int registers[4]{};
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:56:1: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   55 | std::uint32_t
+      | ~~~~~~~~~~~~~
+      | auto
+   56 | ExtendCrc32cSse42(std::uint32_t crc, std::string_view bytes) noexcept {
+      | ^
+      |                                                                       -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\crc32c.cpp:75:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   75 | std::uint32_t ExtendCrc32c(std::uint32_t crc, std::string_view bytes) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                                           -> std::uint32_t
+Suppressed 23631 warnings (23631 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+5 warnings treated as errors
+23490 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:12:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   12 | std::uint64_t LoadLittleEndian(std::string_view bytes) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                            -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:20:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   20 | std::uint64_t MixFirst(std::uint64_t word) noexcept { return std::rotl(word * kC1, 31) * kC2; }
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:22:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   22 | std::uint64_t MixSecond(std::uint64_t word) noexcept { return std::rotl(word * kC2, 33) * kC1; }
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                 -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:24:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   24 | std::uint64_t Finalize(std::uint64_t word) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                -> std::uint64_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\hash.cpp:34:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   34 | std::uint64_t Hash64(std::string_view bytes, std::uint32_t seed) noexcept {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                                                      -> std::uint64_t
+Suppressed 23485 warnings (23485 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+5 warnings treated as errors
+27964 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:19:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   19 | bool Consume(std::string_view& input, UInt& value) noexcept {
+      | ~~~~ ^
+      | auto                                                        -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:49:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   49 | bool ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept {
+      | ~~~~ ^
+      | auto                                                                         -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\util\varint.cpp:53:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   53 | bool ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept {
+      | ~~~~ ^
+      | auto                                                                         -> bool
+Suppressed 27959 warnings (27959 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+3 warnings treated as errors
+60173 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:19:15: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   19 | std::uint32_t Fixed32(std::string_view bytes) {
+      | ~~~~~~~~~~~~~ ^
+      | auto                                          -> std::uint32_t
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:28:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   28 | bool HasLaterRecord(std::string_view bytes, std::uint64_t last_sequence) {
+      | ~~~~ ^
+      | auto                                                                     -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:49:13: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   49 | Status Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) {
+      | ~~~~~~      ^
+      | auto                                                                           -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:79:13: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   79 | Status Wal::RepairTail(std::size_t offset, std::size_t size) {
+      | ~~~~~~      ^
+      | auto                                                         -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\wal.cpp:93:13: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   93 | Status Wal::Replay(MemTable& table, std::uint64_t& last_sequence) {
+      | ~~~~~~      ^
+      | auto                                                              -> Status
+Suppressed 60168 warnings (60168 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+5 warnings treated as errors
+29339 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:13:20: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   13 | Status WriteBatch::Put(std::string_view key, std::string_view value) {
+      | ~~~~~~             ^
+      | auto                                                                 -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:17:22: error: use designated initializer list to initialize 'Entry' [modernize-use-designated-initializers,-warnings-as-errors]
+   17 |   entries_.push_back({Type::kPut, std::string(key), std::string(value)});
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                       .type=      .key=             .value=
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:17:3: note: aggregate type is defined here
+   17 |   struct Entry {
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:21:20: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   21 | Status WriteBatch::Delete(std::string_view key) {
+      | ~~~~~~             ^
+      | auto                                            -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:25:22: error: use designated initializer list to initialize 'Entry' [modernize-use-designated-initializers,-warnings-as-errors]
+   25 |   entries_.push_back({Type::kDelete, std::string(key), {}});
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                       .type=         .key=             .value=
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\include\lsm/write_batch.hpp:17:3: note: aggregate type is defined here
+   17 |   struct Entry {
+      |   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:31:6: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   31 | bool ConsumeString(std::string_view& input, std::string_view& value) {
+      | ~~~~ ^
+      | auto                                                                 -> bool
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:42:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   42 | Status EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& output) {
+      | ~~~~~~ ^
+      | auto                                                                                     -> Status
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\write_batch.cpp:71:8: error: use a trailing return type for this function [modernize-use-trailing-return-type,-warnings-as-errors]
+   71 | Status DecodeBatch(std::string_view input, std::uint64_t& sequence, WriteBatch& batch) {
+      | ~~~~~~ ^
+      | auto                                                                                   -> Status
+Suppressed 29332 warnings (29332 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+7 warnings treated as errors

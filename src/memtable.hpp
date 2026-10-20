@@ -20,12 +20,12 @@ class MemTable {
  public:
   explicit MemTable(std::uint64_t seed = 0x5eed) : random_(seed) {}
   MemTable(const MemTable&) = delete;
-  MemTable& operator=(const MemTable&) = delete;
+  auto operator=(const MemTable&) -> MemTable& = delete;
 
-  Status Insert(std::uint64_t sequence, WriteBatch::Type type, std::string_view key,
-                std::string_view value);
-  Status Get(std::string_view key, std::uint64_t sequence, std::string& value) const;
-  [[nodiscard]] std::size_t MemoryUsage() const noexcept { return allocated_.load(); }
+  auto Insert(std::uint64_t sequence, WriteBatch::Type type, std::string_view key,
+              std::string_view value) -> Status;
+  auto Get(std::string_view key, std::uint64_t sequence, std::string& value) const -> Status;
+  [[nodiscard]] auto MemoryUsage() const noexcept -> std::size_t { return allocated_.load(); }
 
  private:
   static constexpr std::size_t kHeight = 12;
@@ -36,13 +36,13 @@ class MemTable {
     std::uint64_t tag = 0;
     std::array<std::atomic<Node*>, kHeight> next{};
   };
-  static bool Before(const Node& node, std::string_view key, std::uint64_t tag);
-  Node* Find(std::string_view key, std::uint64_t tag,
-             std::array<Node*, kHeight>* previous = nullptr) const;
-  void* Allocate(std::size_t bytes);
+  static auto Before(const Node& node, std::string_view key, std::uint64_t tag) -> bool;
+  auto Find(std::string_view key, std::uint64_t tag,
+            std::array<Node*, kHeight>* previous = nullptr) const -> Node*;
+  auto Allocate(std::size_t bytes) -> void*;
 
   mutable Node head_;
-  std::vector<std::unique_ptr<std::byte[]>> blocks_;
+  std::vector<std::vector<std::byte>> blocks_;
   std::byte* free_ = nullptr;
   std::size_t remaining_ = 0;
   std::atomic<std::size_t> allocated_{0};

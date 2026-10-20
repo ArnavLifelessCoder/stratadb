@@ -10,25 +10,25 @@ namespace {
 constexpr auto kMaxLength = std::numeric_limits<std::uint32_t>::max();
 }
 
-Status WriteBatch::Put(std::string_view key, std::string_view value) {
+auto WriteBatch::Put(std::string_view key, std::string_view value) -> Status {
   if (key.size() > kMaxLength || value.size() > kMaxLength || Count() >= kMaxLength) {
     return Status::InvalidArgument("batch exceeds 32-bit format limits");
   }
-  entries_.push_back({Type::kPut, std::string(key), std::string(value)});
+  entries_.push_back({.type = Type::kPut, .key = std::string(key), .value = std::string(value)});
   return {};
 }
 
-Status WriteBatch::Delete(std::string_view key) {
+auto WriteBatch::Delete(std::string_view key) -> Status {
   if (key.size() > kMaxLength || Count() >= kMaxLength) {
     return Status::InvalidArgument("batch exceeds 32-bit format limits");
   }
-  entries_.push_back({Type::kDelete, std::string(key), {}});
+  entries_.push_back({.type = Type::kDelete, .key = std::string(key), .value = {}});
   return {};
 }
 
 namespace internal {
 namespace {
-bool ConsumeString(std::string_view& input, std::string_view& value) {
+auto ConsumeString(std::string_view& input, std::string_view& value) -> bool {
   std::uint32_t length = 0;
   if (!ConsumeVarint32(input, length) || length > input.size()) {
     return false;
@@ -39,7 +39,7 @@ bool ConsumeString(std::string_view& input, std::string_view& value) {
 }
 }  // namespace
 
-Status EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& output) {
+auto EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& output) -> Status {
   if (batch.Count() == 0 || sequence == 0 || sequence > kMaxSequence ||
       batch.Count() - 1 > kMaxSequence - sequence) {
     return Status::InvalidArgument("invalid batch sequence range");
@@ -68,7 +68,7 @@ Status EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string&
   return {};
 }
 
-Status DecodeBatch(std::string_view input, std::uint64_t& sequence, WriteBatch& batch) {
+auto DecodeBatch(std::string_view input, std::uint64_t& sequence, WriteBatch& batch) -> Status {
   std::uint64_t start = 0;
   std::uint32_t count = 0;
   if (!ConsumeVarint64(input, start) || !ConsumeVarint32(input, count) || count == 0 ||

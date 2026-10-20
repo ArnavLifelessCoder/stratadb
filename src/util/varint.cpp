@@ -16,7 +16,7 @@ void Append(std::string& destination, UInt value) {
 }
 
 template <typename UInt>
-bool Consume(std::string_view& input, UInt& value) noexcept {
+auto Consume(std::string_view& input, UInt& value) noexcept -> bool {
   constexpr auto kMax = std::numeric_limits<UInt>::max();
   constexpr std::size_t kMaxBytes = (std::numeric_limits<UInt>::digits + 6) / 7;
   UInt result = 0;
@@ -46,11 +46,11 @@ void AppendVarint32(std::string& destination, std::uint32_t value) { Append(dest
 
 void AppendVarint64(std::string& destination, std::uint64_t value) { Append(destination, value); }
 
-bool ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept {
+auto ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept -> bool {
   return Consume(input, value);
 }
 
-bool ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept {
+auto ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept -> bool {
   return Consume(input, value);
 }
 

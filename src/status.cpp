@@ -2,7 +2,7 @@
 
 namespace lsm {
 
-std::string Status::ToString() const {
+auto Status::ToString() const -> std::string {
   std::string result;
   switch (code_) {
     case StatusCode::kOk:

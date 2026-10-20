@@ -1,0 +1,70 @@
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/Llvm/bin/clang-tidy.exe" "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\src\\db.cpp" -p "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug" "--config-file=C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\.clang-tidy"
+Exception Code: 0xC0000005
+ #0 0x00ac0e60 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x770e60)
+ #1 0x77760c01 (C:\windows\SYSTEM32\ntdll.dll+0x80c01)
+ #2 0x03d8f901 
+ #3 0x0087791c (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x52791c)
+ #4 0x0039e55a (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x4e55a)
+ #5 0x00c13314 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x8c3314)
+ #6 0x004f4854 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x1a4854)
+ #7 0x0039e491 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x4e491)
+ #8 0x004f4727 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x1a4727)
+ #9 0x004f36a1 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x1a36a1)
+#10 0x004f6ad6 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x1a6ad6)
+#11 0x003985f8 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x485f8)
+#12 0x00354f52 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x4f52)
+#13 0x02313c6f (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x1fc3c6f)
+#14 0x763d5d49 (C:\windows\System32\KERNEL32.DLL+0x15d49)
+#15 0x7774c75b (C:\windows\SYSTEM32\ntdll.dll+0x6c75b)
+#16 0x7774c6e1 (C:\windows\SYSTEM32\ntdll.dll+0x6c6e1)
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/Llvm/bin/clang-tidy.exe" "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\src\\memtable.cpp" -p "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug" "--config-file=C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\.clang-tidy"
+Exception Code: 0xC0000005
+#0 0x00ac0e60 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x770e60)
+#1 0x77760c01 (C:\windows\SYSTEM32\ntdll.dll+0x80c01)
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/Llvm/bin/clang-tidy.exe" "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\src\\platform\\windows.cpp" -p "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug" "--config-file=C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\.clang-tidy"
+Exception Code: 0xC0000005
+#0 0x00ac0e60 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x770e60)
+#1 0x77760c01 (C:\windows\SYSTEM32\ntdll.dll+0x80c01)
+#2 0x03f293e0 
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/Llvm/bin/clang-tidy.exe" "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\src\\status.cpp" -p "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug" "--config-file=C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\.clang-tidy"
+Exception Code: 0xC0000005
+#0 0x00ac0e60 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x770e60)
+#1 0x77760c01 (C:\windows\SYSTEM32\ntdll.dll+0x80c01)
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/Llvm/bin/clang-tidy.exe" "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\src\\util\\crc32c.cpp" -p "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug" "--config-file=C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\.clang-tidy"
+Exception Code: 0xC0000005
+#0 0x00ac0e60 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x770e60)
+#1 0x77760c01 (C:\windows\SYSTEM32\ntdll.dll+0x80c01)
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/Llvm/bin/clang-tidy.exe" "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\src\\util\\hash.cpp" -p "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug" "--config-file=C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\.clang-tidy"
+Exception Code: 0xC0000005
+#0 0x00ac0e60 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x770e60)
+#1 0x77760c01 (C:\windows\SYSTEM32\ntdll.dll+0x80c01)
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/Llvm/bin/clang-tidy.exe" "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\src\\util\\varint.cpp" -p "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug" "--config-file=C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\.clang-tidy"
+Exception Code: 0xC0000005
+#0 0x00ac0e60 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x770e60)
+#1 0x77760c01 (C:\windows\SYSTEM32\ntdll.dll+0x80c01)
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/Llvm/bin/clang-tidy.exe" "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\src\\wal.cpp" -p "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug" "--config-file=C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\.clang-tidy"
+Exception Code: 0xC0000005
+#0 0x00ac0e60 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x770e60)
+#1 0x77760c01 (C:\windows\SYSTEM32\ntdll.dll+0x80c01)
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/Llvm/bin/clang-tidy.exe" "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\src\\write_batch.cpp" -p "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug" "--config-file=C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\.clang-tidy"
+Exception Code: 0xC0000005
+#0 0x00ac0e60 (C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\bin\clang-tidy.exe+0x770e60)
+#1 0x77760c01 (C:\windows\SYSTEM32\ntdll.dll+0x80c01)

@@ -12,7 +12,7 @@ void AppendVarint64(std::string& destination, std::uint64_t value);
 
 // Read one canonical varint. Reject truncation, overflow and redundant groups.
 // On failure, both input and value remain unchanged. Trailing bytes are allowed.
-[[nodiscard]] bool ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept;
-[[nodiscard]] bool ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept;
+[[nodiscard]] auto ConsumeVarint32(std::string_view& input, std::uint32_t& value) noexcept -> bool;
+[[nodiscard]] auto ConsumeVarint64(std::string_view& input, std::uint64_t& value) noexcept -> bool;
 
 }  // namespace lsm::internal

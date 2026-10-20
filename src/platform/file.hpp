@@ -15,17 +15,18 @@ namespace lsm::platform {
 class File {
  public:
   virtual ~File() = default;
-  static Status Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out);
-  virtual Status ReadAll(std::string& output) = 0;
-  virtual Status Append(std::string_view bytes) = 0;
-  virtual Status Sync() = 0;
-  virtual Status Truncate(std::uint64_t size) = 0;
-  virtual Status Lock() = 0;
+  static auto Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out)
+      -> Status;
+  virtual auto ReadAll(std::string& output) -> Status = 0;
+  virtual auto Append(std::string_view bytes) -> Status = 0;
+  virtual auto Sync() -> Status = 0;
+  virtual auto Truncate(std::uint64_t size) -> Status = 0;
+  virtual auto Lock() -> Status = 0;
 };
 
 // Creates missing directories and persists their entries in their parents.
-Status CreateDirectories(const std::filesystem::path& path);
+auto CreateDirectories(const std::filesystem::path& path) -> Status;
 // Caller must Sync the source file first. Both paths must be on the same filesystem.
-Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to);
+auto AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) -> Status;
 
 }  // namespace lsm::platform

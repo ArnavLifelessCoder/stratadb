@@ -9,7 +9,7 @@ namespace {
 constexpr std::uint64_t kC1 = 0x87c37b91114253d5ULL;
 constexpr std::uint64_t kC2 = 0x4cf5ad432745937fULL;
 
-std::uint64_t LoadLittleEndian(std::string_view bytes) noexcept {
+auto LoadLittleEndian(std::string_view bytes) noexcept -> std::uint64_t {
   std::uint64_t word = 0;
   for (std::size_t i = 0; i < bytes.size(); ++i) {
     word |= static_cast<std::uint64_t>(static_cast<unsigned char>(bytes[i])) << (8 * i);
@@ -17,11 +17,15 @@ std::uint64_t LoadLittleEndian(std::string_view bytes) noexcept {
   return word;
 }
 
-std::uint64_t MixFirst(std::uint64_t word) noexcept { return std::rotl(word * kC1, 31) * kC2; }
+auto MixFirst(std::uint64_t word) noexcept -> std::uint64_t {
+  return std::rotl(word * kC1, 31) * kC2;
+}
 
-std::uint64_t MixSecond(std::uint64_t word) noexcept { return std::rotl(word * kC2, 33) * kC1; }
+auto MixSecond(std::uint64_t word) noexcept -> std::uint64_t {
+  return std::rotl(word * kC2, 33) * kC1;
+}
 
-std::uint64_t Finalize(std::uint64_t word) noexcept {
+auto Finalize(std::uint64_t word) noexcept -> std::uint64_t {
   word ^= word >> 33;
   word *= 0xff51afd7ed558ccdULL;
   word ^= word >> 33;
@@ -31,7 +35,7 @@ std::uint64_t Finalize(std::uint64_t word) noexcept {
 
 }  // namespace
 
-std::uint64_t Hash64(std::string_view bytes, std::uint32_t seed) noexcept {
+auto Hash64(std::string_view bytes, std::uint32_t seed) noexcept -> std::uint64_t {
   // Algorithm: Austin Appleby's public-domain MurmurHash3 x64_128.
   // https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp
   std::uint64_t first = seed;

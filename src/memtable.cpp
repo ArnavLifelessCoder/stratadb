@@ -6,13 +6,13 @@
 
 namespace lsm::internal {
 
-bool MemTable::Before(const Node& node, std::string_view key, std::uint64_t tag) {
+auto MemTable::Before(const Node& node, std::string_view key, std::uint64_t tag) -> bool {
   const int comparison = node.key.compare(key);
   return comparison < 0 || (comparison == 0 && node.tag > tag);
 }
 
-MemTable::Node* MemTable::Find(std::string_view key, std::uint64_t tag,
-                               std::array<Node*, kHeight>* previous) const {
+auto MemTable::Find(std::string_view key, std::uint64_t tag,
+                    std::array<Node*, kHeight>* previous) const -> MemTable::Node* {
   Node* node = &head_;
   Node* next = nullptr;
   for (std::size_t level = kHeight; level-- > 0;) {
@@ -30,14 +30,14 @@ MemTable::Node* MemTable::Find(std::string_view key, std::uint64_t tag,
   return next;
 }
 
-void* MemTable::Allocate(std::size_t bytes) {
+auto MemTable::Allocate(std::size_t bytes) -> void* {
   constexpr std::size_t alignment = alignof(Node);
   const auto padding =
       (alignment - (reinterpret_cast<std::uintptr_t>(free_) % alignment)) % alignment;
   if (remaining_ < padding || remaining_ - padding < bytes) {
-    const auto size = std::max(std::size_t{64 * 1024}, bytes);
-    blocks_.push_back(std::make_unique<std::byte[]>(size));
-    free_ = blocks_.back().get();
+    const auto size = std::max(std::size_t{64} * 1024, bytes);
+    blocks_.emplace_back(size);
+    free_ = blocks_.back().data();
     remaining_ = size;
     allocated_.fetch_add(size, std::memory_order_relaxed);
   } else {
@@ -50,8 +50,8 @@ void* MemTable::Allocate(std::size_t bytes) {
   return result;
 }
 
-Status MemTable::Insert(std::uint64_t sequence, WriteBatch::Type type, std::string_view key,
-                        std::string_view value) {
+auto MemTable::Insert(std::uint64_t sequence, WriteBatch::Type type, std::string_view key,
+                      std::string_view value) -> Status {
   if (sequence == 0 || sequence > kMaxSequence ||
       (type != WriteBatch::Type::kPut && type != WriteBatch::Type::kDelete)) {
     return Status::InvalidArgument("invalid internal key");
@@ -90,7 +90,8 @@ Status MemTable::Insert(std::uint64_t sequence, WriteBatch::Type type, std::stri
   return {};
 }
 
-Status MemTable::Get(std::string_view key, std::uint64_t sequence, std::string& value) const {
+auto MemTable::Get(std::string_view key, std::uint64_t sequence, std::string& value) const
+    -> Status {
   if (sequence > kMaxSequence) {
     return Status::InvalidArgument("sequence exceeds 56 bits");
   }

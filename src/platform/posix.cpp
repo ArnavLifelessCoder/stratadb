@@ -14,13 +14,13 @@
 
 namespace lsm::platform {
 namespace {
-Status Error(std::string_view operation) {
+auto Error(std::string_view operation) -> Status {
   const int code = errno;
   return Status::IOError(std::string(operation) + ": " + std::generic_category().message(code));
 }
 
 template <typename Operation>
-int Retry(Operation operation) {
+auto Retry(Operation operation) -> int {
   int result = 0;
   do {
     result = operation();
@@ -28,7 +28,7 @@ int Retry(Operation operation) {
   return result;
 }
 
-Status SyncDirectory(const std::filesystem::path& path) {
+auto SyncDirectory(const std::filesystem::path& path) -> Status {
   const int fd = Retry([&] { return open(path.c_str(), O_RDONLY | O_DIRECTORY | O_CLOEXEC); });
   if (fd < 0) {
     return Error("open directory");
@@ -43,7 +43,7 @@ class PosixFile final : public File {
   explicit PosixFile(int fd) : fd_(fd) {}
   ~PosixFile() override { close(fd_); }
 
-  Status ReadAll(std::string& output) override {
+  auto ReadAll(std::string& output) -> Status override {
     struct stat info{};
     if (fstat(fd_, &info) != 0) {
       return Error("file size");
@@ -68,7 +68,7 @@ class PosixFile final : public File {
     return {};
   }
 
-  Status Append(std::string_view bytes) override {
+  auto Append(std::string_view bytes) -> Status override {
     while (!bytes.empty()) {
       const auto written = write(fd_, bytes.data(), std::min(bytes.size(), std::size_t{1 << 20}));
       if (written < 0 && errno == EINTR) {
@@ -82,11 +82,11 @@ class PosixFile final : public File {
     return {};
   }
 
-  Status Sync() override {
+  auto Sync() -> Status override {
     return Retry([&] { return fdatasync(fd_); }) == 0 ? Status{} : Error("fdatasync");
   }
 
-  Status Truncate(std::uint64_t size) override {
+  auto Truncate(std::uint64_t size) -> Status override {
     if (size > static_cast<std::uint64_t>(std::numeric_limits<off_t>::max())) {
       return Status::InvalidArgument("truncate offset overflow");
     }
@@ -94,7 +94,7 @@ class PosixFile final : public File {
                                                                                 : Error("truncate");
   }
 
-  Status Lock() override {
+  auto Lock() -> Status override {
     return Retry([&] { return flock(fd_, LOCK_EX | LOCK_NB); }) == 0 ? Status{}
                                                                      : Error("database lock");
   }
@@ -104,7 +104,8 @@ class PosixFile final : public File {
 };
 }  // namespace
 
-Status File::Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out) {
+auto File::Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out)
+    -> Status {
   const int fd = Retry([&] {
     return open(path.c_str(), O_RDWR | O_APPEND | O_CLOEXEC | (create ? O_CREAT : 0), 0600);
   });
@@ -115,7 +116,7 @@ Status File::Open(const std::filesystem::path& path, bool create, std::unique_pt
   return {};
 }
 
-Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) {
+auto AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) -> Status {
   if (rename(from.c_str(), to.c_str()) != 0) {
     return Error("atomic rename");
   }
@@ -128,7 +129,7 @@ Status AtomicRename(const std::filesystem::path& from, const std::filesystem::pa
   return status;
 }
 
-Status CreateDirectories(const std::filesystem::path& path) {
+auto CreateDirectories(const std::filesystem::path& path) -> Status {
   std::error_code error;
   const auto absolute = std::filesystem::absolute(path, error);
   if (error) {

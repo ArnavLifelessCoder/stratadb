@@ -29,7 +29,7 @@ constexpr auto kTable = MakeTable();
 
 }  // namespace
 
-std::uint32_t ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexcept {
+auto ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexcept -> std::uint32_t {
   auto remainder = ~crc;
   for (const char byte : bytes) {
     remainder = kTable[(remainder ^ static_cast<unsigned char>(byte)) & 0xffU] ^ (remainder >> 8);
@@ -37,10 +37,10 @@ std::uint32_t ExtendCrc32cTable(std::uint32_t crc, std::string_view bytes) noexc
   return ~remainder;
 }
 
-bool HasSse42Crc32c() noexcept {
+auto HasSse42Crc32c() noexcept -> bool {
 #if defined(_M_X64)
-  int registers[4]{};
-  __cpuid(registers, 1);
+  std::array<int, 4> registers{};
+  __cpuid(registers.data(), 1);
   return (registers[2] & (1 << 20)) != 0;
 #elif defined(__x86_64__)
   return __builtin_cpu_supports("sse4.2") != 0;
@@ -52,8 +52,8 @@ bool HasSse42Crc32c() noexcept {
 #if defined(__x86_64__) && !defined(_MSC_VER)
 __attribute__((target("sse4.2")))
 #endif
-std::uint32_t
-ExtendCrc32cSse42(std::uint32_t crc, std::string_view bytes) noexcept {
+auto
+ExtendCrc32cSse42(std::uint32_t crc, std::string_view bytes) noexcept -> std::uint32_t {
 #if defined(_M_X64) || defined(__x86_64__)
   std::uint64_t remainder = static_cast<std::uint32_t>(~crc);
   while (bytes.size() >= sizeof(std::uint64_t)) {
@@ -72,7 +72,7 @@ ExtendCrc32cSse42(std::uint32_t crc, std::string_view bytes) noexcept {
 #endif
 }
 
-std::uint32_t ExtendCrc32c(std::uint32_t crc, std::string_view bytes) noexcept {
+auto ExtendCrc32c(std::uint32_t crc, std::string_view bytes) noexcept -> std::uint32_t {
   static const auto extend = HasSse42Crc32c() ? ExtendCrc32cSse42 : ExtendCrc32cTable;
   return extend(crc, bytes);
 }

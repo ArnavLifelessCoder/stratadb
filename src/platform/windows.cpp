@@ -11,7 +11,7 @@
 
 namespace lsm::platform {
 namespace {
-Status Error(std::string_view operation) {
+auto Error(std::string_view operation) -> Status {
   const auto code = static_cast<int>(GetLastError());
   return Status::IOError(std::string(operation) + ": " + std::system_category().message(code));
 }
@@ -21,7 +21,7 @@ class WindowsFile final : public File {
   explicit WindowsFile(HANDLE handle) : handle_(handle) {}
   ~WindowsFile() override { CloseHandle(handle_); }
 
-  Status ReadAll(std::string& output) override {
+  auto ReadAll(std::string& output) -> Status override {
     LARGE_INTEGER size{};
     if (!GetFileSizeEx(handle_, &size)) {
       return Error("file size");
@@ -50,7 +50,7 @@ class WindowsFile final : public File {
     return {};
   }
 
-  Status Append(std::string_view bytes) override {
+  auto Append(std::string_view bytes) -> Status override {
     LARGE_INTEGER zero{};
     if (!SetFilePointerEx(handle_, zero, nullptr, FILE_END)) {
       return Error("seek to append");
@@ -69,11 +69,11 @@ class WindowsFile final : public File {
     return {};
   }
 
-  Status Sync() override {
+  auto Sync() -> Status override {
     return FlushFileBuffers(handle_) ? Status{} : Error("FlushFileBuffers");
   }
 
-  Status Truncate(std::uint64_t size) override {
+  auto Truncate(std::uint64_t size) -> Status override {
     if (size > static_cast<std::uint64_t>(std::numeric_limits<LONGLONG>::max())) {
       return Status::InvalidArgument("truncate offset overflow");
     }
@@ -85,7 +85,7 @@ class WindowsFile final : public File {
     return {};
   }
 
-  Status Lock() override {
+  auto Lock() -> Status override {
     OVERLAPPED overlap{};
     return LockFileEx(handle_, LOCKFILE_EXCLUSIVE_LOCK | LOCKFILE_FAIL_IMMEDIATELY, 0, MAXDWORD,
                       MAXDWORD, &overlap)
@@ -98,7 +98,8 @@ class WindowsFile final : public File {
 };
 }  // namespace
 
-Status File::Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out) {
+auto File::Open(const std::filesystem::path& path, bool create, std::unique_ptr<File>& out)
+    -> Status {
   const auto handle =
       CreateFileW(path.c_str(), GENERIC_READ | GENERIC_WRITE,
                   FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
@@ -110,13 +111,13 @@ Status File::Open(const std::filesystem::path& path, bool create, std::unique_pt
   return {};
 }
 
-Status AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) {
+auto AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) -> Status {
   return MoveFileExW(from.c_str(), to.c_str(), MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH)
              ? Status{}
              : Error("atomic rename");
 }
 
-Status CreateDirectories(const std::filesystem::path& path) {
+auto CreateDirectories(const std::filesystem::path& path) -> Status {
   std::error_code error;
   std::filesystem::create_directories(path, error);
   if (error) {

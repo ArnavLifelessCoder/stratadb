@@ -20,11 +20,11 @@ class WriteBatch {
     std::string value;
   };
 
-  Status Put(std::string_view key, std::string_view value);
-  Status Delete(std::string_view key);
+  auto Put(std::string_view key, std::string_view value) -> Status;
+  auto Delete(std::string_view key) -> Status;
   void Clear() noexcept { entries_.clear(); }
-  [[nodiscard]] std::size_t Count() const noexcept { return entries_.size(); }
-  [[nodiscard]] const std::vector<Entry>& Entries() const noexcept { return entries_; }
+  [[nodiscard]] auto Count() const noexcept -> std::size_t { return entries_.size(); }
+  [[nodiscard]] auto Entries() const noexcept -> const std::vector<Entry>& { return entries_; }
 
  private:
   std::vector<Entry> entries_;

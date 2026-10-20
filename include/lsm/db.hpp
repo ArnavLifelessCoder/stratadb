@@ -45,16 +45,17 @@ struct Stats {
 // and Open's out unchanged. Keys and values may contain any bytes, including NUL.
 class DB {
  public:
-  static Status Open(const Options&, const std::filesystem::path&, std::unique_ptr<DB>* out);
+  static auto Open(const Options&, const std::filesystem::path&, std::unique_ptr<DB>* out)
+      -> Status;
   ~DB();
   DB(const DB&) = delete;
-  DB& operator=(const DB&) = delete;
+  auto operator=(const DB&) -> DB& = delete;
 
-  Status Put(const WriteOptions&, std::string_view key, std::string_view value);
-  Status Delete(const WriteOptions&, std::string_view key);
-  Status Write(const WriteOptions&, WriteBatch* batch);
-  Status Get(const ReadOptions&, std::string_view key, std::string* value);
-  Stats GetStats();
+  auto Put(const WriteOptions&, std::string_view key, std::string_view value) -> Status;
+  auto Delete(const WriteOptions&, std::string_view key) -> Status;
+  auto Write(const WriteOptions&, WriteBatch* batch) -> Status;
+  auto Get(const ReadOptions&, std::string_view key, std::string* value) -> Status;
+  auto GetStats() -> Stats;
 
  private:
   struct Impl;

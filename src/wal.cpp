@@ -16,7 +16,7 @@ void AppendFixed32(std::string& output, std::uint32_t value) {
   }
 }
 
-std::uint32_t Fixed32(std::string_view bytes) {
+auto Fixed32(std::string_view bytes) -> std::uint32_t {
   std::uint32_t value = 0;
   for (unsigned i = 0; i < 4; ++i) {
     value |= static_cast<std::uint32_t>(static_cast<unsigned char>(bytes[i])) << (8 * i);
@@ -25,7 +25,7 @@ std::uint32_t Fixed32(std::string_view bytes) {
 }
 
 // A damaged length must not make a valid later batch disappear as a "torn tail".
-bool HasLaterRecord(std::string_view bytes, std::uint64_t last_sequence) {
+auto HasLaterRecord(std::string_view bytes, std::uint64_t last_sequence) -> bool {
   for (std::size_t offset = 1; offset + kHeaderSize <= bytes.size(); ++offset) {
     const auto candidate = bytes.substr(offset);
     const auto length = Fixed32(candidate.substr(4));
@@ -46,7 +46,7 @@ bool HasLaterRecord(std::string_view bytes, std::uint64_t last_sequence) {
 }
 }  // namespace
 
-Status Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) {
+auto Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) -> Status {
   if (!failure_.ok()) {
     return failure_;
   }
@@ -76,7 +76,7 @@ Status Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) {
   return failure_;
 }
 
-Status Wal::RepairTail(std::size_t offset, std::size_t size) {
+auto Wal::RepairTail(std::size_t offset, std::size_t size) -> Status {
   auto status = file_->Truncate(offset);
   if (status.ok()) {
     status = file_->Sync();
@@ -90,7 +90,7 @@ Status Wal::RepairTail(std::size_t offset, std::size_t size) {
   return {};
 }
 
-Status Wal::Replay(MemTable& table, std::uint64_t& last_sequence) {
+auto Wal::Replay(MemTable& table, std::uint64_t& last_sequence) -> Status {
   std::string storage;
   auto status = file_->ReadAll(storage);
   if (!status.ok()) {
