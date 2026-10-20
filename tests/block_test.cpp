@@ -11,6 +11,49 @@
 
 namespace lsm::internal::table {
 namespace {
+TEST(BlockTest, RestartSeekMatchesFullDecoderWithBoundedEntryWork) {
+  std::vector<Entry> entries;
+  for (std::uint64_t index = 0; index < 1024; ++index) {
+    entries.push_back({.key = InternalKey(std::to_string(100000 + index / 4), 4 - index % 4,
+                                          WriteBatch::Type::kPut),
+                       .value = std::to_string(index)});
+  }
+  std::string bytes;
+  ASSERT_TRUE(EncodeBlock(entries, bytes).ok());
+  std::vector<Entry> reference;
+  ASSERT_TRUE(DecodeBlock(bytes, reference).ok());
+  for (std::uint64_t user = 99999; user <= 100257; ++user) {
+    for (std::uint64_t sequence = 0; sequence <= 5; ++sequence) {
+      const auto target = InternalKey(std::to_string(user), sequence, WriteBatch::Type::kPut);
+      const auto expected = std::ranges::lower_bound(
+          reference, target,
+          [](std::string_view a, std::string_view b) { return Compare(a, b) < 0; }, &Entry::key);
+      Entry result{.key = "unchanged", .value = "unchanged"};
+      std::size_t decoded = 0;
+      const auto status = SeekBlock(bytes, target, result, &decoded);
+      ASSERT_LE(decoded, 24U);
+      if (expected == reference.end()) {
+        EXPECT_TRUE(status.IsNotFound());
+        EXPECT_EQ(result.key, "unchanged");
+      } else {
+        ASSERT_TRUE(status.ok()) << status.ToString();
+        EXPECT_EQ(result, *expected);
+      }
+    }
+  }
+  auto damaged = bytes;
+  damaged[0] ^= 1;
+  Entry result;
+  EXPECT_EQ(SeekBlock(damaged, entries.front().key, result).code(), StatusCode::kCorruption);
+  // Even an unused restart offset must be bounds checked, independently of CRC.
+  damaged = bytes.substr(0, bytes.size() - 4);
+  damaged[damaged.size() - 8] = '\xff';
+  Seal(damaged);
+  EXPECT_EQ(SeekBlock(damaged, entries.front().key, result).code(), StatusCode::kCorruption);
+  ASSERT_TRUE(EncodeBlock({}, bytes).ok());
+  EXPECT_TRUE(SeekBlock(bytes, entries.front().key, result).IsNotFound());
+}
+
 TEST(BlockTest, SharesPrefixesExceptAtEachSixteenthEntry) {
   std::vector<Entry> entries;
   for (std::uint64_t sequence = 33; sequence > 0; --sequence) {

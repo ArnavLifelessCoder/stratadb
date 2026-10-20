@@ -103,4 +103,116 @@ auto DecodeBlock(std::string_view bytes, std::vector<Entry>& output) -> Status {
   output = std::move(entries);
   return {};
 }
+
+auto SeekBlock(std::string_view bytes, std::string_view target, Entry& output,
+               std::size_t* decoded_entries) -> Status {
+  if (decoded_entries != nullptr) {
+    *decoded_entries = 0;
+  }
+  if (target.size() < 8) {
+    return Status::InvalidArgument("short block seek key");
+  }
+  if (bytes.size() < 8 || !ChecksumValid(bytes)) {
+    return Status::Corruption("block CRC or size");
+  }
+  const auto count = static_cast<std::size_t>(LoadFixed(bytes.substr(bytes.size() - 8), 4));
+  if (count > (bytes.size() - 8) / 4) {
+    return Status::Corruption("block restart count");
+  }
+  const auto data_size = bytes.size() - 8 - count * 4;
+  const auto offset = [&](std::size_t index) {
+    return index == count
+               ? data_size
+               : static_cast<std::size_t>(LoadFixed(bytes.substr(data_size + index * 4), 4));
+  };
+  if ((count == 0) != (data_size == 0)) {
+    return Status::Corruption("block empty restart layout");
+  }
+  for (std::size_t i = 0; i < count; ++i) {
+    if ((i == 0 && offset(i) != 0) || offset(i) >= offset(i + 1) || offset(i + 1) > data_size) {
+      return Status::Corruption("block restart offset");
+    }
+  }
+  if (count == 0) {
+    return Status::NotFound("empty block");
+  }
+  const auto decode = [&](std::string_view& input, std::string_view previous,
+                          Entry& entry) -> Status {
+    std::uint32_t shared = 0;
+    std::uint32_t unshared = 0;
+    std::uint32_t length = 0;
+    if (!ConsumeVarint32(input, shared) || !ConsumeVarint32(input, unshared) ||
+        !ConsumeVarint32(input, length) || shared > previous.size() || unshared > input.size() ||
+        length > input.size() - unshared ||
+        static_cast<std::uint64_t>(shared) + unshared > kMax32) {
+      return Status::Corruption("block seek entry");
+    }
+    entry.key.assign(previous.substr(0, shared));
+    entry.key.append(input.substr(0, unshared));
+    input.remove_prefix(unshared);
+    entry.value = input.substr(0, length);
+    input.remove_prefix(length);
+    if (!ValidKey(entry.key) || (!previous.empty() && Compare(previous, entry.key) >= 0)) {
+      return Status::Corruption("block seek key ordering");
+    }
+    if (decoded_entries != nullptr) {
+      ++*decoded_entries;
+    }
+    return {};
+  };
+  const auto restart = [&](std::size_t index, Entry& entry) {
+    auto input = bytes.substr(offset(index), offset(index + 1) - offset(index));
+    return decode(input, {}, entry);
+  };
+  std::size_t first = 0;
+  std::size_t last = count;
+  while (first < last) {
+    const auto middle = first + (last - first) / 2;
+    Entry entry;
+    auto status = restart(middle, entry);
+    if (!status.ok()) {
+      return status;
+    }
+    if (Compare(entry.key, target) <= 0) {
+      first = middle + 1;
+    } else {
+      last = middle;
+    }
+  }
+  const auto group = first == 0 ? 0 : first - 1;
+  auto input = bytes.substr(offset(group), offset(group + 1) - offset(group));
+  std::string previous;
+  std::size_t entries = 0;
+  while (!input.empty()) {
+    if (++entries > kRestartInterval) {
+      return Status::Corruption("block restart interval");
+    }
+    Entry entry;
+    auto status = decode(input, previous, entry);
+    if (!status.ok()) {
+      return status;
+    }
+    if (Compare(entry.key, target) >= 0) {
+      output = std::move(entry);
+      return {};
+    }
+    previous = std::move(entry.key);
+  }
+  if (group + 1 == count) {
+    return Status::NotFound("past block");
+  }
+  if (entries != kRestartInterval) {
+    return Status::Corruption("short restart group");
+  }
+  Entry entry;
+  auto status = restart(group + 1, entry);
+  if (!status.ok()) {
+    return status;
+  }
+  if (Compare(previous, entry.key) >= 0 || Compare(entry.key, target) < 0) {
+    return Status::Corruption("block restart key ordering");
+  }
+  output = std::move(entry);
+  return {};
+}
 }  // namespace lsm::internal::table

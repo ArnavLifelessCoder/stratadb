@@ -63,9 +63,11 @@ at or below the requested sequence. Tombstones are returned as entries so M4 can
 distinguish a deletion from absence in this table. ReadAll decodes checked blocks
 in order. The reader has no mutable shared state and supports concurrent calls.
 
-Data blocks are decoded on each lookup; restart points are validated but are not
-yet used to decode only a suffix. No block cache exists until M7. Index and bloom
-data are held in memory; the operating system pages the mapped table bytes.
+Get CRC-checks the block, validates restart offsets, binary-searches full restart
+keys, and decodes at most one 16-entry group plus its successor. The full decoder
+remains the differential reference and serves scans and Verify. No block cache
+exists until M7. Index and bloom data are held in memory; the operating system
+pages the mapped table bytes.
 
 ## Publication and errors
 

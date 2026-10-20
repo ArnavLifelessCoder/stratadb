@@ -304,16 +304,19 @@ auto TableReader::Get(std::string_view user_key, std::uint64_t sequence, Entry& 
   if (block == index_.end()) {
     return Status::NotFound("table index");
   }
-  std::vector<Entry> entries;
-  auto status = ReadBlock(*block, entries);
+  std::string_view bytes;
+  if (!Range(bytes_, block->value, bytes)) {
+    return Status::Corruption("table data range");
+  }
+  Entry entry;
+  auto status = SeekBlock(bytes, key, entry);
   if (!status.ok()) {
     return status;
   }
-  const auto entry = std::ranges::lower_bound(entries, key, before, &Entry::key);
-  if (entry == entries.end() || UserKey(entry->key) != user_key) {
+  if (UserKey(entry.key) != user_key) {
     return Status::NotFound("table data");
   }
-  output = *entry;
+  output = std::move(entry);
   return {};
 }
 

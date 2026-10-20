@@ -1,0 +1,55 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (9.6s)
+-- Generating done (0.5s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/7] Building CXX object CMakeFiles\lsm.dir\src\table\block.cpp.obj
+[2/7] Building CXX object CMakeFiles\lsm.dir\src\table\table.cpp.obj
+[3/7] Building CXX object CMakeFiles\lsm_tests.dir\tests\block_test.cpp.obj
+[4/7] Linking CXX static library lsm.lib
+[5/7] Building CXX object CMakeFiles\lsm_tests.dir\tests\table_test.cpp.obj
+[6/7] Linking CXX executable lsm_db_process.exe
+[7/7] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = BlockTest.*:TableTest.*
+[==========] Running 13 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 6 tests from BlockTest
+[ RUN      ] BlockTest.RestartSeekMatchesFullDecoderWithBoundedEntryWork
+[       OK ] BlockTest.RestartSeekMatchesFullDecoderWithBoundedEntryWork (156 ms)
+[ RUN      ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry
+[       OK ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry (0 ms)
+[ RUN      ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary
+[       OK ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary (26 ms)
+[ RUN      ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues
+[       OK ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues (11 ms)
+[ RUN      ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput
+[       OK ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput (0 ms)
+[ RUN      ] BlockTest.RejectsMalformedStructureEvenWithValidCrc
+[       OK ] BlockTest.RejectsMalformedStructureEvenWithValidCrc (0 ms)
+[----------] 6 tests from BlockTest (196 ms total)
+
+[----------] 7 tests from TableTest
+[ RUN      ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen
+[       OK ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen (151 ms)
+[ RUN      ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference
+[       OK ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference (2229 ms)
+[ RUN      ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions
+[       OK ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions (185 ms)
+[ RUN      ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter
+[       OK ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter (102 ms)
+[ RUN      ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected
+[       OK ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected (1 ms)
+[ RUN      ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully
+[       OK ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully (5 ms)
+[ RUN      ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions
+[       OK ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions (687 ms)
+[----------] 7 tests from TableTest (3365 ms total)
+
+[----------] Global test environment tear-down
+[==========] 13 tests from 2 test suites ran. (3562 ms total)
+[  PASSED  ] 13 tests.
