@@ -1,0 +1,25 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (6.6s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/4] Building CXX object CMakeFiles\lsm.dir\src\platform\mapping_windows.cpp.obj
+[2/4] Linking CXX static library lsm.lib
+[3/4] Linking CXX executable lsm_tests.exe
+[4/4] Linking CXX executable lsm_db_process.exe
+Randomized test seed: 24301
+Note: Google Test filter = MappingTest.*
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MappingTest
+[ RUN      ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles
+[       OK ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles (67 ms)
+[----------] 1 test from MappingTest (67 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (67 ms total)
+[  PASSED  ] 1 test.

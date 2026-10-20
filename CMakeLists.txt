@@ -57,9 +57,9 @@ target_sources(lsm PRIVATE src/table/bloom.cpp)
 find_package(Threads REQUIRED)
 target_link_libraries(lsm PUBLIC Threads::Threads)
 if(WIN32)
-  target_sources(lsm PRIVATE src/platform/windows.cpp)
+  target_sources(lsm PRIVATE src/platform/windows.cpp src/platform/mapping_windows.cpp)
 else()
-  target_sources(lsm PRIVATE src/platform/posix.cpp)
+  target_sources(lsm PRIVATE src/platform/posix.cpp src/platform/mapping_posix.cpp)
 endif()
 add_library(lsm::lsm ALIAS lsm)
 target_include_directories(lsm PUBLIC include PRIVATE src)
@@ -89,6 +89,7 @@ if(BUILD_TESTING)
     tests/db_test.cpp
     tests/block_test.cpp
     tests/bloom_test.cpp
+    tests/mapping_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)
