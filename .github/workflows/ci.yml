@@ -21,8 +21,14 @@ jobs:
         if: runner.os == 'Windows'
         with:
           arch: x64
-          vsversion: '2022'
-      - name: Configure
+      - name: Configure Windows
+        if: runner.os == 'Windows'
+        env:
+          CC: clang-cl
+          CXX: clang-cl
+        run: cmake --preset ${{ matrix.preset }}
+      - name: Configure Linux
+        if: runner.os == 'Linux'
         run: cmake --preset ${{ matrix.preset }}
       - name: Build
         run: cmake --build --preset ${{ matrix.preset }}
@@ -59,6 +65,7 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -m pip install -r requirements-dev.txt
+      - run: python -m pytest -q tests/test_ci_configuration.py
       - run: python scripts/check_format.py
       - run: python scripts/hash_vectors.py --check
       - run: ruff check .
