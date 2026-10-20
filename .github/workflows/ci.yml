@@ -12,41 +12,47 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, ubuntu-latest]
+        os: [windows-latest, ubuntu-24.04]
         preset: [debug, asan]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: actions/checkout@v5
+      - name: Initialize MSVC
         if: runner.os == 'Windows'
-        with:
-          arch: x64
-      - name: Configure Windows
-        if: runner.os == 'Windows'
-        run: cmake --preset ${{ matrix.preset }}
-      - name: Configure Linux
-        if: runner.os == 'Linux'
+        shell: pwsh
+        run: ./scripts/msvc_environment.ps1 -GitHubActions
+      - name: Configure
         run: cmake --preset ${{ matrix.preset }}
       - name: Build
         run: cmake --build --preset ${{ matrix.preset }}
       - name: Test
         run: ctest --preset ${{ matrix.preset }} --verbose --output-log results/ci-${{ runner.os }}-${{ matrix.preset }}.log
-      - uses: actions/upload-artifact@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Crash smoke
+        shell: bash
+        run: |
+          executable=build/${{ matrix.preset }}/lsm_db_process
+          if [ "$RUNNER_OS" = Windows ]; then executable="$executable.exe"; fi
+          python tests/crash_smoke.py --executable "$executable" --output results/crash-${{ runner.os }}-${{ matrix.preset }}.json
+      - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: tests-${{ runner.os }}-${{ matrix.preset }}
           path: |
             results/ci-*.log
+            results/crash-*.json
             build/${{ matrix.preset }}/Testing/Temporary/
 
   tsan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: cmake --preset tsan
       - run: cmake --build --preset tsan
       - run: ctest --preset tsan --verbose --output-log results/ci-Linux-tsan.log
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: tests-Linux-tsan
@@ -55,15 +61,17 @@ jobs:
             build/tsan/Testing/Temporary/
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
       - run: python -m pip install -r requirements-dev.txt
-      - run: python -m pytest -q tests/test_ci_configuration.py
       - run: python scripts/check_format.py
       - run: python scripts/hash_vectors.py --check
       - run: ruff check .
       - run: ruff format --check .
+      - run: sudo apt-get update && sudo apt-get install -y clang-tidy-18
+      - run: cmake --preset debug
+      - run: python scripts/check_tidy.py --clang-tidy clang-tidy-18
