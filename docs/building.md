@@ -81,8 +81,8 @@ Linux, and uploads complete test logs. M1 has no project concurrency; the TSan
 job is in place for subsequent milestones. CI can only run after the owner
 approves a push.
 
-Windows CI uses `clang-cl` with the SDK environment from the installed Visual
-Studio. The `windows-latest` image can move to a newer Visual Studio generation,
-so CI does not require VS 2022 to be installed. Local `build.ps1` continues to use
+Windows CI uses MSVC `cl` from the installed Visual Studio developer environment.
+The `windows-latest` image can move to a newer Visual Studio generation, so CI
+does not pin `vsversion` or override `CC`/`CXX`. Local `build.ps1` continues to use
 VS 2022 MSVC. Run `python -m pytest -q tests/test_ci_configuration.py` to check
-the Windows runner compatibility regression.
+that the SDK bootstrap does not pin a Visual Studio version.
