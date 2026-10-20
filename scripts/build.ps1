@@ -1,7 +1,8 @@
 param(
     [ValidateSet('debug', 'asan', 'release')]
     [string]$Preset = 'debug',
-    [string]$TestFilter = ''
+    [string]$TestFilter = '',
+    [switch]$Quick
 )
 
 $ErrorActionPreference = 'Stop'
@@ -15,8 +16,11 @@ try {
     & cmake --build --preset $Preset
     if ($LASTEXITCODE -ne 0) { throw "Build failed: $LASTEXITCODE" }
     if ($Preset -ne 'release') {
-        if ($TestFilter) {
-            & (Join-Path $projectRoot "build/$Preset/lsm_tests.exe") "--gtest_filter=$TestFilter"
+        if ($TestFilter -or $Quick) {
+            $testArguments = @()
+            if ($TestFilter) { $testArguments += "--gtest_filter=$TestFilter" }
+            if ($Quick) { $testArguments += '--quick' }
+            & (Join-Path $projectRoot "build/$Preset/lsm_tests.exe") @testArguments
         } else {
             & ctest --preset $Preset --verbose
         }

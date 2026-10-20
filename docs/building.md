@@ -17,6 +17,12 @@ From PowerShell in the repository:
 .\scripts\build.ps1 asan
 ```
 
+For development, use `.\scripts\build.ps1 debug -Quick` (or pass `--quick`
+directly to `lsm_tests` on either platform). Quick mode runs every test but
+reduces the DB differential workload to 100 seeds. It prints its mode and is
+not a milestone gate. Default CTest, CI and `verify.ps1` keep all 10,000 seeds.
+`-Quick` can also be combined with `-TestFilter`.
+
 Run `.\scripts\verify.ps1` to record both complete build/test logs and Windows
 toolchain metadata in `results/m4/`. Pass `-Milestone NAME` to select another folder.
 Use `-CleanEvidence` to require an unchanged committed tree and write to the ignored

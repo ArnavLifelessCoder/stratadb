@@ -31,7 +31,7 @@ void CheckMap(DB& db, const std::map<std::string, std::string>& reference) {
 }
 
 TEST(DBTest, TenThousandSeedStreamsMatchMapAndCleanReplay) {
-  constexpr unsigned seeds = 10000;
+  const unsigned seeds = test::quick ? 100 : 10000;
   constexpr unsigned operations = 64;
   std::cout << "DB differential: " << seeds << " seeds, " << operations
             << " operations per seed, base seed " << test::seed << '\n';
