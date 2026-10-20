@@ -1,0 +1,31 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (4.6s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/5] Building CXX object CMakeFiles\lsm.dir\src\table\bloom.cpp.obj
+[2/5] Linking CXX static library lsm.lib
+[3/5] Linking CXX executable lsm_db_process.exe
+[4/5] Building CXX object CMakeFiles\lsm_tests.dir\tests\bloom_test.cpp.obj
+[5/5] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = BloomTest.*
+[==========] Running 3 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 3 tests from BloomTest
+[ RUN      ] BloomTest.MatchesIndependentBitVectorAndHasNoFalseNegatives
+[       OK ] BloomTest.MatchesIndependentBitVectorAndHasNoFalseNegatives (0 ms)
+[ RUN      ] BloomTest.EmptyDisabledAndCorruptedFilters
+[       OK ] BloomTest.EmptyDisabledAndCorruptedFilters (0 ms)
+[ RUN      ] BloomTest.MeasuredFalsePositiveRate
+BLOOM_RESULT {"seed":24301,"keys":10000,"queries":200000,"bits_per_key":10,"probes":7,"positives":1634,"actual":0.00817,"theoretical":0.00819372}
+[       OK ] BloomTest.MeasuredFalsePositiveRate (903 ms)
+[----------] 3 tests from BloomTest (904 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 1 test suite ran. (904 ms total)
+[  PASSED  ] 3 tests.

@@ -53,6 +53,7 @@ target_sources(lsm PRIVATE src/memtable.cpp)
 target_sources(lsm PRIVATE src/wal.cpp)
 target_sources(lsm PRIVATE src/db.cpp)
 target_sources(lsm PRIVATE src/table/block.cpp)
+target_sources(lsm PRIVATE src/table/bloom.cpp)
 find_package(Threads REQUIRED)
 target_link_libraries(lsm PUBLIC Threads::Threads)
 if(WIN32)
@@ -87,6 +88,7 @@ if(BUILD_TESTING)
     tests/wal_test.cpp
     tests/db_test.cpp
     tests/block_test.cpp
+    tests/bloom_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)

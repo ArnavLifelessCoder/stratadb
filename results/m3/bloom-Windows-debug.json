@@ -1,0 +1,64 @@
+{
+  "recorded_utc": "2026-10-20T13:43:17.483810+00:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "compiler": "MSVC 19.44.35229.0",
+  "flags": "/Od /Zi /RTC1 /W4 /WX",
+  "source_commit": "7bcf7875aef4b2085a89487df193388f7aa1137e",
+  "source_status": " M CMakeLists.txt\n?? results/m3/bloom-debug.log\n?? results/m3/bloom-measurement.log\n?? scripts/measure_bloom.py\n?? src/table/bloom.cpp\n?? src/table/bloom.hpp\n?? tests/bloom_test.cpp\n",
+  "trials": [
+    {
+      "seed": 24301,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1634,
+      "actual": 0.00817,
+      "theoretical": 0.00819372
+    },
+    {
+      "seed": 24302,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1614,
+      "actual": 0.00807,
+      "theoretical": 0.00819372
+    },
+    {
+      "seed": 24303,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1643,
+      "actual": 0.008215,
+      "theoretical": 0.00819372
+    },
+    {
+      "seed": 24304,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1624,
+      "actual": 0.00812,
+      "theoretical": 0.00819372
+    },
+    {
+      "seed": 24305,
+      "keys": 10000,
+      "queries": 200000,
+      "bits_per_key": 10,
+      "probes": 7,
+      "positives": 1610,
+      "actual": 0.00805,
+      "theoretical": 0.00819372
+    }
+  ],
+  "total_queries": 1000000,
+  "total_positives": 8125,
+  "aggregate_fpr": 0.008125
+}
