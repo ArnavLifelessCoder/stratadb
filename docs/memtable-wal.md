@@ -89,11 +89,12 @@ repaired file boundary.
 
 ## Scope and tests
 
-M2 retains all versions in memory and one WAL for the directory's lifetime.
-The configured memtable limit becomes active with flushing in M4. There are
-no SSTables, file rotation, compaction, snapshots, iterators or group commit yet.
-GetStats write counters cover the current Open session and exclude replay;
-file counts are empty while there are no SSTables.
+M2 originally retained all versions in memory and one WAL for the directory's
+lifetime. [M4](flush-recovery.md) activates the memtable allocation limit,
+numbered WALs, background flush and table reads. Replay accepts the sequence
+boundary of the preceding log. Compaction, snapshots, iterators and group commit
+remain later milestones. GetStats write counters cover the current Open session
+and exclude replay; file counts now include live L0 tables.
 
 The differential test executes 10,000 seeded streams of 64 operations against
 `std::map`, covering puts, deletes, ordered batches and reads. A database is

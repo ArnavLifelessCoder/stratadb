@@ -1,8 +1,7 @@
 # SSTable format and lifetime
 
-M3 adds standalone immutable tables under `src/table/`. DB reads still use the
-memtable and WAL until M4 connects flushing, manifests and table discovery.
-The public DB API is unchanged.
+Immutable tables live under `src/table/`. M4 connects them to the DB through
+[flushing, manifests and recovery](flush-recovery.md). The public DB API is unchanged.
 
 ## Encoding
 

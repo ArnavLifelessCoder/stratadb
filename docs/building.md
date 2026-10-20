@@ -1,8 +1,8 @@
 # Building and testing
 
-M3 supplies standalone SSTable readers/writers and bloom filters alongside the
-in-memory DB, WAL and utilities. See [the storage design](memtable-wal.md) and
-[the SSTable format](sstable.md) for contracts and current limits.
+M4 supplies background flush, manifests and recovery over the WAL, memtable and
+SSTables. See [the storage design](memtable-wal.md), [the SSTable format](sstable.md),
+and [flush recovery](flush-recovery.md) for contracts and current limits.
 
 ## Windows
 
@@ -18,7 +18,10 @@ From PowerShell in the repository:
 ```
 
 Run `.\scripts\verify.ps1` to record both complete build/test logs and Windows
-toolchain metadata in `results/m3/`. Pass `-Milestone NAME` to select another folder.
+toolchain metadata in `results/m4/`. Pass `-Milestone NAME` to select another folder.
+Use `-CleanEvidence` to require an unchanged committed tree and write to the ignored
+`build/verification-m4/` folder. Copy finished logs to results only after all
+clean-tree measurements are complete.
 
 Alternatively, in an x64 VS 2022 developer shell:
 
@@ -102,20 +105,23 @@ errors. On Windows, use the x64 clang-tidy executable under
 Run the process-kill smoke test after building:
 
 ```powershell
-python tests/crash_smoke.py --executable build/debug/lsm_db_process.exe --output results/m3/crash-Windows-debug.json
+python tests/crash_smoke.py --executable build/debug/lsm_db_process.exe --output build/crash-Windows-debug.json
 ```
 
 On Linux omit `.exe` and use a Linux-labeled output filename. The script uses
 only the Python standard library. It keeps temporary databases inside the
-build directory and records platform, seed and outcomes in JSON.
+build directory and records platform, seed and outcomes in JSON. Its one-byte
+memtable threshold forces flushes; the JSON records SSTable counts after recovery.
 
 Record five seeded bloom false-positive accuracy trials:
 
 ```powershell
-python scripts/measure_bloom.py --binary build/debug/lsm_tests.exe --output results/m3/bloom-Windows-debug.json --compiler "MSVC 19.44.35229.0" --flags "/Od /Zi /RTC1 /W4 /WX"
+python scripts/measure_bloom.py --binary build/debug/lsm_tests.exe --output build/bloom-Windows-debug.json --compiler "MSVC 19.44.35229.0" --flags "/Od /Zi /RTC1 /W4 /WX"
 ```
 
-Use the actual compiler and flags of your build. On Linux omit `.exe` and label
+Start from a clean tree, keep redirected logs under build, and copy the completed
+JSON into results/m4 afterwards. Use the actual compiler and flags of your build.
+On Linux omit `.exe` and label
 the result accordingly. The test checks all inserted keys and queries a disjoint
 absent-key set. It verifies the measured rate is within a factor of two of the
 theoretical rate for seven probes and ten bits per key.

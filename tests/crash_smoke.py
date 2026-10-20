@@ -1,4 +1,4 @@
-"""M2 process-kill smoke check. The full 500-cycle campaign belongs to M6."""
+"""Process-kill smoke with forced flushes. The 500-cycle campaign belongs to M6."""
 
 import argparse
 import json
@@ -64,11 +64,15 @@ def run_cycle(executable: Path, root: Path, sync: bool, target: int) -> dict:
         )
         if completed.returncode:
             raise RuntimeError(completed.stdout + completed.stderr)
+        tables = len(list((directory / "db").glob("*.sst")))
+        if tables == 0:
+            raise RuntimeError("forced-flush smoke did not produce an SSTable")
         return {
             "sync": sync,
             "acknowledged": acknowledged,
             "kill_returncode": proc.returncode,
             "recovery_output": completed.stdout + completed.stderr,
+            "sstables_after_recovery": tables,
         }
 
 
@@ -86,7 +90,8 @@ def main() -> None:
         "platform": platform.platform(),
         "system": platform.system(),
         "seed": args.seed,
-        "scope": "M2 smoke; not the M6 campaign",
+        "scope": "M4 forced-flush smoke; not the M6 campaign",
+        "memtable_bytes": 1,
         "cycles": [],
     }
     for sync in (True, False):

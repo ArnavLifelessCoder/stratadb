@@ -15,7 +15,7 @@ int Fail(const lsm::Status& status) {
 
 int Run(const std::filesystem::path& path, bool sync, bool writer, std::uint64_t count) {
   std::unique_ptr<lsm::DB> db;
-  auto status = lsm::DB::Open({}, path, &db);
+  auto status = lsm::DB::Open({.memtable_bytes = 1}, path, &db);
   if (!status.ok()) {
     return Fail(status);
   }
