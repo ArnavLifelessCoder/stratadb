@@ -15,6 +15,9 @@ From PowerShell in the repository:
 .\scripts\build.ps1 asan
 ```
 
+Run `.\scripts\verify.ps1` to record both complete build/test logs and Windows
+toolchain metadata in `results/m1/`.
+
 Alternatively, in an x64 VS 2022 developer shell:
 
 ```powershell
