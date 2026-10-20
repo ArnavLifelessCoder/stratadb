@@ -1,0 +1,150 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (3.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+ninja: no work to do.
+UpdateCTestConfiguration  from :C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/DartConfiguration.tcl
+UpdateCTestConfiguration  from :C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug/DartConfiguration.tcl
+Parse Config file:C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug/DartConfiguration.tcl
+Test project C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: lsm_tests
+
+1: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe"
+1: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+1: Test timeout computed to be: 120
+1: Randomized test seed: 24301
+1: [==========] Running 26 tests from 6 test suites.
+1: [----------] Global test environment set-up.
+1: [----------] 3 tests from StatusTest
+1: [ RUN      ] StatusTest.DefaultIsSuccess
+1: [       OK ] StatusTest.DefaultIsSuccess (0 ms)
+1: [ RUN      ] StatusTest.ErrorsKeepCodeAndMessage
+1: [       OK ] StatusTest.ErrorsKeepCodeAndMessage (0 ms)
+1: [ RUN      ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently
+1: [       OK ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently (0 ms)
+1: [----------] 3 tests from StatusTest (0 ms total)
+1: 
+1: [----------] 4 tests from SliceTest
+1: [ RUN      ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes
+1: [       OK ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes (0 ms)
+1: [ RUN      ] SliceTest.AllSingleBytesHaveUnsignedOrdering
+1: [       OK ] SliceTest.AllSingleBytesHaveUnsignedOrdering (9 ms)
+1: [ RUN      ] SliceTest.EmptyAndPrefixOrdering
+1: [       OK ] SliceTest.EmptyAndPrefixOrdering (0 ms)
+1: [ RUN      ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing
+1: [       OK ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing (0 ms)
+1: [----------] 4 tests from SliceTest (10 ms total)
+1: 
+1: [----------] 4 tests from Crc32cTest
+1: [ RUN      ] Crc32cTest.Rfc3720AppendixB4Vectors
+1: [       OK ] Crc32cTest.Rfc3720AppendixB4Vectors (0 ms)
+1: [ RUN      ] Crc32cTest.EmptyAndCanonicalCheckValue
+1: [       OK ] Crc32cTest.EmptyAndCanonicalCheckValue (0 ms)
+1: [ RUN      ] Crc32cTest.EverySplitAndSingleBitChange
+1: [       OK ] Crc32cTest.EverySplitAndSingleBitChange (0 ms)
+1: [ RUN      ] Crc32cTest.RandomizedDifferentialAgainstBitwiseReference
+1: [       OK ] Crc32cTest.RandomizedDifferentialAgainstBitwiseReference (454 ms)
+1: [----------] 4 tests from Crc32cTest (455 ms total)
+1: 
+1: [----------] 3 tests from HashTest
+1: [ RUN      ] HashTest.EmptyAndTextVectors
+1: [       OK ] HashTest.EmptyAndTextVectors (0 ms)
+1: [ RUN      ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment
+1: [       OK ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment (18 ms)
+1: [ RUN      ] HashTest.LengthAndEmbeddedNulsAreSignificant
+1: [       OK ] HashTest.LengthAndEmbeddedNulsAreSignificant (0 ms)
+1: [----------] 3 tests from HashTest (18 ms total)
+1: 
+1: [----------] 6 tests from VarintTest/0, where TypeParam = unsigned int
+1: [ RUN      ] VarintTest/0.GoldenWireBytesAndAppendSemantics
+1: [       OK ] VarintTest/0.GoldenWireBytesAndAppendSemantics (0 ms)
+1: [ RUN      ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix
+1: [       OK ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix (2 ms)
+1: [ RUN      ] VarintTest/0.RejectsMalformedWithoutChangingArguments
+1: [       OK ] VarintTest/0.RejectsMalformedWithoutChangingArguments (0 ms)
+1: [ RUN      ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding
+1: [       OK ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding (1261 ms)
+1: [ RUN      ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference
+1: [       OK ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference (622 ms)
+1: [ RUN      ] VarintTest/0.ConcatenatedStream
+1: [       OK ] VarintTest/0.ConcatenatedStream (0 ms)
+1: [----------] 6 tests from VarintTest/0 (1886 ms total)
+1: 
+1: [----------] 6 tests from VarintTest/1, where TypeParam = unsigned __int64
+1: [ RUN      ] VarintTest/1.GoldenWireBytesAndAppendSemantics
+1: [       OK ] VarintTest/1.GoldenWireBytesAndAppendSemantics (0 ms)
+1: [ RUN      ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix
+1: [       OK ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix (2 ms)
+1: [ RUN      ] VarintTest/1.RejectsMalformedWithoutChangingArguments
+1: [       OK ] VarintTest/1.RejectsMalformedWithoutChangingArguments (0 ms)
+1: [ RUN      ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding
+1: [       OK ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding (1629 ms)
+1: [ RUN      ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference
+1: [       OK ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference (834 ms)
+1: [ RUN      ] VarintTest/1.ConcatenatedStream
+1: [       OK ] VarintTest/1.ConcatenatedStream (0 ms)
+1: [----------] 6 tests from VarintTest/1 (2467 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 26 tests from 6 test suites ran. (4839 ms total)
+1: [  PASSED  ] 26 tests.
+1/5 Test #1: lsm_tests ........................   Passed    4.94 sec
+test 2
+    Start 2: seed_maximum
+
+2: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed=18446744073709551615" "--gtest_filter=StatusTest.DefaultIsSuccess"
+2: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+2: Test timeout computed to be: 1500
+2: Randomized test seed: 18446744073709551615
+2: Note: Google Test filter = StatusTest.DefaultIsSuccess
+2: [==========] Running 1 test from 1 test suite.
+2: [----------] Global test environment set-up.
+2: [----------] 1 test from StatusTest
+2: [ RUN      ] StatusTest.DefaultIsSuccess
+2: [       OK ] StatusTest.DefaultIsSuccess (0 ms)
+2: [----------] 1 test from StatusTest (0 ms total)
+2: 
+2: [----------] Global test environment tear-down
+2: [==========] 1 test from 1 test suite ran. (0 ms total)
+2: [  PASSED  ] 1 test.
+2/5 Test #2: seed_maximum .....................   Passed    0.10 sec
+test 3
+    Start 3: seed_reject_empty
+
+3: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed="
+3: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+3: Test timeout computed to be: 10
+3: Invalid --seed: expected an unsigned decimal 64-bit integer
+3/5 Test #3: seed_reject_empty ................   Passed    0.09 sec
+test 4
+    Start 4: seed_reject_text
+
+4: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed=invalid"
+4: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+4: Test timeout computed to be: 10
+4: Invalid --seed: expected an unsigned decimal 64-bit integer
+4/5 Test #4: seed_reject_text .................   Passed    0.10 sec
+test 5
+    Start 5: seed_reject_overflow
+
+5: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed=18446744073709551616"
+5: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+5: Test timeout computed to be: 10
+5: Invalid --seed: expected an unsigned decimal 64-bit integer
+5/5 Test #5: seed_reject_overflow .............   Passed    0.09 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   5.37 sec

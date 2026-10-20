@@ -1,0 +1,76 @@
+Randomized test seed: 42
+[==========] Running 26 tests from 6 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from StatusTest
+[ RUN      ] StatusTest.DefaultIsSuccess
+[       OK ] StatusTest.DefaultIsSuccess (0 ms)
+[ RUN      ] StatusTest.ErrorsKeepCodeAndMessage
+[       OK ] StatusTest.ErrorsKeepCodeAndMessage (0 ms)
+[ RUN      ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently
+[       OK ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently (0 ms)
+[----------] 3 tests from StatusTest (0 ms total)
+
+[----------] 4 tests from SliceTest
+[ RUN      ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes
+[       OK ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes (0 ms)
+[ RUN      ] SliceTest.AllSingleBytesHaveUnsignedOrdering
+[       OK ] SliceTest.AllSingleBytesHaveUnsignedOrdering (14 ms)
+[ RUN      ] SliceTest.EmptyAndPrefixOrdering
+[       OK ] SliceTest.EmptyAndPrefixOrdering (0 ms)
+[ RUN      ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing
+[       OK ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing (0 ms)
+[----------] 4 tests from SliceTest (14 ms total)
+
+[----------] 4 tests from Crc32cTest
+[ RUN      ] Crc32cTest.Rfc3720AppendixB4Vectors
+[       OK ] Crc32cTest.Rfc3720AppendixB4Vectors (0 ms)
+[ RUN      ] Crc32cTest.EmptyAndCanonicalCheckValue
+[       OK ] Crc32cTest.EmptyAndCanonicalCheckValue (0 ms)
+[ RUN      ] Crc32cTest.EverySplitAndSingleBitChange
+[       OK ] Crc32cTest.EverySplitAndSingleBitChange (0 ms)
+[ RUN      ] Crc32cTest.RandomizedDifferentialAgainstBitwiseReference
+[       OK ] Crc32cTest.RandomizedDifferentialAgainstBitwiseReference (188 ms)
+[----------] 4 tests from Crc32cTest (189 ms total)
+
+[----------] 3 tests from HashTest
+[ RUN      ] HashTest.EmptyAndTextVectors
+[       OK ] HashTest.EmptyAndTextVectors (0 ms)
+[ RUN      ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment
+[       OK ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment (124 ms)
+[ RUN      ] HashTest.LengthAndEmbeddedNulsAreSignificant
+[       OK ] HashTest.LengthAndEmbeddedNulsAreSignificant (0 ms)
+[----------] 3 tests from HashTest (125 ms total)
+
+[----------] 6 tests from VarintTest/0, where TypeParam = unsigned int
+[ RUN      ] VarintTest/0.GoldenWireBytesAndAppendSemantics
+[       OK ] VarintTest/0.GoldenWireBytesAndAppendSemantics (0 ms)
+[ RUN      ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix
+[       OK ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix (8 ms)
+[ RUN      ] VarintTest/0.RejectsMalformedWithoutChangingArguments
+[       OK ] VarintTest/0.RejectsMalformedWithoutChangingArguments (0 ms)
+[ RUN      ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding
+[       OK ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding (10794 ms)
+[ RUN      ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference
+[       OK ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference (5572 ms)
+[ RUN      ] VarintTest/0.ConcatenatedStream
+[       OK ] VarintTest/0.ConcatenatedStream (0 ms)
+[----------] 6 tests from VarintTest/0 (16376 ms total)
+
+[----------] 6 tests from VarintTest/1, where TypeParam = unsigned __int64
+[ RUN      ] VarintTest/1.GoldenWireBytesAndAppendSemantics
+[       OK ] VarintTest/1.GoldenWireBytesAndAppendSemantics (0 ms)
+[ RUN      ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix
+[       OK ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix (28 ms)
+[ RUN      ] VarintTest/1.RejectsMalformedWithoutChangingArguments
+[       OK ] VarintTest/1.RejectsMalformedWithoutChangingArguments (0 ms)
+[ RUN      ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding
+[       OK ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding (12143 ms)
+[ RUN      ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference
+[       OK ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference (6425 ms)
+[ RUN      ] VarintTest/1.ConcatenatedStream
+[       OK ] VarintTest/1.ConcatenatedStream (0 ms)
+[----------] 6 tests from VarintTest/1 (18598 ms total)
+
+[----------] Global test environment tear-down
+[==========] 26 tests from 6 test suites ran. (35308 ms total)
+[  PASSED  ] 26 tests.

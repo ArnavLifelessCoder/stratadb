@@ -1,0 +1,41 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+  LSM_SANITIZER="address"
+
+-- The CXX compiler identification is MSVC 19.44.35229.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+[1/9] Creating directories for 'googletest-populate'
+[1/9] Performing download step (git clone) for 'googletest-populate'
+Cloning into 'googletest-src'...
+fatal: unable to access 'https://github.com/google/googletest.git/': Recv failure: Connection was reset
+Cloning into 'googletest-src'...
+fatal: unable to access 'https://github.com/google/googletest.git/': Could not resolve host: github.com
+Cloning into 'googletest-src'...
+fatal: unable to access 'https://github.com/google/googletest.git/': Could not resolve host: github.com
+Had to git clone more than once: 3 times.
+CMake Error at googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitclone.cmake:50 (message):
+  Failed to clone repository: 'https://github.com/google/googletest.git'
+
+
+FAILED: googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/asan/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download 
+C:\windows\system32\cmd.exe /C "cd /D "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\asan\_deps" && "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/asan/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitclone.cmake" && "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch "C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/asan/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download""
+ninja: build stopped: subcommand failed.
+
+CMake Error at C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FetchContent.cmake:1918 (message):
+  Build step for googletest failed: 1
+Call Stack (most recent call first):
+  C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FetchContent.cmake:1609 (__FetchContent_populateSubbuild)
+  C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FetchContent.cmake:2145:EVAL:2 (__FetchContent_doPopulation)
+  C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FetchContent.cmake:2145 (cmake_language)
+  C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FetchContent.cmake:2384 (__FetchContent_Populate)
+  CMakeLists.txt:64 (FetchContent_MakeAvailable)
+
+
+-- Configuring incomplete, errors occurred!

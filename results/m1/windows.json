@@ -1,0 +1,26 @@
+{
+  "recorded_utc": "2026-10-20T11:10:09.0244293Z",
+  "platform": "Windows",
+  "os": "Microsoft Windows 11 Home",
+  "os_version": "10.0.26300.0",
+  "architecture": "X64",
+  "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics        ",
+  "logical_processors": 32,
+  "source_commit": "0b6b7cdf86a5dcdef7265a2afbdebe4ce2c8338c",
+  "source_status": [
+    "?? results/m1/asan-cached-dependency.log",
+    "?? results/m1/lint.log",
+    "?? results/m1/windows-asan-fetch-failure.log",
+    "?? results/m1/windows-asan.log",
+    "?? results/m1/windows-debug.log",
+    "?? results/m1/windows.json"
+  ],
+  "presets": [
+    "debug",
+    "asan"
+  ],
+  "result": "passed",
+  "compiler": "Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35229 for x64",
+  "cmake": "cmake version 3.31.6-msvc6",
+  "ninja": "1.12.1"
+}
