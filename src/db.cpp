@@ -8,6 +8,7 @@
 #include <thread>
 #include <utility>
 
+#include "file_cleanup.hpp"
 #include "memtable.hpp"
 #include "platform/file.hpp"
 #include "table/format.hpp"
@@ -174,7 +175,7 @@ struct DB::Impl {
         if (status.ok()) {
           table_bytes += size;
           immutable.reset();
-          status = RemoveUnused(internal::WalPath(directory, previous_wal));
+          static_cast<void>(internal::RemoveObsolete(internal::WalPath(directory, previous_wal)));
         }
       }
       if (!status.ok()) {
@@ -244,6 +245,7 @@ auto DB::Open(const Options& options, const std::filesystem::path& path, std::un
   }
   impl->recovered_tail_bytes += impl->wal->TruncatedBytes();
   impl->sequence.store(sequence, std::memory_order_release);
+  internal::CleanupUnreferenced(path, impl->versions->State());
   try {
     impl->worker = std::thread([state = impl.get()] { state->FlushLoop(); });
   } catch (const std::system_error& error) {

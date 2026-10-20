@@ -1,0 +1,70 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (10.1s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/2] Building CXX object CMakeFiles\lsm_tests.dir\tests\cleanup_test.cpp.obj
+[2/2] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = CleanupTest.*
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from CleanupTest
+[ RUN      ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\cleanup_test.cpp(29): error: Value of: db->Put({true}, "second", "two").ok()
+  Actual: false
+Expected: true
+
+[  FAILED  ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites (173 ms)
+[ RUN      ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\cleanup_test.cpp(57): error: Value of: std::filesystem::exists(directory.path() / name)
+  Actual: true
+Expected: false
+99.wal
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\cleanup_test.cpp(57): error: Value of: std::filesystem::exists(directory.path() / name)
+  Actual: true
+Expected: false
+100.sst
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\cleanup_test.cpp(57): error: Value of: std::filesystem::exists(directory.path() / name)
+  Actual: true
+Expected: false
+101.wal.tmp
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\cleanup_test.cpp(57): error: Value of: std::filesystem::exists(directory.path() / name)
+  Actual: true
+Expected: false
+102.sst.tmp
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\cleanup_test.cpp(57): error: Value of: std::filesystem::exists(directory.path() / name)
+  Actual: true
+Expected: false
+CURRENT.tmp
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\cleanup_test.cpp(57): error: Value of: std::filesystem::exists(directory.path() / name)
+  Actual: true
+Expected: false
+MANIFEST-1.tmp
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\cleanup_test.cpp(57): error: Value of: std::filesystem::exists(directory.path() / name)
+  Actual: true
+Expected: false
+WAL
+
+[  FAILED  ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles (311 ms)
+[----------] 2 tests from CleanupTest (485 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (485 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 2 tests, listed below:
+[  FAILED  ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites
+[  FAILED  ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles
+
+ 2 FAILED TESTS

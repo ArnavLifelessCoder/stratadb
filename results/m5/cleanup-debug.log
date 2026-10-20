@@ -1,0 +1,53 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (6.6s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/5] Building CXX object CMakeFiles\lsm.dir\src\file_cleanup.cpp.obj
+[2/5] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[3/5] Linking CXX static library lsm.lib
+[4/5] Linking CXX executable lsm_tests.exe
+[5/5] Linking CXX executable lsm_db_process.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = CleanupTest.*:FlushTest.*
+[==========] Running 12 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 10 tests from FlushTest
+[ RUN      ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles
+[       OK ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles (17 ms)
+[ RUN      ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap
+[       OK ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap (2737 ms)
+[ RUN      ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables
+[       OK ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables (290 ms)
+[ RUN      ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens
+[       OK ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens (3928 ms)
+[ RUN      ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence
+[       OK ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence (174 ms)
+[ RUN      ] FlushTest.RecoversRotationAndUncommittedTablePublication
+[       OK ] FlushTest.RecoversRotationAndUncommittedTablePublication (522 ms)
+[ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+[       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (280 ms)
+[ RUN      ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+[       OK ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch (156 ms)
+[ RUN      ] FlushTest.MissingReferencedWalOrTableIsCorruption
+[       OK ] FlushTest.MissingReferencedWalOrTableIsCorruption (387 ms)
+[ RUN      ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes
+[       OK ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes (350 ms)
+[----------] 10 tests from FlushTest (8846 ms total)
+
+[----------] 2 tests from CleanupTest
+[ RUN      ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites
+Deferred obsolete-file cleanup: "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\test-data\\91840901689700-16\\2.wal": The directory is not empty.
+[       OK ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites (298 ms)
+[ RUN      ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles
+[       OK ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles (360 ms)
+[----------] 2 tests from CleanupTest (659 ms total)
+
+[----------] Global test environment tear-down
+[==========] 12 tests from 2 test suites ran. (9506 ms total)
+[  PASSED  ] 12 tests.

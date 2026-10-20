@@ -45,7 +45,8 @@ The worker exports the frozen skiplist in internal-key order and writes an L0
 table with the table writer's sync/rename protocol. It then appends and syncs an
 edit adding that table, advancing the flushed sequence and clearing the previous
 WAL and pending-table fields. Only then does it release the immutable memtable
-and remove the old WAL.
+and remove the old WAL. Failed obsolete-WAL removal is logged and does not
+poison writes; the file is retried during the next Open.
 
 There is at most one mutable and one immutable memtable. A large batch can exceed
 the configured limit; the limit is an allocation threshold, not a hard bound.
@@ -97,8 +98,11 @@ If only the first numbered WAL was published, bootstrap preserves it. If later
 WALs or SSTables exist without a manifest, Open reports corruption instead of
 initializing an empty database.
 The legacy M2/M3 `WAL` is copied into the first numbered WAL before publishing
-the manifest. The original is retained as an unused migration backup; future
-opens use numbered WALs.
+the manifest. After successful recovery, startup cleanup removes that unused
+backup, unreferenced numbered WALs/tables, and recognized storage `.tmp` files.
+Cleanup runs before the worker starts. Unrelated names are preserved; deletion
+errors are logged without preventing reads or writes. Live files come only from
+the recovered manifest, so an incomplete recovery never starts this cleanup.
 
 ## Options and counters
 
