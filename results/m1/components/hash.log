@@ -1,0 +1,29 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (3.1s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/4] Building CXX object CMakeFiles\lsm.dir\src\util\hash.cpp.obj
+[2/4] Linking CXX static library lsm.lib
+[3/4] Building CXX object CMakeFiles\lsm_tests.dir\tests\hash_test.cpp.obj
+[4/4] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = HashTest.*
+[==========] Running 3 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 3 tests from HashTest
+[ RUN      ] HashTest.EmptyAndTextVectors
+[       OK ] HashTest.EmptyAndTextVectors (0 ms)
+[ RUN      ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment
+[       OK ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment (28 ms)
+[ RUN      ] HashTest.LengthAndEmbeddedNulsAreSignificant
+[       OK ] HashTest.LengthAndEmbeddedNulsAreSignificant (0 ms)
+[----------] 3 tests from HashTest (28 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 1 test suite ran. (28 ms total)
+[  PASSED  ] 3 tests.
