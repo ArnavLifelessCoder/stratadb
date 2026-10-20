@@ -2,6 +2,11 @@
 
 Date: 20 October 2026 (Asia/Calcutta).
 
+Review update: **M1 remains open** until every hosted CI job passes.
+See [the CI follow-up](m1-ci-review.md) for actual Linux results, the Windows
+bootstrap failure, and the prepared workflow fix. The original local-only
+verification packet below is retained as historical evidence.
+
 M1 implementation and local acceptance tests are complete. Work is on local
 `main`, with remote `https://github.com/ArnavLifelessCoder/stratadb.git`.
 Nothing has been pushed. M2 has not started.

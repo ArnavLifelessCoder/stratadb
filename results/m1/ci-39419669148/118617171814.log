@@ -1,0 +1,228 @@
+2026-10-20T12:05:41.2789039Z Current runner version: '2.337.0'
+2026-10-20T12:05:41.2812790Z ##[group]Runner Image Provisioner
+2026-10-20T12:05:41.2813978Z Hosted Compute Agent
+2026-10-20T12:05:41.2814599Z Version: 20261012.601
+2026-10-20T12:05:41.2815355Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-20T12:05:41.2816169Z Build Date: 2026-10-12T17:48:21Z
+2026-10-20T12:05:41.2817231Z Worker ID: {f3279b95-6783-4914-b424-695bb219c636}
+2026-10-20T12:05:41.2817987Z Region: westus
+2026-10-20T12:05:41.2818528Z Cloud: Azure
+2026-10-20T12:05:41.2819126Z ##[endgroup]
+2026-10-20T12:05:41.2820737Z ##[group]Operating System
+2026-10-20T12:05:41.2821358Z Ubuntu
+2026-10-20T12:05:41.2821960Z 24.04.5
+2026-10-20T12:05:41.2822521Z LTS
+2026-10-20T12:05:41.2823296Z ##[endgroup]
+2026-10-20T12:05:41.2823884Z ##[group]Runner Image
+2026-10-20T12:05:41.2824499Z Image: ubuntu-24.04
+2026-10-20T12:05:41.2825128Z Version: 20261012.334.1
+2026-10-20T12:05:41.2826377Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-20T12:05:41.2828000Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-20T12:05:41.2828987Z ##[endgroup]
+2026-10-20T12:05:41.2830119Z ##[group]GITHUB_TOKEN Permissions
+2026-10-20T12:05:41.2832275Z Contents: read
+2026-10-20T12:05:41.2833302Z Metadata: read
+2026-10-20T12:05:41.2834221Z ##[endgroup]
+2026-10-20T12:05:41.2836395Z Secret source: Actions
+2026-10-20T12:05:41.2837369Z Cache mode: write
+2026-10-20T12:05:41.2838362Z Prepare workflow directory
+2026-10-20T12:05:41.3172614Z Prepare all required actions
+2026-10-20T12:05:41.3221327Z Getting action download info
+2026-10-20T12:05:41.6905713Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-20T12:05:41.8023884Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-20T12:05:41.9807144Z Complete job name: lint
+2026-10-20T12:05:42.0579953Z ##[group]Run actions/checkout@v4
+2026-10-20T12:05:42.0580827Z with:
+2026-10-20T12:05:42.0581298Z   repository: ArnavLifelessCoder/stratadb
+2026-10-20T12:05:42.0585518Z   token: ***
+2026-10-20T12:05:42.0585966Z   ssh-strict: true
+2026-10-20T12:05:42.0586410Z   ssh-user: git
+2026-10-20T12:05:42.0586848Z   persist-credentials: true
+2026-10-20T12:05:42.0587322Z   clean: true
+2026-10-20T12:05:42.0587764Z   sparse-checkout-cone-mode: true
+2026-10-20T12:05:42.0588277Z   fetch-depth: 1
+2026-10-20T12:05:42.0588711Z   fetch-tags: false
+2026-10-20T12:05:42.0589152Z   show-progress: true
+2026-10-20T12:05:42.0589589Z   lfs: false
+2026-10-20T12:05:42.0589990Z   submodules: false
+2026-10-20T12:05:42.0590428Z   set-safe-directory: true
+2026-10-20T12:05:42.0590926Z   allow-unsafe-pr-checkout: false
+2026-10-20T12:05:42.0591725Z ##[endgroup]
+2026-10-20T12:05:42.1626185Z Syncing repository: ArnavLifelessCoder/stratadb
+2026-10-20T12:05:42.1628674Z ##[group]Getting Git version info
+2026-10-20T12:05:42.1629880Z Working directory is '/home/runner/work/stratadb/stratadb'
+2026-10-20T12:05:42.1631497Z [command]/usr/bin/git version
+2026-10-20T12:05:42.1689379Z git version 2.55.0
+2026-10-20T12:05:42.1711608Z ##[endgroup]
+2026-10-20T12:05:42.1734535Z Temporarily overriding HOME='/home/runner/work/_temp/ea2f8439-6476-4597-8ef9-6a40115fee76' before making global git config changes
+2026-10-20T12:05:42.1736577Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T12:05:42.1737785Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/stratadb/stratadb
+2026-10-20T12:05:42.1789913Z Deleting the contents of '/home/runner/work/stratadb/stratadb'
+2026-10-20T12:05:42.1795954Z ##[group]Initializing the repository
+2026-10-20T12:05:42.1799807Z [command]/usr/bin/git init /home/runner/work/stratadb/stratadb
+2026-10-20T12:05:42.1919201Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-20T12:05:42.1920902Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-20T12:05:42.1922922Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-20T12:05:42.1924377Z hint: call:
+2026-10-20T12:05:42.1925067Z hint:
+2026-10-20T12:05:42.1925828Z hint: 	git config --global init.defaultBranch <name>
+2026-10-20T12:05:42.1926703Z hint:
+2026-10-20T12:05:42.1927349Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-20T12:05:42.1928488Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-20T12:05:42.1929783Z hint:
+2026-10-20T12:05:42.1930522Z hint: 	git branch -m <name>
+2026-10-20T12:05:42.1931318Z hint:
+2026-10-20T12:05:42.1932381Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-20T12:05:42.1934245Z Initialized empty Git repository in /home/runner/work/stratadb/stratadb/.git/
+2026-10-20T12:05:42.1936969Z [command]/usr/bin/git remote add origin https://github.com/ArnavLifelessCoder/stratadb
+2026-10-20T12:05:42.1987818Z ##[endgroup]
+2026-10-20T12:05:42.1989001Z ##[group]Disabling automatic garbage collection
+2026-10-20T12:05:42.1991550Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-20T12:05:42.2025953Z ##[endgroup]
+2026-10-20T12:05:42.2027370Z ##[group]Setting up auth
+2026-10-20T12:05:42.2033643Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T12:05:42.2066398Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T12:05:42.2534965Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T12:05:42.2576304Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T12:05:42.2805669Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T12:05:42.2843580Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T12:05:42.3070339Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-20T12:05:42.3109908Z ##[endgroup]
+2026-10-20T12:05:42.3119006Z ##[group]Fetching the repository
+2026-10-20T12:05:42.3120569Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +65563595a7965311a7f8f494913ee995eaeb33f7:refs/remotes/origin/main
+2026-10-20T12:05:42.7005922Z From https://github.com/ArnavLifelessCoder/stratadb
+2026-10-20T12:05:42.7006865Z  * [new ref]         65563595a7965311a7f8f494913ee995eaeb33f7 -> origin/main
+2026-10-20T12:05:42.7011032Z ##[endgroup]
+2026-10-20T12:05:42.7011799Z ##[group]Determining the checkout info
+2026-10-20T12:05:42.7013440Z ##[endgroup]
+2026-10-20T12:05:42.7019887Z [command]/usr/bin/git sparse-checkout disable
+2026-10-20T12:05:42.7071920Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-20T12:05:42.7104112Z ##[group]Checking out the ref
+2026-10-20T12:05:42.7110263Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-20T12:05:42.7221349Z Switched to a new branch 'main'
+2026-10-20T12:05:42.7228040Z branch 'main' set up to track 'origin/main'.
+2026-10-20T12:05:42.7232899Z ##[endgroup]
+2026-10-20T12:05:42.7275418Z [command]/usr/bin/git log -1 --format=%H
+2026-10-20T12:05:42.7301869Z 65563595a7965311a7f8f494913ee995eaeb33f7
+2026-10-20T12:05:42.7585032Z ##[group]Run actions/setup-python@v5
+2026-10-20T12:05:42.7585615Z with:
+2026-10-20T12:05:42.7586020Z   python-version: 3.13
+2026-10-20T12:05:42.7586483Z   check-latest: false
+2026-10-20T12:05:42.7590461Z   token: ***
+2026-10-20T12:05:42.7590900Z   update-environment: true
+2026-10-20T12:05:42.7591390Z   allow-prereleases: false
+2026-10-20T12:05:42.7591864Z   freethreaded: false
+2026-10-20T12:05:42.7592504Z ##[endgroup]
+2026-10-20T12:05:42.8893967Z ##[group]Installed versions
+2026-10-20T12:05:42.9009691Z (node:2292) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-20T12:05:42.9011758Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-20T12:05:42.9013249Z Successfully set up CPython (3.13.16)
+2026-10-20T12:05:42.9014653Z ##[endgroup]
+2026-10-20T12:05:42.9245849Z ##[group]Run python -m pip install -r requirements-dev.txt
+2026-10-20T12:05:42.9247301Z [36;1mpython -m pip install -r requirements-dev.txt[0m
+2026-10-20T12:05:42.9557806Z shell: /usr/bin/bash -e {0}
+2026-10-20T12:05:42.9558416Z env:
+2026-10-20T12:05:42.9558975Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:42.9559878Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T12:05:42.9560760Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:42.9561555Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:42.9562369Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:42.9563382Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T12:05:42.9564082Z ##[endgroup]
+2026-10-20T12:05:43.8441579Z Collecting clang-format==20.1.8 (from -r requirements-dev.txt (line 1))
+2026-10-20T12:05:43.9035502Z   Downloading clang_format-20.1.8-py2.py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (4.7 kB)
+2026-10-20T12:05:44.2201880Z Collecting ruff==0.14.1 (from -r requirements-dev.txt (line 2))
+2026-10-20T12:05:44.2239488Z   Downloading ruff-0.14.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (25 kB)
+2026-10-20T12:05:44.2562307Z Collecting pytest==8.4.2 (from -r requirements-dev.txt (line 3))
+2026-10-20T12:05:44.2589923Z   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+2026-10-20T12:05:44.3134863Z Collecting mmh3==5.2.0 (from -r requirements-dev.txt (line 4))
+2026-10-20T12:05:44.3174058Z   Downloading mmh3-5.2.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (14 kB)
+2026-10-20T12:05:44.3316823Z Collecting iniconfig>=1 (from pytest==8.4.2->-r requirements-dev.txt (line 3))
+2026-10-20T12:05:44.3347382Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-10-20T12:05:44.3518776Z Collecting packaging>=20 (from pytest==8.4.2->-r requirements-dev.txt (line 3))
+2026-10-20T12:05:44.3542943Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-20T12:05:44.3658733Z Collecting pluggy<2,>=1.5 (from pytest==8.4.2->-r requirements-dev.txt (line 3))
+2026-10-20T12:05:44.3685081Z   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-10-20T12:05:44.3893442Z Collecting pygments>=2.7.2 (from pytest==8.4.2->-r requirements-dev.txt (line 3))
+2026-10-20T12:05:44.3918020Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-10-20T12:05:44.3997430Z Downloading clang_format-20.1.8-py2.py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (1.8 MB)
+2026-10-20T12:05:44.4284404Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 106.5 MB/s  0:00:00
+2026-10-20T12:05:44.4336624Z Downloading ruff-0.14.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.1 MB)
+2026-10-20T12:05:44.5002285Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.1/13.1 MB 203.9 MB/s  0:00:00
+2026-10-20T12:05:44.5028922Z Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+2026-10-20T12:05:44.5084864Z Downloading mmh3-5.2.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (103 kB)
+2026-10-20T12:05:44.5147983Z Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-10-20T12:05:44.5193369Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-10-20T12:05:44.5238322Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-20T12:05:44.5292574Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-10-20T12:05:44.5359535Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 219.6 MB/s  0:00:00
+2026-10-20T12:05:44.6270654Z Installing collected packages: clang-format, ruff, pygments, pluggy, packaging, mmh3, iniconfig, pytest
+2026-10-20T12:05:45.9233504Z 
+2026-10-20T12:05:45.9251957Z Successfully installed clang-format-20.1.8 iniconfig-2.3.1 mmh3-5.2.0 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-8.4.2 ruff-0.14.1
+2026-10-20T12:05:45.9890725Z ##[group]Run python scripts/check_format.py
+2026-10-20T12:05:45.9891204Z [36;1mpython scripts/check_format.py[0m
+2026-10-20T12:05:45.9956700Z shell: /usr/bin/bash -e {0}
+2026-10-20T12:05:45.9957008Z env:
+2026-10-20T12:05:45.9957325Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:45.9957820Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T12:05:45.9958304Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:45.9958754Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:45.9959187Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:45.9959650Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T12:05:45.9960020Z ##[endgroup]
+2026-10-20T12:05:46.1067402Z ##[group]Run python scripts/hash_vectors.py --check
+2026-10-20T12:05:46.1067893Z [36;1mpython scripts/hash_vectors.py --check[0m
+2026-10-20T12:05:46.1133552Z shell: /usr/bin/bash -e {0}
+2026-10-20T12:05:46.1133867Z env:
+2026-10-20T12:05:46.1134188Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.1134692Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T12:05:46.1135174Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.1135610Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.1136040Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.1136476Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T12:05:46.1136844Z ##[endgroup]
+2026-10-20T12:05:46.2073525Z All 132 hash oracle vectors match mmh3 5.2.0
+2026-10-20T12:05:46.2167141Z ##[group]Run ruff check .
+2026-10-20T12:05:46.2167434Z [36;1mruff check .[0m
+2026-10-20T12:05:46.2230614Z shell: /usr/bin/bash -e {0}
+2026-10-20T12:05:46.2230874Z env:
+2026-10-20T12:05:46.2231151Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.2231605Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T12:05:46.2232079Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.2232481Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.2232867Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.2233550Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T12:05:46.2233901Z ##[endgroup]
+2026-10-20T12:05:46.2391043Z All checks passed!
+2026-10-20T12:05:46.2430249Z ##[group]Run ruff format --check .
+2026-10-20T12:05:46.2430565Z [36;1mruff format --check .[0m
+2026-10-20T12:05:46.2490987Z shell: /usr/bin/bash -e {0}
+2026-10-20T12:05:46.2491247Z env:
+2026-10-20T12:05:46.2491516Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.2491961Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T12:05:46.2492389Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.2492795Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.2493507Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T12:05:46.2493930Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T12:05:46.2494254Z ##[endgroup]
+2026-10-20T12:05:46.2637962Z 2 files already formatted
+2026-10-20T12:05:46.2741028Z Post job cleanup.
+2026-10-20T12:05:46.3940664Z (node:2356) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-20T12:05:46.3941604Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-20T12:05:46.4169565Z Post job cleanup.
+2026-10-20T12:05:46.5060294Z [command]/usr/bin/git version
+2026-10-20T12:05:46.5106531Z git version 2.55.0
+2026-10-20T12:05:46.5151073Z Temporarily overriding HOME='/home/runner/work/_temp/310c18b0-c719-45f2-94a3-5e1d1e53aac2' before making global git config changes
+2026-10-20T12:05:46.5152209Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T12:05:46.5157568Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/stratadb/stratadb
+2026-10-20T12:05:46.5195959Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T12:05:46.5232545Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T12:05:46.5497195Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T12:05:46.5517937Z http.https://github.com/.extraheader
+2026-10-20T12:05:46.5529556Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-20T12:05:46.5568516Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T12:05:46.5835309Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T12:05:46.5876876Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T12:05:46.6287188Z Cleaning up orphan processes
+2026-10-20T12:05:46.6583645Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
