@@ -46,9 +46,9 @@ auto EncodeBlock(std::span<const Entry> entries, std::string& output) -> Status 
     return Status::InvalidArgument("block size overflow");
   }
   for (const auto offset : restarts) {
-    AppendFixed(encoded, offset, 4);
+    AppendFixed<4>(encoded, offset);
   }
-  AppendFixed(encoded, restarts.size(), 4);
+  AppendFixed<4>(encoded, restarts.size());
   Seal(encoded);
   output = std::move(encoded);
   return {};

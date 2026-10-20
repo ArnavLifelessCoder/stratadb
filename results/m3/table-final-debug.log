@@ -1,0 +1,69 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (5.8s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/10] Building CXX object CMakeFiles\lsm.dir\src\table\bloom.cpp.obj
+[2/10] Building CXX object CMakeFiles\lsm.dir\src\table\block.cpp.obj
+[3/10] Building CXX object CMakeFiles\lsm_tests.dir\tests\bloom_test.cpp.obj
+[4/10] Building CXX object CMakeFiles\lsm_tests.dir\tests\block_test.cpp.obj
+[5/10] Building CXX object CMakeFiles\lsm.dir\src\table\table.cpp.obj
+[6/10] Building CXX object CMakeFiles\lsm.dir\src\platform\mapping_windows.cpp.obj
+[7/10] Linking CXX static library lsm.lib
+[8/10] Building CXX object CMakeFiles\lsm_tests.dir\tests\table_test.cpp.obj
+[9/10] Linking CXX executable lsm_db_process.exe
+[10/10] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = BlockTest.*:BloomTest.*:TableTest.*:MappingTest.*
+[==========] Running 15 tests from 4 test suites.
+[----------] Global test environment set-up.
+[----------] 5 tests from BlockTest
+[ RUN      ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry
+[       OK ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry (0 ms)
+[ RUN      ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary
+[       OK ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary (66 ms)
+[ RUN      ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues
+[       OK ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues (13 ms)
+[ RUN      ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput
+[       OK ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput (0 ms)
+[ RUN      ] BlockTest.RejectsMalformedStructureEvenWithValidCrc
+[       OK ] BlockTest.RejectsMalformedStructureEvenWithValidCrc (0 ms)
+[----------] 5 tests from BlockTest (81 ms total)
+
+[----------] 3 tests from BloomTest
+[ RUN      ] BloomTest.MatchesIndependentBitVectorAndHasNoFalseNegatives
+[       OK ] BloomTest.MatchesIndependentBitVectorAndHasNoFalseNegatives (0 ms)
+[ RUN      ] BloomTest.EmptyDisabledAndCorruptedFilters
+[       OK ] BloomTest.EmptyDisabledAndCorruptedFilters (0 ms)
+[ RUN      ] BloomTest.MeasuredFalsePositiveRate
+BLOOM_RESULT {"seed":24301,"keys":10000,"queries":200000,"bits_per_key":10,"probes":7,"positives":1634,"actual":0.00817,"theoretical":0.00819372}
+[       OK ] BloomTest.MeasuredFalsePositiveRate (967 ms)
+[----------] 3 tests from BloomTest (967 ms total)
+
+[----------] 1 test from MappingTest
+[ RUN      ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles
+[       OK ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles (165 ms)
+[----------] 1 test from MappingTest (165 ms total)
+
+[----------] 6 tests from TableTest
+[ RUN      ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference
+[       OK ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference (3918 ms)
+[ RUN      ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions
+[       OK ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions (83 ms)
+[ RUN      ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter
+[       OK ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter (120 ms)
+[ RUN      ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected
+[       OK ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected (0 ms)
+[ RUN      ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully
+[       OK ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully (3 ms)
+[ RUN      ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions
+[       OK ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions (606 ms)
+[----------] 6 tests from TableTest (4733 ms total)
+
+[----------] Global test environment tear-down
+[==========] 15 tests from 4 test suites ran. (5949 ms total)
+[  PASSED  ] 15 tests.

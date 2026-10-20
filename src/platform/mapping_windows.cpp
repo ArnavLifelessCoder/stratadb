@@ -16,16 +16,20 @@ auto MappingError() -> Status {
 
 class WindowsMapping final : public MappedFile {
  public:
-  WindowsMapping(HANDLE file, HANDLE mapping, const void* data, std::size_t size)
-      : file_(file), mapping_(mapping), data_(data), size_(size) {}
+  struct Handles {
+    HANDLE file;
+    HANDLE mapping;
+  };
+  WindowsMapping(Handles handles, std::size_t size, const void* data)
+      : handles_(handles), data_(data), size_(size) {}
   ~WindowsMapping() override {
     if (data_ != nullptr) {
       UnmapViewOfFile(data_);
     }
-    if (mapping_ != nullptr) {
-      CloseHandle(mapping_);
+    if (handles_.mapping != nullptr) {
+      CloseHandle(handles_.mapping);
     }
-    CloseHandle(file_);
+    CloseHandle(handles_.file);
   }
   [[nodiscard]] auto Bytes() const -> std::string_view override {
     return size_ == 0 ? std::string_view{}
@@ -33,8 +37,7 @@ class WindowsMapping final : public MappedFile {
   }
 
  private:
-  HANDLE file_;
-  HANDLE mapping_;
+  Handles handles_;
   const void* data_;
   std::size_t size_;
 };
@@ -75,8 +78,9 @@ auto MappedFile::Open(const std::filesystem::path& path, std::unique_ptr<MappedF
       return status;
     }
   }
-  output = std::make_unique<WindowsMapping>(file, mapping, data,
-                                            static_cast<std::size_t>(size.QuadPart));
+  output =
+      std::make_unique<WindowsMapping>(WindowsMapping::Handles{.file = file, .mapping = mapping},
+                                       static_cast<std::size_t>(size.QuadPart), data);
   return {};
 }
 }  // namespace lsm::platform

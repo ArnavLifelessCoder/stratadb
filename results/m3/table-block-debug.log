@@ -1,0 +1,46 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (5.7s)
+-- Generating done (0.4s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/2] Building CXX object CMakeFiles\lsm_tests.dir\tests\block_test.cpp.obj
+[2/2] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = BlockTest.*:TableTest.*
+[==========] Running 11 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 5 tests from BlockTest
+[ RUN      ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry
+[       OK ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry (0 ms)
+[ RUN      ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary
+[       OK ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary (40 ms)
+[ RUN      ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues
+[       OK ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues (17 ms)
+[ RUN      ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput
+[       OK ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput (0 ms)
+[ RUN      ] BlockTest.RejectsMalformedStructureEvenWithValidCrc
+[       OK ] BlockTest.RejectsMalformedStructureEvenWithValidCrc (0 ms)
+[----------] 5 tests from BlockTest (59 ms total)
+
+[----------] 6 tests from TableTest
+[ RUN      ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference
+[       OK ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference (3886 ms)
+[ RUN      ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions
+[       OK ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions (166 ms)
+[ RUN      ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter
+[       OK ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter (128 ms)
+[ RUN      ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected
+[       OK ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected (1 ms)
+[ RUN      ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully
+[       OK ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully (3 ms)
+[ RUN      ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions
+[       OK ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions (747 ms)
+[----------] 6 tests from TableTest (4935 ms total)
+
+[----------] Global test environment tear-down
+[==========] 11 tests from 2 test suites ran. (4995 ms total)
+[  PASSED  ] 11 tests.

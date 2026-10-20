@@ -1,0 +1,119 @@
+61171 warnings generated.
+Suppressed 61172 warnings (61171 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+46366 warnings generated.
+Suppressed 46367 warnings (46366 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+84879 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\mapping_windows.cpp:19:18: error: 3 adjacent parameters of 'WindowsMapping' of convertible types are easily swapped by mistake [bugprone-easily-swappable-parameters,-warnings-as-errors]
+   19 |   WindowsMapping(HANDLE file, HANDLE mapping, const void* data, std::size_t size)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\mapping_windows.cpp:19:25: note: the first parameter in the range is 'file'
+   19 |   WindowsMapping(HANDLE file, HANDLE mapping, const void* data, std::size_t size)
+      |                         ^~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\mapping_windows.cpp:19:59: note: the last parameter in the range is 'data'
+   19 |   WindowsMapping(HANDLE file, HANDLE mapping, const void* data, std::size_t size)
+      |                                                           ^~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\mapping_windows.cpp:19:18: note: 
+   19 |   WindowsMapping(HANDLE file, HANDLE mapping, const void* data, std::size_t size)
+      |                  ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\platform\mapping_windows.cpp:19:47: note: 'HANDLE' and 'const void *' may be implicitly converted: 'HANDLE' (as 'void *') -> 'const void *', 'const void *' -> 'HANDLE' (as 'void *')
+   19 |   WindowsMapping(HANDLE file, HANDLE mapping, const void* data, std::size_t size)
+      |                                               ^
+Suppressed 84879 warnings (84878 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 warning treated as error
+84876 warnings generated.
+Suppressed 84877 warnings (84876 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+27968 warnings generated.
+Suppressed 27969 warnings (27968 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+35258 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:46: error: 2 adjacent parameters of 'AppendFixed' of convertible types are easily swapped by mistake [bugprone-easily-swappable-parameters,-warnings-as-errors]
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:60: note: the first parameter in the range is 'value'
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                                            ^~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:76: note: the last parameter in the range is 'bytes'
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                                                            ^~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:46: note: 
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                              ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:67: note: 'std::uint64_t' and 'unsigned int' may be implicitly converted: 'std::uint64_t' (as 'unsigned long long') -> 'unsigned int', 'unsigned int' -> 'std::uint64_t' (as 'unsigned long long')
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                                                   ^
+Suppressed 35258 warnings (35257 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 warning treated as error
+35012 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:46: error: 2 adjacent parameters of 'AppendFixed' of convertible types are easily swapped by mistake [bugprone-easily-swappable-parameters,-warnings-as-errors]
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:60: note: the first parameter in the range is 'value'
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                                            ^~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:76: note: the last parameter in the range is 'bytes'
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                                                            ^~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:46: note: 
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                              ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:67: note: 'std::uint64_t' and 'unsigned int' may be implicitly converted: 'std::uint64_t' (as 'unsigned long long') -> 'unsigned int', 'unsigned int' -> 'std::uint64_t' (as 'unsigned long long')
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                                                   ^
+Suppressed 35012 warnings (35011 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 warning treated as error
+57226 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:46: error: 2 adjacent parameters of 'AppendFixed' of convertible types are easily swapped by mistake [bugprone-easily-swappable-parameters,-warnings-as-errors]
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:60: note: the first parameter in the range is 'value'
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                                            ^~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:76: note: the last parameter in the range is 'bytes'
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                                                            ^~~~~
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:46: note: 
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                              ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/format.hpp:12:67: note: 'std::uint64_t' and 'unsigned int' may be implicitly converted: 'std::uint64_t' (as 'unsigned long long') -> 'unsigned int', 'unsigned int' -> 'std::uint64_t' (as 'unsigned long long')
+   12 | inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
+      |                                                                   ^
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table\table.cpp:194:17: error: use std::make_unique instead [modernize-make-unique,-warnings-as-errors]
+    6 |   auto reader = std::unique_ptr<TableReader>(new TableReader);
+      |                 ^~~~~~~~~~~~~~~              ~~~~~~~~~~~~~~~
+      |                 std::make_unique
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table\table.cpp:208:17: error: use std::make_unique instead [modernize-make-unique,-warnings-as-errors]
+  208 |   auto reader = std::unique_ptr<TableReader>(new TableReader);
+      |                 ^~~~~~~~~~~~~~~              ~~~~~~~~~~~~~~~
+      |                 std::make_unique
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table\table.cpp:297:22: error: use a ranges version of this algorithm [modernize-use-ranges,-warnings-as-errors]
+  297 |   const auto block = std::lower_bound(index_.begin(), index_.end(), key, before);
+      |                      ^~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~  ~~~~~~~~~~~~
+      |                      std::ranges::lower_bound index_
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table\table.cpp:306:22: error: use a ranges version of this algorithm [modernize-use-ranges,-warnings-as-errors]
+  306 |   const auto entry = std::lower_bound(entries.begin(), entries.end(), key, before);
+      |                      ^~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~
+      |                      std::ranges::lower_bound entries
+Suppressed 57222 warnings (57221 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+5 warnings treated as errors
+23658 warnings generated.
+Suppressed 23658 warnings (23658 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+23484 warnings generated.
+Suppressed 23484 warnings (23484 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+27957 warnings generated.
+Suppressed 27957 warnings (27957 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+60157 warnings generated.
+Suppressed 60158 warnings (60157 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+29310 warnings generated.
+Suppressed 29311 warnings (29310 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.

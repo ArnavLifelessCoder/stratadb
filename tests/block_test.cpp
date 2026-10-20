@@ -7,9 +7,35 @@
 
 #include "table/format.hpp"
 #include "test_support.hpp"
+#include "util/varint.hpp"
 
 namespace lsm::internal::table {
 namespace {
+TEST(BlockTest, SharesPrefixesExceptAtEachSixteenthEntry) {
+  std::vector<Entry> entries;
+  for (std::uint64_t sequence = 33; sequence > 0; --sequence) {
+    entries.push_back(
+        {.key = InternalKey("common-prefix", sequence, WriteBatch::Type::kPut), .value = ""});
+  }
+  std::string bytes;
+  ASSERT_TRUE(EncodeBlock(entries, bytes).ok());
+  auto input = std::string_view(bytes);
+  for (std::size_t i = 0; i < entries.size(); ++i) {
+    std::uint32_t shared = 0;
+    std::uint32_t unshared = 0;
+    std::uint32_t length = 0;
+    ASSERT_TRUE(ConsumeVarint32(input, shared));
+    ASSERT_TRUE(ConsumeVarint32(input, unshared));
+    ASSERT_TRUE(ConsumeVarint32(input, length));
+    EXPECT_EQ(shared, i % 16 == 0 ? 0U : 14U);  // User prefix plus the type byte.
+    EXPECT_EQ(shared + unshared, entries[i].key.size());
+    EXPECT_EQ(length, 0U);
+    ASSERT_LE(unshared, input.size());
+    input.remove_prefix(unshared);
+  }
+  EXPECT_EQ(input.size(), 3U * 4U + 4U + 4U);
+}
+
 TEST(BlockTest, RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary) {
   std::mt19937_64 random(test::seed);
   for (const std::size_t count : {0U, 1U, 15U, 16U, 17U, 31U, 32U, 33U, 1000U}) {
@@ -36,7 +62,8 @@ TEST(BlockTest, NumericDescendingSequenceOrderEmptyKeysAndLargeValues) {
       {.key = InternalKey("", kMaxSequence, WriteBatch::Type::kPut), .value = ""},
       {.key = InternalKey("", 256, WriteBatch::Type::kPut), .value = std::string(1 << 20, '\0')},
       {.key = InternalKey("", 255, WriteBatch::Type::kDelete), .value = ""},
-      {.key = InternalKey(std::string("\0\xff", 2), 1, WriteBatch::Type::kPut), .value = "binary"}};
+      {.key = InternalKey(std::string("\0\xff", 2), 1, WriteBatch::Type::kPut), .value = "binary"},
+      {.key = InternalKey(std::string(1 << 20, 'z'), 1, WriteBatch::Type::kPut), .value = "long"}};
   std::string bytes;
   ASSERT_TRUE(EncodeBlock(entries, bytes).ok());
   std::vector<Entry> decoded;

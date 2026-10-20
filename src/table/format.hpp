@@ -9,8 +9,10 @@
 
 namespace lsm::internal::table {
 
-inline void AppendFixed(std::string& output, std::uint64_t value, unsigned bytes) {
-  for (unsigned i = 0; i < bytes; ++i) {
+template <unsigned Bytes>
+inline void AppendFixed(std::string& output, std::uint64_t value) {
+  static_assert(Bytes == 4 || Bytes == 8);
+  for (unsigned i = 0; i < Bytes; ++i) {
     output.push_back(static_cast<char>((value >> (8 * i)) & 0xffU));
   }
 }
@@ -24,7 +26,7 @@ inline auto LoadFixed(std::string_view input, unsigned bytes) -> std::uint64_t {
   return value;
 }
 
-inline void Seal(std::string& bytes) { AppendFixed(bytes, Crc32c(bytes), 4); }
+inline void Seal(std::string& bytes) { AppendFixed<4>(bytes, Crc32c(bytes)); }
 
 inline auto ChecksumValid(std::string_view bytes) -> bool {
   return bytes.size() >= 4 &&
@@ -34,7 +36,7 @@ inline auto ChecksumValid(std::string_view bytes) -> bool {
 inline auto InternalKey(std::string_view key, std::uint64_t sequence, WriteBatch::Type type)
     -> std::string {
   std::string result(key);
-  AppendFixed(result, (sequence << 8) | static_cast<std::uint8_t>(type), 8);
+  AppendFixed<8>(result, (sequence << 8) | static_cast<std::uint8_t>(type));
   return result;
 }
 
