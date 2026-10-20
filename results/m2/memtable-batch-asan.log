@@ -1,0 +1,41 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+  LSM_SANITIZER="address"
+
+-- Configuring done (3.6s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/asan
+[1/6] Building CXX object CMakeFiles\lsm.dir\src\write_batch.cpp.obj
+[2/6] Building CXX object CMakeFiles\lsm.dir\src\memtable.cpp.obj
+[3/6] Linking CXX static library lsm.lib
+[4/6] Building CXX object CMakeFiles\lsm_tests.dir\tests\write_batch_test.cpp.obj
+[5/6] Building CXX object CMakeFiles\lsm_tests.dir\tests\memtable_test.cpp.obj
+[6/6] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = MemTableTest.*:WriteBatchTest.*
+[==========] Running 6 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from WriteBatchTest
+[ RUN      ] WriteBatchTest.OwnsDataPreservesOrderAndRoundTrips
+[       OK ] WriteBatchTest.OwnsDataPreservesOrderAndRoundTrips (8 ms)
+[ RUN      ] WriteBatchTest.RejectsTruncationInvalidTypesTrailingBytesAndSequenceOverflow
+[       OK ] WriteBatchTest.RejectsTruncationInvalidTypesTrailingBytesAndSequenceOverflow (1 ms)
+[ RUN      ] WriteBatchTest.RandomBytesNeverProduceUnstableDecodes
+[       OK ] WriteBatchTest.RandomBytesNeverProduceUnstableDecodes (385 ms)
+[----------] 3 tests from WriteBatchTest (395 ms total)
+
+[----------] 3 tests from MemTableTest
+[ RUN      ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership
+[       OK ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership (0 ms)
+[ RUN      ] MemTableTest.RandomVersionsMatchMapReference
+[       OK ] MemTableTest.RandomVersionsMatchMapReference (568 ms)
+[ RUN      ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions
+[       OK ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions (127 ms)
+[----------] 3 tests from MemTableTest (696 ms total)
+
+[----------] Global test environment tear-down
+[==========] 6 tests from 2 test suites ran. (1093 ms total)
+[  PASSED  ] 6 tests.
