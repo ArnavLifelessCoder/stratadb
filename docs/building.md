@@ -1,7 +1,8 @@
 # Building and testing
 
-M2 supplies the in-memory DB, WAL, utility library and tests.
-See [the storage design](memtable-wal.md) for API contracts and current limits.
+M3 supplies standalone SSTable readers/writers and bloom filters alongside the
+in-memory DB, WAL and utilities. See [the storage design](memtable-wal.md) and
+[the SSTable format](sstable.md) for contracts and current limits.
 
 ## Windows
 
@@ -17,7 +18,7 @@ From PowerShell in the repository:
 ```
 
 Run `.\scripts\verify.ps1` to record both complete build/test logs and Windows
-toolchain metadata in `results/m2/`.
+toolchain metadata in `results/m3/`. Pass `-Milestone NAME` to select another folder.
 
 Alternatively, in an x64 VS 2022 developer shell:
 
@@ -79,8 +80,8 @@ so fetched dependencies are excluded.
 
 CI builds and tests Debug and ASan on Windows and Ubuntu 24.04, runs TSan on
 Ubuntu 24.04, and uploads complete test logs and platform-labeled crash results.
-The concurrency tests include four readers during skiplist insertion and four
-readers alongside four DB writers.
+The concurrency tests include multi-key skiplist insertion with older sequence
+reads, four readers alongside four DB writers, and concurrent mapped table reads.
 
 Windows CI uses MSVC `cl` from the installed Visual Studio developer environment.
 The `windows-latest` image can move to a newer Visual Studio generation, so CI
@@ -101,9 +102,20 @@ errors. On Windows, use the x64 clang-tidy executable under
 Run the process-kill smoke test after building:
 
 ```powershell
-python tests/crash_smoke.py --executable build/debug/lsm_db_process.exe --output results/m2/crash-Windows-debug.json
+python tests/crash_smoke.py --executable build/debug/lsm_db_process.exe --output results/m3/crash-Windows-debug.json
 ```
 
 On Linux omit `.exe` and use a Linux-labeled output filename. The script uses
 only the Python standard library. It keeps temporary databases inside the
 build directory and records platform, seed and outcomes in JSON.
+
+Record five seeded bloom false-positive accuracy trials:
+
+```powershell
+python scripts/measure_bloom.py --binary build/debug/lsm_tests.exe --output results/m3/bloom-Windows-debug.json --compiler "MSVC 19.44.35229.0" --flags "/Od /Zi /RTC1 /W4 /WX"
+```
+
+Use the actual compiler and flags of your build. On Linux omit `.exe` and label
+the result accordingly. The test checks all inserted keys and queries a disjoint
+absent-key set. It verifies the measured rate is within a factor of two of the
+theoretical rate for seven probes and ten bits per key.

@@ -1,11 +1,11 @@
 {
-  "recorded_utc": "2026-10-20T13:43:17.483810+00:00",
+  "recorded_utc": "2026-10-20T13:56:33.832588+00:00",
   "platform": "Windows-11-10.0.26300-SP0",
   "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
   "compiler": "MSVC 19.44.35229.0",
   "flags": "/Od /Zi /RTC1 /W4 /WX",
-  "source_commit": "7bcf7875aef4b2085a89487df193388f7aa1137e",
-  "source_status": " M CMakeLists.txt\n?? results/m3/bloom-debug.log\n?? results/m3/bloom-measurement.log\n?? scripts/measure_bloom.py\n?? src/table/bloom.cpp\n?? src/table/bloom.hpp\n?? tests/bloom_test.cpp\n",
+  "source_commit": "3aca8a787caf6f8812013d7bef5b158f21b459f1",
+  "source_status": " M docs/building.md\n M results/m3/bloom-measurement.log\n M scripts/verify.ps1\n?? results/m3/ci-39434307912/\n?? results/m3/tidy-Windows.log\n?? results/m3/verification-driver.log\n?? results/m3/windows-asan.log\n?? results/m3/windows-debug.log\n?? results/m3/windows.json\n",
   "trials": [
     {
       "seed": 24301,

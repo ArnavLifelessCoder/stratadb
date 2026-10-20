@@ -1,0 +1,340 @@
+﻿2026-10-20T13:53:20.6761307Z Current runner version: '2.337.0'
+2026-10-20T13:53:20.6797977Z ##[group]Runner Image Provisioner
+2026-10-20T13:53:20.6799557Z Hosted Compute Agent
+2026-10-20T13:53:20.6800851Z Version: 20261015.610
+2026-10-20T13:53:20.6802322Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+2026-10-20T13:53:20.6803676Z Build Date: 2026-10-14T17:06:54Z
+2026-10-20T13:53:20.6805186Z Worker ID: {6740efb9-de0e-420a-85ca-bfb431dc004d}
+2026-10-20T13:53:20.6806555Z Region: eastus
+2026-10-20T13:53:20.6807518Z Cloud: Azure
+2026-10-20T13:53:20.6808696Z ##[endgroup]
+2026-10-20T13:53:20.6811358Z ##[group]Operating System
+2026-10-20T13:53:20.6812845Z Ubuntu
+2026-10-20T13:53:20.6813766Z 24.04.5
+2026-10-20T13:53:20.6814708Z LTS
+2026-10-20T13:53:20.6815630Z ##[endgroup]
+2026-10-20T13:53:20.6816504Z ##[group]Runner Image
+2026-10-20T13:53:20.6817591Z Image: ubuntu-24.04
+2026-10-20T13:53:20.6818531Z Version: 20261018.339.1
+2026-10-20T13:53:20.6820767Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261018.339/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-20T13:53:20.6823853Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261018.339
+2026-10-20T13:53:20.6825525Z ##[endgroup]
+2026-10-20T13:53:20.6827436Z ##[group]GITHUB_TOKEN Permissions
+2026-10-20T13:53:20.6830300Z Contents: read
+2026-10-20T13:53:20.6831373Z Metadata: read
+2026-10-20T13:53:20.6832595Z ##[endgroup]
+2026-10-20T13:53:20.6835441Z Secret source: Actions
+2026-10-20T13:53:20.6837128Z Cache mode: write
+2026-10-20T13:53:20.6838361Z Prepare workflow directory
+2026-10-20T13:53:20.7332531Z Prepare all required actions
+2026-10-20T13:53:20.7405058Z Getting action download info
+2026-10-20T13:53:22.0653713Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+2026-10-20T13:53:22.1849526Z Download action repository 'actions/setup-python@v6' (SHA:ece7cb06caefa5fff74198d8649806c4678c61a1)
+2026-10-20T13:53:22.3851228Z Complete job name: lint
+2026-10-20T13:53:22.4850144Z ##[group]Run actions/checkout@v5
+2026-10-20T13:53:22.4851621Z with:
+2026-10-20T13:53:22.4852787Z   repository: ArnavLifelessCoder/stratadb
+2026-10-20T13:53:22.4862366Z   token: ***
+2026-10-20T13:53:22.4863267Z   ssh-strict: true
+2026-10-20T13:53:22.4864184Z   ssh-user: git
+2026-10-20T13:53:22.4865111Z   persist-credentials: true
+2026-10-20T13:53:22.4866118Z   clean: true
+2026-10-20T13:53:22.4867043Z   sparse-checkout-cone-mode: true
+2026-10-20T13:53:22.4868139Z   fetch-depth: 1
+2026-10-20T13:53:22.4869057Z   fetch-tags: false
+2026-10-20T13:53:22.4869991Z   show-progress: true
+2026-10-20T13:53:22.4870917Z   lfs: false
+2026-10-20T13:53:22.4871784Z   submodules: false
+2026-10-20T13:53:22.4872874Z   set-safe-directory: true
+2026-10-20T13:53:22.4873951Z   allow-unsafe-pr-checkout: false
+2026-10-20T13:53:22.4875319Z ##[endgroup]
+2026-10-20T13:53:22.5946303Z Syncing repository: ArnavLifelessCoder/stratadb
+2026-10-20T13:53:22.5949747Z ##[group]Getting Git version info
+2026-10-20T13:53:22.5951692Z Working directory is '/home/runner/work/stratadb/stratadb'
+2026-10-20T13:53:22.5954280Z [command]/usr/bin/git version
+2026-10-20T13:53:22.6028705Z git version 2.55.0
+2026-10-20T13:53:22.6054875Z ##[endgroup]
+2026-10-20T13:53:22.6089721Z Temporarily overriding HOME='/home/runner/work/_temp/c5b59a35-1c3f-456e-978a-4e05eb517a46' before making global git config changes
+2026-10-20T13:53:22.6094962Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T13:53:22.6099067Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/stratadb/stratadb
+2026-10-20T13:53:22.6141736Z Deleting the contents of '/home/runner/work/stratadb/stratadb'
+2026-10-20T13:53:22.6152012Z ##[group]Initializing the repository
+2026-10-20T13:53:22.6165137Z [command]/usr/bin/git init /home/runner/work/stratadb/stratadb
+2026-10-20T13:53:22.6321096Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-20T13:53:22.6347544Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-20T13:53:22.6351493Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-20T13:53:22.6354703Z hint: call:
+2026-10-20T13:53:22.6359028Z hint:
+2026-10-20T13:53:22.6361060Z hint: 	git config --global init.defaultBranch <name>
+2026-10-20T13:53:22.6363741Z hint:
+2026-10-20T13:53:22.6366055Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-20T13:53:22.6369525Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-20T13:53:22.6372599Z hint:
+2026-10-20T13:53:22.6374165Z hint: 	git branch -m <name>
+2026-10-20T13:53:22.6375943Z hint:
+2026-10-20T13:53:22.6378316Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-20T13:53:22.6382338Z Initialized empty Git repository in /home/runner/work/stratadb/stratadb/.git/
+2026-10-20T13:53:22.6388837Z [command]/usr/bin/git remote add origin https://github.com/ArnavLifelessCoder/stratadb
+2026-10-20T13:53:22.6406347Z ##[endgroup]
+2026-10-20T13:53:22.6407960Z ##[group]Disabling automatic garbage collection
+2026-10-20T13:53:22.6410463Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-20T13:53:22.6445732Z ##[endgroup]
+2026-10-20T13:53:22.6447261Z ##[group]Setting up auth
+2026-10-20T13:53:22.6453494Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T13:53:22.6508429Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T13:53:22.7141573Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T13:53:22.7194148Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T13:53:22.7479187Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T13:53:22.7524634Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T13:53:22.7782698Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-20T13:53:22.7830836Z ##[endgroup]
+2026-10-20T13:53:22.7832739Z ##[group]Fetching the repository
+2026-10-20T13:53:22.7841886Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3aca8a787caf6f8812013d7bef5b158f21b459f1:refs/remotes/origin/m3
+2026-10-20T13:53:23.0314540Z From https://github.com/ArnavLifelessCoder/stratadb
+2026-10-20T13:53:23.0317835Z  * [new ref]         3aca8a787caf6f8812013d7bef5b158f21b459f1 -> origin/m3
+2026-10-20T13:53:23.0324433Z ##[endgroup]
+2026-10-20T13:53:23.0327210Z ##[group]Determining the checkout info
+2026-10-20T13:53:23.0330317Z ##[endgroup]
+2026-10-20T13:53:23.0332609Z [command]/usr/bin/git sparse-checkout disable
+2026-10-20T13:53:23.0395217Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-20T13:53:23.0437194Z ##[group]Checking out the ref
+2026-10-20T13:53:23.0441312Z [command]/usr/bin/git checkout --progress --force -B m3 refs/remotes/origin/m3
+2026-10-20T13:53:23.0620252Z Switched to a new branch 'm3'
+2026-10-20T13:53:23.0628287Z branch 'm3' set up to track 'origin/m3'.
+2026-10-20T13:53:23.0637592Z ##[endgroup]
+2026-10-20T13:53:23.0688719Z [command]/usr/bin/git log -1 --format=%H
+2026-10-20T13:53:23.0725581Z 3aca8a787caf6f8812013d7bef5b158f21b459f1
+2026-10-20T13:53:23.1062051Z ##[group]Run actions/setup-python@v6
+2026-10-20T13:53:23.1063039Z with:
+2026-10-20T13:53:23.1063714Z   python-version: 3.13
+2026-10-20T13:53:23.1064438Z   check-latest: false
+2026-10-20T13:53:23.1067749Z   token: ***
+2026-10-20T13:53:23.1068455Z   update-environment: true
+2026-10-20T13:53:23.1069213Z   allow-prereleases: false
+2026-10-20T13:53:23.1069943Z   freethreaded: false
+2026-10-20T13:53:23.1070853Z ##[endgroup]
+2026-10-20T13:53:23.2374643Z ##[group]Installed versions
+2026-10-20T13:53:23.2543408Z Successfully set up CPython (3.13.16)
+2026-10-20T13:53:23.2545478Z ##[endgroup]
+2026-10-20T13:53:23.2682077Z ##[group]Run python -m pip install -r requirements-dev.txt
+2026-10-20T13:53:23.2683444Z [36;1mpython -m pip install -r requirements-dev.txt[0m
+2026-10-20T13:53:23.2982915Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:53:23.2983716Z env:
+2026-10-20T13:53:23.2984515Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:23.2985541Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:53:23.2986546Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:23.2987482Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:23.2988421Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:23.2989365Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:53:23.2990214Z ##[endgroup]
+2026-10-20T13:53:25.7193131Z Collecting clang-format==20.1.8 (from -r requirements-dev.txt (line 1))
+2026-10-20T13:53:25.7696011Z   Downloading clang_format-20.1.8-py2.py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (4.7 kB)
+2026-10-20T13:53:26.0868397Z Collecting ruff==0.14.1 (from -r requirements-dev.txt (line 2))
+2026-10-20T13:53:26.0933950Z   Downloading ruff-0.14.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (25 kB)
+2026-10-20T13:53:26.1204917Z Collecting pytest==8.4.2 (from -r requirements-dev.txt (line 3))
+2026-10-20T13:53:26.1244811Z   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+2026-10-20T13:53:26.1799015Z Collecting mmh3==5.2.0 (from -r requirements-dev.txt (line 4))
+2026-10-20T13:53:26.1836458Z   Downloading mmh3-5.2.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (14 kB)
+2026-10-20T13:53:26.2194932Z Collecting PyYAML==6.0.2 (from -r requirements-dev.txt (line 5))
+2026-10-20T13:53:26.2228950Z   Downloading PyYAML-6.0.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-10-20T13:53:26.2338078Z Collecting iniconfig>=1 (from pytest==8.4.2->-r requirements-dev.txt (line 3))
+2026-10-20T13:53:26.2370809Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-10-20T13:53:26.2515269Z Collecting packaging>=20 (from pytest==8.4.2->-r requirements-dev.txt (line 3))
+2026-10-20T13:53:26.2550508Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-20T13:53:26.2663773Z Collecting pluggy<2,>=1.5 (from pytest==8.4.2->-r requirements-dev.txt (line 3))
+2026-10-20T13:53:26.2706686Z   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-10-20T13:53:26.2877662Z Collecting pygments>=2.7.2 (from pytest==8.4.2->-r requirements-dev.txt (line 3))
+2026-10-20T13:53:26.2921164Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-10-20T13:53:26.3018954Z Downloading clang_format-20.1.8-py2.py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (1.8 MB)
+2026-10-20T13:53:26.3238582Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 108.3 MB/s  0:00:00
+2026-10-20T13:53:26.3306501Z Downloading ruff-0.14.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.1 MB)
+2026-10-20T13:53:26.4343617Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.1/13.1 MB 127.0 MB/s  0:00:00
+2026-10-20T13:53:26.4382249Z Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+2026-10-20T13:53:26.4448099Z Downloading mmh3-5.2.0-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (103 kB)
+2026-10-20T13:53:26.4505401Z Downloading PyYAML-6.0.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (759 kB)
+2026-10-20T13:53:26.4559941Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 759.5/759.5 kB 159.6 MB/s  0:00:00
+2026-10-20T13:53:26.4592800Z Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-10-20T13:53:26.4659226Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-10-20T13:53:26.4716363Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-20T13:53:26.4774176Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-10-20T13:53:26.4844917Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 209.2 MB/s  0:00:00
+2026-10-20T13:53:26.6357409Z Installing collected packages: clang-format, ruff, PyYAML, pygments, pluggy, packaging, mmh3, iniconfig, pytest
+2026-10-20T13:53:27.9396043Z 
+2026-10-20T13:53:27.9415988Z Successfully installed PyYAML-6.0.2 clang-format-20.1.8 iniconfig-2.3.1 mmh3-5.2.0 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-8.4.2 ruff-0.14.1
+2026-10-20T13:53:28.0059649Z ##[group]Run python scripts/check_format.py
+2026-10-20T13:53:28.0060035Z [36;1mpython scripts/check_format.py[0m
+2026-10-20T13:53:28.0114956Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:53:28.0115213Z env:
+2026-10-20T13:53:28.0115487Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.0115930Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:53:28.0116373Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.0116790Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.0117183Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.0117574Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:53:28.0117903Z ##[endgroup]
+2026-10-20T13:53:28.2141309Z ##[group]Run python scripts/hash_vectors.py --check
+2026-10-20T13:53:28.2141737Z [36;1mpython scripts/hash_vectors.py --check[0m
+2026-10-20T13:53:28.2195754Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:53:28.2196017Z env:
+2026-10-20T13:53:28.2196294Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.2196760Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:53:28.2197205Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.2197604Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.2197989Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.2198399Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:53:28.2198730Z ##[endgroup]
+2026-10-20T13:53:28.3054823Z All 132 hash oracle vectors match mmh3 5.2.0
+2026-10-20T13:53:28.3143591Z ##[group]Run ruff check .
+2026-10-20T13:53:28.3143890Z [36;1mruff check .[0m
+2026-10-20T13:53:28.3199596Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:53:28.3199853Z env:
+2026-10-20T13:53:28.3200129Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3200579Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:53:28.3201014Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3201409Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3201795Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3202419Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:53:28.3202776Z ##[endgroup]
+2026-10-20T13:53:28.3370592Z All checks passed!
+2026-10-20T13:53:28.3404959Z ##[group]Run ruff format --check .
+2026-10-20T13:53:28.3405281Z [36;1mruff format --check .[0m
+2026-10-20T13:53:28.3461618Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:53:28.3461877Z env:
+2026-10-20T13:53:28.3462490Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3462976Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:53:28.3463423Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3463851Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3464314Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3464811Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:53:28.3465179Z ##[endgroup]
+2026-10-20T13:53:28.3627563Z 5 files already formatted
+2026-10-20T13:53:28.3666931Z ##[group]Run sudo apt-get update && sudo apt-get install -y clang-tidy-18
+2026-10-20T13:53:28.3667629Z [36;1msudo apt-get update && sudo apt-get install -y clang-tidy-18[0m
+2026-10-20T13:53:28.3719267Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:53:28.3719523Z env:
+2026-10-20T13:53:28.3719794Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3720240Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:53:28.3720683Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3721098Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3721489Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:28.3721882Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:53:28.3722469Z ##[endgroup]
+2026-10-20T13:53:28.4614158Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-20T13:53:28.4886012Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-10-20T13:53:28.4985260Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-10-20T13:53:28.4999091Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-10-20T13:53:28.5053341Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-10-20T13:53:28.5090710Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-10-20T13:53:28.7037118Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1397 kB]
+2026-10-20T13:53:28.7213815Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1704 kB]
+2026-10-20T13:53:28.8643932Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1145 kB]
+2026-10-20T13:53:28.8706094Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [231 kB]
+2026-10-20T13:53:28.8727727Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1222 kB]
+2026-10-20T13:53:31.4146911Z Fetched 6081 kB in 1s (7340 kB/s)
+2026-10-20T13:53:32.3689306Z Reading package lists...
+2026-10-20T13:53:32.4065726Z Reading package lists...
+2026-10-20T13:53:32.5809185Z Building dependency tree...
+2026-10-20T13:53:32.5816579Z Reading state information...
+2026-10-20T13:53:32.7353003Z clang-tidy-18 is already the newest version (1:18.1.3-1ubuntu1).
+2026-10-20T13:53:32.7354135Z 0 upgraded, 0 newly installed, 0 to remove and 39 not upgraded.
+2026-10-20T13:53:32.7406471Z ##[group]Run cmake --preset debug
+2026-10-20T13:53:32.7406812Z [36;1mcmake --preset debug[0m
+2026-10-20T13:53:32.7457172Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:53:32.7457425Z env:
+2026-10-20T13:53:32.7457694Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:32.7458132Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:53:32.7458579Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:32.7458974Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:32.7459385Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:32.7459792Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:53:32.7460121Z ##[endgroup]
+2026-10-20T13:53:33.6972298Z Preset CMake variables:
+2026-10-20T13:53:33.6972798Z 
+2026-10-20T13:53:33.6972981Z   BUILD_TESTING="ON"
+2026-10-20T13:53:33.6973404Z   CMAKE_BUILD_TYPE="Debug"
+2026-10-20T13:53:33.6973914Z   CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+2026-10-20T13:53:33.6974279Z 
+2026-10-20T13:53:33.6974579Z -- The CXX compiler identification is GNU 13.3.0
+2026-10-20T13:53:33.8068529Z -- Detecting CXX compiler ABI info
+2026-10-20T13:53:34.0966410Z -- Detecting CXX compiler ABI info - done
+2026-10-20T13:53:34.1134458Z -- Check for working CXX compiler: /usr/bin/c++ - skipped
+2026-10-20T13:53:34.1182713Z -- Detecting CXX compile features
+2026-10-20T13:53:34.1264302Z -- Detecting CXX compile features - done
+2026-10-20T13:53:34.1889655Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-20T13:53:34.3022453Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+2026-10-20T13:53:34.3115344Z -- Found Threads: TRUE
+2026-10-20T13:53:36.3026183Z -- The C compiler identification is GNU 13.3.0
+2026-10-20T13:53:36.3237769Z -- Detecting C compiler ABI info
+2026-10-20T13:53:36.3855142Z -- Detecting C compiler ABI info - done
+2026-10-20T13:53:36.4019606Z -- Check for working C compiler: /usr/bin/cc - skipped
+2026-10-20T13:53:36.4023732Z -- Detecting C compile features
+2026-10-20T13:53:36.4028328Z -- Detecting C compile features - done
+2026-10-20T13:53:36.4588448Z -- Configuring done (3.3s)
+2026-10-20T13:53:36.4785935Z -- Generating done (0.0s)
+2026-10-20T13:53:36.4790489Z -- Build files have been written to: /home/runner/work/stratadb/stratadb/build/debug
+2026-10-20T13:53:36.4878561Z ##[group]Run python scripts/check_tidy.py --clang-tidy clang-tidy-18
+2026-10-20T13:53:36.4879092Z [36;1mpython scripts/check_tidy.py --clang-tidy clang-tidy-18[0m
+2026-10-20T13:53:36.4929719Z shell: /usr/bin/bash -e {0}
+2026-10-20T13:53:36.4929973Z env:
+2026-10-20T13:53:36.4930264Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:36.4930720Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+2026-10-20T13:53:36.4931152Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:36.4931529Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:36.4931915Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+2026-10-20T13:53:36.4932470Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+2026-10-20T13:53:36.4932797Z ##[endgroup]
+2026-10-20T13:53:50.8932005Z 46896 warnings generated.
+2026-10-20T13:53:50.8976081Z Suppressed 46897 warnings (46896 in non-user code, 1 NOLINT).
+2026-10-20T13:53:50.8977202Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:53:55.6468452Z 44525 warnings generated.
+2026-10-20T13:53:55.6506335Z Suppressed 44526 warnings (44525 in non-user code, 1 NOLINT).
+2026-10-20T13:53:59.2138076Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:53:59.2139069Z 34853 warnings generated.
+2026-10-20T13:53:59.2165185Z Suppressed 34854 warnings (34853 in non-user code, 1 NOLINT).
+2026-10-20T13:53:59.2166459Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:03.9183354Z 43200 warnings generated.
+2026-10-20T13:54:03.9217121Z Suppressed 43201 warnings (43200 in non-user code, 1 NOLINT).
+2026-10-20T13:54:03.9218553Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:05.4581853Z 16443 warnings generated.
+2026-10-20T13:54:05.4595526Z Suppressed 16444 warnings (16443 in non-user code, 1 NOLINT).
+2026-10-20T13:54:05.4596734Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:07.9428737Z 24543 warnings generated.
+2026-10-20T13:54:07.9449165Z Suppressed 24544 warnings (24543 in non-user code, 1 NOLINT).
+2026-10-20T13:54:10.3752556Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:10.3753606Z 24248 warnings generated.
+2026-10-20T13:54:10.3773823Z Suppressed 24249 warnings (24248 in non-user code, 1 NOLINT).
+2026-10-20T13:54:10.3774830Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:15.0429334Z 41775 warnings generated.
+2026-10-20T13:54:15.0461641Z Suppressed 41776 warnings (41775 in non-user code, 1 NOLINT).
+2026-10-20T13:54:15.0462891Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:16.3122687Z 12820 warnings generated.
+2026-10-20T13:54:16.3134538Z Suppressed 12820 warnings (12820 in non-user code).
+2026-10-20T13:54:16.3135519Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:17.1386017Z 9459 warnings generated.
+2026-10-20T13:54:17.1394385Z Suppressed 9459 warnings (9459 in non-user code).
+2026-10-20T13:54:17.1395399Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:18.7401416Z 16602 warnings generated.
+2026-10-20T13:54:18.7418567Z Suppressed 16602 warnings (16602 in non-user code).
+2026-10-20T13:54:18.7419405Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:23.9596000Z 46014 warnings generated.
+2026-10-20T13:54:23.9636373Z Suppressed 46015 warnings (46014 in non-user code, 1 NOLINT).
+2026-10-20T13:54:23.9637462Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:25.8950676Z 18693 warnings generated.
+2026-10-20T13:54:25.8968245Z Suppressed 18694 warnings (18693 in non-user code, 1 NOLINT).
+2026-10-20T13:54:25.8969066Z Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+2026-10-20T13:54:25.9216491Z Post job cleanup.
+2026-10-20T13:54:26.0786997Z Post job cleanup.
+2026-10-20T13:54:26.1731982Z [command]/usr/bin/git version
+2026-10-20T13:54:26.1777834Z git version 2.55.0
+2026-10-20T13:54:26.1819170Z Temporarily overriding HOME='/home/runner/work/_temp/85c94f01-33b3-4794-a4c7-863a78331451' before making global git config changes
+2026-10-20T13:54:26.1820731Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T13:54:26.1825695Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/stratadb/stratadb
+2026-10-20T13:54:26.1865442Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T13:54:26.1902974Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T13:54:26.2161712Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T13:54:26.2203260Z http.https://github.com/.extraheader
+2026-10-20T13:54:26.2221371Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-20T13:54:26.2256200Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T13:54:26.2530974Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T13:54:26.2574735Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T13:54:26.3018914Z Cleaning up orphan processes

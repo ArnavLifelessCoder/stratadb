@@ -1,4 +1,4 @@
-param([string]$Milestone = 'm2')
+param([string]$Milestone = 'm3')
 
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot

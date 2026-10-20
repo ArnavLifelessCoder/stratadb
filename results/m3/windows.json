@@ -1,0 +1,22 @@
+{
+  "recorded_utc": "2026-10-20T13:53:19.8250357Z",
+  "platform": "Windows",
+  "os": "Microsoft Windows 11 Home",
+  "os_version": "10.0.26300.0",
+  "architecture": "X64",
+  "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics        ",
+  "logical_processors": 32,
+  "source_commit": "3aca8a787caf6f8812013d7bef5b158f21b459f1",
+  "source_status": [
+    "?? results/m3/tidy-Windows.log",
+    "?? results/m3/verification-driver.log"
+  ],
+  "presets": [
+    "debug",
+    "asan"
+  ],
+  "result": "passed",
+  "compiler": "MSVC 19.44.35229.0",
+  "cmake": "cmake version 3.31.6-msvc6",
+  "ninja": "1.12.1"
+}
