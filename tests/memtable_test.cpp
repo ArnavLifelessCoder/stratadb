@@ -94,5 +94,52 @@ TEST(MemTableTest, ConcurrentReadersObserveOnlyPublishedVersions) {
   }
   EXPECT_EQ(failures.load(), 0U);
 }
+
+TEST(MemTableTest, ConcurrentReadersTraverseManyKeysAndRetainOlderSnapshots) {
+  constexpr std::uint64_t kKeys = 64;
+  constexpr std::uint64_t kRounds = 256;
+  MemTable table(test::seed);
+  std::atomic<std::uint64_t> published{0};
+  std::atomic<bool> done{false};
+  std::atomic<unsigned> failures{0};
+  std::vector<std::thread> readers;
+  for (std::uint64_t reader = 0; reader < 4; ++reader) {
+    readers.emplace_back([&, reader] {
+      std::mt19937_64 random(test::seed + reader);
+      do {
+        const auto current = published.load(std::memory_order_acquire);
+        const auto round = current == 0 ? 0 : random() % (current + 1);
+        for (std::uint64_t key = 0; key < kKeys; ++key) {
+          std::string value = "unchanged";
+          const auto status = table.Get(std::to_string(key), round * kKeys, value);
+          const bool deleted = round == 0 || (round + key) % 5 == 0;
+          if (deleted ? !status.IsNotFound() || value != "unchanged"
+                      : !status.ok() || value != std::to_string(round)) {
+            failures.fetch_add(1);
+          }
+        }
+      } while (!done.load());
+    });
+  }
+  for (std::uint64_t round = 1; round <= kRounds; ++round) {
+    for (std::uint64_t index = 0; index < kKeys; ++index) {
+      // Permute insertion order to exercise links before and after existing nodes.
+      const auto key = (index * 17) % kKeys;
+      const auto type = (round + key) % 5 == 0 ? WriteBatch::Type::kDelete : WriteBatch::Type::kPut;
+      if (!table
+               .Insert((round - 1) * kKeys + index + 1, type, std::to_string(key),
+                       type == WriteBatch::Type::kPut ? std::to_string(round) : "")
+               .ok()) {
+        failures.fetch_add(1);
+      }
+    }
+    published.store(round, std::memory_order_release);
+  }
+  done.store(true);
+  for (auto& reader : readers) {
+    reader.join();
+  }
+  EXPECT_EQ(failures.load(), 0U);
+}
 }  // namespace
 }  // namespace lsm::internal

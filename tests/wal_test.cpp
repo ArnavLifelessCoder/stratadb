@@ -111,6 +111,33 @@ TEST(WalTest, MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord) {
   }
 }
 
+TEST(WalTest, ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption) {
+  const auto prefix = Record(1);
+  for (const std::size_t size : {1U, 9U, 512U, 4096U}) {
+    for (const bool middle : {false, true}) {
+      auto file = std::make_unique<MemoryFile>();
+      auto* memory = file.get();
+      memory->bytes = prefix + std::string(size, '\0') + (middle ? Record(2) : "");
+      const auto original = memory->bytes;
+      Wal wal(std::move(file));
+      MemTable table;
+      std::uint64_t last = 0;
+      const auto status = wal.Replay(table, last);
+      if (middle) {
+        EXPECT_EQ(status.code(), StatusCode::kCorruption);
+        EXPECT_EQ(memory->bytes, original);
+        EXPECT_EQ(memory->syncs, 0U);
+      } else {
+        ASSERT_TRUE(status.ok());
+        EXPECT_EQ(last, 1U);
+        EXPECT_EQ(memory->bytes, prefix);
+        EXPECT_EQ(memory->syncs, 1U);
+        EXPECT_EQ(wal.TruncatedBytes(), size);
+      }
+    }
+  }
+}
+
 TEST(WalTest, RejectsSequenceGapsAndValidCrcInvalidBatch) {
   for (const bool gap : {false, true}) {
     auto file = std::make_unique<MemoryFile>();

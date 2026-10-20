@@ -24,7 +24,8 @@ class File {
   virtual auto Lock() -> Status = 0;
 };
 
-// Creates missing directories and persists their entries in their parents.
+// Creates missing directories. POSIX also fsyncs the parent entries; Windows
+// relies on filesystem metadata recovery (NTFS journaling), without a directory flush.
 auto CreateDirectories(const std::filesystem::path& path) -> Status;
 // Caller must Sync the source file first. Both paths must be on the same filesystem.
 auto AtomicRename(const std::filesystem::path& from, const std::filesystem::path& to) -> Status;

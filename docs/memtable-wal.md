@@ -71,6 +71,18 @@ with no recoverable later record is treated as a torn tail. This format cannot
 distinguish every possible multi-byte corruption from an interrupted append.
 Valid-CRC records with invalid payloads are always corruption.
 
+An entirely zero-filled suffix at a record boundary is treated as a torn tail,
+truncated and synced. This covers zeroed allocations after NTFS power loss.
+Zero-filled bytes followed by another record are still corruption.
+
+The later-record search is deliberately conservative and scans byte offsets,
+since a damaged length hides the next boundary. A user value can itself contain
+a complete, CRC-valid WAL record with a later sequence. If that value is in a
+torn final record, recovery can report Corruption instead of repairing the tail.
+There is no escaping or independent framing marker in this format to resolve
+that ambiguity. Recovery preserves the file for inspection rather than risking
+discarding a real later record.
+
 Recovery builds a fresh memtable. On failure, Open leaves the caller's output
 unchanged. On success, the next append follows the recovered sequence and the
 repaired file boundary.

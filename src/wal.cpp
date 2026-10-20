@@ -100,7 +100,10 @@ auto Wal::Replay(MemTable& table, std::uint64_t& last_sequence) -> Status {
   std::uint64_t last = 0;
   while (!remaining.empty()) {
     const auto offset = storage.size() - remaining.size();
-    if (remaining.size() < kHeaderSize) {
+    // A power loss may leave allocated bytes zeroed instead of a short append.
+    // Only accept zeros through EOF; zeros before another record are corruption.
+    if (remaining.size() < kHeaderSize ||
+        remaining.find_first_not_of('\0') == std::string_view::npos) {
       status = RepairTail(offset, storage.size());
       if (!status.ok()) {
         return status;

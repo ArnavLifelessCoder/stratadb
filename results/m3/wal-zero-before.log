@@ -1,0 +1,78 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- The CXX compiler identification is MSVC 19.44.35229.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The C compiler identification is MSVC 19.44.35229.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done (29.6s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/35] Building CXX object CMakeFiles\lsm.dir\src\util\crc32c.cpp.obj
+[2/35] Building CXX object CMakeFiles\lsm.dir\src\util\varint.cpp.obj
+[3/35] Building CXX object CMakeFiles\lsm.dir\src\status.cpp.obj
+[4/35] Building CXX object CMakeFiles\lsm.dir\src\util\hash.cpp.obj
+[5/35] Building CXX object CMakeFiles\lsm.dir\src\write_batch.cpp.obj
+[6/35] Building CXX object CMakeFiles\lsm.dir\src\memtable.cpp.obj
+[7/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\status_test.cpp.obj
+[8/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\hash_test.cpp.obj
+[9/35] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj
+[10/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\slice_test.cpp.obj
+[11/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\test_main.cpp.obj
+[12/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\memtable_test.cpp.obj
+[13/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\crc32c_test.cpp.obj
+[14/35] Building CXX object CMakeFiles\lsm.dir\src\wal.cpp.obj
+[15/35] Building CXX object CMakeFiles\lsm_db_process.dir\tests\db_process.cpp.obj
+[16/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\write_batch_test.cpp.obj
+[17/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\varint_test.cpp.obj
+[18/35] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[19/35] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj
+[20/35] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj
+[21/35] Building CXX object CMakeFiles\lsm.dir\src\platform\windows.cpp.obj
+[22/35] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock-all.cc.obj
+[23/35] Linking CXX static library lsm.lib
+[24/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\platform_test.cpp.obj
+[25/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\wal_test.cpp.obj
+[26/35] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+[27/35] Linking CXX executable lsm_db_process.exe
+[28/35] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\__\googletest\src\gtest-all.cc.obj
+[29/35] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj
+[30/35] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\__\googletest\src\gtest-all.cc.obj
+[31/35] Linking CXX static library lib\gtest.lib
+[32/35] Linking CXX static library lib\gmock.lib
+[33/35] Linking CXX static library lib\gmock_main.lib
+[34/35] Linking CXX static library lib\gtest_main.lib
+[35/35] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = WalTest.ZeroFilled*
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WalTest
+[ RUN      ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption
+WAL recovery: truncated 1 tail bytes at offset 22
+WAL recovery: truncated 9 tail bytes at offset 22
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\wal_test.cpp(131): error: Value of: status.ok()
+  Actual: false
+Expected: true
+
+[  FAILED  ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption (2 ms)
+[----------] 1 test from WalTest (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption
+
+ 1 FAILED TEST
