@@ -221,7 +221,9 @@ TEST(FlushTest, BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs) {
   // A failed write may have appended before the background error became visible.
   const auto status = db->Get({}, "second", &value);
   EXPECT_TRUE(status.ok() || status.IsNotFound());
-  if (status.ok()) EXPECT_EQ(value, "two");
+  if (status.ok()) {
+    EXPECT_EQ(value, "two");
+  }
   ASSERT_TRUE(db->Put({true}, "after", "recovered").ok());
 }
 

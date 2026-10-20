@@ -1,0 +1,23 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (3.1s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/2] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[2/2] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FlushTest
+[ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+[       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (151 ms)
+[----------] 1 test from FlushTest (151 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (151 ms total)
+[  PASSED  ] 1 test.

@@ -1,0 +1,223 @@
+﻿2026-10-20T15:31:13.0991769Z Current runner version: '2.337.0'
+2026-10-20T15:31:13.1017994Z ##[group]Runner Image Provisioner
+2026-10-20T15:31:13.1018936Z Hosted Compute Agent
+2026-10-20T15:31:13.1019560Z Version: 20261012.601
+2026-10-20T15:31:13.1020191Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-20T15:31:13.1021036Z Build Date: 2026-10-12T17:48:21Z
+2026-10-20T15:31:13.1021716Z Worker ID: {13886bd4-2b26-4762-856e-e8b6738b2a7e}
+2026-10-20T15:31:13.1022412Z Region: northcentralus
+2026-10-20T15:31:13.1023043Z Cloud: Azure
+2026-10-20T15:31:13.1023574Z ##[endgroup]
+2026-10-20T15:31:13.1025385Z ##[group]Operating System
+2026-10-20T15:31:13.1026087Z Ubuntu
+2026-10-20T15:31:13.1026725Z 24.04.5
+2026-10-20T15:31:13.1027263Z LTS
+2026-10-20T15:31:13.1027777Z ##[endgroup]
+2026-10-20T15:31:13.1028409Z ##[group]Runner Image
+2026-10-20T15:31:13.1029025Z Image: ubuntu-24.04
+2026-10-20T15:31:13.1029585Z Version: 20261012.334.1
+2026-10-20T15:31:13.1030951Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-20T15:31:13.1032612Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-20T15:31:13.1033585Z ##[endgroup]
+2026-10-20T15:31:13.1035250Z ##[group]GITHUB_TOKEN Permissions
+2026-10-20T15:31:13.1037496Z Contents: read
+2026-10-20T15:31:13.1038177Z Metadata: read
+2026-10-20T15:31:13.1038799Z ##[endgroup]
+2026-10-20T15:31:13.1040895Z Secret source: Actions
+2026-10-20T15:31:13.1041963Z Cache mode: write
+2026-10-20T15:31:13.1043098Z Prepare workflow directory
+2026-10-20T15:31:13.1384843Z Prepare all required actions
+2026-10-20T15:31:13.1436101Z Getting action download info
+2026-10-20T15:31:13.4765138Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+2026-10-20T15:31:13.5736664Z Download action repository 'actions/setup-python@v6' (SHA:ece7cb06caefa5fff74198d8649806c4678c61a1)
+2026-10-20T15:31:13.6526635Z Download action repository 'actions/upload-artifact@v6' (SHA:b7c566a772e6b6bfb58ed0dc250532a479d7789f)
+2026-10-20T15:31:13.8578964Z Complete job name: test (ubuntu-24.04, debug)
+2026-10-20T15:31:13.9467715Z ##[group]Run actions/checkout@v5
+2026-10-20T15:31:13.9468583Z with:
+2026-10-20T15:31:13.9469040Z   repository: ArnavLifelessCoder/stratadb
+2026-10-20T15:31:13.9473044Z   token: ***
+2026-10-20T15:31:13.9473471Z   ssh-strict: true
+2026-10-20T15:31:13.9473905Z   ssh-user: git
+2026-10-20T15:31:13.9474618Z   persist-credentials: true
+2026-10-20T15:31:13.9475107Z   clean: true
+2026-10-20T15:31:13.9475551Z   sparse-checkout-cone-mode: true
+2026-10-20T15:31:13.9476115Z   fetch-depth: 1
+2026-10-20T15:31:13.9476548Z   fetch-tags: false
+2026-10-20T15:31:13.9476983Z   show-progress: true
+2026-10-20T15:31:13.9477425Z   lfs: false
+2026-10-20T15:31:13.9477846Z   submodules: false
+2026-10-20T15:31:13.9478281Z   set-safe-directory: true
+2026-10-20T15:31:13.9478826Z   allow-unsafe-pr-checkout: false
+2026-10-20T15:31:13.9479969Z ##[endgroup]
+2026-10-20T15:31:14.0506020Z Syncing repository: ArnavLifelessCoder/stratadb
+2026-10-20T15:31:14.0508711Z ##[group]Getting Git version info
+2026-10-20T15:31:14.0509906Z Working directory is '/home/runner/work/stratadb/stratadb'
+2026-10-20T15:31:14.0511517Z [command]/usr/bin/git version
+2026-10-20T15:31:14.0581041Z git version 2.55.0
+2026-10-20T15:31:14.0613420Z ##[endgroup]
+2026-10-20T15:31:14.0621609Z Temporarily overriding HOME='/home/runner/work/_temp/4798b2f1-dc13-43ab-91ae-6919622eccb9' before making global git config changes
+2026-10-20T15:31:14.0624239Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T15:31:14.0626248Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/stratadb/stratadb
+2026-10-20T15:31:14.0700049Z Deleting the contents of '/home/runner/work/stratadb/stratadb'
+2026-10-20T15:31:14.0706590Z ##[group]Initializing the repository
+2026-10-20T15:31:14.0712798Z [command]/usr/bin/git init /home/runner/work/stratadb/stratadb
+2026-10-20T15:31:14.0869445Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-20T15:31:14.0871561Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-20T15:31:14.0873251Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-20T15:31:14.0874873Z hint: call:
+2026-10-20T15:31:14.0875853Z hint:
+2026-10-20T15:31:14.0876822Z hint: 	git config --global init.defaultBranch <name>
+2026-10-20T15:31:14.0877967Z hint:
+2026-10-20T15:31:14.0879032Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-20T15:31:14.0880716Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-20T15:31:14.0881985Z hint:
+2026-10-20T15:31:14.0882699Z hint: 	git branch -m <name>
+2026-10-20T15:31:14.0883514Z hint:
+2026-10-20T15:31:14.0884973Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-20T15:31:14.0886584Z Initialized empty Git repository in /home/runner/work/stratadb/stratadb/.git/
+2026-10-20T15:31:14.0889846Z [command]/usr/bin/git remote add origin https://github.com/ArnavLifelessCoder/stratadb
+2026-10-20T15:31:14.0952460Z ##[endgroup]
+2026-10-20T15:31:14.0953797Z ##[group]Disabling automatic garbage collection
+2026-10-20T15:31:14.0957773Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-20T15:31:14.0994814Z ##[endgroup]
+2026-10-20T15:31:14.0996193Z ##[group]Setting up auth
+2026-10-20T15:31:14.1003766Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T15:31:14.1041446Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T15:31:14.1511057Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T15:31:14.1566459Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T15:31:14.1841334Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T15:31:14.1894987Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T15:31:14.2161685Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-20T15:31:14.2215904Z ##[endgroup]
+2026-10-20T15:31:14.2217257Z ##[group]Fetching the repository
+2026-10-20T15:31:14.2226421Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +554389c526b33a1fb0cdf7dace2f7b45156903d8:refs/remotes/origin/m4
+2026-10-20T15:31:14.6366698Z From https://github.com/ArnavLifelessCoder/stratadb
+2026-10-20T15:31:14.6368567Z  * [new ref]         554389c526b33a1fb0cdf7dace2f7b45156903d8 -> origin/m4
+2026-10-20T15:31:14.6371999Z ##[endgroup]
+2026-10-20T15:31:14.6373517Z ##[group]Determining the checkout info
+2026-10-20T15:31:14.6376325Z ##[endgroup]
+2026-10-20T15:31:14.6385485Z [command]/usr/bin/git sparse-checkout disable
+2026-10-20T15:31:14.6449961Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-20T15:31:14.6488234Z ##[group]Checking out the ref
+2026-10-20T15:31:14.6495155Z [command]/usr/bin/git checkout --progress --force -B m4 refs/remotes/origin/m4
+2026-10-20T15:31:14.6699041Z Switched to a new branch 'm4'
+2026-10-20T15:31:14.6704551Z branch 'm4' set up to track 'origin/m4'.
+2026-10-20T15:31:14.6716464Z ##[endgroup]
+2026-10-20T15:31:14.6757280Z [command]/usr/bin/git log -1 --format=%H
+2026-10-20T15:31:14.6784217Z 554389c526b33a1fb0cdf7dace2f7b45156903d8
+2026-10-20T15:31:14.7107187Z ##[group]Run cmake --preset debug
+2026-10-20T15:31:14.7108575Z [36;1mcmake --preset debug[0m
+2026-10-20T15:31:14.7497131Z shell: /usr/bin/bash -e {0}
+2026-10-20T15:31:14.7498328Z ##[endgroup]
+2026-10-20T15:31:16.7781245Z Preset CMake variables:
+2026-10-20T15:31:16.7782039Z 
+2026-10-20T15:31:16.7782231Z   BUILD_TESTING="ON"
+2026-10-20T15:31:16.7782793Z   CMAKE_BUILD_TYPE="Debug"
+2026-10-20T15:31:16.7783386Z   CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+2026-10-20T15:31:16.7783758Z 
+2026-10-20T15:31:16.7784278Z -- The CXX compiler identification is GNU 13.3.0
+2026-10-20T15:31:16.9167713Z -- Detecting CXX compiler ABI info
+2026-10-20T15:31:17.1712381Z -- Detecting CXX compiler ABI info - done
+2026-10-20T15:31:17.1879815Z -- Check for working CXX compiler: /usr/bin/c++ - skipped
+2026-10-20T15:31:17.1952124Z -- Detecting CXX compile features
+2026-10-20T15:31:17.2015143Z -- Detecting CXX compile features - done
+2026-10-20T15:31:17.2559743Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-20T15:31:17.5151804Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+2026-10-20T15:31:17.5288748Z -- Found Threads: TRUE
+2026-10-20T15:31:19.9901713Z -- The C compiler identification is GNU 13.3.0
+2026-10-20T15:31:20.0143646Z -- Detecting C compiler ABI info
+2026-10-20T15:31:20.0857001Z -- Detecting C compiler ABI info - done
+2026-10-20T15:31:20.1022149Z -- Check for working C compiler: /usr/bin/cc - skipped
+2026-10-20T15:31:20.1026415Z -- Detecting C compile features
+2026-10-20T15:31:20.1031423Z -- Detecting C compile features - done
+2026-10-20T15:31:20.1600631Z -- Configuring done (4.8s)
+2026-10-20T15:31:20.1824506Z -- Generating done (0.0s)
+2026-10-20T15:31:20.1829504Z -- Build files have been written to: /home/runner/work/stratadb/stratadb/build/debug
+2026-10-20T15:31:20.1935837Z ##[group]Run cmake --build --preset debug
+2026-10-20T15:31:20.1936264Z [36;1mcmake --build --preset debug[0m
+2026-10-20T15:31:20.2002389Z shell: /usr/bin/bash -e {0}
+2026-10-20T15:31:20.2002665Z ##[endgroup]
+2026-10-20T15:31:20.7790560Z [1/43] Building CXX object CMakeFiles/lsm.dir/src/util/hash.cpp.o
+2026-10-20T15:31:20.8240868Z [2/43] Building CXX object CMakeFiles/lsm.dir/src/util/crc32c.cpp.o
+2026-10-20T15:31:21.0200526Z [3/43] Building CXX object CMakeFiles/lsm.dir/src/util/varint.cpp.o
+2026-10-20T15:31:21.0417842Z [4/43] Building CXX object CMakeFiles/lsm.dir/src/status.cpp.o
+2026-10-20T15:31:21.3205523Z [5/43] Building CXX object CMakeFiles/lsm.dir/src/write_batch.cpp.o
+2026-10-20T15:31:22.4415557Z [6/43] Building CXX object CMakeFiles/lsm.dir/src/table/bloom.cpp.o
+2026-10-20T15:31:22.6413292Z [7/43] Building CXX object CMakeFiles/lsm.dir/src/table/block.cpp.o
+2026-10-20T15:31:23.0495492Z [8/43] Building CXX object CMakeFiles/lsm.dir/src/memtable.cpp.o
+2026-10-20T15:31:23.0625299Z [9/43] Building CXX object CMakeFiles/lsm.dir/src/wal.cpp.o
+2026-10-20T15:31:24.5330569Z [10/43] Building CXX object CMakeFiles/lsm.dir/src/db.cpp.o
+2026-10-20T15:31:24.9321061Z [11/43] Building CXX object CMakeFiles/lsm.dir/src/platform/mapping_posix.cpp.o
+2026-10-20T15:31:25.0645419Z [12/43] Building CXX object CMakeFiles/lsm.dir/src/version_set.cpp.o
+2026-10-20T15:31:25.4785532Z [13/43] Building CXX object CMakeFiles/lsm.dir/src/table/table.cpp.o
+2026-10-20T15:31:25.8615725Z [14/43] Building CXX object CMakeFiles/lsm.dir/src/platform/posix.cpp.o
+2026-10-20T15:31:27.0871445Z [15/43] Linking CXX static library liblsm.a
+2026-10-20T15:31:27.7219145Z [16/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/status_test.cpp.o
+2026-10-20T15:31:27.7482525Z [17/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/test_main.cpp.o
+2026-10-20T15:31:27.7875735Z [18/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/slice_test.cpp.o
+2026-10-20T15:31:29.2145498Z [19/43] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+2026-10-20T15:31:31.0525451Z [20/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/write_batch_test.cpp.o
+2026-10-20T15:31:31.1455289Z [21/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/hash_test.cpp.o
+2026-10-20T15:31:31.5895515Z [22/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/crc32c_test.cpp.o
+2026-10-20T15:31:31.7585519Z [23/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/varint_test.cpp.o
+2026-10-20T15:31:31.9915669Z [24/43] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+2026-10-20T15:31:32.3325314Z [25/43] Linking CXX static library lib/libgtest.a
+2026-10-20T15:31:32.4783722Z [26/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/memtable_test.cpp.o
+2026-10-20T15:31:34.2531199Z [27/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/platform_test.cpp.o
+2026-10-20T15:31:35.5035938Z [28/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/wal_test.cpp.o
+2026-10-20T15:31:36.1015202Z [29/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/db_test.cpp.o
+2026-10-20T15:31:36.2494560Z [30/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/bloom_test.cpp.o
+2026-10-20T15:31:36.3495376Z [31/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/mapping_test.cpp.o
+2026-10-20T15:31:36.5456968Z [32/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/block_test.cpp.o
+2026-10-20T15:31:36.6175194Z [33/43] Linking CXX static library lib/libgmock.a
+2026-10-20T15:31:37.4465421Z [34/43] Building CXX object CMakeFiles/lsm_db_process.dir/tests/db_process.cpp.o
+2026-10-20T15:31:37.7955119Z [35/43] Linking CXX executable lsm_db_process
+2026-10-20T15:31:38.6667551Z [36/43] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+2026-10-20T15:31:38.7835163Z [37/43] Linking CXX static library lib/libgmock_main.a
+2026-10-20T15:31:39.2115909Z [38/43] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+2026-10-20T15:31:39.3224936Z [39/43] Linking CXX static library lib/libgtest_main.a
+2026-10-20T15:31:40.0402456Z [40/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/version_set_test.cpp.o
+2026-10-20T15:31:40.1578859Z [41/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/table_test.cpp.o
+2026-10-20T15:31:40.2489589Z [42/43] Building CXX object CMakeFiles/lsm_tests.dir/tests/flush_test.cpp.o
+2026-10-20T15:31:40.2490565Z FAILED: [code=1] CMakeFiles/lsm_tests.dir/tests/flush_test.cpp.o 
+2026-10-20T15:31:40.2494827Z /usr/bin/c++  -I/home/runner/work/stratadb/stratadb/src -I/home/runner/work/stratadb/stratadb/tests -I/home/runner/work/stratadb/stratadb/include -isystem /home/runner/work/stratadb/stratadb/build/debug/_deps/googletest-src/googletest/include -isystem /home/runner/work/stratadb/stratadb/build/debug/_deps/googletest-src/googletest -O0 -g -std=c++20 -Wall -Wextra -Wpedantic -Werror -MD -MT CMakeFiles/lsm_tests.dir/tests/flush_test.cpp.o -MF CMakeFiles/lsm_tests.dir/tests/flush_test.cpp.o.d -o CMakeFiles/lsm_tests.dir/tests/flush_test.cpp.o -c /home/runner/work/stratadb/stratadb/tests/flush_test.cpp
+2026-10-20T15:31:40.2501932Z /home/runner/work/stratadb/stratadb/tests/flush_test.cpp: In member function ‘virtual void lsm::{anonymous}::FlushTest_BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs_Test::TestBody()’:
+2026-10-20T15:31:40.2503360Z /home/runner/work/stratadb/stratadb/tests/flush_test.cpp:224:6: error: suggest explicit braces to avoid ambiguous ‘else’ [-Werror=dangling-else]
+2026-10-20T15:31:40.2504331Z   224 |   if (status.ok()) EXPECT_EQ(value, "two");
+2026-10-20T15:31:40.2504630Z       |      ^
+2026-10-20T15:31:40.2504851Z cc1plus: all warnings being treated as errors
+2026-10-20T15:31:40.2505149Z ninja: build stopped: subcommand failed.
+2026-10-20T15:31:40.2527454Z ##[error]Process completed with exit code 1.
+2026-10-20T15:31:40.2624638Z ##[group]Run actions/upload-artifact@v6
+2026-10-20T15:31:40.2624964Z with:
+2026-10-20T15:31:40.2625437Z   name: tests-Linux-debug
+2026-10-20T15:31:40.2625841Z   path: results/ci-*.log
+results/crash-*.json
+build/debug/Testing/Temporary/
+
+2026-10-20T15:31:40.2626235Z   if-no-files-found: warn
+2026-10-20T15:31:40.2626470Z   compression-level: 6
+2026-10-20T15:31:40.2626690Z   overwrite: false
+2026-10-20T15:31:40.2626906Z   include-hidden-files: false
+2026-10-20T15:31:40.2627153Z ##[endgroup]
+2026-10-20T15:31:40.4278951Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-20T15:31:40.4281033Z The least common ancestor is /home/runner/work/stratadb/stratadb. This will be the root directory of the artifact
+2026-10-20T15:31:40.4300133Z ##[warning]No files were found with the provided path: results/ci-*.log
+results/crash-*.json
+build/debug/Testing/Temporary/. No artifacts will be uploaded.
+2026-10-20T15:31:40.4536336Z Post job cleanup.
+2026-10-20T15:31:40.5456276Z [command]/usr/bin/git version
+2026-10-20T15:31:40.5502345Z git version 2.55.0
+2026-10-20T15:31:40.5546657Z Temporarily overriding HOME='/home/runner/work/_temp/6121294a-a52d-4471-80ff-1be1e22c1015' before making global git config changes
+2026-10-20T15:31:40.5548036Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T15:31:40.5554455Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/stratadb/stratadb
+2026-10-20T15:31:40.5599110Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T15:31:40.5641465Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T15:31:40.5898805Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T15:31:40.5935103Z http.https://github.com/.extraheader
+2026-10-20T15:31:40.5946988Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-20T15:31:40.5987509Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T15:31:40.6253469Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T15:31:40.6297112Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T15:31:40.6700224Z Cleaning up orphan processes
+

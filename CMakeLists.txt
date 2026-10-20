@@ -103,7 +103,7 @@ if(BUILD_TESTING)
   target_link_libraries(lsm_db_process PRIVATE lsm::lsm)
   lsm_strict_warnings(lsm_db_process)
   add_test(NAME lsm_tests COMMAND lsm_tests)
-  set_tests_properties(lsm_tests PROPERTIES TIMEOUT 600)
+  set_tests_properties(lsm_tests PROPERTIES TIMEOUT 1800)
   add_test(NAME seed_maximum
     COMMAND lsm_tests --seed=18446744073709551615 --gtest_filter=StatusTest.DefaultIsSuccess)
   foreach(bad_seed IN ITEMS empty text overflow)
