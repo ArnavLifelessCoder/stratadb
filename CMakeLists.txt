@@ -50,6 +50,7 @@ endfunction()
 add_library(lsm src/status.cpp src/util/crc32c.cpp src/util/hash.cpp src/util/varint.cpp)
 target_sources(lsm PRIVATE src/write_batch.cpp)
 target_sources(lsm PRIVATE src/memtable.cpp)
+target_sources(lsm PRIVATE src/wal.cpp)
 find_package(Threads REQUIRED)
 target_link_libraries(lsm PUBLIC Threads::Threads)
 if(WIN32)
@@ -81,6 +82,7 @@ if(BUILD_TESTING)
     tests/write_batch_test.cpp
     tests/memtable_test.cpp
     tests/platform_test.cpp
+    tests/wal_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)

@@ -1,0 +1,55 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (3.4s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/4] Building CXX object CMakeFiles\lsm.dir\src\wal.cpp.obj
+[2/4] Linking CXX static library lsm.lib
+[3/4] Building CXX object CMakeFiles\lsm_tests.dir\tests\wal_test.cpp.obj
+[4/4] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = WalTest.*
+[==========] Running 6 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 6 tests from WalTest
+[ RUN      ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend
+WAL recovery: truncated 1 tail bytes at offset 20
+WAL recovery: truncated 2 tail bytes at offset 20
+WAL recovery: truncated 3 tail bytes at offset 20
+WAL recovery: truncated 4 tail bytes at offset 20
+WAL recovery: truncated 5 tail bytes at offset 20
+WAL recovery: truncated 6 tail bytes at offset 20
+WAL recovery: truncated 7 tail bytes at offset 20
+WAL recovery: truncated 8 tail bytes at offset 20
+WAL recovery: truncated 9 tail bytes at offset 20
+WAL recovery: truncated 10 tail bytes at offset 20
+WAL recovery: truncated 11 tail bytes at offset 20
+WAL recovery: truncated 12 tail bytes at offset 20
+WAL recovery: truncated 13 tail bytes at offset 20
+WAL recovery: truncated 14 tail bytes at offset 20
+WAL recovery: truncated 15 tail bytes at offset 20
+WAL recovery: truncated 16 tail bytes at offset 20
+WAL recovery: truncated 17 tail bytes at offset 20
+WAL recovery: truncated 18 tail bytes at offset 20
+WAL recovery: truncated 19 tail bytes at offset 20
+WAL recovery: truncated 20 tail bytes at offset 20
+[       OK ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend (20 ms)
+[ RUN      ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord
+[       OK ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord (0 ms)
+[ RUN      ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch
+[       OK ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch (0 ms)
+[ RUN      ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends
+[       OK ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends (0 ms)
+[ RUN      ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate
+[       OK ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate (0 ms)
+[ RUN      ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes
+[       OK ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes (0 ms)
+[----------] 6 tests from WalTest (21 ms total)
+
+[----------] Global test environment tear-down
+[==========] 6 tests from 1 test suite ran. (22 ms total)
+[  PASSED  ] 6 tests.
