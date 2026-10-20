@@ -47,7 +47,7 @@ function(lsm_strict_warnings target)
   endif()
 endfunction()
 
-add_library(lsm src/status.cpp src/util/crc32c.cpp src/util/hash.cpp)
+add_library(lsm src/status.cpp src/util/crc32c.cpp src/util/hash.cpp src/util/varint.cpp)
 add_library(lsm::lsm ALIAS lsm)
 target_include_directories(lsm PUBLIC include PRIVATE src)
 lsm_strict_warnings(lsm)
@@ -68,6 +68,7 @@ if(BUILD_TESTING)
     tests/slice_test.cpp
     tests/crc32c_test.cpp
     tests/hash_test.cpp
+    tests/varint_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)

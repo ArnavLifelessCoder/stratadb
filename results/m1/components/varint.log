@@ -1,0 +1,50 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (57.1s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/4] Building CXX object CMakeFiles\lsm.dir\src\util\varint.cpp.obj
+[2/4] Linking CXX static library lsm.lib
+[3/4] Building CXX object CMakeFiles\lsm_tests.dir\tests\varint_test.cpp.obj
+[4/4] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = VarintTest/*.*
+[==========] Running 12 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 6 tests from VarintTest/0, where TypeParam = unsigned int
+[ RUN      ] VarintTest/0.GoldenWireBytesAndAppendSemantics
+[       OK ] VarintTest/0.GoldenWireBytesAndAppendSemantics (0 ms)
+[ RUN      ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix
+[       OK ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix (11 ms)
+[ RUN      ] VarintTest/0.RejectsMalformedWithoutChangingArguments
+[       OK ] VarintTest/0.RejectsMalformedWithoutChangingArguments (0 ms)
+[ RUN      ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding
+[       OK ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding (1254 ms)
+[ RUN      ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference
+[       OK ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference (618 ms)
+[ RUN      ] VarintTest/0.ConcatenatedStream
+[       OK ] VarintTest/0.ConcatenatedStream (0 ms)
+[----------] 6 tests from VarintTest/0 (1885 ms total)
+
+[----------] 6 tests from VarintTest/1, where TypeParam = unsigned __int64
+[ RUN      ] VarintTest/1.GoldenWireBytesAndAppendSemantics
+[       OK ] VarintTest/1.GoldenWireBytesAndAppendSemantics (0 ms)
+[ RUN      ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix
+[       OK ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix (2 ms)
+[ RUN      ] VarintTest/1.RejectsMalformedWithoutChangingArguments
+[       OK ] VarintTest/1.RejectsMalformedWithoutChangingArguments (0 ms)
+[ RUN      ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding
+[       OK ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding (1392 ms)
+[ RUN      ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference
+[       OK ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference (783 ms)
+[ RUN      ] VarintTest/1.ConcatenatedStream
+[       OK ] VarintTest/1.ConcatenatedStream (0 ms)
+[----------] 6 tests from VarintTest/1 (2179 ms total)
+
+[----------] Global test environment tear-down
+[==========] 12 tests from 2 test suites ran. (4065 ms total)
+[  PASSED  ] 12 tests.
