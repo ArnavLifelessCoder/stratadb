@@ -45,6 +45,9 @@ class WindowsMapping final : public MappedFile {
 
 auto MappedFile::Open(const std::filesystem::path& path, std::unique_ptr<MappedFile>& output)
     -> Status {
+  // The view is read-only; sharing permits independent handles, as POSIX mmap
+  // does. Integrity tools/tests use a write handle to inject post-open damage.
+  // Engine code never rewrites live tables. External mutation is unsupported.
   const auto file = CreateFileW(path.c_str(), GENERIC_READ,
                                 FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
                                 OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);

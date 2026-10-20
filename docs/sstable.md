@@ -68,6 +68,17 @@ remains the differential reference and serves scans and Verify. No block cache
 exists until M7. Index and bloom data are held in memory; the operating system
 pages the mapped table bytes.
 
+Windows mappings use `GENERIC_READ`, `PAGE_READONLY` and `FILE_MAP_READ`.
+`FILE_SHARE_WRITE` allows an independent writable handle, matching the lack of
+exclusive write locking in POSIX mmap. Integrity tests use this permission to
+inject damage after Open and prove that a later Get checks the data CRC.
+It does not make the mapping writable or authorize engine writers to mutate
+live tables. Concurrent external modification is outside the DB contract.
+`FILE_SHARE_DELETE` permits removal when Windows allows it; a native test
+attempts deletion while the mapping is open, checks that its bytes remain
+readable, then closes the mapping and verifies final reclamation. The DB waits
+for all owning versions/readers to release a table before deleting it.
+
 ## Publication and errors
 
 The caller exclusively owns a destination name and its `.tmp` sibling.
@@ -84,10 +95,10 @@ A builder stops after any append or sync failure. Failed writes do not publish
 the temp file. Failed publication removes an unpublished temp file, but preserves
 any destination: a POSIX directory-sync error can occur after the rename succeeded.
 The caller must treat such a failure as an uncertain publication and reconcile it
-during manifest recovery. M4 will supply that recovery and unique file numbering.
+during manifest recovery. The DB supplies that recovery and unique file numbering.
 
-Table settings are validated at the standalone table boundary. DB Options limits,
-including `memtable_bytes`, remain deferred until M4 activates them.
+Table settings are validated at the standalone table boundary. DB Open also
+validates the active Options limits, including `memtable_bytes`.
 
 ## Verification
 
