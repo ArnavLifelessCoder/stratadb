@@ -1,0 +1,79 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (30.2s)
+-- Generating done (2.4s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/4] Building CXX object CMakeFiles\lsm.dir\src\version_set.cpp.obj
+[2/4] Linking CXX static library lsm.lib
+[3/4] Linking CXX executable lsm_tests.exe
+[4/4] Linking CXX executable lsm_db_process.exe
+Randomized test seed: 24301
+Note: Google Test filter = ManifestTest.*:FlushTest.*
+[==========] Running 17 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 8 tests from ManifestTest
+[ RUN      ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput
+[       OK ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput (0 ms)
+[ RUN      ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected
+Manifest recovery: truncated 1 tail bytes
+Manifest recovery: truncated 2 tail bytes
+Manifest recovery: truncated 3 tail bytes
+Manifest recovery: truncated 4 tail bytes
+Manifest recovery: truncated 5 tail bytes
+Manifest recovery: truncated 6 tail bytes
+Manifest recovery: truncated 7 tail bytes
+Manifest recovery: truncated 8 tail bytes
+Manifest recovery: truncated 9 tail bytes
+Manifest recovery: truncated 10 tail bytes
+Manifest recovery: truncated 11 tail bytes
+Manifest recovery: truncated 12 tail bytes
+Manifest recovery: truncated 13 tail bytes
+Manifest recovery: truncated 14 tail bytes
+Manifest recovery: truncated 15 tail bytes
+Manifest recovery: truncated 16 tail bytes
+Manifest recovery: truncated 17 tail bytes
+Manifest recovery: truncated 18 tail bytes
+Manifest recovery: truncated 512 tail bytes
+[       OK ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected (1 ms)
+[ RUN      ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion
+[       OK ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion (0 ms)
+[ RUN      ] ManifestTest.RejectsRegressingCountersAndInvalidFileState
+[       OK ] ManifestTest.RejectsRegressingCountersAndInvalidFileState (0 ms)
+[ RUN      ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership
+[       OK ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership (938 ms)
+[ RUN      ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites
+[       OK ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites (538 ms)
+[ RUN      ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal
+[       OK ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal (657 ms)
+[ RUN      ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase
+[       OK ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase (585 ms)
+[----------] 8 tests from ManifestTest (2722 ms total)
+
+[----------] 9 tests from FlushTest
+[ RUN      ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles
+[       OK ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles (108 ms)
+[ RUN      ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap
+[       OK ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap (15423 ms)
+[ RUN      ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables
+[       OK ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables (1170 ms)
+[ RUN      ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens
+[       OK ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens (10482 ms)
+[ RUN      ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence
+[       OK ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence (603 ms)
+[ RUN      ] FlushTest.RecoversRotationAndUncommittedTablePublication
+[       OK ] FlushTest.RecoversRotationAndUncommittedTablePublication (1818 ms)
+[ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+[       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (1024 ms)
+[ RUN      ] FlushTest.MissingReferencedWalOrTableIsCorruption
+[       OK ] FlushTest.MissingReferencedWalOrTableIsCorruption (1446 ms)
+[ RUN      ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes
+[       OK ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes (1345 ms)
+[----------] 9 tests from FlushTest (33423 ms total)
+
+[----------] Global test environment tear-down
+[==========] 17 tests from 2 test suites ran. (36147 ms total)
+[  PASSED  ] 17 tests.

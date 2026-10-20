@@ -211,5 +211,38 @@ TEST(ManifestTest, NativeCurrentPublicationRecoveryAndVersionOwnership) {
   ASSERT_TRUE(WriteAtomicFile(directory.path() / "CURRENT", "../outside\n").ok());
   EXPECT_EQ(VersionSet::Open(directory.path(), versions).code(), StatusCode::kCorruption);
 }
+
+TEST(ManifestTest, BootstrapCountersIncludeInitialManifestAndCurrentWrites) {
+  test::TempDirectory directory;
+  std::unique_ptr<VersionSet> versions;
+  ASSERT_TRUE(VersionSet::Open(directory.path(), versions).ok());
+  const auto expected = std::filesystem::file_size(directory.path() / "CURRENT") +
+                        std::filesystem::file_size(directory.path() / "MANIFEST-1") +
+                        std::filesystem::file_size(WalPath(directory.path(), 2));
+  EXPECT_EQ(versions->BytesWritten(), expected);
+}
+
+TEST(ManifestTest, IncompleteBootstrapPreservesTheAlreadyPublishedWal) {
+  test::TempDirectory directory;
+  ASSERT_TRUE(WriteAtomicFile(WalPath(directory.path(), 2), "existing WAL bytes").ok());
+  std::unique_ptr<VersionSet> versions;
+  ASSERT_TRUE(VersionSet::Open(directory.path(), versions).ok());
+  std::unique_ptr<platform::File> file;
+  ASSERT_TRUE(platform::File::Open(WalPath(directory.path(), 2), false, file).ok());
+  std::string bytes;
+  ASSERT_TRUE(file->ReadAll(bytes).ok());
+  EXPECT_EQ(bytes, "existing WAL bytes");
+}
+
+TEST(ManifestTest, MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase) {
+  for (const bool table_file : {false, true}) {
+    test::TempDirectory directory;
+    const auto path = table_file ? TablePath(directory.path(), 4) : WalPath(directory.path(), 3);
+    ASSERT_TRUE(WriteAtomicFile(path, "existing data").ok());
+    std::unique_ptr<VersionSet> versions;
+    EXPECT_EQ(VersionSet::Open(directory.path(), versions).code(), StatusCode::kCorruption);
+    EXPECT_FALSE(std::filesystem::exists(directory.path() / "CURRENT"));
+  }
+}
 }  // namespace
 }  // namespace lsm::internal

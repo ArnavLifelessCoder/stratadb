@@ -1,0 +1,58 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (36.9s)
+-- Generating done (1.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/5] Building CXX object CMakeFiles\lsm.dir\src\version_set.cpp.obj
+[2/5] Building CXX object CMakeFiles\lsm_tests.dir\tests\version_set_test.cpp.obj
+[3/5] Linking CXX static library lsm.lib
+[4/5] Linking CXX executable lsm_db_process.exe
+[5/5] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = ManifestTest.IncompleteBootstrap*:ManifestTest.MissingMetadata*
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from ManifestTest
+[ RUN      ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\version_set_test.cpp(234): error: Expected equality of these values:
+  bytes
+    Which is: ""
+  "existing WAL bytes"
+
+[  FAILED  ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal (521 ms)
+[ RUN      ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\version_set_test.cpp(243): error: Expected equality of these values:
+  VersionSet::Open(directory.path(), versions).code()
+    Which is: 4-byte object <00-00 00-00>
+  StatusCode::kCorruption
+    Which is: 4-byte object <03-00 00-00>
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\version_set_test.cpp(244): error: Value of: std::filesystem::exists(directory.path() / "CURRENT")
+  Actual: true
+Expected: false
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\version_set_test.cpp(243): error: Expected equality of these values:
+  VersionSet::Open(directory.path(), versions).code()
+    Which is: 4-byte object <00-00 00-00>
+  StatusCode::kCorruption
+    Which is: 4-byte object <03-00 00-00>
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\version_set_test.cpp(244): error: Value of: std::filesystem::exists(directory.path() / "CURRENT")
+  Actual: true
+Expected: false
+
+[  FAILED  ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase (1032 ms)
+[----------] 2 tests from ManifestTest (1554 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (1554 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 2 tests, listed below:
+[  FAILED  ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal
+[  FAILED  ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase
+
+ 2 FAILED TESTS

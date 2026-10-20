@@ -312,6 +312,7 @@ auto VersionSet::Open(const std::filesystem::path& directory, std::unique_ptr<Ve
   const auto current = directory / "CURRENT";
   bool have_current = false;
   bool have_manifest = false;
+  std::uint64_t bootstrap_bytes = 0;
   auto status = Inspect(current, have_current);
   if (status.ok()) {
     status = Inspect(manifest, have_manifest);
@@ -334,21 +335,41 @@ auto VersionSet::Open(const std::filesystem::path& directory, std::unique_ptr<Ve
     }
   }
   if (!have_manifest) {
+    std::error_code error;
+    for (std::filesystem::directory_iterator it(directory, error), end; it != end && !error;
+         it.increment(error)) {
+      const auto& path = it->path();
+      if (path.extension() == ".sst" ||
+          (path.extension() == ".wal" && path.filename() != WalPath({}, 2))) {
+        return Status::Corruption("missing manifest for an existing database");
+      }
+    }
+    if (error) {
+      return Status::IOError("inspect database directory: " + error.message());
+    }
     std::string legacy_bytes;
+    bool have_wal = false;
+    status = Inspect(WalPath(directory, 2), have_wal);
+    if (!status.ok()) {
+      return status;
+    }
     bool legacy = false;
     status = Inspect(directory / "WAL", legacy);
     if (!status.ok()) {
       return status;
     }
-    if (legacy) {
+    if (!have_wal && legacy) {
       std::unique_ptr<platform::File> file;
       status = platform::File::Open(directory / "WAL", false, file);
       if (status.ok()) {
         status = file->ReadAll(legacy_bytes);
       }
     }
-    if (status.ok()) {
+    if (status.ok() && !have_wal) {
       status = WriteAtomicFile(WalPath(directory, 2), legacy_bytes);
+      if (status.ok()) {
+        bootstrap_bytes += legacy_bytes.size();
+      }
     }
     std::string initial;
     if (status.ok()) {
@@ -360,6 +381,7 @@ auto VersionSet::Open(const std::filesystem::path& directory, std::unique_ptr<Ve
     if (!status.ok()) {
       return status;
     }
+    bootstrap_bytes += initial.size();
   }
   std::unique_ptr<platform::File> file;
   status = platform::File::Open(manifest, false, file);
@@ -376,7 +398,9 @@ auto VersionSet::Open(const std::filesystem::path& directory, std::unique_ptr<Ve
     if (!status.ok()) {
       return status;
     }
+    bootstrap_bytes += kManifestName.size() + 1;
   }
+  versions->bytes_written_ += bootstrap_bytes;
   output = std::move(versions);
   return {};
 }
