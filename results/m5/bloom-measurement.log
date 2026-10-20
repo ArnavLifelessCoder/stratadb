@@ -1,0 +1,70 @@
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = BloomTest.MeasuredFalsePositiveRate
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BloomTest
+[ RUN      ] BloomTest.MeasuredFalsePositiveRate
+BLOOM_RESULT {"seed":24301,"keys":10000,"queries":200000,"bits_per_key":10,"probes":7,"positives":1634,"actual":0.00817,"theoretical":0.00819372}
+[       OK ] BloomTest.MeasuredFalsePositiveRate (970 ms)
+[----------] 1 test from BloomTest (970 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (970 ms total)
+[  PASSED  ] 1 test.
+Randomized test seed: 24302
+Test mode: full
+Note: Google Test filter = BloomTest.MeasuredFalsePositiveRate
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BloomTest
+[ RUN      ] BloomTest.MeasuredFalsePositiveRate
+BLOOM_RESULT {"seed":24302,"keys":10000,"queries":200000,"bits_per_key":10,"probes":7,"positives":1614,"actual":0.00807,"theoretical":0.00819372}
+[       OK ] BloomTest.MeasuredFalsePositiveRate (967 ms)
+[----------] 1 test from BloomTest (967 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (967 ms total)
+[  PASSED  ] 1 test.
+Randomized test seed: 24303
+Test mode: full
+Note: Google Test filter = BloomTest.MeasuredFalsePositiveRate
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BloomTest
+[ RUN      ] BloomTest.MeasuredFalsePositiveRate
+BLOOM_RESULT {"seed":24303,"keys":10000,"queries":200000,"bits_per_key":10,"probes":7,"positives":1643,"actual":0.008215,"theoretical":0.00819372}
+[       OK ] BloomTest.MeasuredFalsePositiveRate (993 ms)
+[----------] 1 test from BloomTest (993 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (993 ms total)
+[  PASSED  ] 1 test.
+Randomized test seed: 24304
+Test mode: full
+Note: Google Test filter = BloomTest.MeasuredFalsePositiveRate
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BloomTest
+[ RUN      ] BloomTest.MeasuredFalsePositiveRate
+BLOOM_RESULT {"seed":24304,"keys":10000,"queries":200000,"bits_per_key":10,"probes":7,"positives":1624,"actual":0.00812,"theoretical":0.00819372}
+[       OK ] BloomTest.MeasuredFalsePositiveRate (976 ms)
+[----------] 1 test from BloomTest (976 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (976 ms total)
+[  PASSED  ] 1 test.
+Randomized test seed: 24305
+Test mode: full
+Note: Google Test filter = BloomTest.MeasuredFalsePositiveRate
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BloomTest
+[ RUN      ] BloomTest.MeasuredFalsePositiveRate
+BLOOM_RESULT {"seed":24305,"keys":10000,"queries":200000,"bits_per_key":10,"probes":7,"positives":1610,"actual":0.00805,"theoretical":0.00819372}
+[       OK ] BloomTest.MeasuredFalsePositiveRate (978 ms)
+[----------] 1 test from BloomTest (978 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (978 ms total)
+[  PASSED  ] 1 test.
