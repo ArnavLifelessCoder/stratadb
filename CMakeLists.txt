@@ -57,6 +57,7 @@ target_sources(lsm PRIVATE src/table/bloom.cpp)
 target_sources(lsm PRIVATE src/table/table.cpp)
 target_sources(lsm PRIVATE src/version_set.cpp)
 target_sources(lsm PRIVATE src/file_cleanup.cpp)
+target_sources(lsm PRIVATE src/compaction.cpp)
 find_package(Threads REQUIRED)
 target_link_libraries(lsm PUBLIC Threads::Threads)
 if(WIN32)
@@ -97,6 +98,7 @@ if(BUILD_TESTING)
     tests/version_set_test.cpp
     tests/flush_test.cpp
     tests/cleanup_test.cpp
+    tests/compaction_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)

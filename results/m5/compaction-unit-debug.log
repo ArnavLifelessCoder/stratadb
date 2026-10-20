@@ -1,0 +1,37 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (6.7s)
+-- Generating done (0.4s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/5] Building CXX object CMakeFiles\lsm.dir\src\compaction.cpp.obj
+[2/5] Linking CXX static library lsm.lib
+[3/5] Linking CXX executable lsm_db_process.exe
+[4/5] Building CXX object CMakeFiles\lsm_tests.dir\tests\compaction_test.cpp.obj
+[5/5] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = CompactionTest.*
+[==========] Running 6 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 6 tests from CompactionTest
+[ RUN      ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only
+[       OK ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only (0 ms)
+[ RUN      ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey
+[       OK ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey (0 ms)
+[ RUN      ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams
+[       OK ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams (33 ms)
+[ RUN      ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection
+[       OK ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection (0 ms)
+[ RUN      ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference
+[       OK ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference (3650 ms)
+[ RUN      ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput
+[       OK ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput (0 ms)
+[----------] 6 tests from CompactionTest (3685 ms total)
+
+[----------] Global test environment tear-down
+[==========] 6 tests from 1 test suite ran. (3685 ms total)
+[  PASSED  ] 6 tests.
