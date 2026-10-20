@@ -1,0 +1,84 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- The CXX compiler identification is MSVC 19.44.35229.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The C compiler identification is MSVC 19.44.35229.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done (73.1s)
+-- Generating done (0.5s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/43] Building CXX object CMakeFiles\lsm.dir\src\util\crc32c.cpp.obj
+[2/43] Building CXX object CMakeFiles\lsm.dir\src\util\hash.cpp.obj
+[3/43] Building CXX object CMakeFiles\lsm.dir\src\util\varint.cpp.obj
+[4/43] Building CXX object CMakeFiles\lsm.dir\src\table\bloom.cpp.obj
+[5/43] Building CXX object CMakeFiles\lsm.dir\src\write_batch.cpp.obj
+[6/43] Building CXX object CMakeFiles\lsm.dir\src\table\block.cpp.obj
+[7/43] Building CXX object CMakeFiles\lsm.dir\src\status.cpp.obj
+[8/43] Building CXX object CMakeFiles\lsm.dir\src\memtable.cpp.obj
+[9/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\status_test.cpp.obj
+[10/43] Building CXX object CMakeFiles\lsm_db_process.dir\tests\db_process.cpp.obj
+[11/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\hash_test.cpp.obj
+[12/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\slice_test.cpp.obj
+[13/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\test_main.cpp.obj
+[14/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\varint_test.cpp.obj
+[15/43] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[16/43] Building CXX object CMakeFiles\lsm.dir\src\wal.cpp.obj
+[17/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\crc32c_test.cpp.obj
+[18/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\write_batch_test.cpp.obj
+[19/43] Building CXX object CMakeFiles\lsm.dir\src\table\table.cpp.obj
+[20/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\memtable_test.cpp.obj
+[21/43] Building CXX object CMakeFiles\lsm.dir\src\platform\windows.cpp.obj
+[22/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\block_test.cpp.obj
+[23/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\bloom_test.cpp.obj
+[24/43] Building CXX object CMakeFiles\lsm.dir\src\platform\mapping_windows.cpp.obj
+[25/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\mapping_test.cpp.obj
+[26/43] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj
+[27/43] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj
+[28/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\wal_test.cpp.obj
+[29/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\platform_test.cpp.obj
+[30/43] Linking CXX static library lsm.lib
+[31/43] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock-all.cc.obj
+[32/43] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj
+[33/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+[34/43] Building CXX object CMakeFiles\lsm_tests.dir\tests\table_test.cpp.obj
+[35/43] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj
+[36/43] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\__\googletest\src\gtest-all.cc.obj
+[37/43] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\__\googletest\src\gtest-all.cc.obj
+[38/43] Linking CXX static library lib\gtest.lib
+[39/43] Linking CXX static library lib\gmock.lib
+[40/43] Linking CXX static library lib\gmock_main.lib
+[41/43] Linking CXX executable lsm_db_process.exe
+[42/43] Linking CXX static library lib\gtest_main.lib
+[43/43] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = TableTest.OpenDefers*
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TableTest
+[ RUN      ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\table_test.cpp(30): error: Value of: file.is_open()
+  Actual: false
+Expected: true
+
+[  FAILED  ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen (88 ms)
+[----------] 1 test from TableTest (88 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (88 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen
+
+ 1 FAILED TEST

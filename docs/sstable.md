@@ -45,15 +45,17 @@ and has no bit array. Supported bits-per-key settings are 0 through 30.
 ## Reading and corruption
 
 Readers own read-only native mappings. The mapping and its file must remain
-immutable for the reader's lifetime; in-place modification or truncation is not
-supported. Windows uses `CreateFileMappingW` and `MapViewOfFile`; POSIX uses
+immutable for the reader's lifetime; truncating a mapped file is not supported.
+Windows handles permit shared writes so corruption can be injected through a
+second handle; the engine never modifies published tables. Windows uses
+`CreateFileMappingW` and `MapViewOfFile`; POSIX uses
 `mmap(PROT_READ, MAP_PRIVATE)`.
 
-Open checks the footer, metadata ranges, contiguous block coverage, every block
-CRC, restart arrays, entry order, separators, tombstones and stored-key bloom
-membership before returning a reader. This deliberately makes Open linear in
-the table's size in M3. It avoids exposing a table with damage in an unqueried
-block. No untrusted length is used before bounds validation.
+Open checks footer, filter and index CRCs, metadata ranges and contiguous block
+coverage. It does not touch data blocks. Verify explicitly scans all data blocks
+for CRCs, restart arrays, ordering, separators, tombstones and stored-key bloom
+membership. Get and ReadAll check the CRC of each data block they read, including
+damage introduced after Open. No untrusted length is used before bounds validation.
 
 Get first checks the bloom filter, then binary-searches the index for an internal
 seek key. It decodes and CRC-checks the selected block and finds the newest version

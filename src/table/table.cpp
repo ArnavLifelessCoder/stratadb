@@ -246,7 +246,6 @@ auto TableReader::Parse() -> Status {
     return status;
   }
   std::uint64_t expected_offset = 0;
-  std::string previous;
   for (const auto& entry : index_) {
     std::string_view data;
     if (!Range(blocks.substr(0, static_cast<std::size_t>(filter_offset)), entry.value, data) ||
@@ -254,8 +253,15 @@ auto TableReader::Parse() -> Status {
       return Status::Corruption("table data range");
     }
     expected_offset += data.size();
+  }
+  return expected_offset == filter_offset ? Status{} : Status::Corruption("unindexed table data");
+}
+
+auto TableReader::Verify() const -> Status {
+  std::string previous;
+  for (const auto& entry : index_) {
     std::vector<Entry> decoded;
-    status = DecodeBlock(data, decoded);
+    auto status = ReadBlock(entry, decoded);
     if (!status.ok()) {
       return status;
     }
@@ -271,7 +277,7 @@ auto TableReader::Parse() -> Status {
     }
     previous = decoded.back().key;
   }
-  return expected_offset == filter_offset ? Status{} : Status::Corruption("unindexed table data");
+  return {};
 }
 
 auto TableReader::ReadBlock(const Entry& index_entry, std::vector<Entry>& output) const -> Status {

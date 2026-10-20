@@ -1,0 +1,44 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (13.0s)
+-- Generating done (0.7s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/6] Building CXX object CMakeFiles\lsm.dir\src\table\table.cpp.obj
+[2/6] Building CXX object CMakeFiles\lsm.dir\src\platform\mapping_windows.cpp.obj
+[3/6] Building CXX object CMakeFiles\lsm_tests.dir\tests\table_test.cpp.obj
+[4/6] Linking CXX static library lsm.lib
+[5/6] Linking CXX executable lsm_tests.exe
+[6/6] Linking CXX executable lsm_db_process.exe
+Randomized test seed: 24301
+Note: Google Test filter = TableTest.*:MappingTest.*
+[==========] Running 8 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from MappingTest
+[ RUN      ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles
+[       OK ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles (271 ms)
+[----------] 1 test from MappingTest (271 ms total)
+
+[----------] 7 tests from TableTest
+[ RUN      ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen
+[       OK ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen (338 ms)
+[ RUN      ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference
+[       OK ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference (3924 ms)
+[ RUN      ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions
+[       OK ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions (120 ms)
+[ RUN      ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter
+[       OK ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter (121 ms)
+[ RUN      ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected
+[       OK ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected (1 ms)
+[ RUN      ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully
+[       OK ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully (4 ms)
+[ RUN      ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions
+[       OK ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions (520 ms)
+[----------] 7 tests from TableTest (5031 ms total)
+
+[----------] Global test environment tear-down
+[==========] 8 tests from 2 test suites ran. (5302 ms total)
+[  PASSED  ] 8 tests.

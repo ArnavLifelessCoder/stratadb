@@ -56,6 +56,8 @@ class TableReader {
   // no visible version. Outputs remain unchanged on error. Safe for concurrent reads.
   auto Get(std::string_view user_key, std::uint64_t sequence, Entry& output) const -> Status;
   auto ReadAll(std::vector<Entry>& output) const -> Status;
+  // Explicit full scan for integrity tools; Open checks metadata only.
+  auto Verify() const -> Status;
 
  private:
   auto Parse() -> Status;

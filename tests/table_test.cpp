@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <atomic>
+#include <fstream>
 #include <limits>
 #include <random>
 #include <thread>
@@ -14,6 +15,37 @@
 
 namespace lsm::internal::table {
 namespace {
+TEST(TableTest, OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen) {
+  test::TempDirectory directory;
+  const auto path = directory.path() / "damage.sst";
+  const std::vector<Entry> entries{
+      {.key = InternalKey("key", 1, WriteBatch::Type::kPut), .value = "value"}};
+  ASSERT_TRUE(WriteTable(path, entries).ok());
+  std::unique_ptr<TableReader> reader;
+  ASSERT_TRUE(TableReader::Open(path, reader).ok());
+  ASSERT_TRUE(reader->Verify().ok());
+  Entry result;
+  ASSERT_TRUE(reader->Get("key", 1, result).ok());
+  {
+    std::fstream file(path, std::ios::in | std::ios::out | std::ios::binary);
+    ASSERT_TRUE(file.is_open());
+    file.seekp(0);
+    file.put('\1');
+    file.flush();
+    ASSERT_TRUE(file.good());
+  }
+  std::unique_ptr<platform::File> file;
+  ASSERT_TRUE(platform::File::Open(path, false, file).ok());
+  ASSERT_TRUE(file->Sync().ok());
+  file.reset();
+  EXPECT_EQ(reader->Get("key", 1, result).code(), StatusCode::kCorruption);
+  EXPECT_EQ(reader->Verify().code(), StatusCode::kCorruption);
+  std::unique_ptr<TableReader> reopened;
+  ASSERT_TRUE(TableReader::Open(path, reopened).ok());
+  EXPECT_EQ(reopened->Get("key", 1, result).code(), StatusCode::kCorruption);
+  EXPECT_EQ(reopened->Verify().code(), StatusCode::kCorruption);
+}
+
 class TableFile final : public platform::File {
  public:
   std::string bytes;
@@ -158,8 +190,13 @@ TEST(TableTest, EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter) 
     SCOPED_TRACE(i);
     auto damaged = file.bytes;
     damaged[i] ^= 1;
-    EXPECT_EQ(TableReader::FromBytes(std::move(damaged), reader).code(), StatusCode::kCorruption);
-    EXPECT_EQ(reader.get(), original);
+    std::unique_ptr<TableReader> corrupted;
+    const auto status = TableReader::FromBytes(std::move(damaged), corrupted);
+    if (status.ok()) {
+      EXPECT_EQ(corrupted->Verify().code(), StatusCode::kCorruption);
+    } else {
+      EXPECT_EQ(status.code(), StatusCode::kCorruption);
+    }
     EXPECT_EQ(TableReader::FromBytes(file.bytes.substr(0, i), reader).code(),
               StatusCode::kCorruption);
     EXPECT_EQ(reader.get(), original);
