@@ -106,7 +106,7 @@ TEST(SnapshotTest, RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCo
       ASSERT_TRUE(db->Write({}, &batch).ok());
       expected[key] = value;
     }
-    if (operation % 47 == 0) snapshots.emplace_back(db->GetSnapshot(), expected);
+    if (random() % 47 == 0) snapshots.emplace_back(db->GetSnapshot(), expected);
     if (snapshots.size() > 6) {
       db->ReleaseSnapshot(snapshots.front().first);
       snapshots.erase(snapshots.begin());
