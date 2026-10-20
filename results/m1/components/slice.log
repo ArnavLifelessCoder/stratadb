@@ -1,0 +1,29 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (8.8s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/2] Building CXX object CMakeFiles\lsm_tests.dir\tests\slice_test.cpp.obj
+[2/2] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = SliceTest.*
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from SliceTest
+[ RUN      ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes
+[       OK ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes (0 ms)
+[ RUN      ] SliceTest.AllSingleBytesHaveUnsignedOrdering
+[       OK ] SliceTest.AllSingleBytesHaveUnsignedOrdering (11 ms)
+[ RUN      ] SliceTest.EmptyAndPrefixOrdering
+[       OK ] SliceTest.EmptyAndPrefixOrdering (0 ms)
+[ RUN      ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing
+[       OK ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing (0 ms)
+[----------] 4 tests from SliceTest (11 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (11 ms total)
+[  PASSED  ] 4 tests.
