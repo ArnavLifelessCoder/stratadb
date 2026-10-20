@@ -1,0 +1,64 @@
+name: ci
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        preset: [debug, asan]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+        with:
+          arch: x64
+          vsversion: '2022'
+      - name: Configure
+        run: cmake --preset ${{ matrix.preset }}
+      - name: Build
+        run: cmake --build --preset ${{ matrix.preset }}
+      - name: Test
+        run: ctest --preset ${{ matrix.preset }} --verbose --output-log results/ci-${{ runner.os }}-${{ matrix.preset }}.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tests-${{ runner.os }}-${{ matrix.preset }}
+          path: |
+            results/ci-*.log
+            build/${{ matrix.preset }}/Testing/Temporary/
+
+  tsan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake --preset tsan
+      - run: cmake --build --preset tsan
+      - run: ctest --preset tsan --verbose --output-log results/ci-Linux-tsan.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tests-Linux-tsan
+          path: |
+            results/ci-*.log
+            build/tsan/Testing/Temporary/
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python scripts/check_format.py
+      - run: ruff check .
+      - run: ruff format --check .

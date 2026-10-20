@@ -1,0 +1,11 @@
+/00-CONVENTIONS.md
+/02-lsm-storage-engine.md
+/build/
+/.venv/
+/.tools/
+/.cache/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+CMakeUserPresets.json
+*.user

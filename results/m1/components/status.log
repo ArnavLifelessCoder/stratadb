@@ -1,0 +1,60 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- The CXX compiler identification is MSVC 19.44.35229.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The C compiler identification is MSVC 19.44.35229.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Found Threads: TRUE
+-- Configuring done (47.5s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/16] Building CXX object CMakeFiles\lsm.dir\src\status.cpp.obj
+[2/16] Linking CXX static library lsm.lib
+[3/16] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj
+[4/16] Building CXX object CMakeFiles\lsm_tests.dir\tests\status_test.cpp.obj
+[5/16] Building CXX object CMakeFiles\lsm_tests.dir\tests\test_main.cpp.obj
+[6/16] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj
+[7/16] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj
+[8/16] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock-all.cc.obj
+[9/16] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj
+[10/16] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\__\googletest\src\gtest-all.cc.obj
+[11/16] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\__\googletest\src\gtest-all.cc.obj
+[12/16] Linking CXX static library lib\gtest.lib
+[13/16] Linking CXX static library lib\gmock_main.lib
+[14/16] Linking CXX static library lib\gtest_main.lib
+[15/16] Linking CXX static library lib\gmock.lib
+[16/16] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = StatusTest.*
+[==========] Running 3 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 3 tests from StatusTest
+[ RUN      ] StatusTest.DefaultIsSuccess
+[       OK ] StatusTest.DefaultIsSuccess (0 ms)
+[ RUN      ] StatusTest.ErrorsKeepCodeAndMessage
+[       OK ] StatusTest.ErrorsKeepCodeAndMessage (0 ms)
+[ RUN      ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently
+[       OK ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently (0 ms)
+[----------] 3 tests from StatusTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 3 tests.
