@@ -125,7 +125,7 @@ struct DB::Impl {
     return {};
   }
 
-  auto OldestSnapshot() const -> std::uint64_t {
+  [[nodiscard]] auto OldestSnapshot() const -> std::uint64_t {
     auto oldest = sequence.load(std::memory_order_acquire);
     for (const auto& [pointer, snapshot] : snapshots) {
       static_cast<void>(pointer);

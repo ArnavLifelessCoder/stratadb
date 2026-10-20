@@ -153,7 +153,13 @@ TEST(SnapshotTest, VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreR
   EXPECT_EQ(iterator->value(), "old");
   EXPECT_TRUE(std::filesystem::exists(old_table));
   iterator.reset();
-  ASSERT_TRUE(WaitFor([&] { return !std::filesystem::exists(old_table); }));
+  ASSERT_TRUE(WaitFor([&] {
+    // Windows may deny attribute access while the worker's delete is pending.
+    // An error is not proof of reclamation: wait for confirmed absence.
+    std::error_code error;
+    const bool exists = std::filesystem::exists(old_table, error);
+    return !error && !exists;
+  }));
   db.reset();
   std::unique_ptr<internal::VersionSet> versions;
   ASSERT_TRUE(internal::VersionSet::Open(directory.path(), versions).ok());

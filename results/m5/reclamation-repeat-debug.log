@@ -1,0 +1,1204 @@
+Randomized test seed: 24301
+Test mode: full
+
+Repeating all tests (iteration 1) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (359 ms)
+[----------] 1 test from SnapshotTest (359 ms total)
+
+[==========] 1 test from 1 test suite ran. (359 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 2) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (397 ms)
+[----------] 1 test from SnapshotTest (397 ms total)
+
+[==========] 1 test from 1 test suite ran. (397 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 3) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (334 ms)
+[----------] 1 test from SnapshotTest (334 ms total)
+
+[==========] 1 test from 1 test suite ran. (334 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 4) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (387 ms)
+[----------] 1 test from SnapshotTest (387 ms total)
+
+[==========] 1 test from 1 test suite ran. (387 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 5) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (310 ms)
+[----------] 1 test from SnapshotTest (310 ms total)
+
+[==========] 1 test from 1 test suite ran. (310 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 6) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (394 ms)
+[----------] 1 test from SnapshotTest (395 ms total)
+
+[==========] 1 test from 1 test suite ran. (395 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 7) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (394 ms)
+[----------] 1 test from SnapshotTest (394 ms total)
+
+[==========] 1 test from 1 test suite ran. (394 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 8) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (352 ms)
+[----------] 1 test from SnapshotTest (353 ms total)
+
+[==========] 1 test from 1 test suite ran. (353 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 9) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (418 ms)
+[----------] 1 test from SnapshotTest (418 ms total)
+
+[==========] 1 test from 1 test suite ran. (419 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 10) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (436 ms)
+[----------] 1 test from SnapshotTest (436 ms total)
+
+[==========] 1 test from 1 test suite ran. (436 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 11) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (453 ms)
+[----------] 1 test from SnapshotTest (453 ms total)
+
+[==========] 1 test from 1 test suite ran. (453 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 12) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (356 ms)
+[----------] 1 test from SnapshotTest (356 ms total)
+
+[==========] 1 test from 1 test suite ran. (356 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 13) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (395 ms)
+[----------] 1 test from SnapshotTest (395 ms total)
+
+[==========] 1 test from 1 test suite ran. (395 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 14) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (331 ms)
+[----------] 1 test from SnapshotTest (331 ms total)
+
+[==========] 1 test from 1 test suite ran. (332 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 15) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (387 ms)
+[----------] 1 test from SnapshotTest (387 ms total)
+
+[==========] 1 test from 1 test suite ran. (387 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 16) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (463 ms)
+[----------] 1 test from SnapshotTest (463 ms total)
+
+[==========] 1 test from 1 test suite ran. (463 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 17) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (310 ms)
+[----------] 1 test from SnapshotTest (310 ms total)
+
+[==========] 1 test from 1 test suite ran. (310 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 18) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (309 ms)
+[----------] 1 test from SnapshotTest (309 ms total)
+
+[==========] 1 test from 1 test suite ran. (309 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 19) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (328 ms)
+[----------] 1 test from SnapshotTest (328 ms total)
+
+[==========] 1 test from 1 test suite ran. (329 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 20) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (310 ms)
+[----------] 1 test from SnapshotTest (310 ms total)
+
+[==========] 1 test from 1 test suite ran. (310 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 21) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (308 ms)
+[----------] 1 test from SnapshotTest (308 ms total)
+
+[==========] 1 test from 1 test suite ran. (308 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 22) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (323 ms)
+[----------] 1 test from SnapshotTest (323 ms total)
+
+[==========] 1 test from 1 test suite ran. (324 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 23) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (327 ms)
+[----------] 1 test from SnapshotTest (327 ms total)
+
+[==========] 1 test from 1 test suite ran. (327 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 24) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (324 ms)
+[----------] 1 test from SnapshotTest (324 ms total)
+
+[==========] 1 test from 1 test suite ran. (324 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 25) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (313 ms)
+[----------] 1 test from SnapshotTest (313 ms total)
+
+[==========] 1 test from 1 test suite ran. (313 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 26) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (380 ms)
+[----------] 1 test from SnapshotTest (380 ms total)
+
+[==========] 1 test from 1 test suite ran. (380 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 27) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (383 ms)
+[----------] 1 test from SnapshotTest (383 ms total)
+
+[==========] 1 test from 1 test suite ran. (383 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 28) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (337 ms)
+[----------] 1 test from SnapshotTest (338 ms total)
+
+[==========] 1 test from 1 test suite ran. (338 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 29) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (311 ms)
+[----------] 1 test from SnapshotTest (311 ms total)
+
+[==========] 1 test from 1 test suite ran. (312 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 30) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (327 ms)
+[----------] 1 test from SnapshotTest (327 ms total)
+
+[==========] 1 test from 1 test suite ran. (327 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 31) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (328 ms)
+[----------] 1 test from SnapshotTest (328 ms total)
+
+[==========] 1 test from 1 test suite ran. (328 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 32) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (303 ms)
+[----------] 1 test from SnapshotTest (304 ms total)
+
+[==========] 1 test from 1 test suite ran. (304 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 33) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (318 ms)
+[----------] 1 test from SnapshotTest (318 ms total)
+
+[==========] 1 test from 1 test suite ran. (318 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 34) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (325 ms)
+[----------] 1 test from SnapshotTest (325 ms total)
+
+[==========] 1 test from 1 test suite ran. (325 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 35) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (337 ms)
+[----------] 1 test from SnapshotTest (337 ms total)
+
+[==========] 1 test from 1 test suite ran. (337 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 36) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (465 ms)
+[----------] 1 test from SnapshotTest (465 ms total)
+
+[==========] 1 test from 1 test suite ran. (465 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 37) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (763 ms)
+[----------] 1 test from SnapshotTest (764 ms total)
+
+[==========] 1 test from 1 test suite ran. (764 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 38) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (851 ms)
+[----------] 1 test from SnapshotTest (851 ms total)
+
+[==========] 1 test from 1 test suite ran. (851 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 39) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (852 ms)
+[----------] 1 test from SnapshotTest (853 ms total)
+
+[==========] 1 test from 1 test suite ran. (853 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 40) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (516 ms)
+[----------] 1 test from SnapshotTest (517 ms total)
+
+[==========] 1 test from 1 test suite ran. (517 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 41) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (651 ms)
+[----------] 1 test from SnapshotTest (651 ms total)
+
+[==========] 1 test from 1 test suite ran. (652 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 42) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (529 ms)
+[----------] 1 test from SnapshotTest (529 ms total)
+
+[==========] 1 test from 1 test suite ran. (529 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 43) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (417 ms)
+[----------] 1 test from SnapshotTest (417 ms total)
+
+[==========] 1 test from 1 test suite ran. (417 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 44) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (473 ms)
+[----------] 1 test from SnapshotTest (474 ms total)
+
+[==========] 1 test from 1 test suite ran. (474 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 45) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (377 ms)
+[----------] 1 test from SnapshotTest (377 ms total)
+
+[==========] 1 test from 1 test suite ran. (377 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 46) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (340 ms)
+[----------] 1 test from SnapshotTest (340 ms total)
+
+[==========] 1 test from 1 test suite ran. (341 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 47) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (332 ms)
+[----------] 1 test from SnapshotTest (333 ms total)
+
+[==========] 1 test from 1 test suite ran. (333 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 48) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (319 ms)
+[----------] 1 test from SnapshotTest (320 ms total)
+
+[==========] 1 test from 1 test suite ran. (320 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 49) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (308 ms)
+[----------] 1 test from SnapshotTest (308 ms total)
+
+[==========] 1 test from 1 test suite ran. (309 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 50) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (325 ms)
+[----------] 1 test from SnapshotTest (325 ms total)
+
+[==========] 1 test from 1 test suite ran. (325 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 51) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (353 ms)
+[----------] 1 test from SnapshotTest (353 ms total)
+
+[==========] 1 test from 1 test suite ran. (354 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 52) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (318 ms)
+[----------] 1 test from SnapshotTest (318 ms total)
+
+[==========] 1 test from 1 test suite ran. (318 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 53) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (338 ms)
+[----------] 1 test from SnapshotTest (338 ms total)
+
+[==========] 1 test from 1 test suite ran. (339 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 54) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (316 ms)
+[----------] 1 test from SnapshotTest (316 ms total)
+
+[==========] 1 test from 1 test suite ran. (316 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 55) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (322 ms)
+[----------] 1 test from SnapshotTest (322 ms total)
+
+[==========] 1 test from 1 test suite ran. (322 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 56) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (334 ms)
+[----------] 1 test from SnapshotTest (334 ms total)
+
+[==========] 1 test from 1 test suite ran. (334 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 57) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (345 ms)
+[----------] 1 test from SnapshotTest (345 ms total)
+
+[==========] 1 test from 1 test suite ran. (345 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 58) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (341 ms)
+[----------] 1 test from SnapshotTest (341 ms total)
+
+[==========] 1 test from 1 test suite ran. (341 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 59) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (350 ms)
+[----------] 1 test from SnapshotTest (350 ms total)
+
+[==========] 1 test from 1 test suite ran. (350 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 60) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (324 ms)
+[----------] 1 test from SnapshotTest (324 ms total)
+
+[==========] 1 test from 1 test suite ran. (325 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 61) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (313 ms)
+[----------] 1 test from SnapshotTest (313 ms total)
+
+[==========] 1 test from 1 test suite ran. (313 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 62) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (343 ms)
+[----------] 1 test from SnapshotTest (343 ms total)
+
+[==========] 1 test from 1 test suite ran. (343 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 63) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (337 ms)
+[----------] 1 test from SnapshotTest (338 ms total)
+
+[==========] 1 test from 1 test suite ran. (338 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 64) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (333 ms)
+[----------] 1 test from SnapshotTest (334 ms total)
+
+[==========] 1 test from 1 test suite ran. (334 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 65) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (418 ms)
+[----------] 1 test from SnapshotTest (418 ms total)
+
+[==========] 1 test from 1 test suite ran. (419 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 66) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (459 ms)
+[----------] 1 test from SnapshotTest (459 ms total)
+
+[==========] 1 test from 1 test suite ran. (459 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 67) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (562 ms)
+[----------] 1 test from SnapshotTest (562 ms total)
+
+[==========] 1 test from 1 test suite ran. (562 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 68) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (400 ms)
+[----------] 1 test from SnapshotTest (400 ms total)
+
+[==========] 1 test from 1 test suite ran. (400 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 69) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (335 ms)
+[----------] 1 test from SnapshotTest (335 ms total)
+
+[==========] 1 test from 1 test suite ran. (335 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 70) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (326 ms)
+[----------] 1 test from SnapshotTest (326 ms total)
+
+[==========] 1 test from 1 test suite ran. (326 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 71) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (325 ms)
+[----------] 1 test from SnapshotTest (325 ms total)
+
+[==========] 1 test from 1 test suite ran. (326 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 72) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (317 ms)
+[----------] 1 test from SnapshotTest (317 ms total)
+
+[==========] 1 test from 1 test suite ran. (317 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 73) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (315 ms)
+[----------] 1 test from SnapshotTest (315 ms total)
+
+[==========] 1 test from 1 test suite ran. (316 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 74) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (334 ms)
+[----------] 1 test from SnapshotTest (334 ms total)
+
+[==========] 1 test from 1 test suite ran. (334 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 75) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (338 ms)
+[----------] 1 test from SnapshotTest (338 ms total)
+
+[==========] 1 test from 1 test suite ran. (338 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 76) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (327 ms)
+[----------] 1 test from SnapshotTest (327 ms total)
+
+[==========] 1 test from 1 test suite ran. (327 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 77) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (318 ms)
+[----------] 1 test from SnapshotTest (318 ms total)
+
+[==========] 1 test from 1 test suite ran. (319 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 78) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (315 ms)
+[----------] 1 test from SnapshotTest (315 ms total)
+
+[==========] 1 test from 1 test suite ran. (315 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 79) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (352 ms)
+[----------] 1 test from SnapshotTest (352 ms total)
+
+[==========] 1 test from 1 test suite ran. (352 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 80) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (313 ms)
+[----------] 1 test from SnapshotTest (313 ms total)
+
+[==========] 1 test from 1 test suite ran. (313 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 81) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (317 ms)
+[----------] 1 test from SnapshotTest (317 ms total)
+
+[==========] 1 test from 1 test suite ran. (317 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 82) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (303 ms)
+[----------] 1 test from SnapshotTest (303 ms total)
+
+[==========] 1 test from 1 test suite ran. (303 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 83) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (300 ms)
+[----------] 1 test from SnapshotTest (300 ms total)
+
+[==========] 1 test from 1 test suite ran. (300 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 84) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (386 ms)
+[----------] 1 test from SnapshotTest (386 ms total)
+
+[==========] 1 test from 1 test suite ran. (386 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 85) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (306 ms)
+[----------] 1 test from SnapshotTest (306 ms total)
+
+[==========] 1 test from 1 test suite ran. (307 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 86) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (312 ms)
+[----------] 1 test from SnapshotTest (313 ms total)
+
+[==========] 1 test from 1 test suite ran. (313 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 87) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (312 ms)
+[----------] 1 test from SnapshotTest (312 ms total)
+
+[==========] 1 test from 1 test suite ran. (312 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 88) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (306 ms)
+[----------] 1 test from SnapshotTest (306 ms total)
+
+[==========] 1 test from 1 test suite ran. (307 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 89) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (295 ms)
+[----------] 1 test from SnapshotTest (295 ms total)
+
+[==========] 1 test from 1 test suite ran. (295 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 90) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (310 ms)
+[----------] 1 test from SnapshotTest (310 ms total)
+
+[==========] 1 test from 1 test suite ran. (310 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 91) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (309 ms)
+[----------] 1 test from SnapshotTest (309 ms total)
+
+[==========] 1 test from 1 test suite ran. (309 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 92) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (321 ms)
+[----------] 1 test from SnapshotTest (321 ms total)
+
+[==========] 1 test from 1 test suite ran. (321 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 93) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (314 ms)
+[----------] 1 test from SnapshotTest (314 ms total)
+
+[==========] 1 test from 1 test suite ran. (314 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 94) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (310 ms)
+[----------] 1 test from SnapshotTest (310 ms total)
+
+[==========] 1 test from 1 test suite ran. (310 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 95) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (296 ms)
+[----------] 1 test from SnapshotTest (296 ms total)
+
+[==========] 1 test from 1 test suite ran. (296 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 96) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (296 ms)
+[----------] 1 test from SnapshotTest (296 ms total)
+
+[==========] 1 test from 1 test suite ran. (296 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 97) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (312 ms)
+[----------] 1 test from SnapshotTest (312 ms total)
+
+[==========] 1 test from 1 test suite ran. (312 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 98) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (340 ms)
+[----------] 1 test from SnapshotTest (341 ms total)
+
+[==========] 1 test from 1 test suite ran. (341 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 99) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (325 ms)
+[----------] 1 test from SnapshotTest (325 ms total)
+
+[==========] 1 test from 1 test suite ran. (325 ms total)
+[  PASSED  ] 1 test.
+
+Repeating all tests (iteration 100) . . .
+
+Note: Google Test filter = SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[==========] Running 1 test from 1 test suite.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (327 ms)
+[----------] 1 test from SnapshotTest (327 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (327 ms total)
+[  PASSED  ] 1 test.
