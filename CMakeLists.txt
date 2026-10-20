@@ -86,7 +86,9 @@ if(BUILD_TESTING)
       set(seed_argument "--seed=18446744073709551616")
     endif()
     add_test(NAME seed_reject_${bad_seed} COMMAND lsm_tests "${seed_argument}")
-    set_tests_properties(seed_reject_${bad_seed} PROPERTIES WILL_FAIL TRUE TIMEOUT 10)
+    # Match the parser's message so a crash or unrelated failure does not count as a pass.
+    set_tests_properties(seed_reject_${bad_seed} PROPERTIES
+      PASS_REGULAR_EXPRESSION "Invalid --seed" TIMEOUT 10)
   endforeach()
 endif()
 
