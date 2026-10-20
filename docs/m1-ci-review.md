@@ -1,28 +1,29 @@
 # M1 CI review follow-up
 
-M1 is not accepted yet. Every hosted job must pass on the repaired revision.
+All six hosted CI jobs pass on the repaired, pushed revision. The M1 CI blocker
+is resolved. M2 has not started.
 
-The owner pushed the local verification commit and then the seed-check correction.
-The latest reviewed run is
-[39419845404](https://github.com/ArnavLifelessCoder/stratadb/actions/runs/39419845404)
-at `e9232a074367e931f295ddf0988967c0e5768e2d`.
+The owner authorized pushing the corrected workflow. The verified run is
+[39421762788](https://github.com/ArnavLifelessCoder/stratadb/actions/runs/39421762788)
+at `51bbd12774dcb33903955055c457dd5432c58859`.
 
 | Job | Observed result | Complete output |
 |---|---|---|
-| Ubuntu Debug | Pass, 5/5 CTest entries | [log](../results/m1/ci-39419845404/118617764666.log) |
-| Ubuntu ASan/UBSan | Pass, 5/5 CTest entries | [log](../results/m1/ci-39419845404/118617764755.log) |
-| Ubuntu TSan | Pass, 5/5 CTest entries | [log](../results/m1/ci-39419845404/118617764417.log) |
-| Lint | Pass | [log](../results/m1/ci-39419845404/118617764735.log) |
-| Windows Debug | Failed before compilation: VS 2022 unavailable | [log](../results/m1/ci-39419845404/118617764716.log) |
-| Windows ASan | Failed before compilation: VS 2022 unavailable | [log](../results/m1/ci-39419845404/118617764987.log) |
+| Ubuntu Debug | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198526.log) |
+| Ubuntu ASan/UBSan | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198492.log) |
+| Ubuntu TSan | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198012.log) |
+| Lint | Pass, including the workflow regression | [log](../results/m1/ci-39421762788/118624198420.log) |
+| Windows MSVC Debug | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198386.log) |
+| Windows MSVC ASan | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198477.log) |
 
-No project compiler warnings, UBSan findings or TSan findings appeared in the
-successful Linux jobs. The logs include third-party action runtime deprecation
-warnings; these are distinct from compiler and sanitizer diagnostics.
+The logs identify GCC 13.3.0 on Linux and MSVC 19.51.36260.0 on Windows.
+No project compiler warnings or sanitizer findings appeared in the successful jobs.
+The logs include third-party action runtime deprecation warnings; these are
+distinct from compiler and sanitizer diagnostics.
 
-## Prepared fix
+## Verified fix
 
-The prepared workflow leaves `vsversion` unpinned and uses MSVC `cl` from the
+The verified workflow leaves `vsversion` unpinned and uses MSVC `cl` from the
 installed Visual Studio developer environment. The `CC`/`CXX=clang-cl` override
 introduced in `1ad2646` was rejected in review and has been removed. Both required
 runner labels remain `windows-latest` and `ubuntu-latest`, with six jobs in total.
@@ -31,7 +32,7 @@ Local MSVC builds are unchanged.
 The observed Windows runner image is `windows-2025-vs2026`, which has VS 2026
 installed. The earlier workflow failed while looking specifically for VS 2022.
 The corrected workflow keeps the owner's compiler choice, MSVC `cl`.
-The revised Windows build itself remains unverified until the commit is pushed.
+Both Windows builds and their complete test suites now pass.
 
 The original bootstrap regression was written and run before the initial fix:
 
@@ -51,11 +52,16 @@ Changed implementation/configuration files:
 
 Full logs and machine-readable summaries are retained for both observed runs
 under `results/m1/ci-39419669148/` and `results/m1/ci-39419845404/`.
+Those earlier runs document the bootstrap failure. The successful run is saved
+under `results/m1/ci-39421762788/`, with a
+[machine-readable summary](../results/m1/ci-39421762788/summary.json).
 The previous local MSVC Debug and ASan outputs remain linked from
 [the original review packet](m1-review.md). The CI fix changes no C++ source.
 
-The owner must push the prepared commits before the repaired workflow can be
-verified. M1 stays open until all six jobs are green on the pushed revision.
+The local Debug and ASan suites and all six hosted jobs pass. CRC32C RFC vectors
+and varint round-trip fuzz acceptance criteria remain satisfied.
+See the [complete file inventory](../results/m1/final-files.txt) for the M1 files.
+M2 remains gated on the owner's milestone approval.
 
 ## Deferred M2 requirements
 
@@ -72,4 +78,4 @@ These tasks have not been started, and the specification files have not been edi
 
 Before M9, move `docs/m1-review.md` and `docs/m1-ci-review.md` out of `docs/` and
 repair their links. Also upgrade the actions still targeting Node 20.
-These follow-ups are deferred while the M1 CI acceptance gate remains open.
+These follow-ups remain scheduled for later milestones.

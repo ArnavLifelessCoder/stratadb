@@ -1,0 +1,39 @@
+{
+  "run_id": 39421762788,
+  "head_sha": "51bbd12774dcb33903955055c457dd5432c58859",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/ArnavLifelessCoder/stratadb/actions/runs/39421762788",
+  "jobs": [
+    {
+      "id": 118624198012,
+      "name": "tsan",
+      "conclusion": "success"
+    },
+    {
+      "id": 118624198386,
+      "name": "test (windows-latest, debug)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118624198420,
+      "name": "lint",
+      "conclusion": "success"
+    },
+    {
+      "id": 118624198477,
+      "name": "test (windows-latest, asan)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118624198492,
+      "name": "test (ubuntu-latest, asan)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118624198526,
+      "name": "test (ubuntu-latest, debug)",
+      "conclusion": "success"
+    }
+  ]
+}
