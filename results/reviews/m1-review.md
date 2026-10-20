@@ -25,8 +25,8 @@ Nothing has been pushed. M2 has not started.
 - Seeded tests, build helpers, fixture verification, full test logs and platform
   metadata.
 
-The utility contracts are documented in [utilities.md](utilities.md).
-Build and reproduction commands are in [building.md](building.md).
+The utility contracts are documented in [utilities.md](../../docs/utilities.md).
+Build and reproduction commands are in [building.md](../../docs/building.md).
 The DB interface has not been introduced in M1.
 
 ## Acceptance criteria
@@ -53,36 +53,36 @@ These are complete captured outputs, not excerpts:
 
 | Run | Result | Full output |
 |---|---|---|
-| Windows Debug, seed 24301 | 26/26 GoogleTests; 5/5 CTest entries | [windows-debug.log](../results/m1/windows-debug.log) |
-| Windows MSVC ASan, seed 24301 | 26/26 GoogleTests; 5/5 CTest entries | [windows-asan.log](../results/m1/windows-asan.log) |
-| Windows Debug, seed 42 | 26/26 GoogleTests | [windows-debug-seed42.log](../results/m1/windows-debug-seed42.log) |
-| Windows MSVC ASan, seed 42 | 26/26 GoogleTests | [windows-asan-seed42.log](../results/m1/windows-asan-seed42.log) |
-| Formatting, lint, oracle regeneration check | Pass | [lint.log](../results/m1/lint.log) |
+| Windows Debug, seed 24301 | 26/26 GoogleTests; 5/5 CTest entries | [windows-debug.log](../m1/windows-debug.log) |
+| Windows MSVC ASan, seed 24301 | 26/26 GoogleTests; 5/5 CTest entries | [windows-asan.log](../m1/windows-asan.log) |
+| Windows Debug, seed 42 | 26/26 GoogleTests | [windows-debug-seed42.log](../m1/windows-debug-seed42.log) |
+| Windows MSVC ASan, seed 42 | 26/26 GoogleTests | [windows-asan-seed42.log](../m1/windows-asan-seed42.log) |
+| Formatting, lint, oracle regeneration check | Pass | [lint.log](../m1/lint.log) |
 
 The five CTest entries are the complete GoogleTest suite, a maximum-value seed
 argument check, and rejection checks for empty, nonnumeric and overflowing seeds.
 No compiler warnings or sanitizer findings were reported in successful runs.
 
 Environment: Windows 11 Home x64, MSVC 19.44.35229, CMake 3.31.6-msvc6, Ninja
-1.12.1. See [windows.json](../results/m1/windows.json) for the recorded machine,
+1.12.1. See [windows.json](../m1/windows.json) for the recorded machine,
 timestamp and tested source commit. All project translation units were checked
 for `/W4 /WX`; all ASan translation units include `/fsanitize=address`, with
 `/RTC1` absent.
 
 Component-by-component outputs:
 
-- [Status](../results/m1/components/status.log)
-- [String views](../results/m1/components/slice.log)
-- [CRC32C](../results/m1/components/crc32c.log)
-- [Hash](../results/m1/components/hash.log)
-- [Varints](../results/m1/components/varint.log)
+- [Status](../m1/components/status.log)
+- [String views](../m1/components/slice.log)
+- [CRC32C](../m1/components/crc32c.log)
+- [Hash](../m1/components/hash.log)
+- [Varints](../m1/components/varint.log)
 
 The first ASan configure attempt encountered GitHub connection resets and DNS
 failures while fetching GoogleTest. Its
-[failure log](../results/m1/windows-asan-fetch-failure.log) is retained.
+[failure log](../m1/windows-asan-fetch-failure.log) is retained.
 The successful ASan build reused the already-fetched source at the exact pinned
 commit `52eb8108c5bdec04579160ae17225d66034bd723` and compiled separate instrumented
-objects. See the [cache configuration log](../results/m1/asan-cached-dependency.log).
+objects. See the [cache configuration log](../m1/asan-cached-dependency.log).
 The local cache uses `FETCHCONTENT_SOURCE_DIR_GOOGLETEST` pointing at the Debug
 source checkout and `FETCHCONTENT_UPDATES_DISCONNECTED=ON`; these overrides are
 in ignored build caches. Committed presets still fetch from the pinned repository.
@@ -90,7 +90,7 @@ in ignored build caches. Committed presets still fetch from the pinned repositor
 ## Files changed
 
 All files in this milestone are additions to the initially empty repository.
-The [complete file inventory](../results/m1/files.txt) includes every tracked
+The [complete file inventory](../m1/files.txt) includes every tracked
 source, script, configuration file, document and result.
 
 | Area | Files |

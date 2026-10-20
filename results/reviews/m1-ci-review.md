@@ -9,12 +9,12 @@ at `51bbd12774dcb33903955055c457dd5432c58859`.
 
 | Job | Observed result | Complete output |
 |---|---|---|
-| Ubuntu Debug | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198526.log) |
-| Ubuntu ASan/UBSan | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198492.log) |
-| Ubuntu TSan | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198012.log) |
-| Lint | Pass, including the workflow regression | [log](../results/m1/ci-39421762788/118624198420.log) |
-| Windows MSVC Debug | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198386.log) |
-| Windows MSVC ASan | Pass, 5/5 CTest entries | [log](../results/m1/ci-39421762788/118624198477.log) |
+| Ubuntu Debug | Pass, 5/5 CTest entries | [log](../m1/ci-39421762788/118624198526.log) |
+| Ubuntu ASan/UBSan | Pass, 5/5 CTest entries | [log](../m1/ci-39421762788/118624198492.log) |
+| Ubuntu TSan | Pass, 5/5 CTest entries | [log](../m1/ci-39421762788/118624198012.log) |
+| Lint | Pass, including the workflow regression | [log](../m1/ci-39421762788/118624198420.log) |
+| Windows MSVC Debug | Pass, 5/5 CTest entries | [log](../m1/ci-39421762788/118624198386.log) |
+| Windows MSVC ASan | Pass, 5/5 CTest entries | [log](../m1/ci-39421762788/118624198477.log) |
 
 The logs identify GCC 13.3.0 on Linux and MSVC 19.51.36260.0 on Windows.
 No project compiler warnings or sanitizer findings appeared in the successful jobs.
@@ -36,12 +36,12 @@ Both Windows builds and their complete test suites now pass.
 
 The original bootstrap regression was written and run before the initial fix:
 
-- [Failing regression output](../results/m1/ci-fix/regression-before.log)
-- [Passing regression, lint and formatting output](../results/m1/ci-fix/regression-after.log)
+- [Failing regression output](../m1/ci-fix/regression-before.log)
+- [Passing regression, lint and formatting output](../m1/ci-fix/regression-after.log)
 
 Those two outputs describe the initial fix. The regression test now asserts only
 that `vsversion` is unpinned; it does not require clang-cl.
-See [the current validation output](../results/m1/ci-fix/msvc-config-validation.log).
+See [the current validation output](../m1/ci-fix/msvc-config-validation.log).
 
 Changed implementation/configuration files:
 
@@ -54,13 +54,13 @@ Full logs and machine-readable summaries are retained for both observed runs
 under `results/m1/ci-39419669148/` and `results/m1/ci-39419845404/`.
 Those earlier runs document the bootstrap failure. The successful run is saved
 under `results/m1/ci-39421762788/`, with a
-[machine-readable summary](../results/m1/ci-39421762788/summary.json).
+[machine-readable summary](../m1/ci-39421762788/summary.json).
 The previous local MSVC Debug and ASan outputs remain linked from
 [the original review packet](m1-review.md). The CI fix changes no C++ source.
 
 The local Debug and ASan suites and all six hosted jobs pass. CRC32C RFC vectors
 and varint round-trip fuzz acceptance criteria remain satisfied.
-See the [complete file inventory](../results/m1/final-files.txt) for the M1 files.
+See the [complete file inventory](../m1/final-files.txt) for the M1 files.
 M2 remains gated on the owner's milestone approval.
 
 ## Deferred M2 requirements
