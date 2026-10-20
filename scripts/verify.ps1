@@ -1,6 +1,8 @@
+param([string]$Milestone = 'm2')
+
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$resultDirectory = Join-Path $projectRoot 'results/m1'
+$resultDirectory = Join-Path $projectRoot "results/$Milestone"
 New-Item -ItemType Directory -Force -Path $resultDirectory | Out-Null
 
 Push-Location -LiteralPath $projectRoot

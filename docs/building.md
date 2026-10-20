@@ -1,6 +1,7 @@
 # Building and testing
 
-M1 supplies the utility library and tests. Database operations begin in M2.
+M2 supplies the in-memory DB, WAL, utility library and tests.
+See [the storage design](memtable-wal.md) for API contracts and current limits.
 
 ## Windows
 
@@ -16,7 +17,7 @@ From PowerShell in the repository:
 ```
 
 Run `.\scripts\verify.ps1` to record both complete build/test logs and Windows
-toolchain metadata in `results/m1/`.
+toolchain metadata in `results/m2/`.
 
 Alternatively, in an x64 VS 2022 developer shell:
 
@@ -76,13 +77,33 @@ On Linux, use `build/debug/lsm_tests` and activate with
 `. .venv/bin/activate`. Formatting checks only visit project source directories,
 so fetched dependencies are excluded.
 
-CI builds and tests Debug and ASan on both Windows and Linux, runs TSan on
-Linux, and uploads complete test logs. M1 has no project concurrency; the TSan
-job is in place for subsequent milestones. CI can only run after the owner
-approves a push.
+CI builds and tests Debug and ASan on Windows and Ubuntu 24.04, runs TSan on
+Ubuntu 24.04, and uploads complete test logs and platform-labeled crash results.
+The concurrency tests include four readers during skiplist insertion and four
+readers alongside four DB writers.
 
 Windows CI uses MSVC `cl` from the installed Visual Studio developer environment.
 The `windows-latest` image can move to a newer Visual Studio generation, so CI
 does not pin `vsversion` or override `CC`/`CXX`. Local `build.ps1` continues to use
-VS 2022 MSVC. Run `python -m pytest -q tests/test_ci_configuration.py` to check
-that the SDK bootstrap does not pin a Visual Studio version.
+VS 2022 MSVC. The shared `scripts/msvc_environment.ps1` discovers the installed
+toolchain with `vswhere` and initializes its x64 developer environment.
+
+Run clang-tidy against a configured compilation database:
+
+```sh
+python scripts/check_tidy.py --build build/debug --clang-tidy clang-tidy-18
+```
+
+CI runs this command with the repository's `.clang-tidy`, treating findings as
+errors. On Windows, use the x64 clang-tidy executable under
+`VC/Tools/Llvm/x64/bin` from an initialized VS developer shell.
+
+Run the process-kill smoke test after building:
+
+```powershell
+python tests/crash_smoke.py --executable build/debug/lsm_db_process.exe --output results/m2/crash-Windows-debug.json
+```
+
+On Linux omit `.exe` and use a Linux-labeled output filename. The script uses
+only the Python standard library. It keeps temporary databases inside the
+build directory and records platform, seed and outcomes in JSON.
