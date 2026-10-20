@@ -1,0 +1,32 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (6.2s)
+-- Generating done (0.4s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/2] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[2/2] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FlushTest
+[ RUN      ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\flush_test.cpp(241): error: Value of: db->Put({true}, "accepted", "value").ok()
+  Actual: false
+Expected: true
+
+[  FAILED  ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch (113 ms)
+[----------] 1 test from FlushTest (113 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (114 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+
+ 1 FAILED TEST

@@ -210,7 +210,12 @@ TEST(FlushTest, BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs) {
   ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
   ASSERT_TRUE(std::filesystem::create_directory(internal::TablePath(directory.path(), 4)));
   ASSERT_TRUE(db->Put({true}, "first", "one").ok());
-  EXPECT_FALSE(db->Put({true}, "second", "two").ok());
+  const auto second = db->Put({true}, "second", "two");
+  if (second.ok()) {
+    std::string applied;
+    ASSERT_TRUE(db->Get({}, "second", &applied).ok());
+    EXPECT_EQ(applied, "two");
+  }
   EXPECT_FALSE(db->Put({true}, "third", "three").ok());
   db.reset();
   ASSERT_TRUE(std::filesystem::remove(internal::TablePath(directory.path(), 4)));
@@ -225,6 +230,26 @@ TEST(FlushTest, BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs) {
     EXPECT_EQ(value, "two");
   }
   ASSERT_TRUE(db->Put({true}, "after", "recovered").ok());
+}
+
+TEST(FlushTest, RotationFailureDoesNotRejectAnAlreadyAppliedBatch) {
+  test::TempDirectory directory;
+  std::unique_ptr<DB> db;
+  ASSERT_TRUE(DB::Open({.memtable_bytes = 1}, directory.path(), &db).ok());
+  const auto blocked = internal::WalPath(directory.path(), 3);
+  ASSERT_TRUE(std::filesystem::create_directory(blocked));
+  ASSERT_TRUE(db->Put({true}, "accepted", "value").ok());
+  std::string value;
+  ASSERT_TRUE(db->Get({}, "accepted", &value).ok());
+  EXPECT_EQ(value, "value");
+  EXPECT_FALSE(db->Put({true}, "rejected", "value").ok());
+  EXPECT_TRUE(db->Get({}, "rejected", &value).IsNotFound());
+  db.reset();
+  ASSERT_TRUE(std::filesystem::remove(blocked));
+  ASSERT_TRUE(DB::Open({}, directory.path(), &db).ok());
+  ASSERT_TRUE(db->Get({}, "accepted", &value).ok());
+  EXPECT_EQ(value, "value");
+  EXPECT_TRUE(db->Get({}, "rejected", &value).IsNotFound());
 }
 
 TEST(FlushTest, MissingReferencedWalOrTableIsCorruption) {

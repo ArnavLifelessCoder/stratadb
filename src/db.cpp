@@ -299,7 +299,10 @@ auto DB::Write(const WriteOptions& options, WriteBatch* batch) -> Status {
   }
   impl_->user_bytes += bytes;
   impl_->sequence.store(sequence - 1, std::memory_order_release);
-  return impl_->MakeRoom(guard);
+  // The batch is committed. Rotation failures are sticky for later writes,
+  // but cannot change the acknowledgement of this already-applied batch.
+  static_cast<void>(impl_->MakeRoom(guard));
+  return {};
 }
 
 auto DB::Get(const ReadOptions& options, std::string_view key, std::string* value) -> Status {

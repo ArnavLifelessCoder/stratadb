@@ -63,9 +63,11 @@ the table lookup. Every data block read checks its CRC. Open checks table
 metadata; explicit TableReader::Verify provides a full integrity scan.
 
 An append, sync, rotation or background-flush failure stops subsequent writes.
-Reads retain the previously published state. A failing Write may have committed
-its batch before a rotation/background error was observed; reopening resolves
-the durable state. The original WALs remain available until the corresponding
+Reads retain the previously published state. Once a batch is appended and
+published in the memtable, Write returns OK even if the following rotation
+fails; that failure is returned by later writes. An append or sync failure can
+still have an uncertain durable outcome, resolved by reopening.
+The original WALs remain available until the corresponding
 table edit is durable. Failed or uncertain table publication is never recorded
 as a successful flush.
 
