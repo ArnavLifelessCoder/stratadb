@@ -1,0 +1,53 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (10.4s)
+-- Generating done (0.5s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/5] Building CXX object CMakeFiles\lsm.dir\src\version_set.cpp.obj
+[2/5] Linking CXX static library lsm.lib
+[3/5] Building CXX object CMakeFiles\lsm_tests.dir\tests\version_set_test.cpp.obj
+[4/5] Linking CXX executable lsm_db_process.exe
+[5/5] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = ManifestTest.*
+[==========] Running 5 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 5 tests from ManifestTest
+[ RUN      ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput
+[       OK ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput (0 ms)
+[ RUN      ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected
+Manifest recovery: truncated 1 tail bytes
+Manifest recovery: truncated 2 tail bytes
+Manifest recovery: truncated 3 tail bytes
+Manifest recovery: truncated 4 tail bytes
+Manifest recovery: truncated 5 tail bytes
+Manifest recovery: truncated 6 tail bytes
+Manifest recovery: truncated 7 tail bytes
+Manifest recovery: truncated 8 tail bytes
+Manifest recovery: truncated 9 tail bytes
+Manifest recovery: truncated 10 tail bytes
+Manifest recovery: truncated 11 tail bytes
+Manifest recovery: truncated 12 tail bytes
+Manifest recovery: truncated 13 tail bytes
+Manifest recovery: truncated 14 tail bytes
+Manifest recovery: truncated 15 tail bytes
+Manifest recovery: truncated 16 tail bytes
+Manifest recovery: truncated 17 tail bytes
+Manifest recovery: truncated 18 tail bytes
+Manifest recovery: truncated 512 tail bytes
+[       OK ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected (1 ms)
+[ RUN      ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion
+[       OK ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion (0 ms)
+[ RUN      ] ManifestTest.RejectsRegressingCountersAndInvalidFileState
+[       OK ] ManifestTest.RejectsRegressingCountersAndInvalidFileState (0 ms)
+[ RUN      ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership
+[       OK ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership (408 ms)
+[----------] 5 tests from ManifestTest (410 ms total)
+
+[----------] Global test environment tear-down
+[==========] 5 tests from 1 test suite ran. (411 ms total)
+[  PASSED  ] 5 tests.
