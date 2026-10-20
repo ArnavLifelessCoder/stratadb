@@ -1,0 +1,7 @@
+Command: tests/test_toolchain_metadata.ps1
+Exit code: 1
+Exception: C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\test_toolchain_metadata.ps1:6
+Line |
+   6 |      throw "Expected a numeric MSVC compiler version; got: $version"
+     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Expected a numeric MSVC compiler version; got: usage: cl [ option... ] filename... [ /link linkoption... ]

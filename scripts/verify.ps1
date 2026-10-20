@@ -27,7 +27,7 @@ try {
             Tee-Object -FilePath (Join-Path $resultDirectory "windows-$preset.log")
     }
     $metadata.result = 'passed'
-    $metadata.compiler = (& cl 2>&1 | Select-Object -First 1).ToString()
+    $metadata.compiler = & (Join-Path $PSScriptRoot 'compiler_version.ps1')
     $metadata.cmake = (& cmake --version | Select-Object -First 1).ToString()
     $metadata.ninja = (& ninja --version).ToString()
     $metadata | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $metadataPath -Encoding utf8
