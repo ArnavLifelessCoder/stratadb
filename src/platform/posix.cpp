@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cerrno>
 #include <limits>
+#include <ranges>
 #include <system_error>
 #include <utility>
 #include <vector>
@@ -148,8 +149,8 @@ auto CreateDirectories(const std::filesystem::path& path) -> Status {
   if (error) {
     return Status::IOError("create directory: " + error.message());
   }
-  for (auto it = missing.rbegin(); it != missing.rend(); ++it) {
-    const auto status = SyncDirectory(it->parent_path());
+  for (const auto& directory : std::views::reverse(missing)) {
+    const auto status = SyncDirectory(directory.parent_path());
     if (!status.ok()) {
       return status;
     }
