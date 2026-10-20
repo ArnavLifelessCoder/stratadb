@@ -1,0 +1,32 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (4.3s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/5] Building CXX object CMakeFiles\lsm.dir\src\table\block.cpp.obj
+[2/5] Linking CXX static library lsm.lib
+[3/5] Linking CXX executable lsm_db_process.exe
+[4/5] Building CXX object CMakeFiles\lsm_tests.dir\tests\block_test.cpp.obj
+[5/5] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = BlockTest.*
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from BlockTest
+[ RUN      ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary
+[       OK ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary (52 ms)
+[ RUN      ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues
+[       OK ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues (6 ms)
+[ RUN      ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput
+[       OK ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput (0 ms)
+[ RUN      ] BlockTest.RejectsMalformedStructureEvenWithValidCrc
+[       OK ] BlockTest.RejectsMalformedStructureEvenWithValidCrc (0 ms)
+[----------] 4 tests from BlockTest (59 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (59 ms total)
+[  PASSED  ] 4 tests.
