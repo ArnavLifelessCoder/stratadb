@@ -51,6 +51,7 @@ add_library(lsm src/status.cpp src/util/crc32c.cpp src/util/hash.cpp src/util/va
 target_sources(lsm PRIVATE src/write_batch.cpp)
 target_sources(lsm PRIVATE src/memtable.cpp)
 target_sources(lsm PRIVATE src/wal.cpp)
+target_sources(lsm PRIVATE src/db.cpp)
 find_package(Threads REQUIRED)
 target_link_libraries(lsm PUBLIC Threads::Threads)
 if(WIN32)
@@ -83,12 +84,13 @@ if(BUILD_TESTING)
     tests/memtable_test.cpp
     tests/platform_test.cpp
     tests/wal_test.cpp
+    tests/db_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)
   lsm_strict_warnings(lsm_tests)
   add_test(NAME lsm_tests COMMAND lsm_tests)
-  set_tests_properties(lsm_tests PROPERTIES TIMEOUT 120)
+  set_tests_properties(lsm_tests PROPERTIES TIMEOUT 600)
   add_test(NAME seed_maximum
     COMMAND lsm_tests --seed=18446744073709551615 --gtest_filter=StatusTest.DefaultIsSuccess)
   foreach(bad_seed IN ITEMS empty text overflow)

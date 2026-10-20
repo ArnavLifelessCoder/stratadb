@@ -1,0 +1,33 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (3.5s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/4] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[2/4] Linking CXX static library lsm.lib
+[3/4] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+[4/4] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = DBTest.*
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from DBTest
+[ RUN      ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay
+DB differential: 10000 seeds, 64 operations per seed, base seed 24301
+[       OK ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay (57051 ms)
+[ RUN      ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen
+[       OK ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen (84 ms)
+[ RUN      ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen
+WAL recovery: truncated 4 tail bytes at offset 22
+[       OK ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen (53 ms)
+[ RUN      ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches
+[       OK ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches (1216 ms)
+[----------] 4 tests from DBTest (58406 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (58406 ms total)
+[  PASSED  ] 4 tests.
