@@ -8,10 +8,30 @@
 #include <thread>
 #include <vector>
 
+#include "table/format.hpp"
 #include "test_support.hpp"
 
 namespace lsm::internal {
 namespace {
+TEST(MemTableTest, FrozenExportAndLookupPreserveVersionsAndTombstones) {
+  MemTable table;
+  ASSERT_TRUE(table.Insert(1, WriteBatch::Type::kPut, "z", "old").ok());
+  ASSERT_TRUE(table.Insert(2, WriteBatch::Type::kPut, "", "").ok());
+  ASSERT_TRUE(table.Insert(3, WriteBatch::Type::kDelete, "z", "").ok());
+  const auto entries = table.Entries();
+  ASSERT_EQ(entries.size(), 3U);
+  EXPECT_EQ(entries[0].key, table::InternalKey("", 2, WriteBatch::Type::kPut));
+  EXPECT_EQ(entries[1].key, table::InternalKey("z", 3, WriteBatch::Type::kDelete));
+  EXPECT_EQ(entries[2].value, "old");
+  table::Entry entry;
+  ASSERT_TRUE(table.Lookup("z", 3, entry).ok());
+  EXPECT_EQ(entry, entries[1]);
+  ASSERT_TRUE(table.Lookup("z", 1, entry).ok());
+  EXPECT_EQ(entry, entries[2]);
+  EXPECT_TRUE(table.Lookup("z", 0, entry).IsNotFound());
+  EXPECT_EQ(entry, entries[2]);
+}
+
 TEST(MemTableTest, SequenceOrderingTombstonesBinaryKeysAndArenaOwnership) {
   MemTable table;
   std::string key("a\0b", 3);

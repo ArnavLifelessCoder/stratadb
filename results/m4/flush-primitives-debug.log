@@ -1,0 +1,80 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (13.2s)
+-- Generating done (0.4s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/8] Building CXX object CMakeFiles\lsm.dir\src\memtable.cpp.obj
+[2/8] Building CXX object CMakeFiles\lsm.dir\src\wal.cpp.obj
+[3/8] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[4/8] Building CXX object CMakeFiles\lsm_tests.dir\tests\memtable_test.cpp.obj
+[5/8] Linking CXX static library lsm.lib
+[6/8] Building CXX object CMakeFiles\lsm_tests.dir\tests\wal_test.cpp.obj
+[7/8] Linking CXX executable lsm_db_process.exe
+[8/8] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Note: Google Test filter = MemTableTest.*:WalTest.*
+[==========] Running 13 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 5 tests from MemTableTest
+[ RUN      ] MemTableTest.FrozenExportAndLookupPreserveVersionsAndTombstones
+[       OK ] MemTableTest.FrozenExportAndLookupPreserveVersionsAndTombstones (0 ms)
+[ RUN      ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership
+[       OK ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership (0 ms)
+[ RUN      ] MemTableTest.RandomVersionsMatchMapReference
+[       OK ] MemTableTest.RandomVersionsMatchMapReference (113 ms)
+[ RUN      ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions
+[       OK ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions (54 ms)
+[ RUN      ] MemTableTest.ConcurrentReadersTraverseManyKeysAndRetainOlderSnapshots
+[       OK ] MemTableTest.ConcurrentReadersTraverseManyKeysAndRetainOlderSnapshots (209 ms)
+[----------] 5 tests from MemTableTest (378 ms total)
+
+[----------] 8 tests from WalTest
+[ RUN      ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend
+WAL recovery: truncated 1 tail bytes at offset 20
+WAL recovery: truncated 2 tail bytes at offset 20
+WAL recovery: truncated 3 tail bytes at offset 20
+WAL recovery: truncated 4 tail bytes at offset 20
+WAL recovery: truncated 5 tail bytes at offset 20
+WAL recovery: truncated 6 tail bytes at offset 20
+WAL recovery: truncated 7 tail bytes at offset 20
+WAL recovery: truncated 8 tail bytes at offset 20
+WAL recovery: truncated 9 tail bytes at offset 20
+WAL recovery: truncated 10 tail bytes at offset 20
+WAL recovery: truncated 11 tail bytes at offset 20
+WAL recovery: truncated 12 tail bytes at offset 20
+WAL recovery: truncated 13 tail bytes at offset 20
+WAL recovery: truncated 14 tail bytes at offset 20
+WAL recovery: truncated 15 tail bytes at offset 20
+WAL recovery: truncated 16 tail bytes at offset 20
+WAL recovery: truncated 17 tail bytes at offset 20
+WAL recovery: truncated 18 tail bytes at offset 20
+WAL recovery: truncated 19 tail bytes at offset 20
+WAL recovery: truncated 20 tail bytes at offset 20
+[       OK ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend (1 ms)
+[ RUN      ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord
+[       OK ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord (0 ms)
+[ RUN      ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption
+WAL recovery: truncated 1 tail bytes at offset 22
+WAL recovery: truncated 9 tail bytes at offset 22
+WAL recovery: truncated 512 tail bytes at offset 22
+WAL recovery: truncated 4096 tail bytes at offset 22
+[       OK ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption (0 ms)
+[ RUN      ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch
+[       OK ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch (0 ms)
+[ RUN      ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends
+[       OK ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends (0 ms)
+[ RUN      ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate
+[       OK ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate (0 ms)
+[ RUN      ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes
+[       OK ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes (0 ms)
+[ RUN      ] WalTest.ReplayUsesTheSequenceBoundaryOfThePreviousLog
+[       OK ] WalTest.ReplayUsesTheSequenceBoundaryOfThePreviousLog (0 ms)
+[----------] 8 tests from WalTest (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 13 tests from 2 test suites ran. (382 ms total)
+[  PASSED  ] 13 tests.

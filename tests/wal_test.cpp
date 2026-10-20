@@ -200,5 +200,25 @@ TEST(WalTest, AsyncAppendDoesNotSyncAndSyncAppendDoes) {
   EXPECT_EQ(wal.SyncCount(), 1U);
   EXPECT_EQ(wal.BytesWritten(), memory->bytes.size());
 }
+
+TEST(WalTest, ReplayUsesTheSequenceBoundaryOfThePreviousLog) {
+  auto file = std::make_unique<MemoryFile>();
+  file->bytes = Record(100) + Record(101);
+  Wal wal(std::move(file));
+  MemTable table;
+  std::uint64_t last = 0;
+  ASSERT_TRUE(wal.Replay(table, last, 100).ok());
+  EXPECT_EQ(last, 101U);
+  EXPECT_EQ(wal.Replay(table, last, 0).code(), StatusCode::kInvalidArgument);
+  auto empty = std::make_unique<MemoryFile>();
+  auto* memory = empty.get();
+  Wal next(std::move(empty));
+  MemTable fresh;
+  ASSERT_TRUE(next.Replay(fresh, last, 102).ok());
+  EXPECT_EQ(last, 101U);
+  ASSERT_TRUE(next.Sync().ok());
+  EXPECT_EQ(memory->syncs, 1U);
+  EXPECT_EQ(next.SyncCount(), 1U);
+}
 }  // namespace
 }  // namespace lsm::internal

@@ -4,6 +4,8 @@
 #include <cstring>
 #include <new>
 
+#include "table/format.hpp"
+
 namespace lsm::internal {
 
 auto MemTable::Before(const Node& node, std::string_view key, std::uint64_t tag) -> bool {
@@ -102,6 +104,32 @@ auto MemTable::Get(std::string_view key, std::uint64_t sequence, std::string& va
   }
   value.assign(node->value);
   return {};
+}
+
+auto MemTable::Lookup(std::string_view key, std::uint64_t sequence, table::Entry& output) const
+    -> Status {
+  if (sequence > kMaxSequence) {
+    return Status::InvalidArgument("sequence exceeds 56 bits");
+  }
+  const auto* node = Find(key, (sequence << 8) | 0xffU);
+  if (node == nullptr || node->key != key) {
+    return Status::NotFound("key");
+  }
+  table::Entry entry{.key = std::string(node->key), .value = std::string(node->value)};
+  table::AppendFixed<8>(entry.key, node->tag);
+  output = std::move(entry);
+  return {};
+}
+
+auto MemTable::Entries() const -> std::vector<table::Entry> {
+  std::vector<table::Entry> entries;
+  for (auto* node = head_.next[0].load(std::memory_order_acquire); node != nullptr;
+       node = node->next[0].load(std::memory_order_acquire)) {
+    table::Entry entry{.key = std::string(node->key), .value = std::string(node->value)};
+    table::AppendFixed<8>(entry.key, node->tag);
+    entries.push_back(std::move(entry));
+  }
+  return entries;
 }
 
 }  // namespace lsm::internal

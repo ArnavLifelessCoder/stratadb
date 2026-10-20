@@ -68,10 +68,18 @@ auto Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) -> 
   }
   bytes_written_ += record.size();
   if (sync) {
-    failure_ = file_->Sync();
-    if (failure_.ok()) {
-      ++sync_count_;
-    }
+    return Sync();
+  }
+  return failure_;
+}
+
+auto Wal::Sync() -> Status {
+  if (!failure_.ok()) {
+    return failure_;
+  }
+  failure_ = file_->Sync();
+  if (failure_.ok()) {
+    ++sync_count_;
   }
   return failure_;
 }
@@ -90,14 +98,18 @@ auto Wal::RepairTail(std::size_t offset, std::size_t size) -> Status {
   return {};
 }
 
-auto Wal::Replay(MemTable& table, std::uint64_t& last_sequence) -> Status {
+auto Wal::Replay(MemTable& table, std::uint64_t& last_sequence, std::uint64_t first_sequence)
+    -> Status {
+  if (first_sequence == 0 || first_sequence > kMaxSequence + 1) {
+    return Status::InvalidArgument("invalid WAL starting sequence");
+  }
   std::string storage;
   auto status = file_->ReadAll(storage);
   if (!status.ok()) {
     return status;
   }
   std::string_view remaining(storage);
-  std::uint64_t last = 0;
+  std::uint64_t last = first_sequence - 1;
   while (!remaining.empty()) {
     const auto offset = storage.size() - remaining.size();
     // A power loss may leave allocated bytes zeroed instead of a short append.
