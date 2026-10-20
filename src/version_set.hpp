@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <filesystem>
 #include <memory>
 #include <vector>
@@ -45,8 +46,8 @@ auto WriteAtomicFile(const std::filesystem::path& path, std::string_view bytes) 
 auto EncodeEdit(const VersionEdit& edit, std::string& output) -> Status;
 auto DecodeEdit(std::string_view input, VersionEdit& output) -> Status;
 
-// Externally serialized. Versions and mapped readers remain alive through shared
-// ownership after replacement; no live table is deleted by this component.
+// Apply calls are externally serialized. State/BytesWritten may run concurrently
+// with Apply, including its file I/O. Published states are immutable.
 class VersionSet {
  public:
   static auto Open(const std::filesystem::path& directory, std::unique_ptr<VersionSet>& output)
@@ -55,15 +56,18 @@ class VersionSet {
   static auto Recover(const std::filesystem::path& directory, std::unique_ptr<platform::File> log,
                       std::unique_ptr<VersionSet>& output) -> Status;
   auto Apply(const VersionEdit& edit) -> Status;
-  [[nodiscard]] auto State() const -> const ManifestState& { return state_; }
-  [[nodiscard]] auto BytesWritten() const -> std::uint64_t { return bytes_written_; }
+  [[nodiscard]] auto State() const -> ManifestState {
+    return *published_.load(std::memory_order_acquire);
+  }
+  [[nodiscard]] auto BytesWritten() const -> std::uint64_t { return bytes_written_.load(); }
 
  private:
   auto LoadReaders(ManifestState& state) -> Status;
   std::filesystem::path directory_;
   std::unique_ptr<platform::File> log_;
   ManifestState state_;
+  std::atomic<std::shared_ptr<const ManifestState>> published_{std::make_shared<ManifestState>()};
   Status failure_;
-  std::uint64_t bytes_written_ = 0;
+  std::atomic<std::uint64_t> bytes_written_{0};
 };
 }  // namespace lsm::internal

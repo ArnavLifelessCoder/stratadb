@@ -61,6 +61,9 @@ struct DB::Impl {
   std::unique_ptr<internal::Wal> wal;
   std::shared_ptr<internal::MemTable> table = std::make_shared<internal::MemTable>();
   std::shared_ptr<internal::MemTable> immutable;
+  // Writers and manifest transactions serialize separately from read-view capture.
+  std::mutex write_mutex;
+  std::mutex manifest_mutex;
   std::mutex mutex;
   std::condition_variable changed;
   std::thread worker;
@@ -95,6 +98,9 @@ struct DB::Impl {
       if (table->MemoryUsage() <= options.memtable_bytes) {
         break;
       }
+      guard.unlock();
+      const std::lock_guard manifest_guard(manifest_mutex);
+      guard.lock();
       auto edit = versions->State().metadata;
       if (edit.next_file > std::numeric_limits<std::uint64_t>::max() - 2) {
         failure = Status::IOError("file number exhausted");
@@ -107,18 +113,21 @@ struct DB::Impl {
         return failure;
       }
       const auto path = internal::WalPath(directory, next_wal);
-      failure = internal::WriteAtomicFile(path, {});
+      guard.unlock();
+      auto status = internal::WriteAtomicFile(path, {});
       std::unique_ptr<internal::Wal> next;
-      if (failure.ok()) {
-        failure = OpenWal(path, next);
+      if (status.ok()) {
+        status = OpenWal(path, next);
       }
       edit.previous_wal = edit.current_wal;
       edit.current_wal = next_wal;
       edit.pending_table = pending_table;
       edit.last_sequence = sequence.load(std::memory_order_acquire);
-      if (failure.ok()) {
-        failure = versions->Apply(edit);
+      if (status.ok()) {
+        status = versions->Apply(edit);
       }
+      guard.lock();
+      failure = status;
       if (!failure.ok()) {
         return failure;
       }
@@ -158,8 +167,8 @@ struct DB::Impl {
           status = Status::IOError("flushed table size: " + error.message());
         }
       }
-      guard.lock();
       if (status.ok()) {
+        const std::lock_guard manifest_guard(manifest_mutex);
         auto edit = versions->State().metadata;
         edit.flushed_sequence = last;
         edit.previous_wal = 0;
@@ -172,11 +181,14 @@ struct DB::Impl {
              .largest = std::string(internal::table::UserKey(entries.back().key)),
              .reader = {}});
         status = versions->Apply(edit);
-        if (status.ok()) {
-          table_bytes += size;
-          immutable.reset();
-          static_cast<void>(internal::RemoveObsolete(internal::WalPath(directory, previous_wal)));
-        }
+      }
+      if (status.ok()) {
+        static_cast<void>(internal::RemoveObsolete(internal::WalPath(directory, previous_wal)));
+      }
+      guard.lock();
+      if (status.ok()) {
+        table_bytes += size;
+        immutable.reset();
       }
       if (!status.ok()) {
         failure = status;
@@ -214,7 +226,7 @@ auto DB::Open(const Options& options, const std::filesystem::path& path, std::un
   if (!status.ok()) {
     return status;
   }
-  const auto& metadata = impl->versions->State().metadata;
+  const auto metadata = impl->versions->State().metadata;
   std::uint64_t sequence = metadata.flushed_sequence;
   if (metadata.previous_wal != 0) {
     std::unique_ptr<internal::Wal> previous;
@@ -271,6 +283,7 @@ auto DB::Write(const WriteOptions& options, WriteBatch* batch) -> Status {
   if (batch == nullptr) {
     return Status::InvalidArgument("null batch");
   }
+  const std::lock_guard writer(impl_->write_mutex);
   std::unique_lock guard(impl_->mutex);
   if (!impl_->failure.ok()) {
     return impl_->failure;
@@ -356,7 +369,8 @@ auto DB::GetStats() -> Stats {
   stats.memtable_bytes =
       impl_->table->MemoryUsage() + (impl_->immutable ? impl_->immutable->MemoryUsage() : 0);
   stats.level_file_counts.resize(1);
-  for (const auto& file : impl_->versions->State().version->files) {
+  const auto version = impl_->versions->State().version;
+  for (const auto& file : version->files) {
     if (stats.level_file_counts.size() <= file.level) {
       stats.level_file_counts.resize(static_cast<std::size_t>(file.level) + 1);
     }

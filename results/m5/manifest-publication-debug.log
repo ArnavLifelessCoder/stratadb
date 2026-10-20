@@ -1,0 +1,105 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (6.3s)
+-- Generating done (0.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/10] Building CXX object CMakeFiles\lsm.dir\src\file_cleanup.cpp.obj
+[2/10] Building CXX object CMakeFiles\lsm.dir\src\version_set.cpp.obj
+[3/10] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[4/10] Linking CXX static library lsm.lib
+[5/10] Building CXX object CMakeFiles\lsm_tests.dir\tests\cleanup_test.cpp.obj
+[6/10] Building CXX object CMakeFiles\lsm_tests.dir\tests\version_set_test.cpp.obj
+[7/10] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+[8/10] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[9/10] Linking CXX executable lsm_db_process.exe
+[10/10] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = ManifestTest.*:FlushTest.*:CleanupTest.*:DBTest.Concurrent*
+[==========] Running 23 tests from 4 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from DBTest
+[ RUN      ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches
+[       OK ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches (774 ms)
+[----------] 1 test from DBTest (774 ms total)
+
+[----------] 10 tests from ManifestTest
+[ RUN      ] ManifestTest.ReadersKeepThePublishedStateWhileSyncIsBlocked
+[       OK ] ManifestTest.ReadersKeepThePublishedStateWhileSyncIsBlocked (0 ms)
+[ RUN      ] ManifestTest.ConcurrentReadersObserveCompletePublishedEdits
+[       OK ] ManifestTest.ConcurrentReadersObserveCompletePublishedEdits (21 ms)
+[ RUN      ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput
+[       OK ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput (0 ms)
+[ RUN      ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected
+Manifest recovery: truncated 1 tail bytes
+Manifest recovery: truncated 2 tail bytes
+Manifest recovery: truncated 3 tail bytes
+Manifest recovery: truncated 4 tail bytes
+Manifest recovery: truncated 5 tail bytes
+Manifest recovery: truncated 6 tail bytes
+Manifest recovery: truncated 7 tail bytes
+Manifest recovery: truncated 8 tail bytes
+Manifest recovery: truncated 9 tail bytes
+Manifest recovery: truncated 10 tail bytes
+Manifest recovery: truncated 11 tail bytes
+Manifest recovery: truncated 12 tail bytes
+Manifest recovery: truncated 13 tail bytes
+Manifest recovery: truncated 14 tail bytes
+Manifest recovery: truncated 15 tail bytes
+Manifest recovery: truncated 16 tail bytes
+Manifest recovery: truncated 17 tail bytes
+Manifest recovery: truncated 18 tail bytes
+Manifest recovery: truncated 512 tail bytes
+[       OK ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected (1 ms)
+[ RUN      ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion
+[       OK ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion (0 ms)
+[ RUN      ] ManifestTest.RejectsRegressingCountersAndInvalidFileState
+[       OK ] ManifestTest.RejectsRegressingCountersAndInvalidFileState (0 ms)
+[ RUN      ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership
+[       OK ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership (164 ms)
+[ RUN      ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites
+[       OK ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites (80 ms)
+[ RUN      ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal
+[       OK ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal (82 ms)
+[ RUN      ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase
+[       OK ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase (77 ms)
+[----------] 10 tests from ManifestTest (428 ms total)
+
+[----------] 10 tests from FlushTest
+[ RUN      ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles
+[       OK ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles (18 ms)
+[ RUN      ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap
+[       OK ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap (2830 ms)
+[ RUN      ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables
+[       OK ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables (339 ms)
+[ RUN      ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens
+[       OK ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens (4455 ms)
+[ RUN      ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence
+[       OK ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence (185 ms)
+[ RUN      ] FlushTest.RecoversRotationAndUncommittedTablePublication
+[       OK ] FlushTest.RecoversRotationAndUncommittedTablePublication (638 ms)
+[ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+[       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (310 ms)
+[ RUN      ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+[       OK ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch (180 ms)
+[ RUN      ] FlushTest.MissingReferencedWalOrTableIsCorruption
+[       OK ] FlushTest.MissingReferencedWalOrTableIsCorruption (427 ms)
+[ RUN      ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes
+[       OK ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes (366 ms)
+[----------] 10 tests from FlushTest (9753 ms total)
+
+[----------] 2 tests from CleanupTest
+[ RUN      ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites
+Deferred obsolete-file cleanup: "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\test-data\\92081492975400-22\\2.wal": The directory is not empty.
+[       OK ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites (287 ms)
+[ RUN      ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles
+[       OK ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles (358 ms)
+[----------] 2 tests from CleanupTest (646 ms total)
+
+[----------] Global test environment tear-down
+[==========] 23 tests from 4 test suites ran. (11603 ms total)
+[  PASSED  ] 23 tests.

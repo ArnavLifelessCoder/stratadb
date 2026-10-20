@@ -26,10 +26,13 @@ No SSTable referenced by a Version is deleted in M4.
 
 ## Rotation and background flush
 
-One mutex serializes writers and state transitions. Reads take a brief state
-snapshot under that mutex, then traverse captured memtables and mapped tables
-without holding it. A committed sequence is published only after every operation
-in a batch is inserted. A batch never straddles memtables.
+A writer mutex serializes writes. Reads take a brief state snapshot under a
+separate DB mutex, then traverse captured memtables and mapped tables without
+holding it. A manifest mutex serializes edit construction and Apply, while
+reader opening and manifest append/sync run outside the DB mutex. VersionSet
+publishes a shared immutable state atomically after sync; readers can retain the
+previous state throughout I/O. A committed sequence is published only after every
+operation in a batch is inserted. A batch never straddles memtables.
 
 When arena allocation exceeds `memtable_bytes`, rotation does the following:
 

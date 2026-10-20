@@ -302,6 +302,8 @@ auto VersionSet::Recover(const std::filesystem::path& directory,
   if (!status.ok()) {
     return status;
   }
+  versions->published_.store(std::make_shared<ManifestState>(versions->state_),
+                             std::memory_order_release);
   output = std::move(versions);
   return {};
 }
@@ -429,6 +431,7 @@ auto VersionSet::Apply(const VersionEdit& edit) -> Status {
   }
   if (failure_.ok()) {
     state_ = std::move(next);
+    published_.store(std::make_shared<ManifestState>(state_), std::memory_order_release);
   }
   return failure_;
 }

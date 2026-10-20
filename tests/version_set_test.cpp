@@ -2,7 +2,10 @@
 
 #include <gtest/gtest.h>
 
+#include <functional>
 #include <limits>
+#include <semaphore>
+#include <thread>
 
 #include "table/format.hpp"
 #include "temp_directory.hpp"
@@ -18,6 +21,7 @@ class ManifestFile final : public platform::File {
   bool fail_append = false;
   unsigned syncs = 0;
   unsigned appends = 0;
+  std::function<void()> before_sync;
   auto ReadAll(std::string& out) -> Status override {
     if (fail_read) {
       return Status::IOError("injected read");
@@ -32,6 +36,9 @@ class ManifestFile final : public platform::File {
   }
   auto Sync() -> Status override {
     ++syncs;
+    if (before_sync) {
+      before_sync();
+    }
     return fail_sync ? Status::IOError("injected sync") : Status{};
   }
   auto Truncate(std::uint64_t size) -> Status override {
@@ -66,6 +73,59 @@ auto Rotation() -> VersionEdit {
           .pending_table = 4,
           .added = {},
           .removed = {}};
+}
+
+TEST(ManifestTest, ReadersKeepThePublishedStateWhileSyncIsBlocked) {
+  auto file = std::make_unique<ManifestFile>();
+  file->bytes = Record({});
+  std::binary_semaphore entered(0);
+  std::binary_semaphore finish(0);
+  file->before_sync = [&] {
+    entered.release();
+    finish.acquire();
+  };
+  std::unique_ptr<VersionSet> versions;
+  ASSERT_TRUE(VersionSet::Recover({}, std::move(file), versions).ok());
+  Status result;
+  std::thread writer([&] { result = versions->Apply(Rotation()); });
+  entered.acquire();
+  const auto previous = versions->State();
+  EXPECT_EQ(previous.metadata.current_wal, 2U);
+  EXPECT_GT(versions->BytesWritten(), 0U);
+  finish.release();
+  writer.join();
+  ASSERT_TRUE(result.ok());
+  EXPECT_EQ(versions->State().metadata.current_wal, 3U);
+  EXPECT_EQ(previous.metadata.current_wal, 2U);
+}
+
+TEST(ManifestTest, ConcurrentReadersObserveCompletePublishedEdits) {
+  auto file = std::make_unique<ManifestFile>();
+  file->bytes = Record({});
+  std::unique_ptr<VersionSet> versions;
+  ASSERT_TRUE(VersionSet::Recover({}, std::move(file), versions).ok());
+  std::atomic<bool> done{false};
+  std::atomic<bool> valid{true};
+  std::thread reader([&] {
+    std::uint64_t previous = 0;
+    while (!done.load()) {
+      const auto state = versions->State();
+      if (state.metadata.last_sequence < previous || state.metadata.current_wal != 2 ||
+          state.metadata.next_file != 3 || !state.version->files.empty()) {
+        valid.store(false);
+      }
+      previous = state.metadata.last_sequence;
+    }
+  });
+  for (std::uint64_t sequence = 1; sequence <= 500; ++sequence) {
+    auto edit = versions->State().metadata;
+    edit.last_sequence = sequence;
+    EXPECT_TRUE(versions->Apply(edit).ok());
+  }
+  done.store(true);
+  reader.join();
+  EXPECT_TRUE(valid.load());
+  EXPECT_EQ(versions->State().metadata.last_sequence, 500U);
 }
 
 TEST(ManifestTest, CodecRoundTripTruncationAndInvalidVarintsPreserveOutput) {
