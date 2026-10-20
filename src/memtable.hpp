@@ -28,7 +28,7 @@ class MemTable {
   auto Get(std::string_view key, std::uint64_t sequence, std::string& value) const -> Status;
   // Unlike Get, a visible tombstone is returned as an entry, not absence.
   auto Lookup(std::string_view key, std::uint64_t sequence, table::Entry& output) const -> Status;
-  // Caller must freeze the table (no further inserts) before exporting it.
+  // Caller must prevent inserts while exporting (freeze the table or hold the writer lock).
   auto Entries() const -> std::vector<table::Entry>;
   [[nodiscard]] auto MemoryUsage() const noexcept -> std::size_t { return allocated_.load(); }
 

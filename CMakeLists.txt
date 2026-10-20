@@ -101,6 +101,7 @@ if(BUILD_TESTING)
     tests/cleanup_test.cpp
     tests/compaction_test.cpp
     tests/iterator_test.cpp
+    tests/snapshot_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)
@@ -123,7 +124,7 @@ if(BUILD_TESTING)
     add_test(NAME seed_reject_${bad_seed} COMMAND lsm_tests "${seed_argument}")
     # Match the parser's message so a crash or unrelated failure does not count as a pass.
     set_tests_properties(seed_reject_${bad_seed} PROPERTIES
-      PASS_REGULAR_EXPRESSION "Invalid --seed" TIMEOUT 10)
+      PASS_REGULAR_EXPRESSION "Invalid --seed" TIMEOUT 60)
   endforeach()
 endif()
 

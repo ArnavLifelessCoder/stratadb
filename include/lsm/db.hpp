@@ -8,6 +8,7 @@
 #include <string_view>
 #include <vector>
 
+#include "lsm/iterator.hpp"
 #include "lsm/status.hpp"
 #include "lsm/write_batch.hpp"
 
@@ -55,6 +56,11 @@ class DB {
   auto Delete(const WriteOptions&, std::string_view key) -> Status;
   auto Write(const WriteOptions&, WriteBatch* batch) -> Status;
   auto Get(const ReadOptions&, std::string_view key, std::string* value) -> Status;
+  // Iterators capture a stable read view. Release all snapshots and iterators
+  // before destroying this DB. A snapshot belongs only to the DB that created it.
+  auto NewIterator(const ReadOptions&) -> std::unique_ptr<Iterator>;
+  auto GetSnapshot() -> const Snapshot*;
+  void ReleaseSnapshot(const Snapshot*);
   auto GetStats() -> Stats;
 
  private:

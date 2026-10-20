@@ -1,0 +1,64 @@
+UpdateCTestConfiguration  from :C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/DartConfiguration.tcl
+UpdateCTestConfiguration  from :C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug/DartConfiguration.tcl
+Parse Config file:C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug/DartConfiguration.tcl
+Test project C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 2
+    Start 2: seed_maximum
+
+2: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed=18446744073709551615" "--gtest_filter=StatusTest.DefaultIsSuccess"
+2: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+2: Test timeout computed to be: 1500
+2: Randomized test seed: 18446744073709551615
+2: Test mode: full
+2: Note: Google Test filter = StatusTest.DefaultIsSuccess
+2: [==========] Running 1 test from 1 test suite.
+2: [----------] Global test environment set-up.
+2: [----------] 1 test from StatusTest
+2: [ RUN      ] StatusTest.DefaultIsSuccess
+2: [       OK ] StatusTest.DefaultIsSuccess (0 ms)
+2: [----------] 1 test from StatusTest (0 ms total)
+2: 
+2: [----------] Global test environment tear-down
+2: [==========] 1 test from 1 test suite ran. (0 ms total)
+2: [  PASSED  ] 1 test.
+1/4 Test #2: seed_maximum .....................   Passed    0.24 sec
+test 3
+    Start 3: seed_reject_empty
+
+3: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed="
+3: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+3: Test timeout computed to be: 60
+3: Invalid --seed: expected an unsigned decimal 64-bit integer
+2/4 Test #3: seed_reject_empty ................   Passed    2.05 sec
+test 4
+    Start 4: seed_reject_text
+
+4: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed=invalid"
+4: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+4: Test timeout computed to be: 60
+4: Invalid --seed: expected an unsigned decimal 64-bit integer
+3/4 Test #4: seed_reject_text .................   Passed    0.24 sec
+test 5
+    Start 5: seed_reject_overflow
+
+5: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed=18446744073709551616"
+5: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+5: Test timeout computed to be: 60
+5: Invalid --seed: expected an unsigned decimal 64-bit integer
+4/4 Test #5: seed_reject_overflow .............   Passed    0.52 sec
+
+The following tests passed:
+	seed_maximum
+	seed_reject_empty
+	seed_reject_text
+	seed_reject_overflow
+
+100% tests passed, 0 tests failed out of 4
+
+Total Test time (real) =   3.12 sec

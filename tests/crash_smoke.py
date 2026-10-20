@@ -90,7 +90,7 @@ def main() -> None:
         "platform": platform.platform(),
         "system": platform.system(),
         "seed": args.seed,
-        "scope": "M4 forced-flush smoke; not the M6 campaign",
+        "scope": "M5 forced-flush and compaction smoke; not the M6 campaign",
         "memtable_bytes": 1,
         "cycles": [],
     }

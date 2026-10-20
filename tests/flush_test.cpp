@@ -51,7 +51,9 @@ TEST(FlushTest, ReopenAfterZeroOneAndManyFlushesMatchesMap) {
   for (const unsigned writes : {0U, 1U, 2U, 9U, 32U}) {
     SCOPED_TRACE(writes);
     test::TempDirectory directory;
-    const Options options{.memtable_bytes = 1, .block_bytes = 128};
+    const Options options{.memtable_bytes = 1,
+                          .block_bytes = 128,
+                          .l0_compaction_trigger = std::numeric_limits<int>::max()};
     std::unique_ptr<DB> db;
     ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
     std::mt19937_64 random(test::seed);
@@ -105,7 +107,9 @@ TEST(FlushTest, LargeValuesAndTombstonesAcrossOverlappingTables) {
 TEST(FlushTest, MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens) {
   SCOPED_TRACE(test::seed);
   test::TempDirectory directory;
-  const Options options{.memtable_bytes = 65536, .block_bytes = 512};
+  const Options options{.memtable_bytes = 65536,
+                        .block_bytes = 512,
+                        .l0_compaction_trigger = std::numeric_limits<int>::max()};
   std::unique_ptr<DB> db;
   ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
   std::mt19937_64 random(test::seed);

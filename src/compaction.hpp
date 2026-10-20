@@ -30,7 +30,7 @@ class MergingIterator {
   [[nodiscard]] auto status() const -> Status { return status_; }
 
  private:
-  auto Later(std::size_t left, std::size_t right) const -> bool;
+  [[nodiscard]] auto Later(std::size_t left, std::size_t right) const -> bool;
   std::vector<std::vector<table::Entry>> streams_;
   std::vector<std::size_t> positions_;
   std::vector<std::size_t> heap_;

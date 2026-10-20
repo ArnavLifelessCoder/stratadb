@@ -1,14 +1,15 @@
 # Flush, manifest and recovery
 
-M4 connects the WAL, memtable and standalone SSTables. The public DB methods are
-unchanged. Compaction, public snapshots and iterators remain M5 work.
+This note describes the flush and recovery protocol introduced in M4.
+[M5 compaction, snapshots and iterators](compaction-snapshots.md) extend its
+version ownership and cleanup rules.
 
 ## Durable files and edits
 
 File 1 is `MANIFEST-1`; the first WAL is `2.wal`. Later WAL and SSTable names use
 monotonically reserved integer numbers and `.wal` or `.sst` extensions.
 `CURRENT` contains `MANIFEST-1` followed by a newline. It is published through a
-temp file, file sync, close and native atomic rename. M4 has one growing manifest;
+temp file, file sync, close and native atomic rename. There is one growing manifest;
 manifest rollover is not implemented.
 
 The manifest is a CRC32C-protected edit log. Each frame has a uint32 CRC, uint32
@@ -22,7 +23,7 @@ size, and length-prefixed smallest/largest user keys. Removals contain numbers.
 Versions contain immutable file metadata and shared mapped readers. Applying an
 edit builds a replacement Version, appends and syncs its frame, then publishes
 the replacement. Readers retain the previous Version until their call completes.
-No SSTable referenced by a Version is deleted in M4.
+No SSTable is deleted while a Version still references its reader.
 
 ## Rotation and background flush
 

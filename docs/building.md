@@ -1,8 +1,9 @@
 # Building and testing
 
-M4 supplies background flush, manifests and recovery over the WAL, memtable and
+M5 adds compaction, snapshots and stable iterators over the WAL, memtables and
 SSTables. See [the storage design](memtable-wal.md), [the SSTable format](sstable.md),
-and [flush recovery](flush-recovery.md) for contracts and current limits.
+[flush recovery](flush-recovery.md), and [compaction and snapshots](compaction-snapshots.md)
+for contracts and current limits.
 
 ## Windows
 
@@ -24,9 +25,9 @@ not a milestone gate. Default CTest, CI and `verify.ps1` keep all 10,000 seeds.
 `-Quick` can also be combined with `-TestFilter`.
 
 Run `.\scripts\verify.ps1` to record both complete build/test logs and Windows
-toolchain metadata in `results/m4/`. Pass `-Milestone NAME` to select another folder.
+toolchain metadata in `results/m5/`. Pass `-Milestone NAME` to select another folder.
 Use `-CleanEvidence` to require an unchanged committed tree and write to the ignored
-`build/verification-m4/` folder. Copy finished logs to results only after all
+`build/verification-m5/` folder. Copy finished logs to results only after all
 clean-tree measurements are complete.
 
 Alternatively, in an x64 VS 2022 developer shell:
@@ -126,7 +127,8 @@ python scripts/measure_bloom.py --binary build/debug/lsm_tests.exe --output buil
 ```
 
 Start from a clean tree, keep redirected logs under build, and copy the completed
-JSON into results/m4 afterwards. Use the actual compiler and flags of your build.
+JSON into the current milestone's results folder afterwards. Use the actual
+compiler and flags of your build.
 On Linux omit `.exe` and label
 the result accordingly. The test checks all inserted keys and queries a disjoint
 absent-key set. It verifies the measured rate is within a factor of two of the

@@ -1,0 +1,78 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (7.6s)
+-- Generating done (0.4s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/12] Building CXX object CMakeFiles\lsm_db_process.dir\tests\db_process.cpp.obj
+[2/12] Building CXX object CMakeFiles\lsm.dir\src\iterator.cpp.obj
+[3/12] Building CXX object CMakeFiles\lsm.dir\src\compaction.cpp.obj
+[4/12] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[5/12] Building CXX object CMakeFiles\lsm_tests.dir\tests\cleanup_test.cpp.obj
+[6/12] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+[7/12] Linking CXX static library lsm.lib
+[8/12] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[9/12] Building CXX object CMakeFiles\lsm_tests.dir\tests\compaction_test.cpp.obj
+[10/12] Building CXX object CMakeFiles\lsm_tests.dir\tests\snapshot_test.cpp.obj
+[11/12] Linking CXX executable lsm_db_process.exe
+[12/12] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = SnapshotTest.*:FlushTest.*:CleanupTest.*:DBTest.Concurrent*
+[==========] Running 18 tests from 4 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from DBTest
+[ RUN      ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches
+[       OK ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches (980 ms)
+[----------] 1 test from DBTest (980 ms total)
+
+[----------] 10 tests from FlushTest
+[ RUN      ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles
+[       OK ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles (31 ms)
+[ RUN      ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap
+[       OK ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap (3504 ms)
+[ RUN      ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables
+[       OK ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables (427 ms)
+[ RUN      ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens
+[       OK ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens (4902 ms)
+[ RUN      ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence
+[       OK ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence (213 ms)
+[ RUN      ] FlushTest.RecoversRotationAndUncommittedTablePublication
+[       OK ] FlushTest.RecoversRotationAndUncommittedTablePublication (646 ms)
+[ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+[       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (365 ms)
+[ RUN      ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+[       OK ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch (209 ms)
+[ RUN      ] FlushTest.MissingReferencedWalOrTableIsCorruption
+[       OK ] FlushTest.MissingReferencedWalOrTableIsCorruption (455 ms)
+[ RUN      ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes
+[       OK ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes (390 ms)
+[----------] 10 tests from FlushTest (11149 ms total)
+
+[----------] 2 tests from CleanupTest
+[ RUN      ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites
+Deferred obsolete-file cleanup: "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\test-data\\92864269734200-17\\2.wal": The directory is not empty.
+[       OK ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites (352 ms)
+[ RUN      ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles
+[       OK ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles (419 ms)
+[----------] 2 tests from CleanupTest (771 ms total)
+
+[----------] 5 tests from SnapshotTest
+[ RUN      ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction
+[       OK ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction (1904 ms)
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (322 ms)
+[ RUN      ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues
+[       OK ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues (1978 ms)
+[ RUN      ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected
+[       OK ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected (315 ms)
+[ RUN      ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction
+[       OK ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction (1085 ms)
+[----------] 5 tests from SnapshotTest (5607 ms total)
+
+[----------] Global test environment tear-down
+[==========] 18 tests from 4 test suites ran. (18508 ms total)
+[  PASSED  ] 18 tests.
