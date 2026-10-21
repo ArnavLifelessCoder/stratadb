@@ -79,5 +79,13 @@ TEST(MergingIteratorTest, DuplicateTieOrderSurvivesDirectionChanges) {
   EXPECT_FALSE(it.Valid());
   EXPECT_TRUE(it.status().ok());
 }
+
+TEST(MergingIteratorTest, InvalidTombstoneIsRejectedWhenPositioned) {
+  const auto key = table::InternalKey("key", 1, WriteBatch::Type::kDelete);
+  MergingIterator it(test::MakeIterators({{{key, "invalid payload"}}}));
+  it.SeekToFirst();
+  EXPECT_FALSE(it.Valid());
+  EXPECT_EQ(it.status().code(), StatusCode::kCorruption);
+}
 }  // namespace
 }  // namespace lsm::internal::streaming

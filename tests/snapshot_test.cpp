@@ -1,8 +1,10 @@
 #include <gtest/gtest.h>
 
+#include <algorithm>
 #include <atomic>
 #include <chrono>
 #include <functional>
+#include <iostream>
 #include <limits>
 #include <map>
 #include <random>
@@ -83,48 +85,52 @@ void CheckView(DB& db, const Snapshot* snapshot,
 }
 
 TEST(SnapshotTest, RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction) {
-  test::TempDirectory directory;
-  const Options options{.memtable_bytes = 65536, .l0_compaction_trigger = 2};
-  std::unique_ptr<DB> db;
-  ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
-  std::mt19937_64 random(test::seed);
-  std::map<std::string, std::string> expected;
-  std::vector<std::pair<const Snapshot*, std::map<std::string, std::string>>> snapshots;
-  for (unsigned operation = 0; operation < 1000; ++operation) {
-    SCOPED_TRACE(operation);
-    const auto key = std::to_string(random() % 32);
-    if (random() % 4 == 0) {
-      ASSERT_TRUE(db->Delete({}, key).ok());
-      expected.erase(key);
-    } else {
-      const std::string value(static_cast<std::size_t>(random() % 2048),
-                              static_cast<char>(random()));
-      WriteBatch batch;
-      ASSERT_TRUE(batch.Put(key, "intermediate").ok());
-      ASSERT_TRUE(batch.Delete(key).ok());
-      ASSERT_TRUE(batch.Put(key, value).ok());
-      ASSERT_TRUE(db->Write({}, &batch).ok());
-      expected[key] = value;
+  for (unsigned trial = 0; trial < (test::quick ? 2U : 100U); ++trial) {
+    const auto seed = test::seed + trial;
+    SCOPED_TRACE(seed);
+    test::TempDirectory directory;
+    const Options options{.memtable_bytes = 65536, .l0_compaction_trigger = 2};
+    std::unique_ptr<DB> db;
+    ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
+    std::mt19937_64 random(seed);
+    std::map<std::string, std::string> expected;
+    std::vector<std::pair<const Snapshot*, std::map<std::string, std::string>>> snapshots;
+    for (unsigned operation = 0; operation < 300; ++operation) {
+      SCOPED_TRACE(operation);
+      const auto key = std::to_string(random() % 32);
+      if (random() % 4 == 0) {
+        ASSERT_TRUE(db->Delete({}, key).ok());
+        expected.erase(key);
+      } else {
+        const std::string value(static_cast<std::size_t>(random() % 2048),
+                                static_cast<char>(random()));
+        WriteBatch batch;
+        ASSERT_TRUE(batch.Put(key, "intermediate").ok());
+        ASSERT_TRUE(batch.Delete(key).ok());
+        ASSERT_TRUE(batch.Put(key, value).ok());
+        ASSERT_TRUE(db->Write({}, &batch).ok());
+        expected[key] = value;
+      }
+      if (operation == 0 || random() % 47 == 0) snapshots.emplace_back(db->GetSnapshot(), expected);
+      if (snapshots.size() > 6) {
+        db->ReleaseSnapshot(snapshots.front().first);
+        snapshots.erase(snapshots.begin());
+      }
+      if (operation % 101 == 0) {
+        CheckView(*db, nullptr, expected);
+        for (const auto& [snapshot, reference] : snapshots) CheckView(*db, snapshot, reference);
+      }
     }
-    if (random() % 47 == 0) snapshots.emplace_back(db->GetSnapshot(), expected);
-    if (snapshots.size() > 6) {
-      db->ReleaseSnapshot(snapshots.front().first);
-      snapshots.erase(snapshots.begin());
+    CheckView(*db, nullptr, expected);
+    for (const auto& [snapshot, reference] : snapshots) {
+      CheckView(*db, snapshot, reference);
+      db->ReleaseSnapshot(snapshot);
     }
-    if (operation % 101 == 0) {
-      CheckView(*db, nullptr, expected);
-      for (const auto& [snapshot, reference] : snapshots) CheckView(*db, snapshot, reference);
-    }
+    db.reset();
+    ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
+    EXPECT_GT(Count(*db, 1), 0U);
+    CheckView(*db, nullptr, expected);
   }
-  CheckView(*db, nullptr, expected);
-  for (const auto& [snapshot, reference] : snapshots) {
-    CheckView(*db, snapshot, reference);
-    db->ReleaseSnapshot(snapshot);
-  }
-  db.reset();
-  ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
-  EXPECT_GT(Count(*db, 1), 0U);
-  CheckView(*db, nullptr, expected);
 }
 
 TEST(SnapshotTest, VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed) {
@@ -245,6 +251,7 @@ TEST(SnapshotTest, IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTable
   ASSERT_GT(Count(*db, 1), 8U);
   const auto before = internal::table::TableReader::DataBlocksRead();
   auto iterator = db->NewIterator({});
+  const auto creation_reads = internal::table::TableReader::DataBlocksRead() - before;
   EXPECT_EQ(internal::table::TableReader::DataBlocksRead(), before);
   iterator->Seek("100000");
   for (unsigned key = 100000; key < 100005; ++key) {
@@ -255,6 +262,92 @@ TEST(SnapshotTest, IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTable
   }
   EXPECT_TRUE(iterator->status().ok());
   EXPECT_LE(internal::table::TableReader::DataBlocksRead() - before, Count(*db, 0) + 2);
+  std::cout << "ITERATOR_BLOCK_READS creation=" << creation_reads
+            << " short_scan=" << internal::table::TableReader::DataBlocksRead() - before
+            << " l1_tables=" << Count(*db, 1) << '\n';
+}
+
+TEST(SnapshotTest, SlowIteratorKeepsItsInputsWhileCompactionReclaimsOtherTables) {
+  test::TempDirectory directory;
+  const Options options{.memtable_bytes = 65536, .l0_compaction_trigger = 2};
+  std::unique_ptr<DB> db;
+  ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
+  const std::string old_value(256, 'o');
+  const auto write = [&](char byte) {
+    WriteBatch batch;
+    for (unsigned key = 100000; key < 100500; ++key) {
+      const auto status = batch.Put(std::to_string(key), std::string(256, byte));
+      if (!status.ok()) return false;
+    }
+    return db->Write({}, &batch).ok();
+  };
+  const auto tables = [&] {
+    std::vector<std::filesystem::path> paths;
+    for (const auto& entry : std::filesystem::directory_iterator(directory.path()))
+      if (entry.path().extension() == ".sst") paths.push_back(entry.path());
+    return paths;
+  };
+  const auto absent = [](const auto& paths) {
+    for (const auto& path : paths) {
+      std::error_code error;
+      const bool exists = std::filesystem::exists(path, error);
+      if (error || exists) return false;
+    }
+    return true;
+  };
+  ASSERT_TRUE(write('o'));
+  ASSERT_TRUE(write('o'));
+  ASSERT_TRUE(WaitFor([&] { return Count(*db, 0) == 0 && Count(*db, 1) > 0; }));
+  db.reset();
+  ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
+  const auto pinned = tables();
+  ASSERT_FALSE(pinned.empty());
+  auto iterator = db->NewIterator({});
+  std::vector<std::filesystem::path> intermediate;
+  std::atomic<bool> done{false};
+  std::atomic<bool> success{false};
+  std::jthread writer([&] {
+    success.store([&] {
+      if (!write('a') || !write('b') || !WaitFor([&] { return Count(*db, 0) == 0; })) return false;
+      for (const auto& path : tables())
+        if (std::ranges::find(pinned, path) == pinned.end()) intermediate.push_back(path);
+      if (intermediate.empty() || !write('c') || !write('d') ||
+          !WaitFor([&] { return Count(*db, 0) == 0; }))
+        return false;
+      return WaitFor([&] { return absent(intermediate); });
+    }());
+    done.store(true);
+  });
+  unsigned passes = 0;
+  do {
+    const bool reverse = passes++ % 2 != 0;
+    if (reverse)
+      iterator->SeekToLast();
+    else
+      iterator->SeekToFirst();
+    for (unsigned step = 0; step < 500; ++step) {
+      if (!iterator->Valid()) {
+        ADD_FAILURE() << iterator->status().ToString();
+        break;
+      }
+      EXPECT_EQ(iterator->key(), std::to_string(reverse ? 100499 - step : 100000 + step));
+      EXPECT_EQ(iterator->value(), old_value);
+      std::this_thread::sleep_for(std::chrono::milliseconds(1));
+      if (reverse)
+        iterator->Prev();
+      else
+        iterator->Next();
+    }
+    EXPECT_FALSE(iterator->Valid());
+    EXPECT_TRUE(iterator->status().ok());
+  } while (!done.load());
+  writer.join();
+  EXPECT_TRUE(success.load());
+  EXPECT_FALSE(intermediate.empty());
+  EXPECT_TRUE(absent(intermediate));
+  for (const auto& path : pinned) EXPECT_TRUE(std::filesystem::exists(path));
+  iterator.reset();
+  EXPECT_TRUE(WaitFor([&] { return absent(pinned); }));
 }
 
 TEST(SnapshotTest, FailedCompactionPublicationRetainsInputsForRecovery) {

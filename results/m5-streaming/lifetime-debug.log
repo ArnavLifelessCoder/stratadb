@@ -1,0 +1,41 @@
+[1/4] Building CXX object CMakeFiles\lsm.dir\src\merging_iterator.cpp.obj
+[2/4] Linking CXX static library lsm.lib
+[3/4] Linking CXX executable lsm_db_process.exe
+[4/4] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: quick (not a milestone gate)
+Note: Google Test filter = MergingIteratorTest.*:SnapshotTest.*
+[==========] Running 11 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from MergingIteratorTest
+[ RUN      ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort
+[       OK ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort (161 ms)
+[ RUN      ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges
+[       OK ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges (0 ms)
+[ RUN      ] MergingIteratorTest.InvalidTombstoneIsRejectedWhenPositioned
+[       OK ] MergingIteratorTest.InvalidTombstoneIsRejectedWhenPositioned (0 ms)
+[----------] 3 tests from MergingIteratorTest (161 ms total)
+
+[----------] 8 tests from SnapshotTest
+[ RUN      ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction
+[       OK ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction (2635 ms)
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (909 ms)
+[ RUN      ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues
+[       OK ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues (5905 ms)
+[ RUN      ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected
+[       OK ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected (1205 ms)
+[ RUN      ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables
+ITERATOR_BLOCK_READS creation=0 short_scan=1 l1_tables=30
+[       OK ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables (11274 ms)
+[ RUN      ] SnapshotTest.SlowIteratorKeepsItsInputsWhileCompactionReclaimsOtherTables
+[       OK ] SnapshotTest.SlowIteratorKeepsItsInputsWhileCompactionReclaimsOtherTables (9053 ms)
+[ RUN      ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery
+[       OK ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery (2234 ms)
+[ RUN      ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction
+[       OK ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction (5095 ms)
+[----------] 8 tests from SnapshotTest (38315 ms total)
+
+[----------] Global test environment tear-down
+[==========] 11 tests from 2 test suites ran. (38477 ms total)
+[  PASSED  ] 11 tests.

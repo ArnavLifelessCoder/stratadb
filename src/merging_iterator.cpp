@@ -17,8 +17,10 @@ MergingIterator::MergingIterator(std::vector<std::unique_ptr<InternalIterator>> 
 
 auto MergingIterator::Check(std::size_t child) -> bool {
   status_ = children_[child]->status();
-  if (status_.ok() && children_[child]->Valid() && !table::ValidKey(children_[child]->key()))
-    status_ = Status::Corruption("invalid merge cursor key");
+  if (status_.ok() && children_[child]->Valid() &&
+      (!table::ValidKey(children_[child]->key()) ||
+       ((table::Tag(children_[child]->key()) & 0xffU) == 0 && !children_[child]->value().empty())))
+    status_ = Status::Corruption("invalid merge cursor key or tombstone");
   return status_.ok();
 }
 
