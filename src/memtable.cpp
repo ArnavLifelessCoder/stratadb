@@ -124,8 +124,20 @@ auto MemTable::Insert(std::uint64_t sequence, WriteBatch::Type type, std::string
   if (type == WriteBatch::Type::kDelete) {
     value = {};
   }
-  auto* node = new (Allocate(sizeof(Node) + key.size() + value.size())) Node;
-  auto* bytes = reinterpret_cast<char*>(node + 1);
+  std::size_t height = 1;
+  while (height < kHeight && (random_() & 3U) == 0) {
+    ++height;
+  }
+  // Layout: Node | `height` links | key bytes | value bytes.
+  using Link = std::atomic<Node*>;
+  auto* raw = static_cast<std::byte*>(
+      Allocate(sizeof(Node) + height * sizeof(Link) + key.size() + value.size()));
+  auto* node = new (raw) Node;
+  node->next = reinterpret_cast<Link*>(raw + sizeof(Node));
+  for (std::size_t level = 0; level < height; ++level) {
+    new (&node->next[level]) Link(nullptr);
+  }
+  auto* bytes = reinterpret_cast<char*>(node->next + height);
   if (!key.empty()) {
     std::memcpy(bytes, key.data(), key.size());
   }
@@ -136,10 +148,6 @@ auto MemTable::Insert(std::uint64_t sequence, WriteBatch::Type type, std::string
   }
   node->value = std::string_view(bytes, value.size());
   node->tag = tag;
-  std::size_t height = 1;
-  while (height < kHeight && (random_() & 3U) == 0) {
-    ++height;
-  }
   // Publish level zero first. Once reachable, every immutable field is initialized.
   for (std::size_t level = 0; level < height; ++level) {
     node->next[level].store(previous[level]->next[level].load(std::memory_order_relaxed),

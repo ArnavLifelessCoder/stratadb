@@ -20,7 +20,7 @@ namespace lsm::internal {
 // Destruction requires all readers to have stopped.
 class MemTable {
  public:
-  explicit MemTable(std::uint64_t seed = 0x5eed) : random_(seed) {}
+  explicit MemTable(std::uint64_t seed = 0x5eed) : random_(seed) { head_.next = head_next_.data(); }
   MemTable(const MemTable&) = delete;
   auto operator=(const MemTable&) -> MemTable& = delete;
 
@@ -41,7 +41,9 @@ class MemTable {
     std::string_view value;
     // Numeric representation of the internal key's 56-bit sequence and 8-bit type.
     std::uint64_t tag = 0;
-    std::array<std::atomic<Node*>, kHeight> next{};
+    // One link per level of this node, stored right after it in the arena, so
+    // a node pays for its own height (1.33 levels on average), not for 12.
+    std::atomic<Node*>* next = nullptr;
   };
   static auto Before(const Node& node, std::string_view key, std::uint64_t tag) -> bool;
   auto Find(std::string_view key, std::uint64_t tag,
@@ -49,6 +51,7 @@ class MemTable {
   auto Allocate(std::size_t bytes) -> void*;
 
   mutable Node head_;
+  mutable std::array<std::atomic<Node*>, kHeight> head_next_{};
   std::vector<std::vector<std::byte>> blocks_;
   std::byte* free_ = nullptr;
   std::size_t remaining_ = 0;

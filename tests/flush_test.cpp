@@ -274,7 +274,10 @@ TEST(FlushTest, MissingReferencedWalOrTableIsCorruption) {
 TEST(FlushTest, ConcurrentReadersAndWritersAcrossBackgroundFlushes) {
   test::TempDirectory directory;
   std::unique_ptr<DB> db;
-  ASSERT_TRUE(DB::Open({.memtable_bytes = 65536}, directory.path(), &db).ok());
+  // Compaction is off so the L0 count after reopen measures how many flushes ran.
+  const Options options{.memtable_bytes = 65536,
+                        .l0_compaction_trigger = std::numeric_limits<int>::max()};
+  ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
   ASSERT_TRUE(db->Put({}, "shared", "committed").ok());
   std::atomic<bool> done{false};
   std::atomic<unsigned> failures{0};
@@ -290,7 +293,7 @@ TEST(FlushTest, ConcurrentReadersAndWritersAcrossBackgroundFlushes) {
   std::vector<std::thread> writers;
   for (unsigned writer = 0; writer < 2; ++writer) {
     writers.emplace_back([&, writer] {
-      for (unsigned i = 0; i < 200; ++i) {
+      for (unsigned i = 0; i < 400; ++i) {
         WriteBatch batch;
         if (!batch.Put("shared", "intermediate").ok() || !batch.Delete("shared").ok() ||
             !batch.Put("shared", "committed").ok() ||
@@ -305,12 +308,12 @@ TEST(FlushTest, ConcurrentReadersAndWritersAcrossBackgroundFlushes) {
   for (auto& reader : readers) reader.join();
   EXPECT_EQ(failures.load(), 0U);
   db.reset();
-  ASSERT_TRUE(DB::Open({}, directory.path(), &db).ok());
+  ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
   EXPECT_GT(db->GetStats().level_file_counts.at(0), 1U);
   for (unsigned writer = 0; writer < 2; ++writer) {
     std::string value;
     ASSERT_TRUE(db->Get({}, std::to_string(writer), &value).ok());
-    EXPECT_EQ(value, "199");
+    EXPECT_EQ(value, "399");
   }
 }
 }  // namespace
