@@ -45,7 +45,7 @@ SETTINGS = {
 }
 
 
-def machine_info(build: Path) -> dict:
+def machine_info(build: Path, source_commit: str) -> dict:
     info = {
         "platform": platform.platform(),
         "machine": platform.machine(),
@@ -81,6 +81,11 @@ def machine_info(build: Path) -> dict:
             ):
                 if line.startswith(name):
                     info[name.split(":")[0].lower()] = line.split("=", 1)[1]
+    if source_commit:
+        # Built from `git archive <commit>`, which has no .git to inspect.
+        info["source_commit"] = source_commit
+        info["source"] = "git archive of source_commit"
+        return info
     try:
         info["source_commit"] = subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
@@ -140,6 +145,9 @@ def main() -> None:
     parser.add_argument("--bloom-num", type=int, default=2_000_000)
     parser.add_argument("--seed", type=int, default=24301)
     parser.add_argument("--cpus", default="", help='process affinity, e.g. "0-7"')
+    parser.add_argument(
+        "--source-commit", default="", help="record this commit when running from a git archive"
+    )
     args = parser.parse_args()
     if sys.platform == "win32" and args.bench.suffix != ".exe":
         args.bench = args.bench.with_suffix(".exe")
@@ -199,7 +207,7 @@ def write(args, started: str, records: list) -> None:
     result = {
         "started_utc": started,
         "finished_utc": datetime.now(UTC).isoformat(),
-        "machine": machine_info(args.bench.parent),
+        "machine": machine_info(args.bench.parent, args.source_commit),
         "settings": SETTINGS,
         "leveldb": "1.23 (99b3c03b3284f5886f9ef9a4ef703d57373e61be), built from source",
         "parameters": {
