@@ -1,0 +1,826 @@
+{
+ "recorded_utc": "2026-10-21T11:02:24.193118+00:00",
+ "platform": "Windows-11-10.0.26300-SP0",
+ "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+ "python": "3.13.15",
+ "source_commit": "unknown",
+ "executable": "lsm_crash_writer.exe",
+ "label": "Windows MSVC asan, built from git archive of a71e4e6704320b4f08e61c9f1a537aafabe0b14b",
+ "mode": "async",
+ "seed": 24301,
+ "kill": "TerminateProcess",
+ "cycles_requested": 50,
+ "cycles_passed": 50,
+ "failure": null,
+ "elapsed_s": 241.8,
+ "totals": {
+  "acknowledged_batches": 7158,
+  "lost_acknowledged_batches": 0,
+  "cycles_with_lost_tail": 0,
+  "in_flight_batches_applied": 44,
+  "early_kills": 4,
+  "max_l0_tables": 1,
+  "max_depth": 2
+ },
+ "cycles": [
+  {
+   "early_kill": true,
+   "lifetime_s": 0.089,
+   "acknowledged": 0,
+   "logged": 0,
+   "recovered_prefix": 0,
+   "lost_acknowledged": 0,
+   "in_flight_applied": false,
+   "live_keys": 0,
+   "levels": [
+    0
+   ],
+   "recovery_s": 2.123,
+   "cycle": 0
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.32,
+   "acknowledged": 409,
+   "logged": 410,
+   "recovered_prefix": 410,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 517,
+   "levels": [
+    0,
+    1
+   ],
+   "recovery_s": 2.556,
+   "cycle": 1
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.055,
+   "acknowledged": 157,
+   "logged": 157,
+   "recovered_prefix": 157,
+   "lost_acknowledged": 0,
+   "in_flight_applied": false,
+   "live_keys": 718,
+   "levels": [
+    0,
+    1
+   ],
+   "recovery_s": 2.105,
+   "cycle": 2
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.102,
+   "acknowledged": 218,
+   "logged": 219,
+   "recovered_prefix": 219,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 969,
+   "levels": [
+    0,
+    1
+   ],
+   "recovery_s": 2.148,
+   "cycle": 3
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.059,
+   "acknowledged": 243,
+   "logged": 244,
+   "recovered_prefix": 244,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 1228,
+   "levels": [
+    0,
+    1
+   ],
+   "recovery_s": 2.674,
+   "cycle": 4
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.385,
+   "acknowledged": 284,
+   "logged": 285,
+   "recovered_prefix": 285,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 1563,
+   "levels": [
+    0,
+    1
+   ],
+   "recovery_s": 2.345,
+   "cycle": 5
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.345,
+   "acknowledged": 203,
+   "logged": 204,
+   "recovered_prefix": 204,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 1825,
+   "levels": [
+    0,
+    2
+   ],
+   "recovery_s": 2.477,
+   "cycle": 6
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.396,
+   "acknowledged": 187,
+   "logged": 188,
+   "recovered_prefix": 188,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 2037,
+   "levels": [
+    0,
+    2
+   ],
+   "recovery_s": 2.535,
+   "cycle": 7
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.145,
+   "acknowledged": 95,
+   "logged": 96,
+   "recovered_prefix": 96,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 2161,
+   "levels": [
+    1,
+    2
+   ],
+   "recovery_s": 3.229,
+   "cycle": 8
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.043,
+   "acknowledged": 86,
+   "logged": 87,
+   "recovered_prefix": 87,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 2240,
+   "levels": [
+    0,
+    2
+   ],
+   "recovery_s": 2.615,
+   "cycle": 9
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.064,
+   "acknowledged": 86,
+   "logged": 87,
+   "recovered_prefix": 87,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 2379,
+   "levels": [
+    0,
+    2
+   ],
+   "recovery_s": 2.616,
+   "cycle": 10
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.119,
+   "acknowledged": 143,
+   "logged": 144,
+   "recovered_prefix": 144,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 2533,
+   "levels": [
+    0,
+    2
+   ],
+   "recovery_s": 2.699,
+   "cycle": 11
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.475,
+   "acknowledged": 199,
+   "logged": 200,
+   "recovered_prefix": 200,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 2779,
+   "levels": [
+    0,
+    2
+   ],
+   "recovery_s": 2.742,
+   "cycle": 12
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.705,
+   "acknowledged": 230,
+   "logged": 231,
+   "recovered_prefix": 231,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 3014,
+   "levels": [
+    0,
+    2
+   ],
+   "recovery_s": 3.253,
+   "cycle": 13
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.507,
+   "acknowledged": 198,
+   "logged": 199,
+   "recovered_prefix": 199,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 3222,
+   "levels": [
+    0,
+    2
+   ],
+   "recovery_s": 2.919,
+   "cycle": 14
+  },
+  {
+   "early_kill": true,
+   "lifetime_s": 0.26,
+   "acknowledged": 55,
+   "logged": 55,
+   "recovered_prefix": 55,
+   "lost_acknowledged": 0,
+   "in_flight_applied": false,
+   "live_keys": 3279,
+   "levels": [
+    0,
+    2
+   ],
+   "recovery_s": 3.044,
+   "cycle": 15
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 0.757,
+   "acknowledged": 189,
+   "logged": 190,
+   "recovered_prefix": 190,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 3461,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.549,
+   "cycle": 16
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.149,
+   "acknowledged": 144,
+   "logged": 145,
+   "recovered_prefix": 145,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 3577,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.007,
+   "cycle": 17
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.046,
+   "acknowledged": 115,
+   "logged": 116,
+   "recovered_prefix": 116,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 3675,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.069,
+   "cycle": 18
+  },
+  {
+   "early_kill": true,
+   "lifetime_s": 0.556,
+   "acknowledged": 0,
+   "logged": 0,
+   "recovered_prefix": 0,
+   "lost_acknowledged": 0,
+   "in_flight_applied": false,
+   "live_keys": 3675,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 2.696,
+   "cycle": 19
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.264,
+   "acknowledged": 140,
+   "logged": 141,
+   "recovered_prefix": 141,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 3799,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.099,
+   "cycle": 20
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.728,
+   "acknowledged": 218,
+   "logged": 219,
+   "recovered_prefix": 219,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 3978,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.2,
+   "cycle": 21
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.307,
+   "acknowledged": 139,
+   "logged": 140,
+   "recovered_prefix": 140,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 4085,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.663,
+   "cycle": 22
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.3,
+   "acknowledged": 140,
+   "logged": 141,
+   "recovered_prefix": 141,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 4220,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.382,
+   "cycle": 23
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 0.478,
+   "acknowledged": 98,
+   "logged": 99,
+   "recovered_prefix": 99,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 4310,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.903,
+   "cycle": 24
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.067,
+   "acknowledged": 127,
+   "logged": 128,
+   "recovered_prefix": 128,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 4427,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.377,
+   "cycle": 25
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.699,
+   "acknowledged": 156,
+   "logged": 157,
+   "recovered_prefix": 157,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 4611,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.448,
+   "cycle": 26
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.506,
+   "acknowledged": 134,
+   "logged": 135,
+   "recovered_prefix": 135,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 4728,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.659,
+   "cycle": 27
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.049,
+   "acknowledged": 103,
+   "logged": 104,
+   "recovered_prefix": 104,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 4824,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 3.628,
+   "cycle": 28
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 0.805,
+   "acknowledged": 123,
+   "logged": 124,
+   "recovered_prefix": 124,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 4943,
+   "levels": [
+    0,
+    3
+   ],
+   "recovery_s": 4.261,
+   "cycle": 29
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.484,
+   "acknowledged": 151,
+   "logged": 152,
+   "recovered_prefix": 152,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5051,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 3.902,
+   "cycle": 30
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.11,
+   "acknowledged": 116,
+   "logged": 117,
+   "recovered_prefix": 117,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5164,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.282,
+   "cycle": 31
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.588,
+   "acknowledged": 142,
+   "logged": 143,
+   "recovered_prefix": 143,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5294,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.083,
+   "cycle": 32
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.205,
+   "acknowledged": 87,
+   "logged": 88,
+   "recovered_prefix": 88,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5381,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.108,
+   "cycle": 33
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.141,
+   "acknowledged": 129,
+   "logged": 130,
+   "recovered_prefix": 130,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5510,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.459,
+   "cycle": 34
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.754,
+   "acknowledged": 116,
+   "logged": 117,
+   "recovered_prefix": 117,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5594,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.208,
+   "cycle": 35
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.559,
+   "acknowledged": 140,
+   "logged": 141,
+   "recovered_prefix": 141,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5726,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 3.978,
+   "cycle": 36
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.277,
+   "acknowledged": 113,
+   "logged": 114,
+   "recovered_prefix": 114,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5826,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.214,
+   "cycle": 37
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.703,
+   "acknowledged": 112,
+   "logged": 113,
+   "recovered_prefix": 113,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5920,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.338,
+   "cycle": 38
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.719,
+   "acknowledged": 121,
+   "logged": 122,
+   "recovered_prefix": 122,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 5998,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.423,
+   "cycle": 39
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.886,
+   "acknowledged": 128,
+   "logged": 129,
+   "recovered_prefix": 129,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 6106,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.568,
+   "cycle": 40
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.392,
+   "acknowledged": 146,
+   "logged": 147,
+   "recovered_prefix": 147,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 6229,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.618,
+   "cycle": 41
+  },
+  {
+   "early_kill": true,
+   "lifetime_s": 0.223,
+   "acknowledged": 0,
+   "logged": 0,
+   "recovered_prefix": 0,
+   "lost_acknowledged": 0,
+   "in_flight_applied": false,
+   "live_keys": 6229,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 3.49,
+   "cycle": 42
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.621,
+   "acknowledged": 261,
+   "logged": 262,
+   "recovered_prefix": 262,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 6408,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 1.935,
+   "cycle": 43
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 0.702,
+   "acknowledged": 122,
+   "logged": 123,
+   "recovered_prefix": 122,
+   "lost_acknowledged": 0,
+   "in_flight_applied": false,
+   "live_keys": 6513,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 2.619,
+   "cycle": 44
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.682,
+   "acknowledged": 109,
+   "logged": 110,
+   "recovered_prefix": 110,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 6597,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.471,
+   "cycle": 45
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.361,
+   "acknowledged": 135,
+   "logged": 136,
+   "recovered_prefix": 136,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 6703,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.007,
+   "cycle": 46
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 0.872,
+   "acknowledged": 132,
+   "logged": 133,
+   "recovered_prefix": 133,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 6813,
+   "levels": [
+    0,
+    4
+   ],
+   "recovery_s": 4.022,
+   "cycle": 47
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.057,
+   "acknowledged": 135,
+   "logged": 136,
+   "recovered_prefix": 136,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 6917,
+   "levels": [
+    0,
+    5
+   ],
+   "recovery_s": 4.082,
+   "cycle": 48
+  },
+  {
+   "early_kill": false,
+   "lifetime_s": 1.278,
+   "acknowledged": 144,
+   "logged": 145,
+   "recovered_prefix": 145,
+   "lost_acknowledged": 0,
+   "in_flight_applied": true,
+   "live_keys": 7031,
+   "levels": [
+    0,
+    5
+   ],
+   "recovery_s": 4.116,
+   "cycle": 49
+  }
+ ]
+}
