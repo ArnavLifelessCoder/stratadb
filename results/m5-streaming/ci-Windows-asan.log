@@ -1,0 +1,1076 @@
+﻿2026-10-21T06:21:32.4946574Z Current runner version: '2.338.0'
+2026-10-21T06:21:32.5150760Z ##[group]Runner Image Provisioner
+2026-10-21T06:21:32.5152176Z Hosted Compute Agent
+2026-10-21T06:21:32.5153191Z Version: 20261002.596
+2026-10-21T06:21:32.5154255Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-21T06:21:32.5155522Z Build Date: 2026-10-02T22:28:27Z
+2026-10-21T06:21:32.5156751Z Worker ID: {70281dc8-5ad3-4011-9894-4cbabcad3839}
+2026-10-21T06:21:32.5158062Z Region: eastus
+2026-10-21T06:21:32.5158912Z Cloud: Azure
+2026-10-21T06:21:32.5159778Z ##[endgroup]
+2026-10-21T06:21:32.5162057Z ##[group]Operating System
+2026-10-21T06:21:32.5163126Z Microsoft Windows Server 2025
+2026-10-21T06:21:32.5164181Z 10.0.26100
+2026-10-21T06:21:32.5164997Z Datacenter
+2026-10-21T06:21:32.5166276Z ##[endgroup]
+2026-10-21T06:21:32.5167242Z ##[group]Runner Image
+2026-10-21T06:21:32.5168316Z Image: windows-2025-vs2026
+2026-10-21T06:21:32.5169385Z Version: 20261007.264.1
+2026-10-21T06:21:32.5172045Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261007.264/images/windows/Windows2025-VS2026-Readme.md
+2026-10-21T06:21:32.5175289Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261007.264
+2026-10-21T06:21:32.5177083Z ##[endgroup]
+2026-10-21T06:21:32.5178988Z ##[group]GITHUB_TOKEN Permissions
+2026-10-21T06:21:32.5181738Z Contents: read
+2026-10-21T06:21:32.5182722Z Metadata: read
+2026-10-21T06:21:32.5183746Z ##[endgroup]
+2026-10-21T06:21:32.5187196Z Secret source: Actions
+2026-10-21T06:21:32.5188669Z Cache mode: write
+2026-10-21T06:21:32.5189842Z Prepare workflow directory
+2026-10-21T06:21:32.6181448Z Prepare all required actions
+2026-10-21T06:21:32.6233571Z Getting action download info
+2026-10-21T06:21:32.7876359Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+2026-10-21T06:21:32.9852071Z Download action repository 'actions/setup-python@v6' (SHA:ece7cb06caefa5fff74198d8649806c4678c61a1)
+2026-10-21T06:21:33.2052906Z Download action repository 'actions/upload-artifact@v6' (SHA:b7c566a772e6b6bfb58ed0dc250532a479d7789f)
+2026-10-21T06:21:34.3345495Z Complete job name: test (windows-latest, asan)
+2026-10-21T06:21:35.5870804Z ##[group]Run actions/checkout@v5
+2026-10-21T06:21:35.5871876Z with:
+2026-10-21T06:21:35.5872230Z   repository: ArnavLifelessCoder/stratadb
+2026-10-21T06:21:35.5875782Z   token: ***
+2026-10-21T06:21:35.5876117Z   ssh-strict: true
+2026-10-21T06:21:35.5876437Z   ssh-user: git
+2026-10-21T06:21:35.5876770Z   persist-credentials: true
+2026-10-21T06:21:35.5877127Z   clean: true
+2026-10-21T06:21:35.5877460Z   sparse-checkout-cone-mode: true
+2026-10-21T06:21:35.5877908Z   fetch-depth: 1
+2026-10-21T06:21:35.5878237Z   fetch-tags: false
+2026-10-21T06:21:35.5878560Z   show-progress: true
+2026-10-21T06:21:35.5878895Z   lfs: false
+2026-10-21T06:21:35.5879209Z   submodules: false
+2026-10-21T06:21:35.5879558Z   set-safe-directory: true
+2026-10-21T06:21:35.5879946Z   allow-unsafe-pr-checkout: false
+2026-10-21T06:21:35.5880625Z ##[endgroup]
+2026-10-21T06:21:35.9037490Z Syncing repository: ArnavLifelessCoder/stratadb
+2026-10-21T06:21:35.9040196Z ##[group]Getting Git version info
+2026-10-21T06:21:35.9040896Z Working directory is 'D:\a\stratadb\stratadb'
+2026-10-21T06:21:36.0201684Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-21T06:21:36.6778089Z git version 2.56.0.windows.2
+2026-10-21T06:21:36.6843300Z ##[endgroup]
+2026-10-21T06:21:36.6866506Z Temporarily overriding HOME='D:\a\_temp\cc2e396b-5592-4cb9-8131-e33aa41e37f3' before making global git config changes
+2026-10-21T06:21:36.6867973Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-21T06:21:36.6878998Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\stratadb\stratadb
+2026-10-21T06:21:36.7603862Z Deleting the contents of 'D:\a\stratadb\stratadb'
+2026-10-21T06:21:36.7610470Z ##[group]Initializing the repository
+2026-10-21T06:21:36.7623410Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\stratadb\stratadb
+2026-10-21T06:21:36.9179150Z Initialized empty Git repository in D:/a/stratadb/stratadb/.git/
+2026-10-21T06:21:36.9246864Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/ArnavLifelessCoder/stratadb
+2026-10-21T06:21:37.0215214Z ##[endgroup]
+2026-10-21T06:21:37.0216052Z ##[group]Disabling automatic garbage collection
+2026-10-21T06:21:37.0225348Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-21T06:21:37.0649925Z ##[endgroup]
+2026-10-21T06:21:37.0650450Z ##[group]Setting up auth
+2026-10-21T06:21:37.0663007Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-21T06:21:37.1088882Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-21T06:21:40.6406746Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-21T06:21:40.6846376Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-21T06:21:41.3117384Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-21T06:21:41.3538455Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-21T06:21:41.9747474Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-21T06:21:42.0174634Z ##[endgroup]
+2026-10-21T06:21:42.0175221Z ##[group]Fetching the repository
+2026-10-21T06:21:42.0187787Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6eb4e14222d369dc365ff57bda342d99dcb1d666:refs/remotes/origin/m5
+2026-10-21T06:21:42.9568965Z From https://github.com/ArnavLifelessCoder/stratadb
+2026-10-21T06:21:42.9570466Z  * [new ref]         6eb4e14222d369dc365ff57bda342d99dcb1d666 -> origin/m5
+2026-10-21T06:21:42.9616765Z ##[endgroup]
+2026-10-21T06:21:42.9617402Z ##[group]Determining the checkout info
+2026-10-21T06:21:42.9619948Z ##[endgroup]
+2026-10-21T06:21:42.9629938Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-21T06:21:43.0198875Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-21T06:21:43.0611321Z ##[group]Checking out the ref
+2026-10-21T06:21:43.0621687Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B m5 refs/remotes/origin/m5
+2026-10-21T06:21:43.2331279Z Switched to a new branch 'm5'
+2026-10-21T06:21:43.2393992Z branch 'm5' set up to track 'origin/m5'.
+2026-10-21T06:21:43.2451822Z ##[endgroup]
+2026-10-21T06:21:43.2978929Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-21T06:21:43.3353292Z 6eb4e14222d369dc365ff57bda342d99dcb1d666
+2026-10-21T06:21:43.3834424Z ##[group]Run ./scripts/msvc_environment.ps1 -GitHubActions
+2026-10-21T06:21:43.3835013Z [36;1m./scripts/msvc_environment.ps1 -GitHubActions[0m
+2026-10-21T06:21:43.4567810Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-21T06:21:43.4568319Z ##[endgroup]
+2026-10-21T06:21:48.8535035Z ##[group]Run cmake --preset asan
+2026-10-21T06:21:48.8535414Z [36;1mcmake --preset asan[0m
+2026-10-21T06:21:48.8608340Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-21T06:21:48.8608749Z env:
+2026-10-21T06:21:48.8608988Z   CommandPromptType: Native
+2026-10-21T06:21:48.8609355Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\
+2026-10-21T06:21:48.8609878Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2026-10-21T06:21:48.8613238Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:21:48.8615446Z   Framework40Version: v4.0
+2026-10-21T06:21:48.8615725Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:21:48.8616070Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:21:48.8616372Z   FrameworkVersion: v4.0.30319
+2026-10-21T06:21:48.8616609Z   FrameworkVersion64: v4.0.30319
+2026-10-21T06:21:48.8617121Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2026-10-21T06:21:48.8617711Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2026-10-21T06:21:48.8619917Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:21:48.8623639Z   LIB: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2026-10-21T06:21:48.8626297Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2026-10-21T06:21:48.8628046Z   llvmArm64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\ARM64\bin
+2026-10-21T06:21:48.8628600Z   llvmX64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin
+2026-10-21T06:21:48.8629071Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\
+2026-10-21T06:21:48.8646244Z   Path: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\;C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:21:48.8661909Z   PROMPT: $P$G
+2026-10-21T06:21:48.8662108Z   UCRTVersion: 10.0.26100.0
+2026-10-21T06:21:48.8662437Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:21:48.8662756Z   use_x64_llvm: true
+2026-10-21T06:21:48.8663104Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\
+2026-10-21T06:21:48.8663778Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\
+2026-10-21T06:21:48.8664249Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:21:48.8664803Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\
+2026-10-21T06:21:48.8665445Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Redist\MSVC\14.51.36231\
+2026-10-21T06:21:48.8665890Z   VCToolsVersion: 14.51.36231
+2026-10-21T06:21:48.8666118Z   VisualStudioVersion: 18.0
+2026-10-21T06:21:48.8666590Z   VS180COMNTOOLS: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\
+2026-10-21T06:21:48.8667036Z   VSCMD_ARG_app_plat: Desktop
+2026-10-21T06:21:48.8667249Z   VSCMD_ARG_HOST_ARCH: x64
+2026-10-21T06:21:48.8667450Z   VSCMD_ARG_TGT_ARCH: x64
+2026-10-21T06:21:48.8667652Z   VSCMD_VER: 18.10.3
+2026-10-21T06:21:48.8667937Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\
+2026-10-21T06:21:48.8668402Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:21:48.8668874Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:21:48.8669553Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2026-10-21T06:21:48.8670196Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2026-10-21T06:21:48.8670574Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:21:48.8670879Z   WindowsSDKLibVersion: 10.0.26100.0\
+2026-10-21T06:21:48.8671248Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2026-10-21T06:21:48.8671621Z   WindowsSDKVersion: 10.0.26100.0\
+2026-10-21T06:21:48.8672058Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\
+2026-10-21T06:21:48.8672728Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\
+2026-10-21T06:21:48.8673175Z   __DOTNET_ADD_64BIT: 1
+2026-10-21T06:21:48.8673378Z   __DOTNET_PREFERRED_BITNESS: 64
+2026-10-21T06:21:48.8682580Z   __VSCMD_PREINIT_PATH: C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps
+2026-10-21T06:21:48.8692032Z ##[endgroup]
+2026-10-21T06:21:55.1485505Z -- The CXX compiler identification is MSVC 19.51.36260.0
+2026-10-21T06:21:55.2990356Z -- Detecting CXX compiler ABI info
+2026-10-21T06:21:57.1596304Z -- Detecting CXX compiler ABI info - done
+2026-10-21T06:21:57.1862159Z -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+2026-10-21T06:21:57.1875920Z -- Detecting CXX compile features
+2026-10-21T06:21:57.1894427Z -- Detecting CXX compile features - done
+2026-10-21T06:21:57.2818978Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-21T06:21:58.1239627Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+2026-10-21T06:21:58.1240280Z -- Looking for pthread_create in pthreads
+2026-10-21T06:21:58.5991089Z -- Looking for pthread_create in pthreads - not found
+2026-10-21T06:21:58.5991706Z -- Looking for pthread_create in pthread
+2026-10-21T06:21:58.9482742Z -- Looking for pthread_create in pthread - not found
+2026-10-21T06:21:58.9591455Z -- Found Threads: TRUE
+2026-10-21T06:22:03.6297686Z -- The C compiler identification is MSVC 19.51.36260.0
+2026-10-21T06:22:03.6470838Z -- Detecting C compiler ABI info
+2026-10-21T06:22:04.1790599Z -- Detecting C compiler ABI info - done
+2026-10-21T06:22:04.1973294Z -- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+2026-10-21T06:22:04.1979146Z -- Detecting C compile features
+2026-10-21T06:22:04.1986771Z -- Detecting C compile features - done
+2026-10-21T06:22:04.2431202Z -- Configuring done (14.5s)
+2026-10-21T06:22:04.3260822Z -- Generating done (0.1s)
+2026-10-21T06:22:04.3273989Z -- Build files have been written to: D:/a/stratadb/stratadb/build/asan
+2026-10-21T06:22:04.4637143Z ##[group]Run cmake --build --preset asan
+2026-10-21T06:22:04.4637539Z [36;1mcmake --build --preset asan[0m
+2026-10-21T06:22:04.4710425Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-21T06:22:04.4710778Z env:
+2026-10-21T06:22:04.4710976Z   CommandPromptType: Native
+2026-10-21T06:22:04.4711339Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\
+2026-10-21T06:22:04.4711887Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2026-10-21T06:22:04.4714281Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:22:04.4716488Z   Framework40Version: v4.0
+2026-10-21T06:22:04.4716752Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:22:04.4717324Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:22:04.4717625Z   FrameworkVersion: v4.0.30319
+2026-10-21T06:22:04.4717854Z   FrameworkVersion64: v4.0.30319
+2026-10-21T06:22:04.4718367Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2026-10-21T06:22:04.4718952Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2026-10-21T06:22:04.4721140Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:22:04.4724754Z   LIB: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2026-10-21T06:22:04.4727528Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2026-10-21T06:22:04.4729263Z   llvmArm64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\ARM64\bin
+2026-10-21T06:22:04.4729805Z   llvmX64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin
+2026-10-21T06:22:04.4730282Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\
+2026-10-21T06:22:04.4747494Z   Path: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\;C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:22:04.4763099Z   PROMPT: $P$G
+2026-10-21T06:22:04.4763292Z   UCRTVersion: 10.0.26100.0
+2026-10-21T06:22:04.4763578Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:22:04.4763884Z   use_x64_llvm: true
+2026-10-21T06:22:04.4764280Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\
+2026-10-21T06:22:04.4764786Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\
+2026-10-21T06:22:04.4765268Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:22:04.4765824Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\
+2026-10-21T06:22:04.4766459Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Redist\MSVC\14.51.36231\
+2026-10-21T06:22:04.4766907Z   VCToolsVersion: 14.51.36231
+2026-10-21T06:22:04.4767138Z   VisualStudioVersion: 18.0
+2026-10-21T06:22:04.4767493Z   VS180COMNTOOLS: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\
+2026-10-21T06:22:04.4767897Z   VSCMD_ARG_app_plat: Desktop
+2026-10-21T06:22:04.4768115Z   VSCMD_ARG_HOST_ARCH: x64
+2026-10-21T06:22:04.4768323Z   VSCMD_ARG_TGT_ARCH: x64
+2026-10-21T06:22:04.4768517Z   VSCMD_VER: 18.10.3
+2026-10-21T06:22:04.4769119Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\
+2026-10-21T06:22:04.4769574Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:22:04.4770051Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:22:04.4770723Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2026-10-21T06:22:04.4771377Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2026-10-21T06:22:04.4771755Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:22:04.4772071Z   WindowsSDKLibVersion: 10.0.26100.0\
+2026-10-21T06:22:04.4772430Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2026-10-21T06:22:04.4772817Z   WindowsSDKVersion: 10.0.26100.0\
+2026-10-21T06:22:04.4773266Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\
+2026-10-21T06:22:04.4773936Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\
+2026-10-21T06:22:04.4774377Z   __DOTNET_ADD_64BIT: 1
+2026-10-21T06:22:04.4774581Z   __DOTNET_PREFERRED_BITNESS: 64
+2026-10-21T06:22:04.4783334Z   __VSCMD_PREINIT_PATH: C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps
+2026-10-21T06:22:04.4792469Z ##[endgroup]
+2026-10-21T06:22:07.2408826Z [1/58] Building CXX object CMakeFiles\lsm.dir\src\util\hash.cpp.obj
+2026-10-21T06:22:07.2962947Z [2/58] Building CXX object CMakeFiles\lsm.dir\src\util\crc32c.cpp.obj
+2026-10-21T06:22:07.7114227Z [3/58] Building CXX object CMakeFiles\lsm.dir\src\status.cpp.obj
+2026-10-21T06:22:07.7481699Z [4/58] Building CXX object CMakeFiles\lsm.dir\src\util\varint.cpp.obj
+2026-10-21T06:22:08.0042577Z [5/58] Building CXX object CMakeFiles\lsm.dir\src\write_batch.cpp.obj
+2026-10-21T06:22:10.1633352Z [6/58] Building CXX object CMakeFiles\lsm.dir\src\memtable.cpp.obj
+2026-10-21T06:22:10.3343702Z [7/58] Building CXX object CMakeFiles\lsm.dir\src\table\block_iterator.cpp.obj
+2026-10-21T06:22:10.8027273Z [8/58] Building CXX object CMakeFiles\lsm.dir\src\table\block.cpp.obj
+2026-10-21T06:22:12.7390052Z [9/58] Building CXX object CMakeFiles\lsm.dir\src\table\bloom.cpp.obj
+2026-10-21T06:22:13.7358588Z [10/58] Building CXX object CMakeFiles\lsm.dir\src\wal.cpp.obj
+2026-10-21T06:22:14.2053985Z [11/58] Building CXX object CMakeFiles\lsm.dir\src\table\table_iterator.cpp.obj
+2026-10-21T06:22:17.6544232Z [12/58] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+2026-10-21T06:22:18.4754338Z [13/58] Building CXX object CMakeFiles\lsm.dir\src\table\table.cpp.obj
+2026-10-21T06:22:20.1270885Z [14/58] Building CXX object CMakeFiles\lsm.dir\src\version_set.cpp.obj
+2026-10-21T06:22:21.0099934Z [15/58] Building CXX object CMakeFiles\lsm.dir\src\file_cleanup.cpp.obj
+2026-10-21T06:22:21.2262077Z [16/58] Building CXX object CMakeFiles\lsm.dir\src\merging_iterator.cpp.obj
+2026-10-21T06:22:22.1779122Z [17/58] Building CXX object CMakeFiles\lsm.dir\src\iterator.cpp.obj
+2026-10-21T06:22:22.5626595Z [18/58] Building CXX object CMakeFiles\lsm.dir\src\compaction.cpp.obj
+2026-10-21T06:22:26.4592875Z [19/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\test_main.cpp.obj
+2026-10-21T06:22:27.6477806Z [20/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\status_test.cpp.obj
+2026-10-21T06:22:27.7589251Z [21/58] Building CXX object CMakeFiles\lsm.dir\src\platform\mapping_windows.cpp.obj
+2026-10-21T06:22:28.0408503Z [22/58] Building CXX object CMakeFiles\lsm.dir\src\platform\windows.cpp.obj
+2026-10-21T06:22:28.3694023Z [23/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\slice_test.cpp.obj
+2026-10-21T06:22:28.9075520Z [24/58] Linking CXX static library lsm.lib
+2026-10-21T06:22:34.2407494Z [25/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\hash_test.cpp.obj
+2026-10-21T06:22:34.9928966Z [26/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\crc32c_test.cpp.obj
+2026-10-21T06:22:36.3405944Z [27/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\write_batch_test.cpp.obj
+2026-10-21T06:22:36.6925090Z [28/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\varint_test.cpp.obj
+2026-10-21T06:22:39.0630780Z [29/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\memtable_test.cpp.obj
+2026-10-21T06:22:40.1887532Z [30/58] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj
+2026-10-21T06:22:45.2956562Z [31/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\block_test.cpp.obj
+2026-10-21T06:22:46.3008768Z [32/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\platform_test.cpp.obj
+2026-10-21T06:22:46.7243955Z [33/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\block_iterator_test.cpp.obj
+2026-10-21T06:22:47.3778025Z [34/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\wal_test.cpp.obj
+2026-10-21T06:22:47.4905984Z [35/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\bloom_test.cpp.obj
+2026-10-21T06:22:49.5726400Z [36/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+2026-10-21T06:22:55.1254023Z [37/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\mapping_test.cpp.obj
+2026-10-21T06:22:59.7284654Z [38/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\cleanup_test.cpp.obj
+2026-10-21T06:23:00.3708460Z [39/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\version_set_test.cpp.obj
+2026-10-21T06:23:00.4278108Z [40/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\table_test.cpp.obj
+2026-10-21T06:23:01.3760740Z [41/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+2026-10-21T06:23:02.9896481Z [42/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\compaction_test.cpp.obj
+2026-10-21T06:23:07.9133098Z [43/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\merging_iterator_test.cpp.obj
+2026-10-21T06:23:08.1933883Z [44/58] Building CXX object CMakeFiles\lsm_db_process.dir\tests\db_process.cpp.obj
+2026-10-21T06:23:08.7584193Z [45/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\iterator_test.cpp.obj
+2026-10-21T06:23:13.4612249Z [46/58] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj
+2026-10-21T06:23:15.5327142Z [47/58] Linking CXX static library lib\gtest.lib
+2026-10-21T06:23:15.8530469Z [48/58] Building CXX object CMakeFiles\lsm_tests.dir\tests\snapshot_test.cpp.obj
+2026-10-21T06:23:16.0678388Z [49/58] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj
+2026-10-21T06:23:19.4204936Z [50/58] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock-all.cc.obj
+2026-10-21T06:23:19.8321558Z [51/58] Linking CXX executable lsm_db_process.exe
+2026-10-21T06:23:19.9632615Z [52/58] Linking CXX executable lsm_tests.exe
+2026-10-21T06:23:20.7060494Z [53/58] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\__\googletest\src\gtest-all.cc.obj
+2026-10-21T06:23:21.0422056Z [54/58] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj
+2026-10-21T06:23:21.2262335Z [55/58] Linking CXX static library lib\gmock.lib
+2026-10-21T06:23:21.2507185Z [56/58] Linking CXX static library lib\gtest_main.lib
+2026-10-21T06:23:23.1851599Z [57/58] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\__\googletest\src\gtest-all.cc.obj
+2026-10-21T06:23:23.2501366Z [58/58] Linking CXX static library lib\gmock_main.lib
+2026-10-21T06:23:23.3864855Z ##[group]Run ctest --preset asan --verbose --output-log results/ci-Windows-asan.log
+2026-10-21T06:23:23.3865641Z [36;1mctest --preset asan --verbose --output-log results/ci-Windows-asan.log[0m
+2026-10-21T06:23:23.3940040Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-21T06:23:23.3940410Z env:
+2026-10-21T06:23:23.3940623Z   CommandPromptType: Native
+2026-10-21T06:23:23.3940992Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\
+2026-10-21T06:23:23.3941516Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2026-10-21T06:23:23.3943928Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:23:23.3946991Z   Framework40Version: v4.0
+2026-10-21T06:23:23.3947465Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:23:23.3947826Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:23:23.3948141Z   FrameworkVersion: v4.0.30319
+2026-10-21T06:23:23.3948372Z   FrameworkVersion64: v4.0.30319
+2026-10-21T06:23:23.3948888Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2026-10-21T06:23:23.3949476Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2026-10-21T06:23:23.3951779Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:23:23.3955280Z   LIB: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2026-10-21T06:23:23.3957925Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2026-10-21T06:23:23.3959670Z   llvmArm64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\ARM64\bin
+2026-10-21T06:23:23.3960212Z   llvmX64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin
+2026-10-21T06:23:23.3960682Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\
+2026-10-21T06:23:23.3978359Z   Path: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\;C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:23:23.3993491Z   PROMPT: $P$G
+2026-10-21T06:23:23.3993689Z   UCRTVersion: 10.0.26100.0
+2026-10-21T06:23:23.3993987Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:23:23.3994307Z   use_x64_llvm: true
+2026-10-21T06:23:23.3994660Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\
+2026-10-21T06:23:23.3995178Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\
+2026-10-21T06:23:23.3995651Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:23:23.3996213Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\
+2026-10-21T06:23:23.3996862Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Redist\MSVC\14.51.36231\
+2026-10-21T06:23:23.3997328Z   VCToolsVersion: 14.51.36231
+2026-10-21T06:23:23.3997558Z   VisualStudioVersion: 18.0
+2026-10-21T06:23:23.3997918Z   VS180COMNTOOLS: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\
+2026-10-21T06:23:23.3998320Z   VSCMD_ARG_app_plat: Desktop
+2026-10-21T06:23:23.3998539Z   VSCMD_ARG_HOST_ARCH: x64
+2026-10-21T06:23:23.3998748Z   VSCMD_ARG_TGT_ARCH: x64
+2026-10-21T06:23:23.3998948Z   VSCMD_VER: 18.10.3
+2026-10-21T06:23:23.3999237Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\
+2026-10-21T06:23:23.3999713Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:23:23.4000196Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:23:23.4000876Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2026-10-21T06:23:23.4001695Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2026-10-21T06:23:23.4002072Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:23:23.4002374Z   WindowsSDKLibVersion: 10.0.26100.0\
+2026-10-21T06:23:23.4002739Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2026-10-21T06:23:23.4003123Z   WindowsSDKVersion: 10.0.26100.0\
+2026-10-21T06:23:23.4003567Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\
+2026-10-21T06:23:23.4004238Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\
+2026-10-21T06:23:23.4004889Z   __DOTNET_ADD_64BIT: 1
+2026-10-21T06:23:23.4005103Z   __DOTNET_PREFERRED_BITNESS: 64
+2026-10-21T06:23:23.4014121Z   __VSCMD_PREINIT_PATH: C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps
+2026-10-21T06:23:23.4022932Z ##[endgroup]
+2026-10-21T06:23:24.2769126Z UpdateCTestConfiguration  from :D:/a/stratadb/stratadb/DartConfiguration.tcl
+2026-10-21T06:23:24.3686277Z Test project D:/a/stratadb/stratadb/build/asan
+2026-10-21T06:23:24.3691464Z Constructing a list of tests
+2026-10-21T06:23:24.3757184Z Done constructing a list of tests
+2026-10-21T06:23:24.3757865Z Updating test list for fixtures
+2026-10-21T06:23:24.3758384Z Added 0 tests to meet fixture requirements
+2026-10-21T06:23:24.3805186Z Checking test dependency graph...
+2026-10-21T06:23:24.3806026Z Checking test dependency graph end
+2026-10-21T06:23:24.3809044Z test 1
+2026-10-21T06:23:24.3859309Z     Start 1: lsm_tests
+2026-10-21T06:23:24.3862070Z 
+2026-10-21T06:23:24.3862522Z 1: Test command: D:\a\stratadb\stratadb\build\asan\lsm_tests.exe
+2026-10-21T06:23:24.3863205Z 1: Working Directory: D:/a/stratadb/stratadb/build/asan
+2026-10-21T06:23:24.3864643Z 1: Test timeout computed to be: 1800
+2026-10-21T06:23:24.8877899Z 1: Randomized test seed: 24301
+2026-10-21T06:23:24.8878579Z 1: Test mode: full
+2026-10-21T06:23:24.8879109Z 1: [==========] Running 116 tests from 26 test suites.
+2026-10-21T06:23:24.8880893Z 1: [----------] Global test environment set-up.
+2026-10-21T06:23:24.8882127Z 1: [----------] 3 tests from StatusTest
+2026-10-21T06:23:24.8883142Z 1: [ RUN      ] StatusTest.DefaultIsSuccess
+2026-10-21T06:23:24.8883658Z 1: [       OK ] StatusTest.DefaultIsSuccess (0 ms)
+2026-10-21T06:23:24.8884202Z 1: [ RUN      ] StatusTest.ErrorsKeepCodeAndMessage
+2026-10-21T06:23:24.8888148Z 1: [       OK ] StatusTest.ErrorsKeepCodeAndMessage (0 ms)
+2026-10-21T06:23:24.8889262Z 1: [ RUN      ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently
+2026-10-21T06:23:24.8891509Z 1: [       OK ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently (0 ms)
+2026-10-21T06:23:24.8893629Z 1: [----------] 3 tests from StatusTest (1 ms total)
+2026-10-21T06:23:24.8894494Z 1: 
+2026-10-21T06:23:24.8894796Z 1: [----------] 4 tests from SliceTest
+2026-10-21T06:23:24.8895432Z 1: [ RUN      ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes
+2026-10-21T06:23:24.8897909Z 1: [       OK ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes (0 ms)
+2026-10-21T06:23:24.8898739Z 1: [ RUN      ] SliceTest.AllSingleBytesHaveUnsignedOrdering
+2026-10-21T06:23:24.9024308Z 1: [       OK ] SliceTest.AllSingleBytesHaveUnsignedOrdering (12 ms)
+2026-10-21T06:23:24.9025853Z 1: [ RUN      ] SliceTest.EmptyAndPrefixOrdering
+2026-10-21T06:23:24.9026465Z 1: [       OK ] SliceTest.EmptyAndPrefixOrdering (0 ms)
+2026-10-21T06:23:24.9027665Z 1: [ RUN      ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing
+2026-10-21T06:23:24.9028944Z 1: [       OK ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing (0 ms)
+2026-10-21T06:23:24.9030533Z 1: [----------] 4 tests from SliceTest (13 ms total)
+2026-10-21T06:23:24.9031122Z 1: 
+2026-10-21T06:23:24.9031662Z 1: [----------] 2 tests from Crc32cTest
+2026-10-21T06:23:24.9032334Z 1: [ RUN      ] Crc32cTest.EmptyAndCanonicalCheckValue
+2026-10-21T06:23:24.9034606Z 1: [       OK ] Crc32cTest.EmptyAndCanonicalCheckValue (0 ms)
+2026-10-21T06:23:24.9035286Z 1: [ RUN      ] Crc32cTest.EverySplitAndSingleBitChange
+2026-10-21T06:23:24.9040038Z 1: [       OK ] Crc32cTest.EverySplitAndSingleBitChange (0 ms)
+2026-10-21T06:23:24.9041434Z 1: [----------] 2 tests from Crc32cTest (0 ms total)
+2026-10-21T06:23:24.9042357Z 1: 
+2026-10-21T06:23:24.9042928Z 1: [----------] 3 tests from HashTest
+2026-10-21T06:23:24.9043442Z 1: [ RUN      ] HashTest.EmptyAndTextVectors
+2026-10-21T06:23:24.9046323Z 1: [       OK ] HashTest.EmptyAndTextVectors (0 ms)
+2026-10-21T06:23:24.9046982Z 1: [ RUN      ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment
+2026-10-21T06:23:24.9896398Z 1: [       OK ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment (84 ms)
+2026-10-21T06:23:24.9898014Z 1: [ RUN      ] HashTest.LengthAndEmbeddedNulsAreSignificant
+2026-10-21T06:23:24.9898813Z 1: [       OK ] HashTest.LengthAndEmbeddedNulsAreSignificant (0 ms)
+2026-10-21T06:23:24.9899540Z 1: [----------] 3 tests from HashTest (85 ms total)
+2026-10-21T06:23:24.9900029Z 1: 
+2026-10-21T06:23:24.9901247Z 1: [----------] 6 tests from VarintTest/0, where TypeParam = unsigned int
+2026-10-21T06:23:24.9902485Z 1: [ RUN      ] VarintTest/0.GoldenWireBytesAndAppendSemantics
+2026-10-21T06:23:24.9906937Z 1: [       OK ] VarintTest/0.GoldenWireBytesAndAppendSemantics (0 ms)
+2026-10-21T06:23:24.9907843Z 1: [ RUN      ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix
+2026-10-21T06:23:24.9972008Z 1: [       OK ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix (6 ms)
+2026-10-21T06:23:24.9972640Z 1: [ RUN      ] VarintTest/0.RejectsMalformedWithoutChangingArguments
+2026-10-21T06:23:24.9975423Z 1: [       OK ] VarintTest/0.RejectsMalformedWithoutChangingArguments (0 ms)
+2026-10-21T06:23:24.9976341Z 1: [ RUN      ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding
+2026-10-21T06:23:30.9504479Z 1: [       OK ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding (5952 ms)
+2026-10-21T06:23:30.9505262Z 1: [ RUN      ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference
+2026-10-21T06:23:33.7836245Z 1: [       OK ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference (2833 ms)
+2026-10-21T06:23:33.7838468Z 1: [ RUN      ] VarintTest/0.ConcatenatedStream
+2026-10-21T06:23:33.7839419Z 1: [       OK ] VarintTest/0.ConcatenatedStream (0 ms)
+2026-10-21T06:23:33.7840033Z 1: [----------] 6 tests from VarintTest/0 (8793 ms total)
+2026-10-21T06:23:33.7840521Z 1: 
+2026-10-21T06:23:33.7841363Z 1: [----------] 6 tests from VarintTest/1, where TypeParam = unsigned __int64
+2026-10-21T06:23:33.7842864Z 1: [ RUN      ] VarintTest/1.GoldenWireBytesAndAppendSemantics
+2026-10-21T06:23:33.7845697Z 1: [       OK ] VarintTest/1.GoldenWireBytesAndAppendSemantics (0 ms)
+2026-10-21T06:23:33.7846877Z 1: [ RUN      ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix
+2026-10-21T06:23:33.7980709Z 1: [       OK ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix (13 ms)
+2026-10-21T06:23:33.7982079Z 1: [ RUN      ] VarintTest/1.RejectsMalformedWithoutChangingArguments
+2026-10-21T06:23:33.7984052Z 1: [       OK ] VarintTest/1.RejectsMalformedWithoutChangingArguments (0 ms)
+2026-10-21T06:23:33.7985265Z 1: [ RUN      ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding
+2026-10-21T06:23:39.7700477Z 1: [       OK ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding (5971 ms)
+2026-10-21T06:23:39.7701314Z 1: [ RUN      ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference
+2026-10-21T06:23:42.5835815Z 1: [       OK ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference (2813 ms)
+2026-10-21T06:23:42.5837060Z 1: [ RUN      ] VarintTest/1.ConcatenatedStream
+2026-10-21T06:23:42.5837747Z 1: [       OK ] VarintTest/1.ConcatenatedStream (0 ms)
+2026-10-21T06:23:42.5838413Z 1: [----------] 6 tests from VarintTest/1 (8799 ms total)
+2026-10-21T06:23:42.5838895Z 1: 
+2026-10-21T06:23:42.5839158Z 1: [----------] 3 tests from WriteBatchTest
+2026-10-21T06:23:42.5839658Z 1: [ RUN      ] WriteBatchTest.OwnsDataPreservesOrderAndRoundTrips
+2026-10-21T06:23:42.5863803Z 1: [       OK ] WriteBatchTest.OwnsDataPreservesOrderAndRoundTrips (2 ms)
+2026-10-21T06:23:42.5864487Z 1: [ RUN      ] WriteBatchTest.RejectsTruncationInvalidTypesTrailingBytesAndSequenceOverflow
+2026-10-21T06:23:42.5874726Z 1: [       OK ] WriteBatchTest.RejectsTruncationInvalidTypesTrailingBytesAndSequenceOverflow (0 ms)
+2026-10-21T06:23:42.5876035Z 1: [ RUN      ] WriteBatchTest.RandomBytesNeverProduceUnstableDecodes
+2026-10-21T06:23:42.8712700Z 1: [       OK ] WriteBatchTest.RandomBytesNeverProduceUnstableDecodes (283 ms)
+2026-10-21T06:23:42.8714115Z 1: [----------] 3 tests from WriteBatchTest (287 ms total)
+2026-10-21T06:23:42.8714698Z 1: 
+2026-10-21T06:23:42.8715268Z 1: [----------] 1 test from MemTableIteratorTest
+2026-10-21T06:23:42.8715771Z 1: [ RUN      ] MemTableIteratorTest.NavigationSeeksAndOwnershipMatchExportedReference
+2026-10-21T06:23:42.9278300Z 1: [       OK ] MemTableIteratorTest.NavigationSeeksAndOwnershipMatchExportedReference (56 ms)
+2026-10-21T06:23:42.9279606Z 1: [----------] 1 test from MemTableIteratorTest (56 ms total)
+2026-10-21T06:23:42.9279997Z 1: 
+2026-10-21T06:23:42.9280227Z 1: [----------] 5 tests from MemTableTest
+2026-10-21T06:23:42.9280757Z 1: [ RUN      ] MemTableTest.FrozenExportAndLookupPreserveVersionsAndTombstones
+2026-10-21T06:23:42.9284168Z 1: [       OK ] MemTableTest.FrozenExportAndLookupPreserveVersionsAndTombstones (0 ms)
+2026-10-21T06:23:42.9285108Z 1: [ RUN      ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership
+2026-10-21T06:23:42.9288608Z 1: [       OK ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership (0 ms)
+2026-10-21T06:23:42.9289536Z 1: [ RUN      ] MemTableTest.RandomVersionsMatchMapReference
+2026-10-21T06:23:43.3823798Z 1: [       OK ] MemTableTest.RandomVersionsMatchMapReference (453 ms)
+2026-10-21T06:23:43.3825338Z 1: [ RUN      ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions
+2026-10-21T06:23:43.5944262Z 1: [       OK ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions (211 ms)
+2026-10-21T06:23:43.5945464Z 1: [ RUN      ] MemTableTest.ConcurrentReadersTraverseManyKeysAndRetainOlderSnapshots
+2026-10-21T06:23:44.2286707Z 1: [       OK ] MemTableTest.ConcurrentReadersTraverseManyKeysAndRetainOlderSnapshots (634 ms)
+2026-10-21T06:23:44.2288777Z 1: [----------] 5 tests from MemTableTest (1300 ms total)
+2026-10-21T06:23:44.2289251Z 1: 
+2026-10-21T06:23:44.2289542Z 1: [----------] 2 tests from PlatformTest
+2026-10-21T06:23:44.2290252Z 1: [ RUN      ] PlatformTest.SyncRenameReplaceTruncateAppendAndUnicodePaths
+2026-10-21T06:23:44.2352455Z 1: [       OK ] PlatformTest.SyncRenameReplaceTruncateAppendAndUnicodePaths (6 ms)
+2026-10-21T06:23:44.2353377Z 1: [ RUN      ] PlatformTest.ExclusiveLockAndErrors
+2026-10-21T06:23:44.2381929Z 1: [       OK ] PlatformTest.ExclusiveLockAndErrors (2 ms)
+2026-10-21T06:23:44.2382646Z 1: [----------] 2 tests from PlatformTest (9 ms total)
+2026-10-21T06:23:44.2383547Z 1: 
+2026-10-21T06:23:44.2384345Z 1: [----------] 8 tests from WalTest
+2026-10-21T06:23:44.2385086Z 1: [ RUN      ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend
+2026-10-21T06:23:44.2396990Z 1: WAL recovery: truncated 1 tail bytes at offset 20
+2026-10-21T06:23:44.2404210Z 1: WAL recovery: truncated 2 tail bytes at offset 20
+2026-10-21T06:23:44.2409974Z 1: WAL recovery: truncated 3 tail bytes at offset 20
+2026-10-21T06:23:44.2415926Z 1: WAL recovery: truncated 4 tail bytes at offset 20
+2026-10-21T06:23:44.2421840Z 1: WAL recovery: truncated 5 tail bytes at offset 20
+2026-10-21T06:23:44.2427486Z 1: WAL recovery: truncated 6 tail bytes at offset 20
+2026-10-21T06:23:44.2433225Z 1: WAL recovery: truncated 7 tail bytes at offset 20
+2026-10-21T06:23:44.2439289Z 1: WAL recovery: truncated 8 tail bytes at offset 20
+2026-10-21T06:23:44.2444961Z 1: WAL recovery: truncated 9 tail bytes at offset 20
+2026-10-21T06:23:44.2451066Z 1: WAL recovery: truncated 10 tail bytes at offset 20
+2026-10-21T06:23:44.2457047Z 1: WAL recovery: truncated 11 tail bytes at offset 20
+2026-10-21T06:23:44.2463454Z 1: WAL recovery: truncated 12 tail bytes at offset 20
+2026-10-21T06:23:44.2469397Z 1: WAL recovery: truncated 13 tail bytes at offset 20
+2026-10-21T06:23:44.2475034Z 1: WAL recovery: truncated 14 tail bytes at offset 20
+2026-10-21T06:23:44.2481215Z 1: WAL recovery: truncated 15 tail bytes at offset 20
+2026-10-21T06:23:44.2486943Z 1: WAL recovery: truncated 16 tail bytes at offset 20
+2026-10-21T06:23:44.2492691Z 1: WAL recovery: truncated 17 tail bytes at offset 20
+2026-10-21T06:23:44.2498409Z 1: WAL recovery: truncated 18 tail bytes at offset 20
+2026-10-21T06:23:44.2504036Z 1: WAL recovery: truncated 19 tail bytes at offset 20
+2026-10-21T06:23:44.2509663Z 1: WAL recovery: truncated 20 tail bytes at offset 20
+2026-10-21T06:23:44.2512120Z 1: [       OK ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend (12 ms)
+2026-10-21T06:23:44.2513114Z 1: [ RUN      ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord
+2026-10-21T06:23:44.2544523Z 1: [       OK ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord (3 ms)
+2026-10-21T06:23:44.2545404Z 1: [ RUN      ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption
+2026-10-21T06:23:44.2547992Z 1: WAL recovery: truncated 1 tail bytes at offset 22
+2026-10-21T06:23:44.2560016Z 1: WAL recovery: truncated 9 tail bytes at offset 22
+2026-10-21T06:23:44.2567182Z 1: WAL recovery: truncated 512 tail bytes at offset 22
+2026-10-21T06:23:44.2575594Z 1: WAL recovery: truncated 4096 tail bytes at offset 22
+2026-10-21T06:23:44.2580489Z 1: [       OK ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption (3 ms)
+2026-10-21T06:23:44.2581109Z 1: [ RUN      ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch
+2026-10-21T06:23:44.2586307Z 1: [       OK ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch (0 ms)
+2026-10-21T06:23:44.2587215Z 1: [ RUN      ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends
+2026-10-21T06:23:44.2591391Z 1: [       OK ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends (0 ms)
+2026-10-21T06:23:44.2591975Z 1: [ RUN      ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate
+2026-10-21T06:23:44.2600577Z 1: [       OK ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate (0 ms)
+2026-10-21T06:23:44.2601402Z 1: [ RUN      ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes
+2026-10-21T06:23:44.2604518Z 1: [       OK ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes (0 ms)
+2026-10-21T06:23:44.2605382Z 1: [ RUN      ] WalTest.ReplayUsesTheSequenceBoundaryOfThePreviousLog
+2026-10-21T06:23:44.2612175Z 1: [       OK ] WalTest.ReplayUsesTheSequenceBoundaryOfThePreviousLog (0 ms)
+2026-10-21T06:23:44.2613946Z 1: [----------] 8 tests from WalTest (22 ms total)
+2026-10-21T06:23:44.2614469Z 1: 
+2026-10-21T06:23:44.2614981Z 1: [----------] 4 tests from DBTest
+2026-10-21T06:23:44.2615556Z 1: [ RUN      ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay
+2026-10-21T06:28:45.3757459Z 1: DB differential: 10000 seeds, 64 operations per seed, base seed 24301
+2026-10-21T06:28:45.3758436Z 1: [       OK ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay (301113 ms)
+2026-10-21T06:28:45.3759267Z 1: [ RUN      ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen
+2026-10-21T06:28:45.4692551Z 1: [       OK ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen (93 ms)
+2026-10-21T06:28:45.4693745Z 1: [ RUN      ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen
+2026-10-21T06:28:45.4798862Z 1: WAL recovery: truncated 4 tail bytes at offset 22
+2026-10-21T06:28:45.4850539Z 1: [       OK ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen (15 ms)
+2026-10-21T06:28:45.4851463Z 1: [ RUN      ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches
+2026-10-21T06:28:48.4010013Z 1: [       OK ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches (2915 ms)
+2026-10-21T06:28:48.4011104Z 1: [----------] 4 tests from DBTest (304138 ms total)
+2026-10-21T06:28:48.4011658Z 1: 
+2026-10-21T06:28:48.4012173Z 1: [----------] 6 tests from BlockTest
+2026-10-21T06:28:48.4012971Z 1: [ RUN      ] BlockTest.RestartSeekMatchesFullDecoderWithBoundedEntryWork
+2026-10-21T06:28:48.9429638Z 1: [       OK ] BlockTest.RestartSeekMatchesFullDecoderWithBoundedEntryWork (541 ms)
+2026-10-21T06:28:48.9430768Z 1: [ RUN      ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry
+2026-10-21T06:28:48.9449177Z 1: [       OK ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry (1 ms)
+2026-10-21T06:28:48.9450080Z 1: [ RUN      ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary
+2026-10-21T06:28:49.1101118Z 1: [       OK ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary (164 ms)
+2026-10-21T06:28:49.1102248Z 1: [ RUN      ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues
+2026-10-21T06:28:49.1853156Z 1: [       OK ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues (75 ms)
+2026-10-21T06:28:49.1854231Z 1: [ RUN      ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput
+2026-10-21T06:28:49.1893509Z 1: [       OK ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput (3 ms)
+2026-10-21T06:28:49.1894560Z 1: [ RUN      ] BlockTest.RejectsMalformedStructureEvenWithValidCrc
+2026-10-21T06:28:49.1898390Z 1: [       OK ] BlockTest.RejectsMalformedStructureEvenWithValidCrc (0 ms)
+2026-10-21T06:28:49.1899861Z 1: [----------] 6 tests from BlockTest (788 ms total)
+2026-10-21T06:28:49.1901541Z 1: 
+2026-10-21T06:28:49.1901936Z 1: [----------] 2 tests from BlockIteratorTest
+2026-10-21T06:28:49.1902686Z 1: [ RUN      ] BlockIteratorTest.NavigationAndRestartSeekMatchFullDecoder
+2026-10-21T06:28:49.5134495Z 1: [       OK ] BlockIteratorTest.NavigationAndRestartSeekMatchFullDecoder (322 ms)
+2026-10-21T06:28:49.5135519Z 1: [ RUN      ] BlockIteratorTest.EmptyCorruptAndMalformedBlocksHaveStickyStatus
+2026-10-21T06:28:49.5137655Z 1: [       OK ] BlockIteratorTest.EmptyCorruptAndMalformedBlocksHaveStickyStatus (0 ms)
+2026-10-21T06:28:49.5140304Z 1: [----------] 2 tests from BlockIteratorTest (323 ms total)
+2026-10-21T06:28:49.5141175Z 1: 
+2026-10-21T06:28:49.5141564Z 1: [----------] 3 tests from BloomTest
+2026-10-21T06:28:49.5142173Z 1: [ RUN      ] BloomTest.MatchesIndependentBitVectorAndHasNoFalseNegatives
+2026-10-21T06:28:49.5147922Z 1: [       OK ] BloomTest.MatchesIndependentBitVectorAndHasNoFalseNegatives (0 ms)
+2026-10-21T06:28:49.5148921Z 1: [ RUN      ] BloomTest.EmptyDisabledAndCorruptedFilters
+2026-10-21T06:28:49.5154953Z 1: [       OK ] BloomTest.EmptyDisabledAndCorruptedFilters (0 ms)
+2026-10-21T06:28:49.5155605Z 1: [ RUN      ] BloomTest.MeasuredFalsePositiveRate
+2026-10-21T06:28:55.8680288Z 1: BLOOM_RESULT {"seed":24301,"keys":10000,"queries":200000,"bits_per_key":10,"probes":7,"positives":1634,"actual":0.00817,"theoretical":0.00819372}
+2026-10-21T06:28:55.8682544Z 1: [       OK ] BloomTest.MeasuredFalsePositiveRate (6352 ms)
+2026-10-21T06:28:55.8683761Z 1: [----------] 3 tests from BloomTest (6353 ms total)
+2026-10-21T06:28:55.8684438Z 1: 
+2026-10-21T06:28:55.8684968Z 1: [----------] 2 tests from MappingTest
+2026-10-21T06:28:55.8686034Z 1: [ RUN      ] MappingTest.DeletionAttemptWhileMappedPreservesBytesAndEventuallyReclaimsFile
+2026-10-21T06:28:55.8712095Z 1: [       OK ] MappingTest.DeletionAttemptWhileMappedPreservesBytesAndEventuallyReclaimsFile (2 ms)
+2026-10-21T06:28:55.8713345Z 1: [ RUN      ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles
+2026-10-21T06:28:55.8852233Z 1: [       OK ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles (13 ms)
+2026-10-21T06:28:55.8853862Z 1: [----------] 2 tests from MappingTest (16 ms total)
+2026-10-21T06:28:55.8854432Z 1: 
+2026-10-21T06:28:55.8854834Z 1: [----------] 2 tests from TableIteratorTest
+2026-10-21T06:28:55.8855758Z 1: [ RUN      ] TableIteratorTest.CreationIsLazyAndNavigationMatchesReferenceAcrossBlocks
+2026-10-21T06:28:55.9531910Z 1: [       OK ] TableIteratorTest.CreationIsLazyAndNavigationMatchesReferenceAcrossBlocks (67 ms)
+2026-10-21T06:28:55.9533337Z 1: [ RUN      ] TableIteratorTest.CorruptionInAnUnreadBlockIsDetectedOnTransition
+2026-10-21T06:28:55.9624804Z 1: [       OK ] TableIteratorTest.CorruptionInAnUnreadBlockIsDetectedOnTransition (8 ms)
+2026-10-21T06:28:55.9627178Z 1: [----------] 2 tests from TableIteratorTest (76 ms total)
+2026-10-21T06:28:55.9627568Z 1: 
+2026-10-21T06:28:55.9627814Z 1: [----------] 7 tests from TableTest
+2026-10-21T06:28:55.9628320Z 1: [ RUN      ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen
+2026-10-21T06:28:55.9685307Z 1: [       OK ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen (5 ms)
+2026-10-21T06:28:55.9686648Z 1: [ RUN      ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference
+2026-10-21T06:29:00.1352273Z 1: [       OK ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference (4166 ms)
+2026-10-21T06:29:00.1353050Z 1: [ RUN      ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions
+2026-10-21T06:29:00.1425959Z 1: [       OK ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions (7 ms)
+2026-10-21T06:29:00.1427697Z 1: [ RUN      ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter
+2026-10-21T06:29:00.8073198Z 1: [       OK ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter (664 ms)
+2026-10-21T06:29:00.8074336Z 1: [ RUN      ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected
+2026-10-21T06:29:00.8127309Z 1: [       OK ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected (5 ms)
+2026-10-21T06:29:00.8128088Z 1: [ RUN      ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully
+2026-10-21T06:29:00.8345150Z 1: [       OK ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully (21 ms)
+2026-10-21T06:29:00.8346280Z 1: [ RUN      ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions
+2026-10-21T06:29:01.9165820Z 1: [       OK ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions (1081 ms)
+2026-10-21T06:29:01.9166930Z 1: [----------] 7 tests from TableTest (5953 ms total)
+2026-10-21T06:29:01.9167553Z 1: 
+2026-10-21T06:29:01.9167957Z 1: [----------] 11 tests from ManifestTest
+2026-10-21T06:29:01.9168831Z 1: [ RUN      ] ManifestTest.ReadersKeepThePublishedStateWhileSyncIsBlocked
+2026-10-21T06:29:01.9185176Z 1: [       OK ] ManifestTest.ReadersKeepThePublishedStateWhileSyncIsBlocked (1 ms)
+2026-10-21T06:29:01.9186492Z 1: [ RUN      ] ManifestTest.ConcurrentReadersObserveCompletePublishedEdits
+2026-10-21T06:29:02.0389719Z 1: [       OK ] ManifestTest.ConcurrentReadersObserveCompletePublishedEdits (120 ms)
+2026-10-21T06:29:02.0390952Z 1: [ RUN      ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput
+2026-10-21T06:29:02.0402118Z 1: [       OK ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput (1 ms)
+2026-10-21T06:29:02.0403406Z 1: [ RUN      ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected
+2026-10-21T06:29:02.0411107Z 1: Manifest recovery: truncated 1 tail bytes
+2026-10-21T06:29:02.0416137Z 1: Manifest recovery: truncated 2 tail bytes
+2026-10-21T06:29:02.0420269Z 1: Manifest recovery: truncated 3 tail bytes
+2026-10-21T06:29:02.0424888Z 1: Manifest recovery: truncated 4 tail bytes
+2026-10-21T06:29:02.0430402Z 1: Manifest recovery: truncated 5 tail bytes
+2026-10-21T06:29:02.0434659Z 1: Manifest recovery: truncated 6 tail bytes
+2026-10-21T06:29:02.0440015Z 1: Manifest recovery: truncated 7 tail bytes
+2026-10-21T06:29:02.0445565Z 1: Manifest recovery: truncated 8 tail bytes
+2026-10-21T06:29:02.0448784Z 1: Manifest recovery: truncated 9 tail bytes
+2026-10-21T06:29:02.0452960Z 1: Manifest recovery: truncated 10 tail bytes
+2026-10-21T06:29:02.0457653Z 1: Manifest recovery: truncated 11 tail bytes
+2026-10-21T06:29:02.0462119Z 1: Manifest recovery: truncated 12 tail bytes
+2026-10-21T06:29:02.0466269Z 1: Manifest recovery: truncated 13 tail bytes
+2026-10-21T06:29:02.0471406Z 1: Manifest recovery: truncated 14 tail bytes
+2026-10-21T06:29:02.0476535Z 1: Manifest recovery: truncated 15 tail bytes
+2026-10-21T06:29:02.0481476Z 1: Manifest recovery: truncated 16 tail bytes
+2026-10-21T06:29:02.0485940Z 1: Manifest recovery: truncated 17 tail bytes
+2026-10-21T06:29:02.0520160Z 1: Manifest recovery: truncated 18 tail bytes
+2026-10-21T06:29:02.0525904Z 1: Manifest recovery: truncated 512 tail bytes
+2026-10-21T06:29:02.0531762Z 1: [       OK ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected (12 ms)
+2026-10-21T06:29:02.0532596Z 1: [ RUN      ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion
+2026-10-21T06:29:02.0555865Z 1: [       OK ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion (2 ms)
+2026-10-21T06:29:02.0556924Z 1: [ RUN      ] ManifestTest.RejectsRegressingCountersAndInvalidFileState
+2026-10-21T06:29:02.0568315Z 1: [       OK ] ManifestTest.RejectsRegressingCountersAndInvalidFileState (1 ms)
+2026-10-21T06:29:02.0569809Z 1: [ RUN      ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership
+2026-10-21T06:29:02.0740828Z 1: [       OK ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership (17 ms)
+2026-10-21T06:29:02.0741839Z 1: [ RUN      ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites
+2026-10-21T06:29:02.0824339Z 1: [       OK ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites (8 ms)
+2026-10-21T06:29:02.0825728Z 1: [ RUN      ] ManifestTest.HigherLevelsAreIndexedByKeyAndRejectOverlappingRanges
+2026-10-21T06:29:02.0964811Z 1: [       OK ] ManifestTest.HigherLevelsAreIndexedByKeyAndRejectOverlappingRanges (13 ms)
+2026-10-21T06:29:02.0966184Z 1: [ RUN      ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal
+2026-10-21T06:29:02.1050841Z 1: [       OK ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal (8 ms)
+2026-10-21T06:29:02.1051905Z 1: [ RUN      ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase
+2026-10-21T06:29:02.1244776Z 1: [       OK ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase (19 ms)
+2026-10-21T06:29:02.1246469Z 1: [----------] 11 tests from ManifestTest (207 ms total)
+2026-10-21T06:29:02.1247154Z 1: 
+2026-10-21T06:29:02.1248165Z 1: [----------] 10 tests from FlushTest
+2026-10-21T06:29:02.1249348Z 1: [ RUN      ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles
+2026-10-21T06:29:02.1262939Z 1: [       OK ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles (1 ms)
+2026-10-21T06:29:02.1264026Z 1: [ RUN      ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap
+2026-10-21T06:29:02.6634961Z 1: [       OK ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap (536 ms)
+2026-10-21T06:29:02.6636276Z 1: [ RUN      ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables
+2026-10-21T06:29:02.7341606Z 1: [       OK ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables (70 ms)
+2026-10-21T06:29:02.7342338Z 1: [ RUN      ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens
+2026-10-21T06:29:05.6981986Z 1: [       OK ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens (2963 ms)
+2026-10-21T06:29:05.6983598Z 1: [ RUN      ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence
+2026-10-21T06:29:05.7126290Z 1: [       OK ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence (14 ms)
+2026-10-21T06:29:05.7127169Z 1: [ RUN      ] FlushTest.RecoversRotationAndUncommittedTablePublication
+2026-10-21T06:29:05.7634142Z 1: [       OK ] FlushTest.RecoversRotationAndUncommittedTablePublication (50 ms)
+2026-10-21T06:29:05.7635175Z 1: [ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+2026-10-21T06:29:05.7918780Z 1: [       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (28 ms)
+2026-10-21T06:29:05.7919661Z 1: [ RUN      ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+2026-10-21T06:29:05.8048344Z 1: [       OK ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch (12 ms)
+2026-10-21T06:29:05.8049135Z 1: [ RUN      ] FlushTest.MissingReferencedWalOrTableIsCorruption
+2026-10-21T06:29:05.8352401Z 1: [       OK ] FlushTest.MissingReferencedWalOrTableIsCorruption (30 ms)
+2026-10-21T06:29:05.8353201Z 1: [ RUN      ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes
+2026-10-21T06:29:06.1015789Z 1: [       OK ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes (266 ms)
+2026-10-21T06:29:06.1017266Z 1: [----------] 10 tests from FlushTest (3976 ms total)
+2026-10-21T06:29:06.1017914Z 1: 
+2026-10-21T06:29:06.1018329Z 1: [----------] 2 tests from CleanupTest
+2026-10-21T06:29:06.1019111Z 1: [ RUN      ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites
+2026-10-21T06:29:06.1150716Z 1: Deferred obsolete-file cleanup: "D:\\a\\stratadb\\stratadb\\build\\asan\\test-data\\565539411500-135\\2.wal": The directory is not empty.
+2026-10-21T06:29:06.1325368Z 1: [       OK ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites (30 ms)
+2026-10-21T06:29:06.1326087Z 1: [ RUN      ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles
+2026-10-21T06:29:06.1620715Z 1: [       OK ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles (28 ms)
+2026-10-21T06:29:06.1621664Z 1: [----------] 2 tests from CleanupTest (59 ms total)
+2026-10-21T06:29:06.1622066Z 1: 
+2026-10-21T06:29:06.1622330Z 1: [----------] 6 tests from CompactionTest
+2026-10-21T06:29:06.1622814Z 1: [ RUN      ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only
+2026-10-21T06:29:06.1628682Z 1: [       OK ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only (0 ms)
+2026-10-21T06:29:06.1629765Z 1: [ RUN      ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey
+2026-10-21T06:29:06.1639527Z 1: [       OK ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey (0 ms)
+2026-10-21T06:29:06.1640672Z 1: [ RUN      ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams
+2026-10-21T06:29:06.3257912Z 1: [       OK ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams (161 ms)
+2026-10-21T06:29:06.3259124Z 1: [ RUN      ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection
+2026-10-21T06:29:06.3284696Z 1: [       OK ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection (2 ms)
+2026-10-21T06:29:06.3286078Z 1: [ RUN      ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference
+2026-10-21T06:29:24.5860155Z 1: [       OK ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference (18257 ms)
+2026-10-21T06:29:24.5861275Z 1: [ RUN      ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput
+2026-10-21T06:29:24.5865191Z 1: [       OK ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput (0 ms)
+2026-10-21T06:29:24.5866628Z 1: [----------] 6 tests from CompactionTest (18424 ms total)
+2026-10-21T06:29:24.5867660Z 1: 
+2026-10-21T06:29:24.5868947Z 1: [----------] 3 tests from IteratorTest
+2026-10-21T06:29:24.5869633Z 1: [ RUN      ] IteratorTest.MergeSnapshotSeekForwardReverseAndBinaryKeys
+2026-10-21T06:29:24.5895234Z 1: [       OK ] IteratorTest.MergeSnapshotSeekForwardReverseAndBinaryKeys (2 ms)
+2026-10-21T06:29:24.5905566Z 1: [ RUN      ] IteratorTest.EmptyErrorsAndVersionLifetime
+2026-10-21T06:29:24.5906776Z 1: [       OK ] IteratorTest.EmptyErrorsAndVersionLifetime (0 ms)
+2026-10-21T06:29:24.5907779Z 1: [ RUN      ] IteratorTest.SnapshotFilteringAndDirectionChangesMatchOrderedMap
+2026-10-21T06:29:37.4810923Z 1: [       OK ] IteratorTest.SnapshotFilteringAndDirectionChangesMatchOrderedMap (12890 ms)
+2026-10-21T06:29:37.4812428Z 1: [----------] 3 tests from IteratorTest (12893 ms total)
+2026-10-21T06:29:37.4813101Z 1: 
+2026-10-21T06:29:37.4813602Z 1: [----------] 3 tests from MergingIteratorTest
+2026-10-21T06:29:37.4814562Z 1: [ RUN      ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort
+2026-10-21T06:29:38.7213320Z 1: [       OK ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort (1239 ms)
+2026-10-21T06:29:38.7214102Z 1: [ RUN      ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges
+2026-10-21T06:29:38.7220140Z 1: [       OK ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges (0 ms)
+2026-10-21T06:29:38.7220907Z 1: [ RUN      ] MergingIteratorTest.InvalidTombstoneIsRejectedWhenPositioned
+2026-10-21T06:29:38.7225158Z 1: [       OK ] MergingIteratorTest.InvalidTombstoneIsRejectedWhenPositioned (0 ms)
+2026-10-21T06:29:38.7227890Z 1: [----------] 3 tests from MergingIteratorTest (1241 ms total)
+2026-10-21T06:29:38.7228572Z 1: 
+2026-10-21T06:29:38.7228962Z 1: [----------] 8 tests from SnapshotTest
+2026-10-21T06:29:38.7229988Z 1: [ RUN      ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction
+2026-10-21T06:33:03.4544093Z 1: [       OK ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction (204730 ms)
+2026-10-21T06:33:03.4545366Z 1: [ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+2026-10-21T06:33:03.5013088Z 1: [       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (46 ms)
+2026-10-21T06:33:03.5014058Z 1: [ RUN      ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues
+2026-10-21T06:33:04.3757125Z 1: [       OK ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues (873 ms)
+2026-10-21T06:33:04.3767873Z 1: [ RUN      ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected
+2026-10-21T06:33:04.3968925Z 1: [       OK ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected (21 ms)
+2026-10-21T06:33:04.3969990Z 1: [ RUN      ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables
+2026-10-21T06:33:06.3901862Z 1: ITERATOR_BLOCK_READS creation=0 short_scan=1 l1_tables=30
+2026-10-21T06:33:06.3903205Z 1: [       OK ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables (1993 ms)
+2026-10-21T06:33:06.3904617Z 1: [ RUN      ] SnapshotTest.SlowIteratorKeepsItsInputsWhileCompactionReclaimsOtherTables
+2026-10-21T06:33:12.8068043Z 1: [       OK ] SnapshotTest.SlowIteratorKeepsItsInputsWhileCompactionReclaimsOtherTables (6416 ms)
+2026-10-21T06:33:12.8069058Z 1: [ RUN      ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery
+2026-10-21T06:33:12.8439773Z 1: [       OK ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery (36 ms)
+2026-10-21T06:33:12.8441131Z 1: [ RUN      ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction
+2026-10-21T06:33:13.1669409Z 1: [       OK ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction (322 ms)
+2026-10-21T06:33:13.1670362Z 1: [----------] 8 tests from SnapshotTest (214443 ms total)
+2026-10-21T06:33:13.1671015Z 1: 
+2026-10-21T06:33:13.1671501Z 1: [----------] 4 tests from TableAndSse42/Crc32cPathsTest
+2026-10-21T06:33:13.1672274Z 1: [ RUN      ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/0
+2026-10-21T06:33:13.1675423Z 1: [       OK ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/0 (0 ms)
+2026-10-21T06:33:13.1676124Z 1: [ RUN      ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/1
+2026-10-21T06:33:13.1678191Z 1: [       OK ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/1 (0 ms)
+2026-10-21T06:33:13.1679388Z 1: [ RUN      ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/0
+2026-10-21T06:33:13.2926534Z 1: [       OK ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/0 (124 ms)
+2026-10-21T06:33:13.4216577Z 1: [ RUN      ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/1
+2026-10-21T06:33:13.4218310Z 1: [       OK ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/1 (128 ms)
+2026-10-21T06:33:13.4219711Z 1: [----------] 4 tests from TableAndSse42/Crc32cPathsTest (254 ms total)
+2026-10-21T06:33:13.4220225Z 1: 
+2026-10-21T06:33:13.4220560Z 1: [----------] Global test environment tear-down
+2026-10-21T06:33:13.4222824Z 1: [==========] 116 tests from 26 test suites ran. (588533 ms total)
+2026-10-21T06:33:13.4223534Z 1: [  PASSED  ] 116 tests.
+2026-10-21T06:33:13.5397148Z 1/5 Test #1: lsm_tests ........................   Passed  589.15 sec
+2026-10-21T06:33:13.5412118Z test 2
+2026-10-21T06:33:13.5412842Z     Start 2: seed_maximum
+2026-10-21T06:33:13.5413452Z 
+2026-10-21T06:33:13.5414295Z 2: Test command: D:\a\stratadb\stratadb\build\asan\lsm_tests.exe "--seed=18446744073709551615" "--gtest_filter=StatusTest.DefaultIsSuccess"
+2026-10-21T06:33:13.5415045Z 2: Working Directory: D:/a/stratadb/stratadb/build/asan
+2026-10-21T06:33:13.5415448Z 2: Test timeout computed to be: 10000000
+2026-10-21T06:33:13.5836146Z 2: Randomized test seed: 18446744073709551615
+2026-10-21T06:33:13.5836993Z 2: Test mode: full
+2026-10-21T06:33:13.5837474Z 2: Note: Google Test filter = StatusTest.DefaultIsSuccess
+2026-10-21T06:33:13.5838621Z 2: [==========] Running 1 test from 1 test suite.
+2026-10-21T06:33:13.5839488Z 2: [----------] Global test environment set-up.
+2026-10-21T06:33:13.5840253Z 2: [----------] 1 test from StatusTest
+2026-10-21T06:33:13.5841018Z 2: [ RUN      ] StatusTest.DefaultIsSuccess
+2026-10-21T06:33:13.5841826Z 2: [       OK ] StatusTest.DefaultIsSuccess (0 ms)
+2026-10-21T06:33:13.5842319Z 2: [----------] 1 test from StatusTest (0 ms total)
+2026-10-21T06:33:13.5842735Z 2: 
+2026-10-21T06:33:13.5843337Z 2: [----------] Global test environment tear-down
+2026-10-21T06:33:13.5846062Z 2: [==========] 1 test from 1 test suite ran. (1 ms total)
+2026-10-21T06:33:13.5846704Z 2: [  PASSED  ] 1 test.
+2026-10-21T06:33:13.5964258Z 2/5 Test #2: seed_maximum .....................   Passed    0.05 sec
+2026-10-21T06:33:13.5969122Z test 3
+2026-10-21T06:33:13.5969571Z     Start 3: seed_reject_empty
+2026-10-21T06:33:13.5970533Z 
+2026-10-21T06:33:13.5970919Z 3: Test command: D:\a\stratadb\stratadb\build\asan\lsm_tests.exe "--seed="
+2026-10-21T06:33:13.5971733Z 3: Working Directory: D:/a/stratadb/stratadb/build/asan
+2026-10-21T06:33:13.5972303Z 3: Test timeout computed to be: 60
+2026-10-21T06:33:13.6355719Z 3: Invalid --seed: expected an unsigned decimal 64-bit integer
+2026-10-21T06:33:13.6463702Z 3/5 Test #3: seed_reject_empty ................   Passed    0.05 sec
+2026-10-21T06:33:13.6468180Z test 4
+2026-10-21T06:33:13.6468607Z     Start 4: seed_reject_text
+2026-10-21T06:33:13.6469645Z 
+2026-10-21T06:33:13.6469962Z 4: Test command: D:\a\stratadb\stratadb\build\asan\lsm_tests.exe "--seed=invalid"
+2026-10-21T06:33:13.6470515Z 4: Working Directory: D:/a/stratadb/stratadb/build/asan
+2026-10-21T06:33:13.6470888Z 4: Test timeout computed to be: 60
+2026-10-21T06:33:13.6863998Z 4: Invalid --seed: expected an unsigned decimal 64-bit integer
+2026-10-21T06:33:13.6971353Z 4/5 Test #4: seed_reject_text .................   Passed    0.05 sec
+2026-10-21T06:33:13.6975920Z test 5
+2026-10-21T06:33:13.6976641Z     Start 5: seed_reject_overflow
+2026-10-21T06:33:13.6977578Z 
+2026-10-21T06:33:13.6978110Z 5: Test command: D:\a\stratadb\stratadb\build\asan\lsm_tests.exe "--seed=18446744073709551616"
+2026-10-21T06:33:13.6979026Z 5: Working Directory: D:/a/stratadb/stratadb/build/asan
+2026-10-21T06:33:13.6979435Z 5: Test timeout computed to be: 60
+2026-10-21T06:33:13.7362473Z 5: Invalid --seed: expected an unsigned decimal 64-bit integer
+2026-10-21T06:33:13.7472277Z 5/5 Test #5: seed_reject_overflow .............   Passed    0.05 sec
+2026-10-21T06:33:13.7483682Z 
+2026-10-21T06:33:13.7484058Z 100% tests passed out of 5
+2026-10-21T06:33:13.7484991Z 
+2026-10-21T06:33:13.7485336Z Total Test time (real) = 589.38 sec
+2026-10-21T06:33:13.9582688Z ##[group]Run actions/setup-python@v6
+2026-10-21T06:33:13.9583161Z with:
+2026-10-21T06:33:13.9583416Z   python-version: 3.13
+2026-10-21T06:33:13.9583781Z   check-latest: false
+2026-10-21T06:33:13.9586711Z   token: ***
+2026-10-21T06:33:13.9586962Z   update-environment: true
+2026-10-21T06:33:13.9587243Z   allow-prereleases: false
+2026-10-21T06:33:13.9587510Z   freethreaded: false
+2026-10-21T06:33:13.9587745Z env:
+2026-10-21T06:33:13.9587964Z   CommandPromptType: Native
+2026-10-21T06:33:13.9588363Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\
+2026-10-21T06:33:13.9588960Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2026-10-21T06:33:13.9591706Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:33:13.9593998Z   Framework40Version: v4.0
+2026-10-21T06:33:13.9594332Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:33:13.9594720Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:33:13.9595063Z   FrameworkVersion: v4.0.30319
+2026-10-21T06:33:13.9595341Z   FrameworkVersion64: v4.0.30319
+2026-10-21T06:33:13.9595907Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2026-10-21T06:33:13.9596820Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2026-10-21T06:33:13.9599261Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:33:13.9602556Z   LIB: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2026-10-21T06:33:13.9605425Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2026-10-21T06:33:13.9607207Z   llvmArm64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\ARM64\bin
+2026-10-21T06:33:13.9607831Z   llvmX64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin
+2026-10-21T06:33:13.9608355Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\
+2026-10-21T06:33:13.9625807Z   Path: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\;C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:33:13.9647884Z   PROMPT: $P$G
+2026-10-21T06:33:13.9648189Z   UCRTVersion: 10.0.26100.0
+2026-10-21T06:33:13.9648619Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:33:13.9649086Z   use_x64_llvm: true
+2026-10-21T06:33:13.9649888Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\
+2026-10-21T06:33:13.9650688Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\
+2026-10-21T06:33:13.9651390Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:33:13.9652179Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\
+2026-10-21T06:33:13.9653127Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Redist\MSVC\14.51.36231\
+2026-10-21T06:33:13.9653777Z   VCToolsVersion: 14.51.36231
+2026-10-21T06:33:13.9654103Z   VisualStudioVersion: 18.0
+2026-10-21T06:33:13.9654534Z   VS180COMNTOOLS: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\
+2026-10-21T06:33:13.9654944Z   VSCMD_ARG_app_plat: Desktop
+2026-10-21T06:33:13.9655171Z   VSCMD_ARG_HOST_ARCH: x64
+2026-10-21T06:33:13.9655406Z   VSCMD_ARG_TGT_ARCH: x64
+2026-10-21T06:33:13.9655668Z   VSCMD_VER: 18.10.3
+2026-10-21T06:33:13.9656012Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\
+2026-10-21T06:33:13.9656544Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:33:13.9657063Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:33:13.9658029Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2026-10-21T06:33:13.9658720Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2026-10-21T06:33:13.9659129Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:33:13.9659426Z   WindowsSDKLibVersion: 10.0.26100.0\
+2026-10-21T06:33:13.9659860Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2026-10-21T06:33:13.9660271Z   WindowsSDKVersion: 10.0.26100.0\
+2026-10-21T06:33:13.9660783Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\
+2026-10-21T06:33:13.9661534Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\
+2026-10-21T06:33:13.9662034Z   __DOTNET_ADD_64BIT: 1
+2026-10-21T06:33:13.9662283Z   __DOTNET_PREFERRED_BITNESS: 64
+2026-10-21T06:33:13.9671458Z   __VSCMD_PREINIT_PATH: C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps
+2026-10-21T06:33:13.9680388Z ##[endgroup]
+2026-10-21T06:33:14.1464036Z ##[group]Installed versions
+2026-10-21T06:33:14.1580660Z Successfully set up CPython (3.13.16)
+2026-10-21T06:33:14.1581749Z ##[endgroup]
+2026-10-21T06:33:14.1879944Z ##[group]Run executable=build/asan/lsm_db_process
+2026-10-21T06:33:14.1880508Z [36;1mexecutable=build/asan/lsm_db_process[0m
+2026-10-21T06:33:14.1881178Z [36;1mif [ "$RUNNER_OS" = Windows ]; then executable="$executable.exe"; fi[0m
+2026-10-21T06:33:14.1881832Z [36;1mpython tests/crash_smoke.py --executable "$executable" --output results/crash-Windows-asan.json[0m
+2026-10-21T06:33:14.1903928Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-21T06:33:14.1904359Z env:
+2026-10-21T06:33:14.1904604Z   CommandPromptType: Native
+2026-10-21T06:33:14.1905032Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\
+2026-10-21T06:33:14.1905609Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2026-10-21T06:33:14.1908128Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:33:14.1910411Z   Framework40Version: v4.0
+2026-10-21T06:33:14.1910721Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:33:14.1911520Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:33:14.1911972Z   FrameworkVersion: v4.0.30319
+2026-10-21T06:33:14.1912275Z   FrameworkVersion64: v4.0.30319
+2026-10-21T06:33:14.1912843Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2026-10-21T06:33:14.1913474Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2026-10-21T06:33:14.1915695Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:33:14.1918909Z   LIB: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2026-10-21T06:33:14.1921533Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2026-10-21T06:33:14.1923324Z   llvmArm64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\ARM64\bin
+2026-10-21T06:33:14.1923911Z   llvmX64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin
+2026-10-21T06:33:14.1926311Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\
+2026-10-21T06:33:14.1941766Z   Path: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\;C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:33:14.1956965Z   PROMPT: $P$G
+2026-10-21T06:33:14.1957209Z   UCRTVersion: 10.0.26100.0
+2026-10-21T06:33:14.1957546Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:33:14.1957908Z   use_x64_llvm: true
+2026-10-21T06:33:14.1958299Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\
+2026-10-21T06:33:14.1958861Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\
+2026-10-21T06:33:14.1959370Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:33:14.1959990Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\
+2026-10-21T06:33:14.1960712Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Redist\MSVC\14.51.36231\
+2026-10-21T06:33:14.1961218Z   VCToolsVersion: 14.51.36231
+2026-10-21T06:33:14.1961500Z   VisualStudioVersion: 18.0
+2026-10-21T06:33:14.1961911Z   VS180COMNTOOLS: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\
+2026-10-21T06:33:14.1962364Z   VSCMD_ARG_app_plat: Desktop
+2026-10-21T06:33:14.1962635Z   VSCMD_ARG_HOST_ARCH: x64
+2026-10-21T06:33:14.1962899Z   VSCMD_ARG_TGT_ARCH: x64
+2026-10-21T06:33:14.1963151Z   VSCMD_VER: 18.10.3
+2026-10-21T06:33:14.1963495Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\
+2026-10-21T06:33:14.1964041Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:33:14.1964571Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:33:14.1965298Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2026-10-21T06:33:14.1965997Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2026-10-21T06:33:14.1966423Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:33:14.1966771Z   WindowsSDKLibVersion: 10.0.26100.0\
+2026-10-21T06:33:14.1967187Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2026-10-21T06:33:14.1967643Z   WindowsSDKVersion: 10.0.26100.0\
+2026-10-21T06:33:14.1968141Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\
+2026-10-21T06:33:14.1968858Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\
+2026-10-21T06:33:14.1969359Z   __DOTNET_ADD_64BIT: 1
+2026-10-21T06:33:14.1969608Z   __DOTNET_PREFERRED_BITNESS: 64
+2026-10-21T06:33:14.1978804Z   __VSCMD_PREINIT_PATH: C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps
+2026-10-21T06:33:14.1987943Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.13.16\x64
+2026-10-21T06:33:14.1988440Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.13.16\x64/lib/pkgconfig
+2026-10-21T06:33:14.1988928Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.13.16\x64
+2026-10-21T06:33:14.1989370Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.13.16\x64
+2026-10-21T06:33:14.1989835Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.13.16\x64
+2026-10-21T06:33:14.1990192Z ##[endgroup]
+2026-10-21T06:33:23.3632255Z {
+2026-10-21T06:33:23.3632738Z   "platform": "Windows-2025Server-10.0.26100-SP0",
+2026-10-21T06:33:23.3633265Z   "system": "Windows",
+2026-10-21T06:33:23.3634761Z   "seed": 24301,
+2026-10-21T06:33:23.3635227Z   "scope": "M5 forced-flush and compaction smoke; not the M6 campaign",
+2026-10-21T06:33:23.3635767Z   "memtable_bytes": 1,
+2026-10-21T06:33:23.3636086Z   "cycles": [
+2026-10-21T06:33:23.3636361Z     {
+2026-10-21T06:33:23.3636616Z       "sync": true,
+2026-10-21T06:33:23.3636920Z       "acknowledged": 28,
+2026-10-21T06:33:23.3637257Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3637610Z       "recovery_output": "",
+2026-10-21T06:33:23.3637975Z       "sstables_after_recovery": 3
+2026-10-21T06:33:23.3638321Z     },
+2026-10-21T06:33:23.3638558Z     {
+2026-10-21T06:33:23.3638792Z       "sync": true,
+2026-10-21T06:33:23.3639070Z       "acknowledged": 88,
+2026-10-21T06:33:23.3639399Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3640090Z       "recovery_output": "",
+2026-10-21T06:33:23.3640444Z       "sstables_after_recovery": 1
+2026-10-21T06:33:23.3640781Z     },
+2026-10-21T06:33:23.3641005Z     {
+2026-10-21T06:33:23.3641231Z       "sync": true,
+2026-10-21T06:33:23.3641519Z       "acknowledged": 62,
+2026-10-21T06:33:23.3641832Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3642217Z       "recovery_output": "",
+2026-10-21T06:33:23.3642534Z       "sstables_after_recovery": 3
+2026-10-21T06:33:23.3642864Z     },
+2026-10-21T06:33:23.3643082Z     {
+2026-10-21T06:33:23.3643303Z       "sync": true,
+2026-10-21T06:33:23.3643571Z       "acknowledged": 35,
+2026-10-21T06:33:23.3643891Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3644206Z       "recovery_output": "",
+2026-10-21T06:33:23.3644535Z       "sstables_after_recovery": 4
+2026-10-21T06:33:23.3644857Z     },
+2026-10-21T06:33:23.3645078Z     {
+2026-10-21T06:33:23.3645300Z       "sync": true,
+2026-10-21T06:33:23.3645913Z       "acknowledged": 84,
+2026-10-21T06:33:23.3646278Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3646621Z       "recovery_output": "",
+2026-10-21T06:33:23.3647168Z       "sstables_after_recovery": 1
+2026-10-21T06:33:23.3647494Z     },
+2026-10-21T06:33:23.3647735Z     {
+2026-10-21T06:33:23.3647964Z       "sync": true,
+2026-10-21T06:33:23.3648241Z       "acknowledged": 63,
+2026-10-21T06:33:23.3648558Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3648862Z       "recovery_output": "",
+2026-10-21T06:33:23.3649207Z       "sstables_after_recovery": 4
+2026-10-21T06:33:23.3649527Z     },
+2026-10-21T06:33:23.3649740Z     {
+2026-10-21T06:33:23.3649963Z       "sync": false,
+2026-10-21T06:33:23.3650241Z       "acknowledged": 92,
+2026-10-21T06:33:23.3650543Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3650846Z       "recovery_output": "",
+2026-10-21T06:33:23.3651374Z       "sstables_after_recovery": 1
+2026-10-21T06:33:23.3651698Z     },
+2026-10-21T06:33:23.3651924Z     {
+2026-10-21T06:33:23.3652144Z       "sync": false,
+2026-10-21T06:33:23.3652416Z       "acknowledged": 71,
+2026-10-21T06:33:23.3652716Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3653041Z       "recovery_output": "",
+2026-10-21T06:33:23.3653378Z       "sstables_after_recovery": 4
+2026-10-21T06:33:23.3653706Z     },
+2026-10-21T06:33:23.3653930Z     {
+2026-10-21T06:33:23.3654156Z       "sync": false,
+2026-10-21T06:33:23.3654429Z       "acknowledged": 49,
+2026-10-21T06:33:23.3654719Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3655037Z       "recovery_output": "",
+2026-10-21T06:33:23.3655391Z       "sstables_after_recovery": 1
+2026-10-21T06:33:23.3655716Z     },
+2026-10-21T06:33:23.3655949Z     {
+2026-10-21T06:33:23.3656178Z       "sync": false,
+2026-10-21T06:33:23.3656462Z       "acknowledged": 88,
+2026-10-21T06:33:23.3656765Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3657097Z       "recovery_output": "",
+2026-10-21T06:33:23.3657842Z       "sstables_after_recovery": 1
+2026-10-21T06:33:23.3658201Z     },
+2026-10-21T06:33:23.3658424Z     {
+2026-10-21T06:33:23.3658654Z       "sync": false,
+2026-10-21T06:33:23.3658943Z       "acknowledged": 54,
+2026-10-21T06:33:23.3659254Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3659540Z       "recovery_output": "",
+2026-10-21T06:33:23.3659833Z       "sstables_after_recovery": 3
+2026-10-21T06:33:23.3660155Z     },
+2026-10-21T06:33:23.3660376Z     {
+2026-10-21T06:33:23.3660595Z       "sync": false,
+2026-10-21T06:33:23.3660867Z       "acknowledged": 38,
+2026-10-21T06:33:23.3661189Z       "kill_returncode": 1,
+2026-10-21T06:33:23.3661527Z       "recovery_output": "",
+2026-10-21T06:33:23.3661901Z       "sstables_after_recovery": 3
+2026-10-21T06:33:23.3662247Z     }
+2026-10-21T06:33:23.3662772Z   ]
+2026-10-21T06:33:23.3663000Z }
+2026-10-21T06:33:23.3996132Z ##[group]Run actions/upload-artifact@v6
+2026-10-21T06:33:23.3996520Z with:
+2026-10-21T06:33:23.3996922Z   name: tests-Windows-asan
+2026-10-21T06:33:23.3997439Z   path: results/ci-*.log
+results/crash-*.json
+build/asan/Testing/Temporary/
+
+2026-10-21T06:33:23.3997880Z   if-no-files-found: warn
+2026-10-21T06:33:23.3998158Z   compression-level: 6
+2026-10-21T06:33:23.3998436Z   overwrite: false
+2026-10-21T06:33:23.3998694Z   include-hidden-files: false
+2026-10-21T06:33:23.3998964Z env:
+2026-10-21T06:33:23.3999209Z   CommandPromptType: Native
+2026-10-21T06:33:23.3999615Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\
+2026-10-21T06:33:23.4000190Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2026-10-21T06:33:23.4002673Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:33:23.4005124Z   Framework40Version: v4.0
+2026-10-21T06:33:23.4005492Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:33:23.4005883Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2026-10-21T06:33:23.4006236Z   FrameworkVersion: v4.0.30319
+2026-10-21T06:33:23.4006520Z   FrameworkVersion64: v4.0.30319
+2026-10-21T06:33:23.4007085Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2026-10-21T06:33:23.4007749Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2026-10-21T06:33:23.4010012Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um
+2026-10-21T06:33:23.4013190Z   LIB: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2026-10-21T06:33:23.4016064Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2026-10-21T06:33:23.4018094Z   llvmArm64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\ARM64\bin
+2026-10-21T06:33:23.4018721Z   llvmX64: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin
+2026-10-21T06:33:23.4019256Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\
+2026-10-21T06:33:23.4036802Z   Path: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\18\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\;C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:33:23.4052858Z   PROMPT: $P$G
+2026-10-21T06:33:23.4053115Z   UCRTVersion: 10.0.26100.0
+2026-10-21T06:33:23.4053473Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:33:23.4053850Z   use_x64_llvm: true
+2026-10-21T06:33:23.4054248Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\IDE\VC\
+2026-10-21T06:33:23.4054804Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\
+2026-10-21T06:33:23.4055326Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\vcpkg
+2026-10-21T06:33:23.4056194Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\
+2026-10-21T06:33:23.4056936Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Redist\MSVC\14.51.36231\
+2026-10-21T06:33:23.4057697Z   VCToolsVersion: 14.51.36231
+2026-10-21T06:33:23.4057994Z   VisualStudioVersion: 18.0
+2026-10-21T06:33:23.4058412Z   VS180COMNTOOLS: C:\Program Files\Microsoft Visual Studio\18\Enterprise\Common7\Tools\
+2026-10-21T06:33:23.4059106Z   VSCMD_ARG_app_plat: Desktop
+2026-10-21T06:33:23.4059393Z   VSCMD_ARG_HOST_ARCH: x64
+2026-10-21T06:33:23.4059638Z   VSCMD_ARG_TGT_ARCH: x64
+2026-10-21T06:33:23.4059885Z   VSCMD_VER: 18.10.3
+2026-10-21T06:33:23.4060222Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\18\Enterprise\
+2026-10-21T06:33:23.4060737Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:33:23.4061260Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VSSDK
+2026-10-21T06:33:23.4062005Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2026-10-21T06:33:23.4062731Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2026-10-21T06:33:23.4063164Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2026-10-21T06:33:23.4063530Z   WindowsSDKLibVersion: 10.0.26100.0\
+2026-10-21T06:33:23.4063963Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2026-10-21T06:33:23.4064403Z   WindowsSDKVersion: 10.0.26100.0\
+2026-10-21T06:33:23.4064903Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\x64\
+2026-10-21T06:33:23.4065623Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8.1 Tools\
+2026-10-21T06:33:23.4066146Z   __DOTNET_ADD_64BIT: 1
+2026-10-21T06:33:23.4066403Z   __DOTNET_PREFERRED_BITNESS: 64
+2026-10-21T06:33:23.4075264Z   __VSCMD_PREINIT_PATH: C:\Program Files\PowerShell\7;C:\Program Files\MongoDB\Server\7.0\bin;C:\vcpkg;C:\tools\zstd;C:\hostedtoolcache\windows\stack\3.11.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.6.1\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.13\x64\bin;C:\hostedtoolcache\windows\Python\3.12.10\x64\Scripts;C:\hostedtoolcache\windows\Python\3.12.10\x64;C:\hostedtoolcache\windows\Ruby\3.3.12\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.20-101\x64\bin;C:\Program Files\ImageMagick-7.1.2-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\WSL\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Microsoft SQL Server\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.16\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\ucrt64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\mongosh\;C:\Program Files\LLVM\bin;C:\Program Files (x86)\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps
+2026-10-21T06:33:23.4084798Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.13.16\x64
+2026-10-21T06:33:23.4085318Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.13.16\x64/lib/pkgconfig
+2026-10-21T06:33:23.4085810Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.13.16\x64
+2026-10-21T06:33:23.4086247Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.13.16\x64
+2026-10-21T06:33:23.4086685Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.13.16\x64
+2026-10-21T06:33:23.4087056Z ##[endgroup]
+2026-10-21T06:33:23.6153507Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-21T06:33:23.6157340Z The least common ancestor is D:\a\stratadb\stratadb. This will be the root directory of the artifact
+2026-10-21T06:33:23.6158307Z With the provided path, there will be 4 files uploaded
+2026-10-21T06:33:23.6164167Z Artifact name is valid!
+2026-10-21T06:33:23.6166450Z Root directory input is valid!
+2026-10-21T06:33:23.8304996Z Beginning upload of artifact content to blob storage
+2026-10-21T06:33:23.9246462Z Uploaded bytes 11567
+2026-10-21T06:33:23.9411375Z Finished uploading artifact content to blob storage!
+2026-10-21T06:33:23.9412835Z SHA256 digest of uploaded artifact zip is df08485755f95f55b616e99e4ce5aa62d878ac9985414dc75c6f8a383349c7b6
+2026-10-21T06:33:23.9415126Z Finalizing artifact upload
+2026-10-21T06:33:24.1506114Z Artifact tests-Windows-asan.zip successfully finalized. Artifact ID 12325497296
+2026-10-21T06:33:24.1507393Z Artifact tests-Windows-asan has been successfully uploaded! Final size is 11567 bytes. Artifact ID is 12325497296
+2026-10-21T06:33:24.1516044Z Artifact download URL: https://github.com/ArnavLifelessCoder/stratadb/actions/runs/39554902085/artifacts/12325497296
+2026-10-21T06:33:24.1885719Z Post job cleanup.
+2026-10-21T06:33:24.4124067Z Post job cleanup.
+2026-10-21T06:33:24.7146865Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-21T06:33:24.7607920Z git version 2.56.0.windows.2
+2026-10-21T06:33:24.7695273Z Temporarily overriding HOME='D:\a\_temp\d08e96f2-99a9-463f-b05f-59ef97569cc8' before making global git config changes
+2026-10-21T06:33:24.7696457Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-21T06:33:24.7711951Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\stratadb\stratadb
+2026-10-21T06:33:24.8212172Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-21T06:33:24.8673742Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-21T06:33:25.6056364Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-21T06:33:25.6508287Z http.https://github.com/.extraheader
+2026-10-21T06:33:25.6569212Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-10-21T06:33:25.7046852Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-21T06:33:26.3998280Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-21T06:33:26.4494001Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-21T06:33:27.1766107Z Cleaning up orphan processes
+2026-10-21T06:33:27.2098833Z Terminate orphan process: pid (7492) (vctip)
+

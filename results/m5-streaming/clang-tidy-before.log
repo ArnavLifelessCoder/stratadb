@@ -1,0 +1,81 @@
+60570 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\compaction.cpp:77:29: error: use designated initializer list to initialize 'Entry' [modernize-use-designated-initializers,-warnings-as-errors]
+   77 |     const table::Entry entry{std::string(input.key()), std::string(input.value())};
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              .key=                     .value=
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/block.hpp:11:1: note: aggregate type is defined here
+   11 | struct Entry {
+      | ^
+Suppressed 60570 warnings (60569 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 warning treated as error
+66736 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\db.cpp:230:7: error: 'push_back' is called inside a loop; consider pre-allocating the container capacity before the loop [performance-inefficient-vector-operation,-warnings-as-errors]
+  229 |     for (const auto& file : plan.inputs)
+  230 |       children.push_back(std::make_unique<internal::table::TableIterator>(file.reader));
+      |       ^
+Suppressed 66736 warnings (66735 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 warning treated as error
+58647 warnings generated.
+Suppressed 58648 warnings (58647 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+60444 warnings generated.
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\iterator.cpp:181:32: error: use designated initializer list to initialize 'Entry' [modernize-use-designated-initializers,-warnings-as-errors]
+  181 |         previous = table::Entry{std::string(key), std::string(input_->value())};
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                 .key=             .value=
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\src\table/block.hpp:11:1: note: aggregate type is defined here
+   11 | struct Entry {
+      | ^
+Suppressed 60444 warnings (60443 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+1 warning treated as error
+46746 warnings generated.
+Suppressed 46747 warnings (46746 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+38275 warnings generated.
+Suppressed 38276 warnings (38275 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+84877 warnings generated.
+Suppressed 84878 warnings (84877 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+84876 warnings generated.
+Suppressed 84877 warnings (84876 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+27968 warnings generated.
+Suppressed 27969 warnings (27968 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+35257 warnings generated.
+Suppressed 35258 warnings (35257 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+29248 warnings generated.
+Suppressed 29249 warnings (29248 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+35011 warnings generated.
+Suppressed 35012 warnings (35011 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+57259 warnings generated.
+Suppressed 57260 warnings (57259 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+56950 warnings generated.
+Suppressed 56951 warnings (56950 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+23658 warnings generated.
+Suppressed 23658 warnings (23658 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+23484 warnings generated.
+Suppressed 23484 warnings (23484 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+27957 warnings generated.
+Suppressed 27957 warnings (27957 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+59144 warnings generated.
+Suppressed 59145 warnings (59144 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+60331 warnings generated.
+Suppressed 60332 warnings (60331 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+29310 warnings generated.
+Suppressed 29311 warnings (29310 in non-user code, 1 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.

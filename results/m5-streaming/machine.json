@@ -1,0 +1,9 @@
+{
+  "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics",
+  "physical_cores": 16,
+  "logical_processors": 32,
+  "ram_bytes": 16162496512,
+  "source_commit": "6eb4e14222d369dc365ff57bda342d99dcb1d666",
+  "source_status": [],
+  "purpose": "Supplementary native test and bloom accuracy environment"
+}

@@ -1,0 +1,443 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (28.4s)
+-- Generating done (1.3s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/4] Building CXX object CMakeFiles\lsm.dir\src\iterator.cpp.obj
+[2/4] Linking CXX static library lsm.lib
+[3/4] Linking CXX executable lsm_db_process.exe
+[4/4] Linking CXX executable lsm_tests.exe
+UpdateCTestConfiguration  from :C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/DartConfiguration.tcl
+UpdateCTestConfiguration  from :C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug/DartConfiguration.tcl
+Parse Config file:C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug/DartConfiguration.tcl
+Test project C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: lsm_tests
+
+1: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe"
+1: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+1: Test timeout computed to be: 1800
+1: Randomized test seed: 24301
+1: Test mode: full
+1: [==========] Running 116 tests from 26 test suites.
+1: [----------] Global test environment set-up.
+1: [----------] 3 tests from StatusTest
+1: [ RUN      ] StatusTest.DefaultIsSuccess
+1: [       OK ] StatusTest.DefaultIsSuccess (0 ms)
+1: [ RUN      ] StatusTest.ErrorsKeepCodeAndMessage
+1: [       OK ] StatusTest.ErrorsKeepCodeAndMessage (0 ms)
+1: [ RUN      ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently
+1: [       OK ] StatusTest.MessageOwnsBinaryDataAndCopiesIndependently (0 ms)
+1: [----------] 3 tests from StatusTest (0 ms total)
+1: 
+1: [----------] 4 tests from SliceTest
+1: [ RUN      ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes
+1: [       OK ] SliceTest.BinaryViewKeepsEmbeddedNulsAndDoesNotOwnBytes (0 ms)
+1: [ RUN      ] SliceTest.AllSingleBytesHaveUnsignedOrdering
+1: [       OK ] SliceTest.AllSingleBytesHaveUnsignedOrdering (7 ms)
+1: [ RUN      ] SliceTest.EmptyAndPrefixOrdering
+1: [       OK ] SliceTest.EmptyAndPrefixOrdering (0 ms)
+1: [ RUN      ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing
+1: [       OK ] SliceTest.ConsumePrefixIsTransactionalAndHandlesAliasing (0 ms)
+1: [----------] 4 tests from SliceTest (7 ms total)
+1: 
+1: [----------] 2 tests from Crc32cTest
+1: [ RUN      ] Crc32cTest.EmptyAndCanonicalCheckValue
+1: [       OK ] Crc32cTest.EmptyAndCanonicalCheckValue (0 ms)
+1: [ RUN      ] Crc32cTest.EverySplitAndSingleBitChange
+1: [       OK ] Crc32cTest.EverySplitAndSingleBitChange (0 ms)
+1: [----------] 2 tests from Crc32cTest (0 ms total)
+1: 
+1: [----------] 3 tests from HashTest
+1: [ RUN      ] HashTest.EmptyAndTextVectors
+1: [       OK ] HashTest.EmptyAndTextVectors (0 ms)
+1: [ RUN      ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment
+1: [       OK ] HashTest.IndependentOracleCoversBlocksTailsSeedsAndAlignment (165 ms)
+1: [ RUN      ] HashTest.LengthAndEmbeddedNulsAreSignificant
+1: [       OK ] HashTest.LengthAndEmbeddedNulsAreSignificant (0 ms)
+1: [----------] 3 tests from HashTest (165 ms total)
+1: 
+1: [----------] 6 tests from VarintTest/0, where TypeParam = unsigned int
+1: [ RUN      ] VarintTest/0.GoldenWireBytesAndAppendSemantics
+1: [       OK ] VarintTest/0.GoldenWireBytesAndAppendSemantics (0 ms)
+1: [ RUN      ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix
+1: [       OK ] VarintTest/0.EveryBitBoundaryMaximumAndTruncatedPrefix (1 ms)
+1: [ RUN      ] VarintTest/0.RejectsMalformedWithoutChangingArguments
+1: [       OK ] VarintTest/0.RejectsMalformedWithoutChangingArguments (0 ms)
+1: [ RUN      ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding
+1: [       OK ] VarintTest/0.RandomizedRoundTripAndReferenceEncoding (1262 ms)
+1: [ RUN      ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference
+1: [       OK ] VarintTest/0.RandomizedMalformedInputMatchesCheckedReference (622 ms)
+1: [ RUN      ] VarintTest/0.ConcatenatedStream
+1: [       OK ] VarintTest/0.ConcatenatedStream (0 ms)
+1: [----------] 6 tests from VarintTest/0 (1886 ms total)
+1: 
+1: [----------] 6 tests from VarintTest/1, where TypeParam = unsigned __int64
+1: [ RUN      ] VarintTest/1.GoldenWireBytesAndAppendSemantics
+1: [       OK ] VarintTest/1.GoldenWireBytesAndAppendSemantics (0 ms)
+1: [ RUN      ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix
+1: [       OK ] VarintTest/1.EveryBitBoundaryMaximumAndTruncatedPrefix (2 ms)
+1: [ RUN      ] VarintTest/1.RejectsMalformedWithoutChangingArguments
+1: [       OK ] VarintTest/1.RejectsMalformedWithoutChangingArguments (0 ms)
+1: [ RUN      ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding
+1: [       OK ] VarintTest/1.RandomizedRoundTripAndReferenceEncoding (1295 ms)
+1: [ RUN      ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference
+1: [       OK ] VarintTest/1.RandomizedMalformedInputMatchesCheckedReference (624 ms)
+1: [ RUN      ] VarintTest/1.ConcatenatedStream
+1: [       OK ] VarintTest/1.ConcatenatedStream (0 ms)
+1: [----------] 6 tests from VarintTest/1 (1923 ms total)
+1: 
+1: [----------] 3 tests from WriteBatchTest
+1: [ RUN      ] WriteBatchTest.OwnsDataPreservesOrderAndRoundTrips
+1: [       OK ] WriteBatchTest.OwnsDataPreservesOrderAndRoundTrips (1 ms)
+1: [ RUN      ] WriteBatchTest.RejectsTruncationInvalidTypesTrailingBytesAndSequenceOverflow
+1: [       OK ] WriteBatchTest.RejectsTruncationInvalidTypesTrailingBytesAndSequenceOverflow (0 ms)
+1: [ RUN      ] WriteBatchTest.RandomBytesNeverProduceUnstableDecodes
+1: [       OK ] WriteBatchTest.RandomBytesNeverProduceUnstableDecodes (50 ms)
+1: [----------] 3 tests from WriteBatchTest (52 ms total)
+1: 
+1: [----------] 1 test from MemTableIteratorTest
+1: [ RUN      ] MemTableIteratorTest.NavigationSeeksAndOwnershipMatchExportedReference
+1: [       OK ] MemTableIteratorTest.NavigationSeeksAndOwnershipMatchExportedReference (14 ms)
+1: [----------] 1 test from MemTableIteratorTest (14 ms total)
+1: 
+1: [----------] 5 tests from MemTableTest
+1: [ RUN      ] MemTableTest.FrozenExportAndLookupPreserveVersionsAndTombstones
+1: [       OK ] MemTableTest.FrozenExportAndLookupPreserveVersionsAndTombstones (0 ms)
+1: [ RUN      ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership
+1: [       OK ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership (0 ms)
+1: [ RUN      ] MemTableTest.RandomVersionsMatchMapReference
+1: [       OK ] MemTableTest.RandomVersionsMatchMapReference (103 ms)
+1: [ RUN      ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions
+1: [       OK ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions (33 ms)
+1: [ RUN      ] MemTableTest.ConcurrentReadersTraverseManyKeysAndRetainOlderSnapshots
+1: [       OK ] MemTableTest.ConcurrentReadersTraverseManyKeysAndRetainOlderSnapshots (343 ms)
+1: [----------] 5 tests from MemTableTest (481 ms total)
+1: 
+1: [----------] 2 tests from PlatformTest
+1: [ RUN      ] PlatformTest.SyncRenameReplaceTruncateAppendAndUnicodePaths
+1: [       OK ] PlatformTest.SyncRenameReplaceTruncateAppendAndUnicodePaths (643 ms)
+1: [ RUN      ] PlatformTest.ExclusiveLockAndErrors
+1: [       OK ] PlatformTest.ExclusiveLockAndErrors (386 ms)
+1: [----------] 2 tests from PlatformTest (1030 ms total)
+1: 
+1: [----------] 8 tests from WalTest
+1: [ RUN      ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend
+1: WAL recovery: truncated 1 tail bytes at offset 20
+1: WAL recovery: truncated 2 tail bytes at offset 20
+1: WAL recovery: truncated 3 tail bytes at offset 20
+1: WAL recovery: truncated 4 tail bytes at offset 20
+1: WAL recovery: truncated 5 tail bytes at offset 20
+1: WAL recovery: truncated 6 tail bytes at offset 20
+1: WAL recovery: truncated 7 tail bytes at offset 20
+1: WAL recovery: truncated 8 tail bytes at offset 20
+1: WAL recovery: truncated 9 tail bytes at offset 20
+1: WAL recovery: truncated 10 tail bytes at offset 20
+1: WAL recovery: truncated 11 tail bytes at offset 20
+1: WAL recovery: truncated 12 tail bytes at offset 20
+1: WAL recovery: truncated 13 tail bytes at offset 20
+1: WAL recovery: truncated 14 tail bytes at offset 20
+1: WAL recovery: truncated 15 tail bytes at offset 20
+1: WAL recovery: truncated 16 tail bytes at offset 20
+1: WAL recovery: truncated 17 tail bytes at offset 20
+1: WAL recovery: truncated 18 tail bytes at offset 20
+1: WAL recovery: truncated 19 tail bytes at offset 20
+1: WAL recovery: truncated 20 tail bytes at offset 20
+1: [       OK ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend (4 ms)
+1: [ RUN      ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord
+1: [       OK ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord (0 ms)
+1: [ RUN      ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption
+1: WAL recovery: truncated 1 tail bytes at offset 22
+1: WAL recovery: truncated 9 tail bytes at offset 22
+1: WAL recovery: truncated 512 tail bytes at offset 22
+1: WAL recovery: truncated 4096 tail bytes at offset 22
+1: [       OK ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption (0 ms)
+1: [ RUN      ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch
+1: [       OK ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch (0 ms)
+1: [ RUN      ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends
+1: [       OK ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends (0 ms)
+1: [ RUN      ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate
+1: [       OK ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate (0 ms)
+1: [ RUN      ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes
+1: [       OK ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes (0 ms)
+1: [ RUN      ] WalTest.ReplayUsesTheSequenceBoundaryOfThePreviousLog
+1: [       OK ] WalTest.ReplayUsesTheSequenceBoundaryOfThePreviousLog (0 ms)
+1: [----------] 8 tests from WalTest (6 ms total)
+1: 
+1: [----------] 4 tests from DBTest
+1: [ RUN      ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay
+1: DB differential: 10000 seeds, 64 operations per seed, base seed 24301
+1: [       OK ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay (177674 ms)
+1: [ RUN      ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen
+1: [       OK ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen (1115 ms)
+1: [ RUN      ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen
+1: WAL recovery: truncated 4 tail bytes at offset 22
+1: [       OK ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen (1090 ms)
+1: [ RUN      ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches
+1: [       OK ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches (2138 ms)
+1: [----------] 4 tests from DBTest (182019 ms total)
+1: 
+1: [----------] 6 tests from BlockTest
+1: [ RUN      ] BlockTest.RestartSeekMatchesFullDecoderWithBoundedEntryWork
+1: [       OK ] BlockTest.RestartSeekMatchesFullDecoderWithBoundedEntryWork (155 ms)
+1: [ RUN      ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry
+1: [       OK ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry (0 ms)
+1: [ RUN      ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary
+1: [       OK ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary (30 ms)
+1: [ RUN      ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues
+1: [       OK ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues (13 ms)
+1: [ RUN      ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput
+1: [       OK ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput (0 ms)
+1: [ RUN      ] BlockTest.RejectsMalformedStructureEvenWithValidCrc
+1: [       OK ] BlockTest.RejectsMalformedStructureEvenWithValidCrc (0 ms)
+1: [----------] 6 tests from BlockTest (201 ms total)
+1: 
+1: [----------] 2 tests from BlockIteratorTest
+1: [ RUN      ] BlockIteratorTest.NavigationAndRestartSeekMatchFullDecoder
+1: [       OK ] BlockIteratorTest.NavigationAndRestartSeekMatchFullDecoder (85 ms)
+1: [ RUN      ] BlockIteratorTest.EmptyCorruptAndMalformedBlocksHaveStickyStatus
+1: [       OK ] BlockIteratorTest.EmptyCorruptAndMalformedBlocksHaveStickyStatus (0 ms)
+1: [----------] 2 tests from BlockIteratorTest (85 ms total)
+1: 
+1: [----------] 3 tests from BloomTest
+1: [ RUN      ] BloomTest.MatchesIndependentBitVectorAndHasNoFalseNegatives
+1: [       OK ] BloomTest.MatchesIndependentBitVectorAndHasNoFalseNegatives (0 ms)
+1: [ RUN      ] BloomTest.EmptyDisabledAndCorruptedFilters
+1: [       OK ] BloomTest.EmptyDisabledAndCorruptedFilters (0 ms)
+1: [ RUN      ] BloomTest.MeasuredFalsePositiveRate
+1: BLOOM_RESULT {"seed":24301,"keys":10000,"queries":200000,"bits_per_key":10,"probes":7,"positives":1634,"actual":0.00817,"theoretical":0.00819372}
+1: [       OK ] BloomTest.MeasuredFalsePositiveRate (949 ms)
+1: [----------] 3 tests from BloomTest (950 ms total)
+1: 
+1: [----------] 2 tests from MappingTest
+1: [ RUN      ] MappingTest.DeletionAttemptWhileMappedPreservesBytesAndEventuallyReclaimsFile
+1: [       OK ] MappingTest.DeletionAttemptWhileMappedPreservesBytesAndEventuallyReclaimsFile (184 ms)
+1: [ RUN      ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles
+1: [       OK ] MappingTest.EmptyBinaryLargeUnicodeAndMissingFiles (336 ms)
+1: [----------] 2 tests from MappingTest (521 ms total)
+1: 
+1: [----------] 2 tests from TableIteratorTest
+1: [ RUN      ] TableIteratorTest.CreationIsLazyAndNavigationMatchesReferenceAcrossBlocks
+1: [       OK ] TableIteratorTest.CreationIsLazyAndNavigationMatchesReferenceAcrossBlocks (260 ms)
+1: [ RUN      ] TableIteratorTest.CorruptionInAnUnreadBlockIsDetectedOnTransition
+1: [       OK ] TableIteratorTest.CorruptionInAnUnreadBlockIsDetectedOnTransition (307 ms)
+1: [----------] 2 tests from TableIteratorTest (567 ms total)
+1: 
+1: [----------] 7 tests from TableTest
+1: [ RUN      ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen
+1: [       OK ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen (314 ms)
+1: [ RUN      ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference
+1: [       OK ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference (2655 ms)
+1: [ RUN      ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions
+1: [       OK ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions (366 ms)
+1: [ RUN      ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter
+1: [       OK ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter (94 ms)
+1: [ RUN      ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected
+1: [       OK ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected (0 ms)
+1: [ RUN      ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully
+1: [       OK ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully (3 ms)
+1: [ RUN      ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions
+1: [       OK ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions (907 ms)
+1: [----------] 7 tests from TableTest (4343 ms total)
+1: 
+1: [----------] 11 tests from ManifestTest
+1: [ RUN      ] ManifestTest.ReadersKeepThePublishedStateWhileSyncIsBlocked
+1: [       OK ] ManifestTest.ReadersKeepThePublishedStateWhileSyncIsBlocked (0 ms)
+1: [ RUN      ] ManifestTest.ConcurrentReadersObserveCompletePublishedEdits
+1: [       OK ] ManifestTest.ConcurrentReadersObserveCompletePublishedEdits (30 ms)
+1: [ RUN      ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput
+1: [       OK ] ManifestTest.CodecRoundTripTruncationAndInvalidVarintsPreserveOutput (0 ms)
+1: [ RUN      ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected
+1: Manifest recovery: truncated 1 tail bytes
+1: Manifest recovery: truncated 2 tail bytes
+1: Manifest recovery: truncated 3 tail bytes
+1: Manifest recovery: truncated 4 tail bytes
+1: Manifest recovery: truncated 5 tail bytes
+1: Manifest recovery: truncated 6 tail bytes
+1: Manifest recovery: truncated 7 tail bytes
+1: Manifest recovery: truncated 8 tail bytes
+1: Manifest recovery: truncated 9 tail bytes
+1: Manifest recovery: truncated 10 tail bytes
+1: Manifest recovery: truncated 11 tail bytes
+1: Manifest recovery: truncated 12 tail bytes
+1: Manifest recovery: truncated 13 tail bytes
+1: Manifest recovery: truncated 14 tail bytes
+1: Manifest recovery: truncated 15 tail bytes
+1: Manifest recovery: truncated 16 tail bytes
+1: Manifest recovery: truncated 17 tail bytes
+1: Manifest recovery: truncated 18 tail bytes
+1: Manifest recovery: truncated 512 tail bytes
+1: [       OK ] ManifestTest.EveryTornTailAndZeroTailIsRepairedAndMiddleDamageIsRejected (1 ms)
+1: [ RUN      ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion
+1: [       OK ] ManifestTest.IoFailuresAreStickyAndNeverPublishANewVersion (0 ms)
+1: [ RUN      ] ManifestTest.RejectsRegressingCountersAndInvalidFileState
+1: [       OK ] ManifestTest.RejectsRegressingCountersAndInvalidFileState (0 ms)
+1: [ RUN      ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership
+1: [       OK ] ManifestTest.NativeCurrentPublicationRecoveryAndVersionOwnership (1198 ms)
+1: [ RUN      ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites
+1: [       OK ] ManifestTest.BootstrapCountersIncludeInitialManifestAndCurrentWrites (454 ms)
+1: [ RUN      ] ManifestTest.HigherLevelsAreIndexedByKeyAndRejectOverlappingRanges
+1: [       OK ] ManifestTest.HigherLevelsAreIndexedByKeyAndRejectOverlappingRanges (805 ms)
+1: [ RUN      ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal
+1: [       OK ] ManifestTest.IncompleteBootstrapPreservesTheAlreadyPublishedWal (567 ms)
+1: [ RUN      ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase
+1: [       OK ] ManifestTest.MissingMetadataWithLaterFilesNeverInitializesAnEmptyDatabase (482 ms)
+1: [----------] 11 tests from ManifestTest (3541 ms total)
+1: 
+1: [----------] 10 tests from FlushTest
+1: [ RUN      ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles
+1: [       OK ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles (127 ms)
+1: [ RUN      ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap
+1: [       OK ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap (14863 ms)
+1: [ RUN      ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables
+1: [       OK ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables (1529 ms)
+1: [ RUN      ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens
+1: [       OK ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens (17953 ms)
+1: [ RUN      ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence
+1: [       OK ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence (1051 ms)
+1: [ RUN      ] FlushTest.RecoversRotationAndUncommittedTablePublication
+1: [       OK ] FlushTest.RecoversRotationAndUncommittedTablePublication (2997 ms)
+1: [ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+1: [       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (1549 ms)
+1: [ RUN      ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+1: [       OK ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch (981 ms)
+1: [ RUN      ] FlushTest.MissingReferencedWalOrTableIsCorruption
+1: [       OK ] FlushTest.MissingReferencedWalOrTableIsCorruption (2187 ms)
+1: [ RUN      ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes
+1: [       OK ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes (1620 ms)
+1: [----------] 10 tests from FlushTest (44863 ms total)
+1: 
+1: [----------] 2 tests from CleanupTest
+1: [ RUN      ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites
+1: Deferred obsolete-file cleanup: "C:\\Users\\arnav\\Downloads\\SDE PROJs\\lsm storage engine\\build\\debug\\test-data\\139662028764400-135\\2.wal": The directory is not empty.
+1: [       OK ] CleanupTest.FailedObsoleteWalDeletionDoesNotPoisonWrites (1564 ms)
+1: [ RUN      ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles
+1: [       OK ] CleanupTest.OpenReclaimsUnreferencedStorageFilesAndPreservesLiveFiles (1770 ms)
+1: [----------] 2 tests from CleanupTest (3334 ms total)
+1: 
+1: [----------] 6 tests from CompactionTest
+1: [ RUN      ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only
+1: [       OK ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only (0 ms)
+1: [ RUN      ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey
+1: [       OK ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey (0 ms)
+1: [ RUN      ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams
+1: [       OK ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams (34 ms)
+1: [ RUN      ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection
+1: [       OK ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection (0 ms)
+1: [ RUN      ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference
+1: [       OK ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference (3405 ms)
+1: [ RUN      ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput
+1: [       OK ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput (0 ms)
+1: [----------] 6 tests from CompactionTest (3441 ms total)
+1: 
+1: [----------] 3 tests from IteratorTest
+1: [ RUN      ] IteratorTest.MergeSnapshotSeekForwardReverseAndBinaryKeys
+1: [       OK ] IteratorTest.MergeSnapshotSeekForwardReverseAndBinaryKeys (0 ms)
+1: [ RUN      ] IteratorTest.EmptyErrorsAndVersionLifetime
+1: [       OK ] IteratorTest.EmptyErrorsAndVersionLifetime (0 ms)
+1: [ RUN      ] IteratorTest.SnapshotFilteringAndDirectionChangesMatchOrderedMap
+1: [       OK ] IteratorTest.SnapshotFilteringAndDirectionChangesMatchOrderedMap (3583 ms)
+1: [----------] 3 tests from IteratorTest (3584 ms total)
+1: 
+1: [----------] 3 tests from MergingIteratorTest
+1: [ RUN      ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort
+1: [       OK ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort (352 ms)
+1: [ RUN      ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges
+1: [       OK ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges (0 ms)
+1: [ RUN      ] MergingIteratorTest.InvalidTombstoneIsRejectedWhenPositioned
+1: [       OK ] MergingIteratorTest.InvalidTombstoneIsRejectedWhenPositioned (0 ms)
+1: [----------] 3 tests from MergingIteratorTest (352 ms total)
+1: 
+1: [----------] 8 tests from SnapshotTest
+1: [ RUN      ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction
+1: [       OK ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction (277350 ms)
+1: [ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+1: [       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (1306 ms)
+1: [ RUN      ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues
+1: [       OK ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues (7958 ms)
+1: [ RUN      ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected
+1: [       OK ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected (1375 ms)
+1: [ RUN      ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables
+1: ITERATOR_BLOCK_READS creation=0 short_scan=1 l1_tables=30
+1: [       OK ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables (17985 ms)
+1: [ RUN      ] SnapshotTest.SlowIteratorKeepsItsInputsWhileCompactionReclaimsOtherTables
+1: [       OK ] SnapshotTest.SlowIteratorKeepsItsInputsWhileCompactionReclaimsOtherTables (9206 ms)
+1: [ RUN      ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery
+1: [       OK ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery (1627 ms)
+1: [ RUN      ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction
+1: [       OK ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction (4500 ms)
+1: [----------] 8 tests from SnapshotTest (321312 ms total)
+1: 
+1: [----------] 4 tests from TableAndSse42/Crc32cPathsTest
+1: [ RUN      ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/0
+1: [       OK ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/0 (0 ms)
+1: [ RUN      ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/1
+1: [       OK ] TableAndSse42/Crc32cPathsTest.Rfc3720AppendixB4Vectors/1 (0 ms)
+1: [ RUN      ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/0
+1: [       OK ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/0 (448 ms)
+1: [ RUN      ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/1
+1: [       OK ] TableAndSse42/Crc32cPathsTest.RandomizedDifferentialAgainstBitwiseReference/1 (432 ms)
+1: [----------] 4 tests from TableAndSse42/Crc32cPathsTest (880 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 116 tests from 26 test suites ran. (575571 ms total)
+1: [  PASSED  ] 116 tests.
+1/5 Test #1: lsm_tests ........................   Passed  581.26 sec
+test 2
+    Start 2: seed_maximum
+
+2: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed=18446744073709551615" "--gtest_filter=StatusTest.DefaultIsSuccess"
+2: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+2: Test timeout computed to be: 1500
+2: Randomized test seed: 18446744073709551615
+2: Test mode: full
+2: Note: Google Test filter = StatusTest.DefaultIsSuccess
+2: [==========] Running 1 test from 1 test suite.
+2: [----------] Global test environment set-up.
+2: [----------] 1 test from StatusTest
+2: [ RUN      ] StatusTest.DefaultIsSuccess
+2: [       OK ] StatusTest.DefaultIsSuccess (0 ms)
+2: [----------] 1 test from StatusTest (0 ms total)
+2: 
+2: [----------] Global test environment tear-down
+2: [==========] 1 test from 1 test suite ran. (0 ms total)
+2: [  PASSED  ] 1 test.
+2/5 Test #2: seed_maximum .....................   Passed    2.28 sec
+test 3
+    Start 3: seed_reject_empty
+
+3: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed="
+3: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+3: Test timeout computed to be: 60
+3: Invalid --seed: expected an unsigned decimal 64-bit integer
+3/5 Test #3: seed_reject_empty ................   Passed    0.54 sec
+test 4
+    Start 4: seed_reject_text
+
+4: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed=invalid"
+4: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+4: Test timeout computed to be: 60
+4: Invalid --seed: expected an unsigned decimal 64-bit integer
+4/5 Test #4: seed_reject_text .................   Passed    0.53 sec
+test 5
+    Start 5: seed_reject_overflow
+
+5: Test command: "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\build\debug\lsm_tests.exe" "--seed=18446744073709551616"
+5: Working Directory: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+5: Test timeout computed to be: 60
+5: Invalid --seed: expected an unsigned decimal 64-bit integer
+5/5 Test #5: seed_reject_overflow .............   Passed    0.57 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) = 585.43 sec

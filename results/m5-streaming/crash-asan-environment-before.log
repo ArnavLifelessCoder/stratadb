@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\crash_smoke.py", line 108, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\crash_smoke.py", line 100, in main
+    run_cycle(executable, root, sync, randomizer.randrange(10, 101))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\crash_smoke.py", line 41, in run_cycle
+    raise RuntimeError("writer exited before requested kill point")
+RuntimeError: writer exited before requested kill point

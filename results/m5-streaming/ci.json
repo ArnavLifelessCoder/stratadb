@@ -1,0 +1,55 @@
+{
+  "source_commit": "6eb4e14222d369dc365ff57bda342d99dcb1d666",
+  "run_id": 39554902085,
+  "url": "https://github.com/ArnavLifelessCoder/stratadb/actions/runs/39554902085",
+  "jobs": [
+    {
+      "id": 119072289889,
+      "name": "tsan",
+      "conclusion": "success"
+    },
+    {
+      "id": 119072290066,
+      "name": "test (ubuntu-24.04, asan)",
+      "conclusion": "success"
+    },
+    {
+      "id": 119072290155,
+      "name": "test (windows-latest, debug)",
+      "conclusion": "success"
+    },
+    {
+      "id": 119072290197,
+      "name": "lint",
+      "conclusion": "success"
+    },
+    {
+      "id": 119072290213,
+      "name": "test (windows-latest, asan)",
+      "conclusion": "success"
+    },
+    {
+      "id": 119072290223,
+      "name": "test (ubuntu-24.04, debug)",
+      "conclusion": "success"
+    }
+  ],
+  "crash_results": {
+    "Windows-debug": {
+      "platform": "Windows-2025Server-10.0.26100-SP0",
+      "cycles": 12
+    },
+    "Windows-asan": {
+      "platform": "Windows-2025Server-10.0.26100-SP0",
+      "cycles": 12
+    },
+    "Linux-debug": {
+      "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+      "cycles": 12
+    },
+    "Linux-asan": {
+      "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "cycles": 12
+    }
+  }
+}
