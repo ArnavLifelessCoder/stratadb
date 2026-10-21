@@ -94,8 +94,9 @@ struct DB::Impl {
   // Group commit. Writers queue under write_mutex; the front writer leads,
   // commits the queued batches it can take as one WAL record and wakes them.
   struct Writer {
-    WriteBatch* batch = nullptr;
-    bool sync = false;
+    Writer(WriteBatch* writer_batch, bool writer_sync) : batch(writer_batch), sync(writer_sync) {}
+    WriteBatch* batch;
+    bool sync;
     bool done = false;
     Status status;
     std::condition_variable ready;
@@ -601,7 +602,7 @@ auto DB::Write(const WriteOptions& options, WriteBatch* batch) -> Status {
     const std::lock_guard guard(impl_->mutex);
     return impl_->failure;
   }
-  Impl::Writer self{.batch = batch, .sync = options.sync};
+  Impl::Writer self(batch, options.sync);
   std::unique_lock queue(impl_->write_mutex);
   impl_->writers.push_back(&self);
   self.ready.wait(queue, [&] { return self.done || impl_->writers.front() == &self; });
