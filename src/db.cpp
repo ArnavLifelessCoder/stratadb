@@ -129,8 +129,11 @@ struct DB::Impl {
     std::filesystem::path path;
     std::weak_ptr<const internal::table::TableReader> reader;
   };
-  // Only the background thread touches this queue.
+  // Only the background thread touches this queue. obsolete_pending mirrors
+  // whether it is non-empty, so releasing a view only wakes that thread when
+  // a release may actually let it delete something.
   std::vector<ObsoleteTable> obsolete;
+  std::atomic<bool> obsolete_pending{false};
 
   auto Capture(const ReadOptions& read, ReadView& view) -> Status {
     if (read.snapshot != nullptr) {
@@ -158,6 +161,9 @@ struct DB::Impl {
   }
 
   void RequestCleanup() {
+    if (!obsolete_pending.load(std::memory_order_acquire)) {
+      return;
+    }
     const std::lock_guard guard(mutex);
     cleanup_requested = true;
     changed.notify_all();
@@ -167,6 +173,7 @@ struct DB::Impl {
     std::erase_if(obsolete, [](const auto& file) {
       return file.reader.expired() && internal::RemoveObsolete(file.path);
     });
+    obsolete_pending.store(!obsolete.empty(), std::memory_order_release);
   }
 
   ~Impl() {
@@ -420,6 +427,9 @@ struct DB::Impl {
       for (const auto& file : plan.inputs)
         obsolete.push_back(
             {.path = internal::TablePath(directory, file.number), .reader = file.reader});
+      // A release racing with this store is still collected: the background
+      // loop calls CollectObsolete at least every 50 ms.
+      obsolete_pending.store(true, std::memory_order_release);
     }
     return {.status = status, .bytes = bytes};
   }
