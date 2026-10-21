@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <atomic>
 #include <functional>
 #include <optional>
 
@@ -10,6 +11,11 @@
 
 namespace lsm::internal {
 using CompactionPointers = std::array<std::string, 7>;
+
+// Test hook. While set, background threads keep flushing memtables but start
+// no compactions, so tests can drive L0 into the write slowdown and stop
+// thresholds deterministically. Never set outside tests.
+inline std::atomic<bool> pause_compactions_for_testing{false};
 
 struct CompactionPlan {
   std::shared_ptr<const Version> base;

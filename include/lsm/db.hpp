@@ -39,6 +39,18 @@ struct Stats {
   std::uint64_t wal_syncs = 0;
   std::uint64_t recovered_tail_bytes = 0;
   std::size_t memtable_bytes = 0;
+  // Group commit: user write calls that reached the WAL, and the WAL records
+  // they were combined into (one per leader group).
+  std::uint64_t write_calls = 0;
+  std::uint64_t wal_records = 0;
+  // Time writers spent waiting on L0 slowdown/stop or a full immutable memtable.
+  std::uint64_t stall_micros = 0;
+  std::uint64_t slowed_writes = 0;
+  std::uint64_t stopped_writes = 0;
+  // Data-block cache.
+  std::uint64_t block_cache_hits = 0;
+  std::uint64_t block_cache_misses = 0;
+  std::uint64_t block_cache_bytes = 0;
 };
 
 // Concurrent reads and writes are supported. Stop callers before destruction.

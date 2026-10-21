@@ -109,6 +109,7 @@ if(BUILD_TESTING)
     tests/merging_iterator_test.cpp
     tests/snapshot_test.cpp
     tests/block_cache_test.cpp
+    tests/write_path_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)

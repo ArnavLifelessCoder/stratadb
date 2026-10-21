@@ -5,18 +5,21 @@
 #include <chrono>
 #include <cmath>
 #include <condition_variable>
+#include <deque>
 #include <limits>
 #include <map>
 #include <mutex>
 #include <system_error>
 #include <thread>
 #include <utility>
+#include <vector>
 
 #include "compaction.hpp"
 #include "file_cleanup.hpp"
 #include "iterator.hpp"
 #include "memtable.hpp"
 #include "platform/file.hpp"
+#include "table/block_cache.hpp"
 #include "table/format.hpp"
 #include "table/table_iterator.hpp"
 #include "version_set.hpp"
@@ -40,6 +43,9 @@ auto ValidateOptions(const Options& options) -> Status {
   if (options.l0_compaction_trigger < 1 || !std::isfinite(options.level_size_ratio) ||
       options.level_size_ratio <= 1.0) {
     return Status::InvalidArgument("invalid compaction trigger or level size ratio");
+  }
+  if (options.l0_stop_writes < 1) {
+    return Status::InvalidArgument("l0_stop_writes must be positive");
   }
   return {};
 }
@@ -85,8 +91,19 @@ struct DB::Impl {
   std::unique_ptr<internal::Wal> wal;
   std::shared_ptr<internal::MemTable> table = std::make_shared<internal::MemTable>();
   std::shared_ptr<internal::MemTable> immutable;
-  // Writers and manifest transactions serialize separately from read-view capture.
+  // Group commit. Writers queue under write_mutex; the front writer leads,
+  // commits the queued batches it can take as one WAL record and wakes them.
+  struct Writer {
+    WriteBatch* batch = nullptr;
+    bool sync = false;
+    bool done = false;
+    Status status;
+    std::condition_variable ready;
+  };
   std::mutex write_mutex;
+  std::deque<Writer*> writers;
+  std::shared_ptr<internal::table::BlockCache> cache;
+  // Manifest transactions serialize separately from read-view capture.
   std::mutex manifest_mutex;
   std::mutex mutex;
   std::condition_variable changed;
@@ -99,6 +116,11 @@ struct DB::Impl {
   std::uint64_t retired_wal_syncs = 0;
   std::uint64_t table_bytes = 0;
   std::uint64_t recovered_tail_bytes = 0;
+  std::uint64_t write_calls = 0;
+  std::uint64_t wal_records = 0;
+  std::uint64_t stall_micros = 0;
+  std::uint64_t slowed_writes = 0;
+  std::uint64_t stopped_writes = 0;
   Status failure;
   std::map<const Snapshot*, std::unique_ptr<Snapshot>> snapshots;
   internal::CompactionPointers compaction_pointers;
@@ -158,9 +180,114 @@ struct DB::Impl {
     }
   }
 
+  static auto MicrosSince(std::chrono::steady_clock::time_point began) -> std::uint64_t {
+    return static_cast<std::uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(
+                                          std::chrono::steady_clock::now() - began)
+                                          .count());
+  }
+
+  [[nodiscard]] auto L0Files() const -> std::size_t {
+    return versions->State().version->levels[0].size();
+  }
+
+  // Leader only, with `guard` held. Delays the write by 1 ms once L0 reaches
+  // kSlowdownL0 tables and blocks it while L0 is at the stop threshold, so
+  // compaction can catch up. Both count as stall time. The stop threshold is
+  // kept above the compaction trigger: stopping below it would wait forever.
+  auto Throttle(std::unique_lock<std::mutex>& guard) -> Status {
+    static constexpr std::size_t kSlowdownL0 = 8;
+    const auto stop = std::max(static_cast<std::size_t>(options.l0_stop_writes),
+                               static_cast<std::size_t>(options.l0_compaction_trigger) + 1);
+    bool slowed = false;
+    for (;;) {
+      if (!failure.ok()) {
+        return failure;
+      }
+      const auto files = L0Files();
+      if (files >= stop) {
+        const auto began = std::chrono::steady_clock::now();
+        ++stopped_writes;
+        changed.wait(guard, [&] { return !failure.ok() || L0Files() < stop; });
+        stall_micros += MicrosSince(began);
+        continue;
+      }
+      if (!slowed && files >= kSlowdownL0) {
+        slowed = true;
+        ++slowed_writes;
+        const auto began = std::chrono::steady_clock::now();
+        guard.unlock();
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        guard.lock();
+        stall_micros += MicrosSince(began);
+        continue;
+      }
+      return {};
+    }
+  }
+
+  // Leader only. Appends the group as one WAL record (one sync when `sync`),
+  // applies it to the memtable and publishes its last sequence.
+  auto Commit(const std::vector<Writer*>& group, bool sync) -> Status {
+    std::unique_lock guard(mutex);
+    auto status = Throttle(guard);
+    if (status.ok()) {
+      status = MakeRoom(guard);
+    }
+    if (!status.ok()) {
+      return status;
+    }
+    const WriteBatch* record = group.front()->batch;
+    WriteBatch combined;
+    if (group.size() > 1) {
+      for (const auto* writer : group) {
+        for (const auto& entry : writer->batch->Entries()) {
+          status = entry.type == WriteBatch::Type::kPut ? combined.Put(entry.key, entry.value)
+                                                        : combined.Delete(entry.key);
+          if (!status.ok()) {
+            return status;
+          }
+        }
+      }
+      record = &combined;
+    }
+    auto next = sequence.load(std::memory_order_relaxed) + 1;
+    // Only the leader appends or rotates the WAL, so it can drop the read-view
+    // mutex for the append and sync.
+    guard.unlock();
+    status = wal->Append(*record, next, sync);
+    guard.lock();
+    if (!status.ok()) {
+      if (status.code() == StatusCode::kIOError) {
+        failure = status;
+      }
+      return status;
+    }
+    std::uint64_t bytes = 0;
+    for (const auto& entry : record->Entries()) {
+      status = table->Insert(next++, entry.type, entry.key, entry.value);
+      if (!status.ok()) {
+        failure = status;
+        return status;
+      }
+      bytes += entry.key.size() + entry.value.size();
+    }
+    user_bytes += bytes;
+    write_calls += group.size();
+    ++wal_records;
+    sequence.store(next - 1, std::memory_order_release);
+    // The group is committed. Rotation failures are sticky for later writes,
+    // but cannot change the acknowledgement of these already-applied batches.
+    static_cast<void>(MakeRoom(guard));
+    return {};
+  }
+
   auto MakeRoom(std::unique_lock<std::mutex>& guard) -> Status {
     while (table->MemoryUsage() > options.memtable_bytes) {
-      changed.wait(guard, [&] { return !immutable || !failure.ok(); });
+      if (immutable) {
+        const auto began = std::chrono::steady_clock::now();
+        changed.wait(guard, [&] { return !immutable || !failure.ok(); });
+        stall_micros += MicrosSince(began);
+      }
       if (!failure.ok()) {
         return failure;
       }
@@ -297,14 +424,19 @@ struct DB::Impl {
     return {.status = status, .bytes = bytes};
   }
 
+  [[nodiscard]] auto PlanCompaction() const -> std::optional<internal::CompactionPlan> {
+    if (internal::pause_compactions_for_testing.load(std::memory_order_acquire)) {
+      return std::nullopt;
+    }
+    return internal::PickCompaction(versions->State().version, options, compaction_pointers);
+  }
+
   void FlushLoop() {
     std::unique_lock guard(mutex);
     for (;;) {
       changed.wait_for(guard, std::chrono::milliseconds(50), [&] {
         return closing || cleanup_requested ||
-               (failure.ok() &&
-                (immutable || internal::PickCompaction(versions->State().version, options,
-                                                       compaction_pointers)));
+               (failure.ok() && (immutable || PlanCompaction().has_value()));
       });
       cleanup_requested = false;
       if (failure.ok() && immutable) {
@@ -352,8 +484,7 @@ struct DB::Impl {
           failure = status;
         }
       } else if (failure.ok()) {
-        auto plan =
-            internal::PickCompaction(versions->State().version, options, compaction_pointers);
+        auto plan = PlanCompaction();
         if (plan) {
           const auto oldest = OldestSnapshot();
           guard.unlock();
@@ -371,9 +502,7 @@ struct DB::Impl {
       guard.unlock();
       CollectObsolete();
       guard.lock();
-      if (closing && (!failure.ok() ||
-                      (!immutable && !internal::PickCompaction(versions->State().version, options,
-                                                               compaction_pointers)))) {
+      if (closing && (!failure.ok() || (!immutable && !PlanCompaction().has_value()))) {
         return;
       }
     }
@@ -403,7 +532,10 @@ auto DB::Open(const Options& options, const std::filesystem::path& path, std::un
     status = impl->lock->Lock();
   }
   if (status.ok()) {
-    status = internal::VersionSet::Open(path, impl->versions);
+    if (options.block_cache_bytes > 0) {
+      impl->cache = std::make_shared<internal::table::BlockCache>(options.block_cache_bytes);
+    }
+    status = internal::VersionSet::Open(path, impl->versions, impl->cache);
   }
   if (!status.ok()) {
     return status;
@@ -465,43 +597,53 @@ auto DB::Write(const WriteOptions& options, WriteBatch* batch) -> Status {
   if (batch == nullptr) {
     return Status::InvalidArgument("null batch");
   }
-  const std::lock_guard writer(impl_->write_mutex);
-  std::unique_lock guard(impl_->mutex);
-  if (!impl_->failure.ok()) {
+  if (batch->Count() == 0) {
+    const std::lock_guard guard(impl_->mutex);
     return impl_->failure;
   }
-  if (batch->Count() == 0) {
-    return {};
+  Impl::Writer self{.batch = batch, .sync = options.sync};
+  std::unique_lock queue(impl_->write_mutex);
+  impl_->writers.push_back(&self);
+  self.ready.wait(queue, [&] { return self.done || impl_->writers.front() == &self; });
+  if (self.done) {
+    return self.status;
   }
-  auto status = impl_->MakeRoom(guard);
-  if (!status.ok()) {
-    return status;
-  }
-  auto sequence = impl_->sequence.load(std::memory_order_relaxed) + 1;
-  guard.unlock();
-  status = impl_->wal->Append(*batch, sequence, options.sync);
-  guard.lock();
-  if (!status.ok()) {
-    if (status.code() == StatusCode::kIOError) {
-      impl_->failure = status;
+  // This writer leads. Take the queued writers behind it, up to a size cap so
+  // one group does not delay its leader too much. A non-sync leader stops at
+  // the first sync writer, which must not be acknowledged without a sync.
+  const auto batch_bytes = [](const WriteBatch& b) {
+    std::size_t bytes = 0;
+    for (const auto& entry : b.Entries()) bytes += entry.key.size() + entry.value.size();
+    return bytes;
+  };
+  const auto leader_bytes = batch_bytes(*batch);
+  const std::size_t cap = leader_bytes < (128 << 10) ? leader_bytes + (128 << 10) : 1 << 20;
+  std::vector<Impl::Writer*> group;
+  std::size_t group_bytes = 0;
+  for (auto* writer : impl_->writers) {
+    if (!group.empty()) {
+      if ((writer->sync && !self.sync) || group_bytes >= cap) {
+        break;
+      }
     }
-    return status;
+    group.push_back(writer);
+    group_bytes += batch_bytes(*writer->batch);
   }
-  std::uint64_t bytes = 0;
-  for (const auto& entry : batch->Entries()) {
-    status = impl_->table->Insert(sequence++, entry.type, entry.key, entry.value);
-    if (!status.ok()) {
-      impl_->failure = status;
-      return status;
+  queue.unlock();
+  const auto status = impl_->Commit(group, self.sync);
+  queue.lock();
+  for (auto* writer : group) {
+    impl_->writers.pop_front();
+    if (writer != &self) {
+      writer->status = status;
+      writer->done = true;
+      writer->ready.notify_one();
     }
-    bytes += entry.key.size() + entry.value.size();
   }
-  impl_->user_bytes += bytes;
-  impl_->sequence.store(sequence - 1, std::memory_order_release);
-  // The batch is committed. Rotation failures are sticky for later writes,
-  // but cannot change the acknowledgement of this already-applied batch.
-  static_cast<void>(impl_->MakeRoom(guard));
-  return {};
+  if (!impl_->writers.empty()) {
+    impl_->writers.front()->ready.notify_one();
+  }
+  return status;
 }
 
 auto DB::Get(const ReadOptions& options, std::string_view key, std::string* value) -> Status {
@@ -612,6 +754,17 @@ auto DB::GetStats() -> Stats {
       stats.level_file_counts.resize(static_cast<std::size_t>(file.level) + 1);
     }
     ++stats.level_file_counts[file.level];
+  }
+  stats.write_calls = impl_->write_calls;
+  stats.wal_records = impl_->wal_records;
+  stats.stall_micros = impl_->stall_micros;
+  stats.slowed_writes = impl_->slowed_writes;
+  stats.stopped_writes = impl_->stopped_writes;
+  if (impl_->cache) {
+    const auto counters = impl_->cache->GetCounters();
+    stats.block_cache_hits = counters.hits;
+    stats.block_cache_misses = counters.misses;
+    stats.block_cache_bytes = counters.usage;
   }
   return stats;
 }
