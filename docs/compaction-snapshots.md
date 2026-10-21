@@ -13,8 +13,9 @@ least one selects a level, then a round-robin key pointer selects one file and
 its overlapping next-level files. There are seven levels, L0 through L6.
 Pointers advance after a successful edit and reset on Open.
 
-The merging iterator uses a heap with one cursor per sorted input stream.
-Each table is read through CRC-checking block decoding. The full-sort unit
+The merging iterator uses a heap of child iterators, with one cursor per sorted
+input stream. Each table loads one data block at a time and checks its CRC on
+every load. The full-sort unit
 reference checks heap ordering; randomized map views check retention semantics.
 A version is discarded only when a newer version of that key is at or below
 the oldest live snapshot. A tombstone at or below that boundary can be discarded
@@ -30,11 +31,14 @@ block index, restart-point seek and per-read CRC.
 ## Publication and locking
 
 Only one background thread flushes and compacts. A manifest transaction mutex
-serializes file-number allocation and edits with WAL rotation. Table reads,
+serializes file-number allocation and edits with WAL rotation. Compaction holds
+it only to persist an output file-number reservation or commit the final edit;
+it refreshes WAL metadata at commit. Table reads,
 table writes, reader opening, manifest append/sync and obsolete-table deletion
 run outside the DB mutex. The DB mutex protects short read-view captures,
 memtable insertion, snapshot registration and state transitions. WAL append/sync
-still holds it; changing that write path belongs with M7 group commit.
+holds only the writer mutex. Readers can capture the preceding committed view
+while a writer waits for storage. Atomic WAL counters let GetStats run concurrently.
 
 All output tables use temp write, file sync, close and atomic rename with the
 platform durability protocol. One synced manifest edit adds all outputs and
@@ -68,10 +72,20 @@ Next/Prev on an invalid iterator are no-ops; key/value return empty views when
 invalid. Always check Valid to distinguish a real empty key. Errors are sticky
 and reported through status.
 
-NewIterator copies the memtable streams while insertion is excluded, then reads
-tables outside the DB mutex and materializes the visible ordered rows. Its view
-does not change when the DB is written later. It retains its captured Version
-until destruction, independently of the Snapshot handle used to create it.
+NewIterator captures references and a sequence under the DB mutex. It does not
+traverse or copy memtable entries, read data blocks, or materialize rows. Each
+memtable cursor retains its skiplist and follows acquire-loaded node links.
+BlockIterator binary-searches restart points for Seek and replays at most one
+restart group for Prev. TableIterator navigates the index and loads blocks lazily.
+L0 uses one child per overlapping table; each higher level uses one concatenating
+cursor that opens only the table selected by its range index. MergingIterator
+merges these children in either direction. DBIter selects the visible sequence
+and hides older versions and tombstones, retaining only the current row and
+temporary per-key state. Corruption in an unread block is reported when visited.
+
+The read sequence hides later writes even though the active skiplist may grow.
+The iterator retains its captured Version and both memtables until destruction,
+independently of the Snapshot handle used to create it.
 Separate iterators may be used concurrently; one iterator has one owning caller.
 
 ## Reclamation
@@ -96,12 +110,12 @@ does not rely on deleting a table while its mapping is open.
 
 ## Limits
 
-Input table streams and merged output entries currently reside in memory during
-compaction. Iterators materialize their visible rows. Large scans or compactions
-can therefore consume memory proportional to their input, and snapshot pinning
-can retain old memtables and table files. These are explicit M5 tradeoffs, not
-claims of bounded-memory streaming performance. Throughput and memory behavior
-must be measured honestly in M8.
+Compaction streams its inputs and buffers one output chunk for the existing
+table writer. That chunk targets 2 MiB but can grow for a single key's history.
+Iterators retain child cursors and current keys/values rather than complete
+input streams. Table metadata, bloom filters and mappings still live in their
+readers, and snapshot pinning can retain old memtables and table files. Full
+throughput and memory measurements remain M8 work.
 
 The manifest is append-only and is not rotated. Compaction failures stop later
 writes but leave previously published read views available. The 12-cycle smoke

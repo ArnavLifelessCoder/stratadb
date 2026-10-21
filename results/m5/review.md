@@ -1,5 +1,8 @@
 # M5 review packet
 
+Historical submission: rejected because iterators materialized their input.
+The streaming revision and its validation are recorded in `results/m5-streaming/`.
+
 Implementation commit: `ca581d60c1f1563cbeed5576c8b7c1253799bc9a` on `m5`.
 Approved M4 was fast-forwarded into `main` at `49f92f18995115bc40b0261f40d36dcc1ef6fd1d`
 and pushed. M6 has not started.

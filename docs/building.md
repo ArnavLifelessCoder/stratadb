@@ -20,8 +20,9 @@ From PowerShell in the repository:
 
 For development, use `.\scripts\build.ps1 debug -Quick` (or pass `--quick`
 directly to `lsm_tests` on either platform). Quick mode runs every test but
-reduces the DB differential workload to 100 seeds. It prints its mode and is
-not a milestone gate. Default CTest, CI and `verify.ps1` keep all 10,000 seeds.
+reduces the DB differential workload to 100 seeds and snapshot differential
+coverage to two seeds. It prints its mode and is not a milestone gate. Default
+CTest, CI and `verify.ps1` keep all 10,000 DB seeds and 100 snapshot seeds.
 `-Quick` can also be combined with `-TestFilter`.
 
 Run `.\scripts\verify.ps1` to record both complete build/test logs and Windows
