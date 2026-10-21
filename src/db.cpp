@@ -18,6 +18,7 @@
 #include "memtable.hpp"
 #include "platform/file.hpp"
 #include "table/format.hpp"
+#include "table/table_iterator.hpp"
 #include "version_set.hpp"
 #include "wal.hpp"
 
@@ -222,73 +223,73 @@ struct DB::Impl {
   };
 
   auto Compact(const internal::CompactionPlan& plan, std::uint64_t oldest) -> CompactionResult {
-    // Reserve/output/commit is one manifest transaction. Readers never take
-    // this mutex; writers only wait for it when they need to rotate their WAL.
-    const std::lock_guard manifest_guard(manifest_mutex);
-    std::vector<std::vector<internal::table::Entry>> streams;
-    for (const auto& file : plan.inputs) {
-      std::vector<internal::table::Entry> entries;
-      const auto status = file.reader->ReadAll(entries);
-      if (!status.ok()) {
-        return {.status = status};
-      }
-      streams.push_back(std::move(entries));
-    }
-    internal::MergingIterator input(std::move(streams));
-    std::vector<internal::table::Entry> entries;
-    auto status = internal::CompactEntries(input, plan, oldest, entries);
-    if (!status.ok()) {
-      return {.status = status};
-    }
-    auto edit = versions->State().metadata;
-    for (const auto& file : plan.inputs) {
-      edit.removed.push_back(file.number);
-    }
+    std::vector<std::unique_ptr<internal::InternalIterator>> children;
+    for (const auto& file : plan.inputs)
+      children.push_back(std::make_unique<internal::table::TableIterator>(file.reader));
+    internal::MergingIterator input(std::move(children));
+    std::vector<internal::table::Entry> pending;
+    std::vector<internal::TableMetadata> outputs;
+    std::size_t estimate = 0;
     std::uint64_t bytes = 0;
     constexpr std::size_t target_bytes = 2 << 20;
-    for (std::size_t begin = 0; begin < entries.size();) {
-      auto end = begin;
-      std::size_t estimate = 0;
-      while (end < entries.size()) {
-        if (end != begin && estimate >= target_bytes &&
-            internal::table::UserKey(entries[end - 1].key) !=
-                internal::table::UserKey(entries[end].key)) {
-          break;
-        }
-        estimate += entries[end].key.size() + entries[end].value.size() + 12;
-        ++end;
+    const auto flush = [&]() -> Status {
+      if (pending.empty()) return {};
+      std::uint64_t number = 0;
+      {
+        // Persist a reservation before releasing the allocator lock. A crash
+        // leaves a harmless gap or orphan; a concurrent WAL rotation cannot
+        // reuse the output number. No table reads/writes hold this mutex.
+        const std::lock_guard manifest_guard(manifest_mutex);
+        auto reservation = versions->State().metadata;
+        if (reservation.next_file == std::numeric_limits<std::uint64_t>::max())
+          return Status::IOError("compaction file number exhausted");
+        number = reservation.next_file++;
+        const auto status = versions->Apply(reservation);
+        if (!status.ok()) return status;
       }
-      if (edit.next_file == std::numeric_limits<std::uint64_t>::max()) {
-        return {.status = Status::IOError("compaction file number exhausted")};
-      }
-      const auto number = edit.next_file++;
       const auto path = internal::TablePath(directory, number);
-      status = internal::table::WriteTable(
-          path, std::span<const internal::table::Entry>(entries).subspan(begin, end - begin),
+      auto status = internal::table::WriteTable(
+          path, pending,
           {.block_bytes = options.block_bytes, .bloom_bits_per_key = options.bloom_bits_per_key});
-      if (!status.ok()) {
-        return {.status = status};
-      }
+      if (!status.ok()) return status;
       std::error_code error;
       const auto size = std::filesystem::file_size(path, error);
-      if (error) {
-        return {.status = Status::IOError("compacted table size: " + error.message())};
-      }
+      if (error) return Status::IOError("compacted table size: " + error.message());
+      outputs.push_back({.number = number,
+                         .level = plan.level + 1,
+                         .size = size,
+                         .smallest = std::string(internal::table::UserKey(pending.front().key)),
+                         .largest = std::string(internal::table::UserKey(pending.back().key)),
+                         .reader = {}});
       bytes += size;
-      edit.added.push_back({.number = number,
-                            .level = plan.level + 1,
-                            .size = size,
-                            .smallest = std::string(internal::table::UserKey(entries[begin].key)),
-                            .largest = std::string(internal::table::UserKey(entries[end - 1].key)),
-                            .reader = {}});
-      begin = end;
-    }
-    status = versions->Apply(edit);
+      pending.clear();
+      estimate = 0;
+      return {};
+    };
+    auto status = internal::CompactEntries(
+        input, plan, oldest, [&](const internal::table::Entry& entry) -> Status {
+          if (!pending.empty() && estimate >= target_bytes &&
+              internal::table::UserKey(pending.back().key) != internal::table::UserKey(entry.key)) {
+            const auto result = flush();
+            if (!result.ok()) return result;
+          }
+          estimate += entry.key.size() + entry.value.size() + 12;
+          pending.push_back(entry);
+          return {};
+        });
+    if (status.ok()) status = flush();
     if (status.ok()) {
-      for (const auto& file : plan.inputs) {
+      const std::lock_guard manifest_guard(manifest_mutex);
+      // Refresh metadata: writers may have rotated a WAL during the merge.
+      auto edit = versions->State().metadata;
+      edit.added = std::move(outputs);
+      for (const auto& file : plan.inputs) edit.removed.push_back(file.number);
+      status = versions->Apply(edit);
+    }
+    if (status.ok()) {
+      for (const auto& file : plan.inputs)
         obsolete.push_back(
             {.path = internal::TablePath(directory, file.number), .reader = file.reader});
-      }
     }
     return {.status = status, .bytes = bytes};
   }

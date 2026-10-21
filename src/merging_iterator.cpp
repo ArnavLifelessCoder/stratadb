@@ -4,7 +4,7 @@
 
 #include "table/format.hpp"
 
-namespace lsm::internal::streaming {
+namespace lsm::internal {
 MergingIterator::MergingIterator(std::vector<std::unique_ptr<InternalIterator>> children)
     : children_(std::move(children)) {
   for (const auto& child : children_) {
@@ -101,4 +101,4 @@ void MergingIterator::Advance(bool reverse) {
 
 void MergingIterator::Next() { Advance(false); }
 void MergingIterator::Prev() { Advance(true); }
-}  // namespace lsm::internal::streaming
+}  // namespace lsm::internal

@@ -63,61 +63,18 @@ auto PickCompaction(std::shared_ptr<const Version> version, const Options& optio
   return plan;
 }
 
-MergingIterator::MergingIterator(std::vector<std::vector<table::Entry>> streams)
-    : streams_(std::move(streams)), positions_(streams_.size(), 0) {
-  for (std::size_t source = 0; source < streams_.size(); ++source) {
-    const auto& entries = streams_[source];
-    for (std::size_t index = 0; index < entries.size(); ++index) {
-      const auto& entry = entries[index];
-      if (!table::ValidKey(entry.key) ||
-          ((table::Tag(entry.key) & 0xffU) == 0 && !entry.value.empty()) ||
-          (index != 0 && table::Compare(entries[index - 1].key, entry.key) >= 0)) {
-        status_ = Status::Corruption("invalid merge input");
-        return;
-      }
-    }
-    if (!entries.empty()) {
-      heap_.push_back(source);
-    }
-  }
-  std::ranges::make_heap(heap_, [this](auto left, auto right) { return Later(left, right); });
-}
-
-auto MergingIterator::Later(std::size_t left, std::size_t right) const -> bool {
-  const int order =
-      table::Compare(streams_[left][positions_[left]].key, streams_[right][positions_[right]].key);
-  return order == 0 ? left > right : order > 0;
-}
-
-auto MergingIterator::entry() const -> const table::Entry& {
-  return streams_[heap_.front()][positions_[heap_.front()]];
-}
-
-void MergingIterator::Next() {
-  if (!Valid()) {
-    return;
-  }
-  const auto later = [this](auto left, auto right) { return Later(left, right); };
-  std::ranges::pop_heap(heap_, later);
-  const auto source = heap_.back();
-  heap_.pop_back();
-  if (++positions_[source] != streams_[source].size()) {
-    heap_.push_back(source);
-    std::ranges::push_heap(heap_, later);
-  }
-}
-
 auto CompactEntries(MergingIterator& input, const CompactionPlan& plan,
-                    std::uint64_t oldest_snapshot, std::vector<table::Entry>& output) -> Status {
+                    std::uint64_t oldest_snapshot,
+                    const std::function<Status(const table::Entry&)>& emit) -> Status {
+  input.SeekToFirst();
   if (!input.status().ok()) {
     return input.status();
   }
-  std::vector<table::Entry> result;
   std::string user;
   std::uint64_t previous_sequence = kMaxSequence + 1;
   std::optional<table::Entry> previous;
   while (input.Valid()) {
-    const auto& entry = input.entry();
+    const table::Entry entry{std::string(input.key()), std::string(input.value())};
     if (previous && previous->key == entry.key) {
       if (previous->value != entry.value) {
         return Status::Corruption("conflicting duplicate internal key");
@@ -138,7 +95,8 @@ auto CompactEntries(MergingIterator& input, const CompactionPlan& plan,
       drop = !deeper;
     }
     if (!drop) {
-      result.push_back(entry);
+      const auto status = emit(entry);
+      if (!status.ok()) return status;
     }
     previous_sequence = sequence;
     previous = entry;
@@ -147,7 +105,16 @@ auto CompactEntries(MergingIterator& input, const CompactionPlan& plan,
   if (!input.status().ok()) {
     return input.status();
   }
-  output = std::move(result);
   return {};
+}
+auto CompactEntries(MergingIterator& input, const CompactionPlan& plan,
+                    std::uint64_t oldest_snapshot, std::vector<table::Entry>& output) -> Status {
+  std::vector<table::Entry> result;
+  const auto status = CompactEntries(input, plan, oldest_snapshot, [&](const table::Entry& entry) {
+    result.push_back(entry);
+    return Status{};
+  });
+  if (status.ok()) output = std::move(result);
+  return status;
 }
 }  // namespace lsm::internal

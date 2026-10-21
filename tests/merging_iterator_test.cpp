@@ -7,7 +7,7 @@
 #include "test_support.hpp"
 #include "vector_iterator.hpp"
 
-namespace lsm::internal::streaming {
+namespace lsm::internal {
 namespace {
 TEST(MergingIteratorTest, RandomDirectionChangesAndSeeksMatchFullSort) {
   std::mt19937_64 random(test::seed);
@@ -88,4 +88,4 @@ TEST(MergingIteratorTest, InvalidTombstoneIsRejectedWhenPositioned) {
   EXPECT_EQ(it.status().code(), StatusCode::kCorruption);
 }
 }  // namespace
-}  // namespace lsm::internal::streaming
+}  // namespace lsm::internal

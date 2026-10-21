@@ -1,0 +1,93 @@
+[1/9] Building CXX object CMakeFiles\lsm.dir\src\merging_iterator.cpp.obj
+[2/9] Building CXX object CMakeFiles\lsm.dir\src\iterator.cpp.obj
+[3/9] Building CXX object CMakeFiles\lsm.dir\src\compaction.cpp.obj
+[4/9] Building CXX object CMakeFiles\lsm_tests.dir\tests\merging_iterator_test.cpp.obj
+[5/9] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[6/9] Building CXX object CMakeFiles\lsm_tests.dir\tests\compaction_test.cpp.obj
+[7/9] Linking CXX static library lsm.lib
+[8/9] Linking CXX executable lsm_db_process.exe
+[9/9] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: quick (not a milestone gate)
+Note: Google Test filter = CompactionTest.*:MergingIteratorTest.*:IteratorTest.*:SnapshotTest.*:FlushTest.*
+[==========] Running 30 tests from 5 test suites.
+[----------] Global test environment set-up.
+[----------] 10 tests from FlushTest
+[ RUN      ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles
+[       OK ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles (96 ms)
+[ RUN      ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap
+[       OK ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap (12984 ms)
+[ RUN      ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables
+[       OK ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables (1355 ms)
+[ RUN      ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens
+[       OK ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens (16748 ms)
+[ RUN      ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence
+[       OK ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence (1058 ms)
+[ RUN      ] FlushTest.RecoversRotationAndUncommittedTablePublication
+[       OK ] FlushTest.RecoversRotationAndUncommittedTablePublication (2709 ms)
+[ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+[       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (1667 ms)
+[ RUN      ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+[       OK ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch (927 ms)
+[ RUN      ] FlushTest.MissingReferencedWalOrTableIsCorruption
+[       OK ] FlushTest.MissingReferencedWalOrTableIsCorruption (2102 ms)
+[ RUN      ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes
+[       OK ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes (1841 ms)
+[----------] 10 tests from FlushTest (41494 ms total)
+
+[----------] 6 tests from CompactionTest
+[ RUN      ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only
+[       OK ] CompactionTest.L0SelectsAllFilesAndOverlappingL1Only (0 ms)
+[ RUN      ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey
+[       OK ] CompactionTest.HigherLevelsChooseHighestScoreAndRoundRobinKey (0 ms)
+[ RUN      ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams
+[       OK ] CompactionTest.HeapMergeMatchesFullSortAndRejectsInvalidStreams (35 ms)
+[ RUN      ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection
+[       OK ] CompactionTest.SnapshotBoundaryAndDeeperTombstonesPreventResurrection (0 ms)
+[ RUN      ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference
+[       OK ] CompactionTest.RandomMergesPreserveEverySupportedSnapshotAgainstMapReference (3457 ms)
+[ RUN      ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput
+[       OK ] CompactionTest.ConflictingDuplicatesReturnCorruptionWithoutPublishingOutput (0 ms)
+[----------] 6 tests from CompactionTest (3493 ms total)
+
+[----------] 3 tests from IteratorTest
+[ RUN      ] IteratorTest.MergeSnapshotSeekForwardReverseAndBinaryKeys
+[       OK ] IteratorTest.MergeSnapshotSeekForwardReverseAndBinaryKeys (0 ms)
+[ RUN      ] IteratorTest.EmptyErrorsAndVersionLifetime
+[       OK ] IteratorTest.EmptyErrorsAndVersionLifetime (0 ms)
+[ RUN      ] IteratorTest.SnapshotFilteringAndDirectionChangesMatchOrderedMap
+[       OK ] IteratorTest.SnapshotFilteringAndDirectionChangesMatchOrderedMap (3589 ms)
+[----------] 3 tests from IteratorTest (3589 ms total)
+
+[----------] 3 tests from MergingIteratorTest
+[ RUN      ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort
+[       OK ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort (354 ms)
+[ RUN      ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges
+[       OK ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges (0 ms)
+[ RUN      ] MergingIteratorTest.InvalidTombstoneIsRejectedWhenPositioned
+[       OK ] MergingIteratorTest.InvalidTombstoneIsRejectedWhenPositioned (0 ms)
+[----------] 3 tests from MergingIteratorTest (354 ms total)
+
+[----------] 8 tests from SnapshotTest
+[ RUN      ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction
+[       OK ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction (4822 ms)
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (1399 ms)
+[ RUN      ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues
+[       OK ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues (6544 ms)
+[ RUN      ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected
+[       OK ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected (1058 ms)
+[ RUN      ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables
+ITERATOR_BLOCK_READS creation=0 short_scan=1 l1_tables=30
+[       OK ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables (15959 ms)
+[ RUN      ] SnapshotTest.SlowIteratorKeepsItsInputsWhileCompactionReclaimsOtherTables
+[       OK ] SnapshotTest.SlowIteratorKeepsItsInputsWhileCompactionReclaimsOtherTables (9241 ms)
+[ RUN      ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery
+[       OK ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery (2432 ms)
+[ RUN      ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction
+[       OK ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction (4522 ms)
+[----------] 8 tests from SnapshotTest (45981 ms total)
+
+[----------] Global test environment tear-down
+[==========] 30 tests from 5 test suites ran. (94914 ms total)
+[  PASSED  ] 30 tests.

@@ -5,7 +5,7 @@
 
 #include "internal_iterator.hpp"
 
-namespace lsm::internal::streaming {
+namespace lsm::internal {
 // A heap of child cursors. Construction performs no positioning or data reads.
 class MergingIterator final : public InternalIterator {
  public:
@@ -34,4 +34,4 @@ class MergingIterator final : public InternalIterator {
   bool reverse_ = false;
   Status status_;
 };
-}  // namespace lsm::internal::streaming
+}  // namespace lsm::internal

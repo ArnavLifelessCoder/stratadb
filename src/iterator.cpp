@@ -101,7 +101,7 @@ class DBIter final : public Iterator {
  public:
   DBIter(std::vector<std::unique_ptr<InternalIterator>> children, std::uint64_t sequence,
          std::shared_ptr<const Version> version, Status status, std::function<void()> released)
-      : input_(std::make_unique<streaming::MergingIterator>(std::move(children))),
+      : input_(std::make_unique<MergingIterator>(std::move(children))),
         version_(std::move(version)),
         sequence_(sequence),
         status_(std::move(status)),
@@ -195,7 +195,7 @@ class DBIter final : public Iterator {
     }
     status_ = input_->status();
   }
-  std::unique_ptr<streaming::MergingIterator> input_;
+  std::unique_ptr<MergingIterator> input_;
   std::shared_ptr<const Version> version_;
   std::uint64_t sequence_;
   Status status_;

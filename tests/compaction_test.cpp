@@ -8,6 +8,7 @@
 
 #include "table/format.hpp"
 #include "test_support.hpp"
+#include "vector_iterator.hpp"
 
 namespace lsm::internal {
 namespace {
@@ -98,17 +99,18 @@ TEST(CompactionTest, HeapMergeMatchesFullSortAndRejectsInvalidStreams) {
   }
   for (auto& stream : streams) Sort(stream);
   Sort(reference);
-  MergingIterator merged(std::move(streams));
+  MergingIterator merged(test::MakeIterators(std::move(streams)));
+  merged.SeekToFirst();
   ASSERT_TRUE(merged.status().ok());
   for (const auto& entry : reference) {
     ASSERT_TRUE(merged.Valid());
-    EXPECT_EQ(merged.entry().key, entry.key);
-    EXPECT_EQ(merged.entry().value, entry.value);
+    EXPECT_EQ(merged.key(), entry.key);
+    EXPECT_EQ(merged.value(), entry.value);
     merged.Next();
   }
   EXPECT_FALSE(merged.Valid());
   merged.Next();
-  MergingIterator invalid({{Entry("z", 1), Entry("a", 2)}});
+  MergingIterator invalid(test::MakeIterators({{Entry("z", 1), Entry("a", 2)}}));
   EXPECT_EQ(invalid.status().code(), StatusCode::kCorruption);
   EXPECT_FALSE(invalid.Valid());
 }
@@ -122,18 +124,18 @@ TEST(CompactionTest, SnapshotBoundaryAndDeeperTombstonesPreventResurrection) {
                                     Entry("versions", 7, true), Entry("versions", 5),
                                     Entry("versions", 3),       Entry("versions", 1)};
   Sort(entries);
-  MergingIterator input({entries});
+  MergingIterator input(test::MakeIterators({entries}));
   std::vector<table::Entry> output;
   ASSERT_TRUE(CompactEntries(input, plan, 3, output).ok());
   EXPECT_EQ(output.size(), 7U);
-  MergingIterator later({entries});
+  MergingIterator later(test::MakeIterators({entries}));
   ASSERT_TRUE(CompactEntries(later, plan, 8, output).ok());
   ASSERT_EQ(output.size(), 2U);
   EXPECT_EQ(table::UserKey(output[0].key), "retain");
   EXPECT_EQ(table::UserKey(output[1].key), "versions");
   EXPECT_EQ(table::Tag(output[1].key) >> 8, 9U);
   plan.level = 5;
-  MergingIterator bottom({entries});
+  MergingIterator bottom(test::MakeIterators({entries}));
   ASSERT_TRUE(CompactEntries(bottom, plan, kMaxSequence, output).ok());
   ASSERT_EQ(output.size(), 1U);
   EXPECT_EQ(table::UserKey(output.front().key), "versions");
@@ -159,7 +161,7 @@ TEST(CompactionTest, RandomMergesPreserveEverySupportedSnapshotAgainstMapReferen
     }
     for (auto& stream : streams) Sort(stream);
     const auto oldest = random() % 121;
-    MergingIterator input(std::move(streams));
+    MergingIterator input(test::MakeIterators(std::move(streams)));
     std::vector<table::Entry> compacted;
     ASSERT_TRUE(CompactEntries(input, plan, oldest, compacted).ok());
     compacted.insert(compacted.end(), deeper.begin(), deeper.end());
@@ -175,7 +177,7 @@ TEST(CompactionTest, ConflictingDuplicatesReturnCorruptionWithoutPublishingOutpu
   const auto entry = Entry("key", 1);
   auto different = entry;
   different.value = "different";
-  MergingIterator input({{entry}, {different}});
+  MergingIterator input(test::MakeIterators({{entry}, {different}}));
   std::vector<table::Entry> output{Entry("unchanged", 2)};
   EXPECT_EQ(CompactEntries(input, plan, 1, output).code(), StatusCode::kCorruption);
   ASSERT_EQ(output.size(), 1U);
