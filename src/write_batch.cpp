@@ -52,7 +52,11 @@ auto EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& o
       return Status::InvalidArgument("WAL payload exceeds 32-bit length");
     }
   }
-  std::string encoded;
+  // Every check is done, so encode straight into the caller's buffer and reuse
+  // its capacity.
+  auto& encoded = output;
+  encoded.clear();
+  encoded.reserve(static_cast<std::size_t>(size));
   AppendVarint64(encoded, sequence);
   AppendVarint32(encoded, static_cast<std::uint32_t>(batch.Count()));
   for (const auto& entry : batch.Entries()) {
@@ -64,7 +68,6 @@ auto EncodeBatch(const WriteBatch& batch, std::uint64_t sequence, std::string& o
       encoded.append(entry.value);
     }
   }
-  output = std::move(encoded);
   return {};
 }
 

@@ -29,6 +29,8 @@ class Wal {
  private:
   auto RepairTail(std::size_t offset, std::size_t size) -> Status;
   std::unique_ptr<platform::File> file_;
+  std::string payload_;  // Append buffers, reused to avoid per-write allocations.
+  std::string record_;
   Status failure_;
   std::atomic<std::uint64_t> bytes_written_{0};
   std::atomic<std::uint64_t> sync_count_{0};

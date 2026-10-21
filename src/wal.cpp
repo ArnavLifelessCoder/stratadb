@@ -50,23 +50,25 @@ auto Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) -> 
   if (!failure_.ok()) {
     return failure_;
   }
-  std::string payload;
-  auto status = EncodeBatch(batch, sequence, payload);
+  auto status = EncodeBatch(batch, sequence, payload_);
   if (!status.ok()) {
     return status;
   }
-  std::string body;
-  AppendFixed32(body, static_cast<std::uint32_t>(payload.size()));
-  body.push_back(kBatchRecord);
-  body.append(payload);
-  std::string record;
-  AppendFixed32(record, Crc32c(body));
-  record.append(body);
-  failure_ = file_->Append(record);
+  // crc32c (4) | length (4) | type (1) | payload, built in a reused buffer; the
+  // CRC covers length, type and payload and is filled in last.
+  record_.assign(4, '\0');
+  AppendFixed32(record_, static_cast<std::uint32_t>(payload_.size()));
+  record_.push_back(kBatchRecord);
+  record_.append(payload_);
+  const auto crc = Crc32c(std::string_view(record_).substr(4));
+  for (unsigned i = 0; i < 4; ++i) {
+    record_[i] = static_cast<char>((crc >> (8 * i)) & 0xffU);
+  }
+  failure_ = file_->Append(record_);
   if (!failure_.ok()) {
     return failure_;
   }
-  bytes_written_.fetch_add(record.size(), std::memory_order_relaxed);
+  bytes_written_.fetch_add(record_.size(), std::memory_order_relaxed);
   if (sync) {
     return Sync();
   }
