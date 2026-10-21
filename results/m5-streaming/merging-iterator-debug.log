@@ -1,0 +1,29 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (25.2s)
+-- Generating done (1.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/5] Building CXX object CMakeFiles\lsm.dir\src\merging_iterator.cpp.obj
+[2/5] Linking CXX static library lsm.lib
+[3/5] Building CXX object CMakeFiles\lsm_tests.dir\tests\merging_iterator_test.cpp.obj
+[4/5] Linking CXX executable lsm_db_process.exe
+[5/5] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = MergingIteratorTest.*
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from MergingIteratorTest
+[ RUN      ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort
+[       OK ] MergingIteratorTest.RandomDirectionChangesAndSeeksMatchFullSort (349 ms)
+[ RUN      ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges
+[       OK ] MergingIteratorTest.DuplicateTieOrderSurvivesDirectionChanges (0 ms)
+[----------] 2 tests from MergingIteratorTest (349 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (350 ms total)
+[  PASSED  ] 2 tests.

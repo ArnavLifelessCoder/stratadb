@@ -61,6 +61,7 @@ target_sources(lsm PRIVATE src/version_set.cpp)
 target_sources(lsm PRIVATE src/file_cleanup.cpp)
 target_sources(lsm PRIVATE src/compaction.cpp)
 target_sources(lsm PRIVATE src/iterator.cpp)
+target_sources(lsm PRIVATE src/merging_iterator.cpp)
 find_package(Threads REQUIRED)
 target_link_libraries(lsm PUBLIC Threads::Threads)
 if(WIN32)
@@ -104,6 +105,7 @@ if(BUILD_TESTING)
     tests/cleanup_test.cpp
     tests/compaction_test.cpp
     tests/iterator_test.cpp
+    tests/merging_iterator_test.cpp
     tests/snapshot_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
