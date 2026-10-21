@@ -145,4 +145,25 @@ if(LSM_BUILD_BENCHMARKS)
     GIT_TAG 31c66f47f60d06790a4885a261d682ba339bd100 # v1.9.4
   )
   FetchContent_MakeAvailable(googlebenchmark)
+
+  # LevelDB built from source for the comparison, pinned to the 1.23 release.
+  # Its tests and benchmarks (and their submodules) are not needed. Snappy is
+  # not linked, and the runner turns compression off explicitly as well.
+  set(LEVELDB_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+  set(LEVELDB_BUILD_BENCHMARKS OFF CACHE BOOL "" FORCE)
+  set(LEVELDB_INSTALL OFF CACHE BOOL "" FORCE)
+  FetchContent_Declare(leveldb
+    GIT_REPOSITORY https://github.com/google/leveldb.git
+    GIT_TAG 99b3c03b3284f5886f9ef9a4ef703d57373e61be # 1.23
+    GIT_SUBMODULES ""
+  )
+  FetchContent_MakeAvailable(leveldb)
+
+  add_executable(lsm_bench bench/lsm_bench.cpp)
+  target_link_libraries(lsm_bench PRIVATE lsm::lsm leveldb)
+  target_include_directories(lsm_bench PRIVATE src)
+
+  add_executable(lsm_micro_bench bench/micro_bench.cpp)
+  target_link_libraries(lsm_micro_bench PRIVATE lsm::lsm benchmark::benchmark)
+  target_include_directories(lsm_micro_bench PRIVATE src)
 endif()
