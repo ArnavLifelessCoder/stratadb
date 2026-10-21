@@ -43,7 +43,7 @@ class MemTableIterator final : public InternalIterator {
   [[nodiscard]] auto value() const -> std::string_view override {
     return Valid() ? node_->value : std::string_view{};
   }
-  [[nodiscard]] auto status() const -> Status override { return status_; }
+  [[nodiscard]] auto StatusRef() const -> const Status& override { return status_; }
 
  private:
   void Set(const MemTable::Node* node) {

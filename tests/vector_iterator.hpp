@@ -46,7 +46,7 @@ class VectorIterator final : public internal::InternalIterator {
   [[nodiscard]] auto value() const -> std::string_view override {
     return Valid() ? entries_[position_].value : std::string_view{};
   }
-  [[nodiscard]] auto status() const -> Status override { return status_; }
+  [[nodiscard]] auto StatusRef() const -> const Status& override { return status_; }
 
  private:
   std::vector<internal::table::Entry> entries_;

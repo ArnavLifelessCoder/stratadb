@@ -61,7 +61,7 @@ class LevelIterator final : public InternalIterator {
   [[nodiscard]] auto value() const -> std::string_view override {
     return Valid() ? current_->value() : std::string_view{};
   }
-  [[nodiscard]] auto status() const -> Status override { return status_; }
+  [[nodiscard]] auto StatusRef() const -> const Status& override { return status_; }
 
  private:
   [[nodiscard]] auto Files() const -> const std::vector<std::size_t>& {
@@ -76,7 +76,7 @@ class LevelIterator final : public InternalIterator {
   }
   void Skip(bool reverse) {
     while (current_) {
-      status_ = current_->status();
+      if (!current_->StatusRef().ok()) status_ = current_->StatusRef();
       if (!status_.ok() || current_->Valid()) return;
       if (reverse && index_ == 0) {
         current_.reset();
@@ -105,7 +105,7 @@ class DBIter final : public Iterator {
         sequence_(sequence),
         status_(std::move(status)),
         released_(std::move(released)) {
-    if (status_.ok()) status_ = input_->status();
+    if (status_.ok() && !input_->StatusRef().ok()) status_ = input_->StatusRef();
   }
   ~DBIter() override {
     input_.reset();  // Release table cursors and both memtables before waking cleanup.
@@ -143,7 +143,7 @@ class DBIter final : public Iterator {
       input_->Seek(table::InternalKey(key_, kMaxSequence, WriteBatch::Type::kPut));
       if (input_->Valid())
         input_->Prev();
-      else if (input_->status().ok())
+      else if (input_->StatusRef().ok())
         input_->SeekToLast();
     }
     Read(true);
@@ -160,39 +160,42 @@ class DBIter final : public Iterator {
   void Read(bool reverse) {
     valid_ = false;
     reverse_ = reverse;
+    // Member buffers are reused across entries; a scan allocates only when a
+    // key or value outgrows every earlier one.
     while (input_->Valid()) {
-      const std::string user(table::UserKey(input_->key()));
+      user_.assign(table::UserKey(input_->key()));
       bool selected = false;
       bool put = false;
-      std::string value;
-      table::Entry previous;
-      while (input_->Valid() && table::UserKey(input_->key()) == user) {
+      bool have_previous = false;
+      while (input_->Valid() && table::UserKey(input_->key()) == user_) {
         const auto key = input_->key();
-        if (previous.key == key && previous.value != input_->value()) {
+        const auto value = input_->value();
+        if (have_previous && previous_key_ == key && previous_value_ != value) {
           status_ = Status::Corruption("conflicting iterator internal key");
           return;
         }
         if ((table::Tag(key) >> 8) <= sequence_ && (reverse || !selected)) {
           selected = true;
           put = (table::Tag(key) & 0xffU) != 0;
-          value = input_->value();
+          if (put) value_.assign(value);
         }
-        previous = table::Entry{.key = std::string(key), .value = std::string(input_->value())};
+        previous_key_.assign(key);
+        previous_value_.assign(value);
+        have_previous = true;
         if (reverse)
           input_->Prev();
         else
           input_->Next();
       }
-      status_ = input_->status();
+      if (!input_->StatusRef().ok()) status_ = input_->StatusRef();
       if (!status_.ok()) return;
       if (selected && put) {
-        key_ = user;
-        value_ = std::move(value);
+        key_.assign(user_);
         valid_ = true;
         return;
       }
     }
-    status_ = input_->status();
+    if (!input_->StatusRef().ok()) status_ = input_->StatusRef();
   }
   std::unique_ptr<MergingIterator> input_;
   std::shared_ptr<const Version> version_;
@@ -203,6 +206,9 @@ class DBIter final : public Iterator {
   bool reverse_ = false;
   std::string key_;
   std::string value_;
+  std::string user_;
+  std::string previous_key_;
+  std::string previous_value_;
 };
 }  // namespace
 

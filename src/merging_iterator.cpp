@@ -8,16 +8,19 @@ namespace lsm::internal {
 MergingIterator::MergingIterator(std::vector<std::unique_ptr<InternalIterator>> children)
     : children_(std::move(children)) {
   for (const auto& child : children_) {
-    if (!child->status().ok()) {
-      status_ = child->status();
+    if (!child->StatusRef().ok()) {
+      status_ = child->StatusRef();
       break;
     }
   }
 }
 
 auto MergingIterator::Check(std::size_t child) -> bool {
-  status_ = children_[child]->status();
-  if (status_.ok() && children_[child]->Valid() &&
+  if (const auto& child_status = children_[child]->StatusRef(); !child_status.ok()) {
+    status_ = child_status;
+    return false;
+  }
+  if (children_[child]->Valid() &&
       (!table::ValidKey(children_[child]->key()) ||
        ((table::Tag(children_[child]->key()) & 0xffU) == 0 && !children_[child]->value().empty())))
     status_ = Status::Corruption("invalid merge cursor key or tombstone");
@@ -61,13 +64,14 @@ void MergingIterator::Seek(std::string_view target) {
 void MergingIterator::Advance(bool reverse) {
   if (!Valid()) return;
   const auto selected = heap_.front();
-  const std::string current(key());
+  current_.assign(key());
+  const std::string_view current(current_);
   if (reverse != reverse_) {
     for (std::size_t i = 0; i < children_.size(); ++i) {
       auto& child = children_[i];
       child->Seek(current);
       if (reverse) {
-        if (!child->Valid() && child->status().ok())
+        if (!child->Valid() && child->StatusRef().ok())
           child->SeekToLast();
         else if (child->Valid() && (table::Compare(child->key(), current) > 0 ||
                                     (child->key() == current && i >= selected)))
@@ -79,23 +83,32 @@ void MergingIterator::Advance(bool reverse) {
     Rebuild(reverse);
     return;
   }
-  const auto later = [this](auto left, auto right) { return Later(left, right); };
-  std::ranges::pop_heap(heap_, later);
-  heap_.pop_back();
   auto& child = children_[selected];
   if (reverse)
     child->Prev();
   else
     child->Next();
   if (!Check(selected)) return;
-  if (child->Valid()) {
-    const auto order = table::Compare(current, child->key());
-    if ((!reverse && order >= 0) || (reverse && order <= 0)) {
-      status_ = Status::Corruption("merge child ordering");
-      return;
-    }
-    heap_.push_back(selected);
-    std::ranges::push_heap(heap_, later);
+  if (!child->Valid()) {
+    std::ranges::pop_heap(heap_, [this](auto left, auto right) { return Later(left, right); });
+    heap_.pop_back();
+    return;
+  }
+  const auto order = table::Compare(current, child->key());
+  if ((!reverse && order >= 0) || (reverse && order <= 0)) {
+    status_ = Status::Corruption("merge child ordering");
+    return;
+  }
+  // The advanced child is still at the root; sift it down once instead of a
+  // pop and a push.
+  for (std::size_t at = 0;;) {
+    const auto left = 2 * at + 1;
+    if (left >= heap_.size()) break;
+    auto next = left;
+    if (left + 1 < heap_.size() && Later(heap_[left], heap_[left + 1])) next = left + 1;
+    if (!Later(heap_[at], heap_[next])) break;
+    std::swap(heap_[at], heap_[next]);
+    at = next;
   }
 }
 

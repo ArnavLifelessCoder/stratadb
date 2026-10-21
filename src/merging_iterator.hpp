@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 #include <vector>
 
 #include "internal_iterator.hpp"
@@ -22,7 +23,7 @@ class MergingIterator final : public InternalIterator {
   [[nodiscard]] auto value() const -> std::string_view override {
     return Valid() ? children_[heap_.front()]->value() : std::string_view{};
   }
-  [[nodiscard]] auto status() const -> Status override { return status_; }
+  [[nodiscard]] auto StatusRef() const -> const Status& override { return status_; }
 
  private:
   auto Check(std::size_t child) -> bool;
@@ -31,6 +32,7 @@ class MergingIterator final : public InternalIterator {
   void Advance(bool reverse);
   std::vector<std::unique_ptr<InternalIterator>> children_;
   std::vector<std::size_t> heap_;
+  std::string current_;  // Reused across steps to avoid an allocation per entry.
   bool reverse_ = false;
   Status status_;
 };

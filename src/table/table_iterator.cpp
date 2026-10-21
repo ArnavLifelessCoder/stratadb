@@ -14,12 +14,12 @@ auto TableIterator::Load(std::size_t index) -> bool {
   if (!status_.ok()) return false;
   block_owner_ = std::move(ref.owner);
   block_ = std::make_unique<BlockIterator>(ref.bytes, ref.verified);
-  status_ = block_->status();
+  if (!block_->StatusRef().ok()) status_ = block_->StatusRef();
   return status_.ok();
 }
 
 void TableIterator::Check(bool at_last) {
-  status_ = block_->status();
+  if (!block_->StatusRef().ok()) status_ = block_->StatusRef();
   if (!status_.ok()) return;
   if (!block_->Valid() || Compare(block_->key(), reader_->index_[index_].key) > 0 ||
       (at_last && block_->key() != reader_->index_[index_].key) ||
@@ -62,7 +62,7 @@ void TableIterator::Next() {
   if (!Valid()) return;
   const bool was_last = block_->key() == reader_->index_[index_].key;
   block_->Next();
-  status_ = block_->status();
+  if (!block_->StatusRef().ok()) status_ = block_->StatusRef();
   if (!status_.ok()) return;
   if (!block_->Valid()) {
     if (!was_last) {
@@ -71,14 +71,21 @@ void TableIterator::Next() {
     }
     if (!Load(index_ + 1)) return;
     block_->SeekToFirst();
+    Check();
+    return;
   }
-  Check();
+  // Within a block the block iterator has already checked that keys ascend,
+  // and the block's last key must equal its separator (checked above when the
+  // block ends), so the separator comparisons are only needed on a new block.
+  if ((Tag(block_->key()) & 0xffU) == 0 && !block_->value().empty()) {
+    status_ = Status::Corruption("table iterator tombstone with a value");
+  }
 }
 
 void TableIterator::Prev() {
   if (!Valid()) return;
   block_->Prev();
-  status_ = block_->status();
+  if (!block_->StatusRef().ok()) status_ = block_->StatusRef();
   if (!status_.ok()) return;
   if (!block_->Valid()) {
     if (index_ == 0) {

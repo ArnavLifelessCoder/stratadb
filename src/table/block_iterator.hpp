@@ -24,7 +24,7 @@ class BlockIterator final : public InternalIterator {
   [[nodiscard]] auto value() const -> std::string_view override {
     return Valid() ? value_ : std::string_view{};
   }
-  [[nodiscard]] auto status() const -> Status override { return status_; }
+  [[nodiscard]] auto StatusRef() const -> const Status& override { return status_; }
   [[nodiscard]] auto DecodedEntries() const -> std::size_t { return decoded_; }
 
  private:
