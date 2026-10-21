@@ -37,8 +37,11 @@ during the append and sync, and readers are not blocked by disk writes.
 
 `Stats::write_calls` counts write calls, `wal_records` counts records written,
 and `wal_syncs` counts syncs. In `WritePathTest.SixteenSyncWritersShareFewerSyncsThanWrites`,
-16 threads each issue 100 sync puts. On the development machine (Windows,
-NVMe), the 1,600 writes needed 163 syncs. The exact number depends on timing.
+16 threads each issue 100 sync puts. In the recorded M7 verification on the
+development machine (Windows, NVMe), the 1,600 writes needed 167 syncs in the
+debug build and 185 under ASan (the `GROUP_COMMIT` lines in
+`results/m7/verification/test-debug.log` and `test-asan.log`). The exact number
+depends on timing.
 
 ## Write stalls
 
