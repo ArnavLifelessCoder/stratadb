@@ -1,92 +1,227 @@
 #include "iterator.hpp"
 
 #include <algorithm>
+#include <optional>
 
-#include "compaction.hpp"
+#include "merging_iterator.hpp"
 #include "table/format.hpp"
+#include "table/table_iterator.hpp"
 
 namespace lsm::internal {
 namespace {
-class MaterializedIterator final : public Iterator {
+// Higher levels are disjoint. Keep only one table cursor, opening it on demand;
+// the Version owns all metadata/readers without copying file or entry arrays.
+class LevelIterator final : public InternalIterator {
  public:
-  MaterializedIterator(std::shared_ptr<const Version> version, Status status,
-                       std::function<void()> released)
-      : version_(std::move(version)), status_(std::move(status)), released_(std::move(released)) {}
-  ~MaterializedIterator() override {
-    version_.reset();
-    if (released_) {
-      released_();
+  LevelIterator(std::shared_ptr<const Version> version, std::size_t level)
+      : version_(std::move(version)), level_(level) {}
+  [[nodiscard]] auto Valid() const -> bool override {
+    return status_.ok() && current_ && current_->Valid();
+  }
+  void SeekToFirst() override {
+    if (Load(0)) {
+      current_->SeekToFirst();
+      Skip(false);
     }
   }
-  void Build(std::vector<std::vector<table::Entry>> streams, std::uint64_t sequence) {
-    if (!status_.ok()) {
+  void SeekToLast() override {
+    if (!Files().empty() && Load(Files().size() - 1)) {
+      current_->SeekToLast();
+      Skip(true);
+    }
+  }
+  void Seek(std::string_view target) override {
+    if (!status_.ok()) return;
+    if (target.size() < 8) {
+      status_ = Status::InvalidArgument("short level iterator seek");
       return;
     }
-    MergingIterator input(std::move(streams));
-    std::optional<table::Entry> previous;
-    std::string user;
-    bool selected = false;
-    while (input.Valid()) {
-      const auto& entry = input.entry();
-      if (previous && previous->key == entry.key && previous->value != entry.value) {
-        status_ = Status::Corruption("conflicting iterator internal key");
-        return;
-      }
-      if (!previous || user != table::UserKey(entry.key)) {
-        user = table::UserKey(entry.key);
-        selected = false;
-      }
-      if (!selected && (table::Tag(entry.key) >> 8) <= sequence) {
-        selected = true;
-        if ((table::Tag(entry.key) & 0xffU) != 0) {
-          rows_.emplace_back(user, entry.value);
-        }
-      }
-      previous = entry;
-      input.Next();
+    const auto found = std::ranges::lower_bound(
+        Files(), table::UserKey(target), {},
+        [&](auto i) -> const std::string& { return version_->files[i].largest; });
+    if (Load(static_cast<std::size_t>(found - Files().begin()))) {
+      current_->Seek(target);
+      Skip(false);
     }
-    status_ = input.status();
-    position_ = rows_.size();
-  }
-  [[nodiscard]] auto Valid() const -> bool override {
-    return status_.ok() && position_ < rows_.size();
-  }
-  void SeekToFirst() override { position_ = 0; }
-  void SeekToLast() override { position_ = rows_.empty() ? 0 : rows_.size() - 1; }
-  void Seek(std::string_view target) override {
-    const auto found = std::ranges::lower_bound(rows_, target, {}, &Row::first);
-    position_ = static_cast<std::size_t>(found - rows_.begin());
   }
   void Next() override {
-    if (Valid()) ++position_;
+    if (Valid()) {
+      current_->Next();
+      Skip(false);
+    }
   }
   void Prev() override {
-    if (Valid()) position_ = position_ == 0 ? rows_.size() : position_ - 1;
+    if (Valid()) {
+      current_->Prev();
+      Skip(true);
+    }
   }
   [[nodiscard]] auto key() const -> std::string_view override {
-    return Valid() ? std::string_view(rows_[position_].first) : std::string_view{};
+    return Valid() ? current_->key() : std::string_view{};
   }
   [[nodiscard]] auto value() const -> std::string_view override {
-    return Valid() ? std::string_view(rows_[position_].second) : std::string_view{};
+    return Valid() ? current_->value() : std::string_view{};
   }
   [[nodiscard]] auto status() const -> Status override { return status_; }
 
  private:
-  using Row = std::pair<std::string, std::string>;
+  [[nodiscard]] auto Files() const -> const std::vector<std::size_t>& {
+    return version_->levels[level_];
+  }
+  auto Load(std::size_t index) -> bool {
+    current_.reset();
+    if (!status_.ok() || index >= Files().size()) return false;
+    index_ = index;
+    current_ = std::make_unique<table::TableIterator>(version_->files[Files()[index]].reader);
+    return true;
+  }
+  void Skip(bool reverse) {
+    while (current_) {
+      status_ = current_->status();
+      if (!status_.ok() || current_->Valid()) return;
+      if (reverse && index_ == 0) {
+        current_.reset();
+        return;
+      }
+      if (!Load(reverse ? index_ - 1 : index_ + 1)) return;
+      if (reverse)
+        current_->SeekToLast();
+      else
+        current_->SeekToFirst();
+    }
+  }
   std::shared_ptr<const Version> version_;
+  std::size_t level_;
+  std::size_t index_ = 0;
+  std::unique_ptr<InternalIterator> current_;
+  Status status_;
+};
+
+class DBIter final : public Iterator {
+ public:
+  DBIter(std::vector<std::unique_ptr<InternalIterator>> children, std::uint64_t sequence,
+         std::shared_ptr<const Version> version, Status status, std::function<void()> released)
+      : input_(std::make_unique<streaming::MergingIterator>(std::move(children))),
+        version_(std::move(version)),
+        sequence_(sequence),
+        status_(std::move(status)),
+        released_(std::move(released)) {
+    if (status_.ok()) status_ = input_->status();
+  }
+  ~DBIter() override {
+    input_.reset();  // Release table cursors and both memtables before waking cleanup.
+    version_.reset();
+    if (released_) released_();
+  }
+  [[nodiscard]] auto Valid() const -> bool override { return valid_ && status_.ok(); }
+  void SeekToFirst() override {
+    if (status_.ok()) {
+      input_->SeekToFirst();
+      Read(false);
+    }
+  }
+  void SeekToLast() override {
+    if (status_.ok()) {
+      input_->SeekToLast();
+      Read(true);
+    }
+  }
+  void Seek(std::string_view target) override {
+    if (!status_.ok()) return;
+    input_->Seek(table::InternalKey(target, kMaxSequence, WriteBatch::Type::kPut));
+    Read(false);
+  }
+  void Next() override {
+    if (!Valid()) return;
+    if (reverse_) {
+      input_->Seek(table::InternalKey(key_, 0, WriteBatch::Type::kDelete));
+    }
+    Read(false);
+  }
+  void Prev() override {
+    if (!Valid()) return;
+    if (!reverse_) {
+      input_->Seek(table::InternalKey(key_, kMaxSequence, WriteBatch::Type::kPut));
+      if (input_->Valid())
+        input_->Prev();
+      else if (input_->status().ok())
+        input_->SeekToLast();
+    }
+    Read(true);
+  }
+  [[nodiscard]] auto key() const -> std::string_view override {
+    return Valid() ? key_ : std::string_view{};
+  }
+  [[nodiscard]] auto value() const -> std::string_view override {
+    return Valid() ? value_ : std::string_view{};
+  }
+  [[nodiscard]] auto status() const -> Status override { return status_; }
+
+ private:
+  void Read(bool reverse) {
+    valid_ = false;
+    reverse_ = reverse;
+    while (input_->Valid()) {
+      const std::string user(table::UserKey(input_->key()));
+      bool selected = false;
+      bool put = false;
+      std::string value;
+      std::optional<table::Entry> previous;
+      while (input_->Valid() && table::UserKey(input_->key()) == user) {
+        const auto key = input_->key();
+        if (previous && previous->key == key && previous->value != input_->value()) {
+          status_ = Status::Corruption("conflicting iterator internal key");
+          return;
+        }
+        if ((table::Tag(key) >> 8) <= sequence_ && (reverse || !selected)) {
+          selected = true;
+          put = (table::Tag(key) & 0xffU) != 0;
+          value = input_->value();
+        }
+        previous = table::Entry{std::string(key), std::string(input_->value())};
+        if (reverse)
+          input_->Prev();
+        else
+          input_->Next();
+      }
+      status_ = input_->status();
+      if (!status_.ok()) return;
+      if (selected && put) {
+        key_ = user;
+        value_ = std::move(value);
+        valid_ = true;
+        return;
+      }
+    }
+    status_ = input_->status();
+  }
+  std::unique_ptr<streaming::MergingIterator> input_;
+  std::shared_ptr<const Version> version_;
+  std::uint64_t sequence_;
   Status status_;
   std::function<void()> released_;
-  std::vector<Row> rows_;
-  std::size_t position_ = 0;
+  bool valid_ = false;
+  bool reverse_ = false;
+  std::string key_;
+  std::string value_;
 };
 }  // namespace
 
-auto MakeIterator(std::vector<std::vector<table::Entry>> streams, std::uint64_t sequence,
+auto MakeVersionIterators(const std::shared_ptr<const Version>& version)
+    -> std::vector<std::unique_ptr<InternalIterator>> {
+  std::vector<std::unique_ptr<InternalIterator>> children;
+  for (const auto index : version->levels[0])
+    children.push_back(std::make_unique<table::TableIterator>(version->files[index].reader));
+  for (std::size_t level = 1; level < version->levels.size(); ++level)
+    if (!version->levels[level].empty())
+      children.push_back(std::make_unique<LevelIterator>(version, level));
+  return children;
+}
+
+auto MakeIterator(std::vector<std::unique_ptr<InternalIterator>> children, std::uint64_t sequence,
                   std::shared_ptr<const Version> version, Status status,
                   std::function<void()> released) -> std::unique_ptr<Iterator> {
-  auto iterator = std::make_unique<MaterializedIterator>(std::move(version), std::move(status),
-                                                         std::move(released));
-  iterator->Build(std::move(streams), sequence);
-  return iterator;
+  return std::make_unique<DBIter>(std::move(children), sequence, std::move(version),
+                                  std::move(status), std::move(released));
 }
 }  // namespace lsm::internal

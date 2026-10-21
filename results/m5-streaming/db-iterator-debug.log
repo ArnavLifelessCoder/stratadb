@@ -1,0 +1,34 @@
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = IteratorTest.*:SnapshotTest.*
+[==========] Running 10 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from IteratorTest
+[ RUN      ] IteratorTest.MergeSnapshotSeekForwardReverseAndBinaryKeys
+[       OK ] IteratorTest.MergeSnapshotSeekForwardReverseAndBinaryKeys (0 ms)
+[ RUN      ] IteratorTest.EmptyErrorsAndVersionLifetime
+[       OK ] IteratorTest.EmptyErrorsAndVersionLifetime (0 ms)
+[ RUN      ] IteratorTest.SnapshotFilteringAndDirectionChangesMatchOrderedMap
+[       OK ] IteratorTest.SnapshotFilteringAndDirectionChangesMatchOrderedMap (4357 ms)
+[----------] 3 tests from IteratorTest (4358 ms total)
+
+[----------] 7 tests from SnapshotTest
+[ RUN      ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction
+[       OK ] SnapshotTest.RandomBatchesSnapshotsAndIteratorsMatchHistoricalMapsDuringCompaction (10165 ms)
+[ RUN      ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed
+[       OK ] SnapshotTest.VersionsStayAliveUntilSnapshotAndIteratorReleaseThenFilesAreReclaimed (1440 ms)
+[ RUN      ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues
+[       OK ] SnapshotTest.HigherLevelCompactionAndTombstonesDoNotResurrectDeeperValues (6662 ms)
+[ RUN      ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected
+[       OK ] SnapshotTest.ForeignSnapshotsAndInvalidCompactionOptionsAreRejected (1497 ms)
+[ RUN      ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables
+[       OK ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables (18940 ms)
+[ RUN      ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery
+[       OK ] SnapshotTest.FailedCompactionPublicationRetainsInputsForRecovery (1879 ms)
+[ RUN      ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction
+[       OK ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction (5654 ms)
+[----------] 7 tests from SnapshotTest (46241 ms total)
+
+[----------] Global test environment tear-down
+[==========] 10 tests from 2 test suites ran. (50600 ms total)
+[  PASSED  ] 10 tests.

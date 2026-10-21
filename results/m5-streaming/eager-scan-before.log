@@ -1,0 +1,100 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- The CXX compiler identification is MSVC 19.44.35229.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The C compiler identification is MSVC 19.44.35229.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - failed
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - works
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done (139.8s)
+-- Generating done (3.2s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/53] Building CXX object CMakeFiles\lsm.dir\src\util\hash.cpp.obj
+[2/53] Building CXX object CMakeFiles\lsm.dir\src\status.cpp.obj
+[3/53] Building CXX object CMakeFiles\lsm.dir\src\util\crc32c.cpp.obj
+[4/53] Building CXX object CMakeFiles\lsm.dir\src\util\varint.cpp.obj
+[5/53] Building CXX object CMakeFiles\lsm.dir\src\table\bloom.cpp.obj
+[6/53] Building CXX object CMakeFiles\lsm.dir\src\write_batch.cpp.obj
+[7/53] Building CXX object CMakeFiles\lsm.dir\src\table\block.cpp.obj
+[8/53] Building CXX object CMakeFiles\lsm.dir\src\memtable.cpp.obj
+[9/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\status_test.cpp.obj
+[10/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\write_batch_test.cpp.obj
+[11/53] Building CXX object CMakeFiles\lsm.dir\src\iterator.cpp.obj
+[12/53] Building CXX object CMakeFiles\lsm.dir\src\wal.cpp.obj
+[13/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\test_main.cpp.obj
+[14/53] Building CXX object CMakeFiles\lsm.dir\src\file_cleanup.cpp.obj
+[15/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\varint_test.cpp.obj
+[16/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\hash_test.cpp.obj
+[17/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\crc32c_test.cpp.obj
+[18/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\block_test.cpp.obj
+[19/53] Building CXX object CMakeFiles\lsm.dir\src\compaction.cpp.obj
+[20/53] Building CXX object CMakeFiles\lsm.dir\src\platform\windows.cpp.obj
+[21/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\bloom_test.cpp.obj
+[22/53] Building CXX object CMakeFiles\lsm.dir\src\table\table.cpp.obj
+[23/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\memtable_test.cpp.obj
+[24/53] Building CXX object CMakeFiles\lsm.dir\src\version_set.cpp.obj
+[25/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\slice_test.cpp.obj
+[26/53] Building CXX object CMakeFiles\lsm.dir\src\platform\mapping_windows.cpp.obj
+[27/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\mapping_test.cpp.obj
+[28/53] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[29/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\platform_test.cpp.obj
+[30/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\wal_test.cpp.obj
+[31/53] Linking CXX static library lsm.lib
+[32/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+[33/53] Building CXX object CMakeFiles\lsm_db_process.dir\tests\db_process.cpp.obj
+[34/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\table_test.cpp.obj
+[35/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\version_set_test.cpp.obj
+[36/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[37/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\iterator_test.cpp.obj
+[38/53] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj
+[39/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\cleanup_test.cpp.obj
+[40/53] Building CXX object _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj
+[41/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\compaction_test.cpp.obj
+[42/53] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj
+[43/53] Building CXX object CMakeFiles\lsm_tests.dir\tests\snapshot_test.cpp.obj
+[44/53] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj
+[45/53] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock-all.cc.obj
+[46/53] Linking CXX static library lib\gtest.lib
+[47/53] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\__\googletest\src\gtest-all.cc.obj
+[48/53] Building CXX object _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\__\googletest\src\gtest-all.cc.obj
+[49/53] Linking CXX executable lsm_db_process.exe
+[50/53] Linking CXX static library lib\gtest_main.lib
+[51/53] Linking CXX static library lib\gmock.lib
+[52/53] Linking CXX static library lib\gmock_main.lib
+[53/53] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\snapshot_test.cpp(248): error: Expected equality of these values:
+  internal::table::TableReader::DataBlocksRead()
+    Which is: 1530
+  before
+    Which is: 780
+
+C:\Users\arnav\Downloads\SDE PROJs\lsm storage engine\tests\snapshot_test.cpp(257): error: Expected: (internal::table::TableReader::DataBlocksRead() - before) <= (Count(*db, 0) + 2), actual: 750 vs 2
+
+[  FAILED  ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables (18076 ms)
+[----------] 1 test from SnapshotTest (18076 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (18077 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] SnapshotTest.IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables
+
+ 1 FAILED TEST

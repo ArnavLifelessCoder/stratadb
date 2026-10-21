@@ -1,0 +1,11 @@
+[1/6] Building CXX object CMakeFiles\lsm.dir\src\iterator.cpp.obj
+[2/6] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[3/6] Building CXX object CMakeFiles\lsm_tests.dir\tests\iterator_test.cpp.obj
+[4/6] Linking CXX static library lsm.lib
+[5/6] Linking CXX executable lsm_db_process.exe
+FAILED: [code=4294967295] lsm_db_process.exe 
+C:\windows\system32\cmd.exe /C "cd . && "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\lsm_db_process.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\mt.exe --manifests  -- C:\PROGRA~2\MICROS~3\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\link.exe /nologo CMakeFiles\lsm_db_process.dir\tests\db_process.cpp.obj  /out:lsm_db_process.exe /implib:lsm_db_process.lib /pdb:lsm_db_process.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console  lsm.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+LINK Pass 1: command "C:\PROGRA~2\MICROS~3\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\link.exe /nologo CMakeFiles\lsm_db_process.dir\tests\db_process.cpp.obj /out:lsm_db_process.exe /implib:lsm_db_process.lib /pdb:lsm_db_process.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console lsm.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\lsm_db_process.dir/intermediate.manifest CMakeFiles\lsm_db_process.dir/manifest.res" failed (exit code 1163) with the following output:
+iterator.cpp.obj : fatal error LNK1163: invalid selection for COMDAT section 0x70E
+[6/6] Linking CXX executable lsm_tests.exe
+ninja: build stopped: subcommand failed.

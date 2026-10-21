@@ -573,29 +573,18 @@ void DB::ReleaseSnapshot(const Snapshot* snapshot) {
 auto DB::NewIterator(const ReadOptions& options) -> std::unique_ptr<Iterator> {
   ReadView view;
   Status status;
-  std::vector<std::vector<internal::table::Entry>> streams;
+  std::vector<std::unique_ptr<internal::InternalIterator>> children;
   {
     const std::lock_guard guard(impl_->mutex);
     status = impl_->Capture(options, view);
-    if (status.ok()) {
-      // The DB mutex freezes insertion while copying the mutable skiplist.
-      streams.push_back(view.active->Entries());
-      if (view.immutable) {
-        streams.push_back(view.immutable->Entries());
-      }
-    }
   }
   if (status.ok()) {
-    for (const auto& file : view.version->files) {
-      std::vector<internal::table::Entry> entries;
-      status = file.reader->ReadAll(entries);
-      if (!status.ok()) {
-        break;
-      }
-      streams.push_back(std::move(entries));
-    }
+    children = internal::MakeVersionIterators(view.version);
+    children.push_back(internal::MakeMemTableIterator(std::move(view.active)));
+    if (view.immutable)
+      children.push_back(internal::MakeMemTableIterator(std::move(view.immutable)));
   }
-  return internal::MakeIterator(std::move(streams), view.sequence, std::move(view.version),
+  return internal::MakeIterator(std::move(children), view.sequence, std::move(view.version),
                                 std::move(status),
                                 [state = impl_.get()] { state->RequestCleanup(); });
 }

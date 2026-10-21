@@ -232,6 +232,31 @@ TEST(SnapshotTest, ForeignSnapshotsAndInvalidCompactionOptionsAreRejected) {
   }
 }
 
+TEST(SnapshotTest, IteratorCreationReadsNothingAndShortScanVisitsOnlyNeededTables) {
+  test::TempDirectory directory;
+  const Options options{.memtable_bytes = 65536, .l0_compaction_trigger = 2};
+  std::unique_ptr<DB> db;
+  ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
+  const std::string value(512, 'v');
+  for (unsigned key = 100000; key < 106000; ++key)
+    ASSERT_TRUE(db->Put({}, std::to_string(key), value).ok());
+  db.reset();
+  ASSERT_TRUE(DB::Open(options, directory.path(), &db).ok());
+  ASSERT_GT(Count(*db, 1), 8U);
+  const auto before = internal::table::TableReader::DataBlocksRead();
+  auto iterator = db->NewIterator({});
+  EXPECT_EQ(internal::table::TableReader::DataBlocksRead(), before);
+  iterator->Seek("100000");
+  for (unsigned key = 100000; key < 100005; ++key) {
+    ASSERT_TRUE(iterator->Valid()) << iterator->status().ToString();
+    EXPECT_EQ(iterator->key(), std::to_string(key));
+    EXPECT_EQ(iterator->value(), value);
+    iterator->Next();
+  }
+  EXPECT_TRUE(iterator->status().ok());
+  EXPECT_LE(internal::table::TableReader::DataBlocksRead() - before, Count(*db, 0) + 2);
+}
+
 TEST(SnapshotTest, FailedCompactionPublicationRetainsInputsForRecovery) {
   test::TempDirectory directory;
   const Options options{.memtable_bytes = 1, .l0_compaction_trigger = 2};
