@@ -23,8 +23,16 @@ jobs:
         run: ./scripts/msvc_environment.ps1 -GitHubActions
       - name: Configure
         run: cmake --preset ${{ matrix.preset }}
+      # Job logs need a GitHub sign-in to read, annotations do not, so a failed
+      # build also reports its first compiler errors as annotations.
       - name: Build
-        run: cmake --build --preset ${{ matrix.preset }}
+        shell: bash
+        run: |
+          set -o pipefail
+          cmake --build --preset ${{ matrix.preset }} 2>&1 | tee "$RUNNER_TEMP/build.log" || {
+            grep -E "error|Error" "$RUNNER_TEMP/build.log" | head -n 20 | sed 's/^/::error::/'
+            exit 1
+          }
       - name: Test
         run: ctest --preset ${{ matrix.preset }} --verbose --output-log results/ci-${{ runner.os }}-${{ matrix.preset }}.log
       - uses: actions/setup-python@v6
@@ -57,7 +65,13 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: cmake --preset tsan
-      - run: cmake --build --preset tsan
+      - name: Build
+        run: |
+          set -o pipefail
+          cmake --build --preset tsan 2>&1 | tee "$RUNNER_TEMP/build.log" || {
+            grep -E "error|Error" "$RUNNER_TEMP/build.log" | head -n 20 | sed 's/^/::error::/'
+            exit 1
+          }
       - run: ctest --preset tsan --verbose --output-log results/ci-Linux-tsan.log
       - uses: actions/upload-artifact@v6
         if: always()
@@ -81,4 +95,10 @@ jobs:
       - run: ruff format --check .
       - run: sudo apt-get update && sudo apt-get install -y clang-tidy-18
       - run: cmake --preset debug
-      - run: python scripts/check_tidy.py --clang-tidy clang-tidy-18
+      - name: clang-tidy
+        run: |
+          set -o pipefail
+          python scripts/check_tidy.py --clang-tidy clang-tidy-18 2>&1 | tee "$RUNNER_TEMP/tidy.log" || {
+            grep -E "(error|warning):" "$RUNNER_TEMP/tidy.log" | head -n 20 | sed 's/^/::error::/'
+            exit 1
+          }
