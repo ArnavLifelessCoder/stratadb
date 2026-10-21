@@ -226,6 +226,7 @@ struct DB::Impl {
 
   auto Compact(const internal::CompactionPlan& plan, std::uint64_t oldest) -> CompactionResult {
     std::vector<std::unique_ptr<internal::InternalIterator>> children;
+    children.reserve(plan.inputs.size());
     for (const auto& file : plan.inputs)
       children.push_back(std::make_unique<internal::table::TableIterator>(file.reader));
     internal::MergingIterator input(std::move(children));

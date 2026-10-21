@@ -178,7 +178,7 @@ class DBIter final : public Iterator {
           put = (table::Tag(key) & 0xffU) != 0;
           value = input_->value();
         }
-        previous = table::Entry{std::string(key), std::string(input_->value())};
+        previous = table::Entry{.key = std::string(key), .value = std::string(input_->value())};
         if (reverse)
           input_->Prev();
         else

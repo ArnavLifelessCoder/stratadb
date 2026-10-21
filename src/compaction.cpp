@@ -74,7 +74,7 @@ auto CompactEntries(MergingIterator& input, const CompactionPlan& plan,
   std::uint64_t previous_sequence = kMaxSequence + 1;
   std::optional<table::Entry> previous;
   while (input.Valid()) {
-    const table::Entry entry{std::string(input.key()), std::string(input.value())};
+    const table::Entry entry{.key = std::string(input.key()), .value = std::string(input.value())};
     if (previous && previous->key == entry.key) {
       if (previous->value != entry.value) {
         return Status::Corruption("conflicting duplicate internal key");
