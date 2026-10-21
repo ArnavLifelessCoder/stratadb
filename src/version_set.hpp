@@ -53,11 +53,13 @@ auto DecodeEdit(std::string_view input, VersionEdit& output) -> Status;
 // with Apply, including its file I/O. Published states are immutable.
 class VersionSet {
  public:
-  static auto Open(const std::filesystem::path& directory, std::unique_ptr<VersionSet>& output)
-      -> Status;
+  // Table readers opened by this set share `cache` (null disables caching).
+  static auto Open(const std::filesystem::path& directory, std::unique_ptr<VersionSet>& output,
+                   std::shared_ptr<table::BlockCache> cache = nullptr) -> Status;
   // File boundary is injectable for append/sync/recovery fault tests.
   static auto Recover(const std::filesystem::path& directory, std::unique_ptr<platform::File> log,
-                      std::unique_ptr<VersionSet>& output) -> Status;
+                      std::unique_ptr<VersionSet>& output,
+                      std::shared_ptr<table::BlockCache> cache = nullptr) -> Status;
   auto Apply(const VersionEdit& edit) -> Status;
   [[nodiscard]] auto State() const -> ManifestState {
     return *published_.load(std::memory_order_acquire);
@@ -67,6 +69,7 @@ class VersionSet {
  private:
   auto LoadReaders(ManifestState& state) -> Status;
   std::filesystem::path directory_;
+  std::shared_ptr<table::BlockCache> cache_;
   std::unique_ptr<platform::File> log_;
   ManifestState state_;
   std::atomic<std::shared_ptr<const ManifestState>> published_{std::make_shared<ManifestState>()};

@@ -105,14 +105,14 @@ auto DecodeBlock(std::string_view bytes, std::vector<Entry>& output) -> Status {
 }
 
 auto SeekBlock(std::string_view bytes, std::string_view target, Entry& output,
-               std::size_t* decoded_entries) -> Status {
+               std::size_t* decoded_entries, bool checksum_verified) -> Status {
   if (decoded_entries != nullptr) {
     *decoded_entries = 0;
   }
   if (target.size() < 8) {
     return Status::InvalidArgument("short block seek key");
   }
-  if (bytes.size() < 8 || !ChecksumValid(bytes)) {
+  if (bytes.size() < 8 || (!checksum_verified && !ChecksumValid(bytes))) {
     return Status::Corruption("block CRC or size");
   }
   const auto count = static_cast<std::size_t>(LoadFixed(bytes.substr(bytes.size() - 8), 4));

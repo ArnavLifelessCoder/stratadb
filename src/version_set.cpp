@@ -240,7 +240,7 @@ auto VersionSet::LoadReaders(ManifestState& state) -> Status {
       return Status::Corruption("manifest table size mismatch");
     }
     std::unique_ptr<table::TableReader> reader;
-    status = table::TableReader::Open(path, reader);
+    status = table::TableReader::Open(path, reader, cache_, file.number);
     if (!status.ok()) {
       return status;
     }
@@ -251,13 +251,14 @@ auto VersionSet::LoadReaders(ManifestState& state) -> Status {
 }
 
 auto VersionSet::Recover(const std::filesystem::path& directory,
-                         std::unique_ptr<platform::File> log, std::unique_ptr<VersionSet>& output)
-    -> Status {
+                         std::unique_ptr<platform::File> log, std::unique_ptr<VersionSet>& output,
+                         std::shared_ptr<table::BlockCache> cache) -> Status {
   if (!log) {
     return Status::InvalidArgument("null manifest file");
   }
   auto versions = std::make_unique<VersionSet>();
   versions->directory_ = directory;
+  versions->cache_ = std::move(cache);
   versions->log_ = std::move(log);
   std::string bytes;
   auto status = versions->log_->ReadAll(bytes);
@@ -325,8 +326,8 @@ auto VersionSet::Recover(const std::filesystem::path& directory,
   return {};
 }
 
-auto VersionSet::Open(const std::filesystem::path& directory, std::unique_ptr<VersionSet>& output)
-    -> Status {
+auto VersionSet::Open(const std::filesystem::path& directory, std::unique_ptr<VersionSet>& output,
+                      std::shared_ptr<table::BlockCache> cache) -> Status {
   const auto manifest = directory / kManifestName;
   const auto current = directory / "CURRENT";
   bool have_current = false;
@@ -406,7 +407,7 @@ auto VersionSet::Open(const std::filesystem::path& directory, std::unique_ptr<Ve
   status = platform::File::Open(manifest, false, file);
   std::unique_ptr<VersionSet> versions;
   if (status.ok()) {
-    status = Recover(directory, std::move(file), versions);
+    status = Recover(directory, std::move(file), versions, std::move(cache));
   }
   if (!status.ok()) {
     return status;

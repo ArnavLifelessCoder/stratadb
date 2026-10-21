@@ -9,11 +9,11 @@ auto TableIterator::Load(std::size_t index) -> bool {
   block_.reset();
   if (!status_.ok() || index >= reader_->index_.size()) return false;
   index_ = index;
-  const auto& handle = reader_->index_[index].value;
-  const auto offset = static_cast<std::size_t>(LoadFixed(handle, 8));
-  const auto size = static_cast<std::size_t>(LoadFixed(std::string_view(handle).substr(8), 8));
-  TableReader::data_blocks_read_.fetch_add(1, std::memory_order_relaxed);
-  block_ = std::make_unique<BlockIterator>(reader_->bytes_.substr(offset, size));
+  TableReader::BlockRef ref;
+  status_ = reader_->LoadBlock(reader_->index_[index].value, ref);
+  if (!status_.ok()) return false;
+  block_owner_ = std::move(ref.owner);
+  block_ = std::make_unique<BlockIterator>(ref.bytes, ref.verified);
   status_ = block_->status();
   return status_.ok();
 }

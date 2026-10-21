@@ -21,6 +21,8 @@ auto DecodeBlock(std::string_view bytes, std::vector<Entry>& output) -> Status;
 // Lower bound in internal-key order. Checks the block CRC, binary-searches full
 // restart keys, then decodes at most one group and its successor. The optional
 // counter includes restart probes and supports complexity assertions in tests.
+// checksum_verified skips the CRC for a block already checked on its way into
+// the block cache.
 auto SeekBlock(std::string_view bytes, std::string_view target, Entry& output,
-               std::size_t* decoded_entries = nullptr) -> Status;
+               std::size_t* decoded_entries = nullptr, bool checksum_verified = false) -> Status;
 }  // namespace lsm::internal::table

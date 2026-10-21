@@ -189,9 +189,11 @@ auto WriteTable(const std::filesystem::path& path, std::span<const Entry> entrie
   return status;
 }
 
-auto TableReader::Open(const std::filesystem::path& path, std::unique_ptr<TableReader>& output)
-    -> Status {
+auto TableReader::Open(const std::filesystem::path& path, std::unique_ptr<TableReader>& output,
+                       std::shared_ptr<BlockCache> cache, std::uint64_t file_number) -> Status {
   auto reader = std::make_unique<TableReader>();
+  reader->cache_ = std::move(cache);
+  reader->file_number_ = file_number;
   auto status = platform::MappedFile::Open(path, reader->mapping_);
   if (!status.ok()) {
     return status;
@@ -289,6 +291,34 @@ auto TableReader::ReadBlock(const Entry& index_entry, std::vector<Entry>& output
   return DecodeBlock(block, output);
 }
 
+auto TableReader::LoadBlock(std::string_view handle, BlockRef& output) const -> Status {
+  std::string_view raw;
+  if (!Range(bytes_, handle, raw)) {
+    return Status::Corruption("table data range");
+  }
+  if (!cache_) {
+    data_blocks_read_.fetch_add(1, std::memory_order_relaxed);
+    output = {.owner = nullptr, .bytes = raw, .verified = false};
+    return {};
+  }
+  const auto offset = LoadFixed(handle, 8);
+  if (auto hit = cache_->Lookup(file_number_, offset)) {
+    const std::string_view bytes(*hit);
+    output = {.owner = std::move(hit), .bytes = bytes, .verified = true};
+    return {};
+  }
+  data_blocks_read_.fetch_add(1, std::memory_order_relaxed);
+  // Check once on the way in; cached copies are served without re-checking.
+  if (raw.size() < 8 || !ChecksumValid(raw)) {
+    return Status::Corruption("block CRC or size");
+  }
+  auto block = std::make_shared<const std::string>(raw);
+  cache_->Insert(file_number_, offset, block);
+  const std::string_view bytes(*block);
+  output = {.owner = std::move(block), .bytes = bytes, .verified = true};
+  return {};
+}
+
 auto TableReader::Get(std::string_view user_key, std::uint64_t sequence, Entry& output) const
     -> Status {
   if (sequence > kMaxSequence) {
@@ -305,13 +335,13 @@ auto TableReader::Get(std::string_view user_key, std::uint64_t sequence, Entry& 
   if (block == index_.end()) {
     return Status::NotFound("table index");
   }
-  std::string_view bytes;
-  if (!Range(bytes_, block->value, bytes)) {
-    return Status::Corruption("table data range");
+  BlockRef ref;
+  auto status = LoadBlock(block->value, ref);
+  if (!status.ok()) {
+    return status;
   }
   Entry entry;
-  data_blocks_read_.fetch_add(1, std::memory_order_relaxed);
-  auto status = SeekBlock(bytes, key, entry);
+  status = SeekBlock(ref.bytes, key, entry, nullptr, ref.verified);
   if (!status.ok()) {
     return status;
   }

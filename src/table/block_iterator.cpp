@@ -6,8 +6,8 @@
 #include "util/varint.hpp"
 
 namespace lsm::internal::table {
-BlockIterator::BlockIterator(std::string_view bytes) : bytes_(bytes) {
-  if (bytes.size() < 8 || !ChecksumValid(bytes)) {
+BlockIterator::BlockIterator(std::string_view bytes, bool checksum_verified) : bytes_(bytes) {
+  if (bytes.size() < 8 || (!checksum_verified && !ChecksumValid(bytes))) {
     Fail("block iterator CRC or size");
     return;
   }

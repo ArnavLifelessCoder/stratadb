@@ -56,6 +56,7 @@ target_sources(lsm PRIVATE src/table/block.cpp)
 target_sources(lsm PRIVATE src/table/block_iterator.cpp)
 target_sources(lsm PRIVATE src/table/table_iterator.cpp)
 target_sources(lsm PRIVATE src/table/bloom.cpp)
+target_sources(lsm PRIVATE src/table/block_cache.cpp)
 target_sources(lsm PRIVATE src/table/table.cpp)
 target_sources(lsm PRIVATE src/version_set.cpp)
 target_sources(lsm PRIVATE src/file_cleanup.cpp)
@@ -107,6 +108,7 @@ if(BUILD_TESTING)
     tests/iterator_test.cpp
     tests/merging_iterator_test.cpp
     tests/snapshot_test.cpp
+    tests/block_cache_test.cpp
   )
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)

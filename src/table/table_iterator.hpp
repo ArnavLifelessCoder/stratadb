@@ -29,6 +29,7 @@ class TableIterator final : public InternalIterator {
   auto Load(std::size_t index) -> bool;
   void Check(bool at_last = false);
   std::shared_ptr<const TableReader> reader_;
+  BlockCache::Block block_owner_;  // Keeps a cached block alive while block_ reads it.
   std::unique_ptr<BlockIterator> block_;
   std::size_t index_ = 0;
   Status status_;

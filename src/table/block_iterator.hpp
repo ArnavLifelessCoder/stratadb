@@ -10,7 +10,8 @@ namespace lsm::internal::table {
 // current reconstructed key is owned; values remain views into the block.
 class BlockIterator final : public InternalIterator {
  public:
-  explicit BlockIterator(std::string_view bytes);
+  // checksum_verified skips the CRC for a block that came from the block cache.
+  explicit BlockIterator(std::string_view bytes, bool checksum_verified = false);
   [[nodiscard]] auto Valid() const -> bool override { return valid_ && status_.ok(); }
   void SeekToFirst() override;
   void SeekToLast() override;
