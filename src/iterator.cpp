@@ -1,7 +1,6 @@
 #include "iterator.hpp"
 
 #include <algorithm>
-#include <optional>
 
 #include "merging_iterator.hpp"
 #include "table/format.hpp"
@@ -166,10 +165,10 @@ class DBIter final : public Iterator {
       bool selected = false;
       bool put = false;
       std::string value;
-      std::optional<table::Entry> previous;
+      table::Entry previous;
       while (input_->Valid() && table::UserKey(input_->key()) == user) {
         const auto key = input_->key();
-        if (previous && previous->key == key && previous->value != input_->value()) {
+        if (previous.key == key && previous.value != input_->value()) {
           status_ = Status::Corruption("conflicting iterator internal key");
           return;
         }
