@@ -169,6 +169,12 @@ struct DB::Impl {
         break;
       }
       guard.unlock();
+      const auto synced = wal->Sync();
+      if (!synced.ok()) {
+        guard.lock();
+        failure = synced;
+        return failure;
+      }
       const std::lock_guard manifest_guard(manifest_mutex);
       guard.lock();
       if (!failure.ok()) {
@@ -181,10 +187,6 @@ struct DB::Impl {
       }
       const auto next_wal = edit.next_file++;
       const auto pending_table = edit.next_file++;
-      failure = wal->Sync();
-      if (!failure.ok()) {
-        return failure;
-      }
       const auto path = internal::WalPath(directory, next_wal);
       guard.unlock();
       auto status = internal::WriteAtomicFile(path, {});
@@ -475,7 +477,9 @@ auto DB::Write(const WriteOptions& options, WriteBatch* batch) -> Status {
     return status;
   }
   auto sequence = impl_->sequence.load(std::memory_order_relaxed) + 1;
+  guard.unlock();
   status = impl_->wal->Append(*batch, sequence, options.sync);
+  guard.lock();
   if (!status.ok()) {
     if (status.code() == StatusCode::kIOError) {
       impl_->failure = status;

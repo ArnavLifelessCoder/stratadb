@@ -66,7 +66,7 @@ auto Wal::Append(const WriteBatch& batch, std::uint64_t sequence, bool sync) -> 
   if (!failure_.ok()) {
     return failure_;
   }
-  bytes_written_ += record.size();
+  bytes_written_.fetch_add(record.size(), std::memory_order_relaxed);
   if (sync) {
     return Sync();
   }
@@ -79,7 +79,7 @@ auto Wal::Sync() -> Status {
   }
   failure_ = file_->Sync();
   if (failure_.ok()) {
-    ++sync_count_;
+    sync_count_.fetch_add(1, std::memory_order_relaxed);
   }
   return failure_;
 }

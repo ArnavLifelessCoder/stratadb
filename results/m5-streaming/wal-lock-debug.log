@@ -1,0 +1,100 @@
+[1/8] Building CXX object CMakeFiles\lsm.dir\src\wal.cpp.obj
+[2/8] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[3/8] Building CXX object CMakeFiles\lsm_tests.dir\tests\wal_test.cpp.obj
+[4/8] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[5/8] Building CXX object CMakeFiles\lsm_tests.dir\tests\snapshot_test.cpp.obj
+[6/8] Linking CXX static library lsm.lib
+[7/8] Linking CXX executable lsm_db_process.exe
+[8/8] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: quick (not a milestone gate)
+Note: Google Test filter = WalTest.*:DBTest.*:FlushTest.*:SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction
+[==========] Running 23 tests from 4 test suites.
+[----------] Global test environment set-up.
+[----------] 8 tests from WalTest
+[ RUN      ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend
+WAL recovery: truncated 1 tail bytes at offset 20
+WAL recovery: truncated 2 tail bytes at offset 20
+WAL recovery: truncated 3 tail bytes at offset 20
+WAL recovery: truncated 4 tail bytes at offset 20
+WAL recovery: truncated 5 tail bytes at offset 20
+WAL recovery: truncated 6 tail bytes at offset 20
+WAL recovery: truncated 7 tail bytes at offset 20
+WAL recovery: truncated 8 tail bytes at offset 20
+WAL recovery: truncated 9 tail bytes at offset 20
+WAL recovery: truncated 10 tail bytes at offset 20
+WAL recovery: truncated 11 tail bytes at offset 20
+WAL recovery: truncated 12 tail bytes at offset 20
+WAL recovery: truncated 13 tail bytes at offset 20
+WAL recovery: truncated 14 tail bytes at offset 20
+WAL recovery: truncated 15 tail bytes at offset 20
+WAL recovery: truncated 16 tail bytes at offset 20
+WAL recovery: truncated 17 tail bytes at offset 20
+WAL recovery: truncated 18 tail bytes at offset 20
+WAL recovery: truncated 19 tail bytes at offset 20
+WAL recovery: truncated 20 tail bytes at offset 20
+[       OK ] WalTest.EveryFinalRecordTruncationAndBadCrcRepairsThenAllowsAppend (4 ms)
+[ RUN      ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord
+[       OK ] WalTest.MiddleCorruptionNeverTruncatesEvenWhenLengthSwallowsLaterRecord (0 ms)
+[ RUN      ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption
+WAL recovery: truncated 1 tail bytes at offset 22
+WAL recovery: truncated 9 tail bytes at offset 22
+WAL recovery: truncated 512 tail bytes at offset 22
+WAL recovery: truncated 4096 tail bytes at offset 22
+[       OK ] WalTest.ZeroFilledTailIsTruncatedAndSyncedButZeroFilledMiddleIsCorruption (0 ms)
+[ RUN      ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch
+[       OK ] WalTest.RejectsSequenceGapsAndValidCrcInvalidBatch (0 ms)
+[ RUN      ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends
+[       OK ] WalTest.SyncAndPartialWriteFailuresPoisonFurtherAppends (0 ms)
+[ RUN      ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate
+[       OK ] WalTest.ReadTruncateAndRepairSyncFailuresPropagate (0 ms)
+[ RUN      ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes
+[       OK ] WalTest.AsyncAppendDoesNotSyncAndSyncAppendDoes (0 ms)
+[ RUN      ] WalTest.ReplayUsesTheSequenceBoundaryOfThePreviousLog
+[       OK ] WalTest.ReplayUsesTheSequenceBoundaryOfThePreviousLog (0 ms)
+[----------] 8 tests from WalTest (6 ms total)
+
+[----------] 4 tests from DBTest
+[ RUN      ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay
+DB differential: 100 seeds, 64 operations per seed, base seed 24301
+[       OK ] DBTest.TenThousandSeedStreamsMatchMapAndCleanReplay (1552 ms)
+[ RUN      ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen
+[       OK ] DBTest.EmptyBinaryLargeValuesBatchOrderStatsAndExclusiveOpen (942 ms)
+[ RUN      ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen
+WAL recovery: truncated 4 tail bytes at offset 22
+[       OK ] DBTest.TornTailOnDiskIsTruncatedAndMiddleCorruptionFailsOpen (937 ms)
+[ RUN      ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches
+[       OK ] DBTest.ConcurrentWritersAndReadersNeverExposePartialBatches (2179 ms)
+[----------] 4 tests from DBTest (5613 ms total)
+
+[----------] 10 tests from FlushTest
+[ RUN      ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles
+[       OK ] FlushTest.RejectsActiveOptionLimitsBeforeCreatingFiles (99 ms)
+[ RUN      ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap
+[       OK ] FlushTest.ReopenAfterZeroOneAndManyFlushesMatchesMap (13246 ms)
+[ RUN      ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables
+[       OK ] FlushTest.LargeValuesAndTombstonesAcrossOverlappingTables (1689 ms)
+[ RUN      ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens
+[       OK ] FlushTest.MixedTablesAndCurrentWalMatchMapAcrossRepeatedReopens (19559 ms)
+[ RUN      ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence
+[       OK ] FlushTest.MigratesTheLegacySingleWalAndContinuesItsSequence (920 ms)
+[ RUN      ] FlushTest.RecoversRotationAndUncommittedTablePublication
+[       OK ] FlushTest.RecoversRotationAndUncommittedTablePublication (3144 ms)
+[ RUN      ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs
+[       OK ] FlushTest.BackgroundFailureStopsWritesAndRecoveryRetainsBothLogs (1698 ms)
+[ RUN      ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch
+[       OK ] FlushTest.RotationFailureDoesNotRejectAnAlreadyAppliedBatch (955 ms)
+[ RUN      ] FlushTest.MissingReferencedWalOrTableIsCorruption
+[       OK ] FlushTest.MissingReferencedWalOrTableIsCorruption (2208 ms)
+[ RUN      ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes
+[       OK ] FlushTest.ConcurrentReadersAndWritersAcrossBackgroundFlushes (1791 ms)
+[----------] 10 tests from FlushTest (45313 ms total)
+
+[----------] 1 test from SnapshotTest
+[ RUN      ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction
+[       OK ] SnapshotTest.ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction (5807 ms)
+[----------] 1 test from SnapshotTest (5807 ms total)
+
+[----------] Global test environment tear-down
+[==========] 23 tests from 4 test suites ran. (56740 ms total)
+[  PASSED  ] 23 tests.

@@ -384,7 +384,11 @@ TEST(SnapshotTest, ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction) {
   std::vector<std::thread> readers;
   for (unsigned reader = 0; reader < 4; ++reader) {
     readers.emplace_back([&] {
+      std::uint64_t previous_syncs = 0;
       while (!done.load()) {
+        const auto stats = db->GetStats();
+        if (stats.wal_syncs < previous_syncs) valid.store(false);
+        previous_syncs = stats.wal_syncs;
         const auto* snapshot = db->GetSnapshot();
         for (unsigned writer = 0; writer < 2; ++writer) {
           std::string first;
@@ -407,7 +411,7 @@ TEST(SnapshotTest, ConcurrentSnapshotReadersSeeAtomicBatchesDuringCompaction) {
         WriteBatch batch;
         const std::string value(1024, static_cast<char>(iteration));
         if (!batch.Put(prefix + "a", value).ok() || !batch.Put(prefix + "b", value).ok() ||
-            !db->Write({}, &batch).ok())
+            !db->Write({.sync = iteration % 8 == 0}, &batch).ok())
           valid.store(false);
       }
     });
