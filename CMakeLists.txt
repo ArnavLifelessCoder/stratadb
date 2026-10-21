@@ -53,6 +53,7 @@ target_sources(lsm PRIVATE src/memtable.cpp)
 target_sources(lsm PRIVATE src/wal.cpp)
 target_sources(lsm PRIVATE src/db.cpp)
 target_sources(lsm PRIVATE src/table/block.cpp)
+target_sources(lsm PRIVATE src/table/block_iterator.cpp)
 target_sources(lsm PRIVATE src/table/bloom.cpp)
 target_sources(lsm PRIVATE src/table/table.cpp)
 target_sources(lsm PRIVATE src/version_set.cpp)
@@ -93,6 +94,7 @@ if(BUILD_TESTING)
     tests/wal_test.cpp
     tests/db_test.cpp
     tests/block_test.cpp
+    tests/block_iterator_test.cpp
     tests/bloom_test.cpp
     tests/mapping_test.cpp
     tests/table_test.cpp

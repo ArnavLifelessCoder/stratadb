@@ -1,0 +1,44 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (32.8s)
+-- Generating done (1.5s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/5] Building CXX object CMakeFiles\lsm.dir\src\table\block_iterator.cpp.obj
+[2/5] Linking CXX static library lsm.lib
+[3/5] Building CXX object CMakeFiles\lsm_tests.dir\tests\block_iterator_test.cpp.obj
+[4/5] Linking CXX executable lsm_db_process.exe
+[5/5] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = BlockIteratorTest.*:BlockTest.*
+[==========] Running 8 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 6 tests from BlockTest
+[ RUN      ] BlockTest.RestartSeekMatchesFullDecoderWithBoundedEntryWork
+[       OK ] BlockTest.RestartSeekMatchesFullDecoderWithBoundedEntryWork (208 ms)
+[ RUN      ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry
+[       OK ] BlockTest.SharesPrefixesExceptAtEachSixteenthEntry (0 ms)
+[ RUN      ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary
+[       OK ] BlockTest.RoundTripMatchesUncompressedReferenceAtEveryRestartBoundary (42 ms)
+[ RUN      ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues
+[       OK ] BlockTest.NumericDescendingSequenceOrderEmptyKeysAndLargeValues (18 ms)
+[ RUN      ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput
+[       OK ] BlockTest.EveryFlippedByteAndTruncationIsRejectedWithoutChangingOutput (0 ms)
+[ RUN      ] BlockTest.RejectsMalformedStructureEvenWithValidCrc
+[       OK ] BlockTest.RejectsMalformedStructureEvenWithValidCrc (0 ms)
+[----------] 6 tests from BlockTest (271 ms total)
+
+[----------] 2 tests from BlockIteratorTest
+[ RUN      ] BlockIteratorTest.NavigationAndRestartSeekMatchFullDecoder
+[       OK ] BlockIteratorTest.NavigationAndRestartSeekMatchFullDecoder (114 ms)
+[ RUN      ] BlockIteratorTest.EmptyCorruptAndMalformedBlocksHaveStickyStatus
+[       OK ] BlockIteratorTest.EmptyCorruptAndMalformedBlocksHaveStickyStatus (0 ms)
+[----------] 2 tests from BlockIteratorTest (115 ms total)
+
+[----------] Global test environment tear-down
+[==========] 8 tests from 2 test suites ran. (386 ms total)
+[  PASSED  ] 8 tests.
