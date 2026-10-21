@@ -281,6 +281,7 @@ auto TableReader::Verify() const -> Status {
 }
 
 auto TableReader::ReadBlock(const Entry& index_entry, std::vector<Entry>& output) const -> Status {
+  data_blocks_read_.fetch_add(1, std::memory_order_relaxed);
   std::string_view block;
   if (!Range(bytes_, index_entry.value, block)) {
     return Status::Corruption("table data range");
@@ -309,6 +310,7 @@ auto TableReader::Get(std::string_view user_key, std::uint64_t sequence, Entry& 
     return Status::Corruption("table data range");
   }
   Entry entry;
+  data_blocks_read_.fetch_add(1, std::memory_order_relaxed);
   auto status = SeekBlock(bytes, key, entry);
   if (!status.ok()) {
     return status;

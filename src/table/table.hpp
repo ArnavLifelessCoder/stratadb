@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <filesystem>
 #include <memory>
 #include <span>
@@ -48,6 +49,9 @@ auto WriteTable(const std::filesystem::path& path, std::span<const Entry> entrie
 
 class TableReader {
  public:
+  // Counts data-block reads (including CRC checks), never metadata-only opens.
+  // Diagnostic counter shared by readers; tests compare quiescent intervals.
+  static auto DataBlocksRead() -> std::uint64_t { return data_blocks_read_.load(); }
   static auto Open(const std::filesystem::path& path, std::unique_ptr<TableReader>& output)
       -> Status;
   // Owned bytes use the same parser as mapped files; useful for format tools and tests.
@@ -60,6 +64,8 @@ class TableReader {
   auto Verify() const -> Status;
 
  private:
+  friend class TableIterator;
+  inline static std::atomic<std::uint64_t> data_blocks_read_{0};
   auto Parse() -> Status;
   auto ReadBlock(const Entry& index_entry, std::vector<Entry>& output) const -> Status;
   std::unique_ptr<platform::MappedFile> mapping_;

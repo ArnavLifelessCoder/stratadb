@@ -10,11 +10,86 @@
 #include <thread>
 
 #include "table/format.hpp"
+#include "table/table_iterator.hpp"
 #include "temp_directory.hpp"
 #include "test_support.hpp"
 
 namespace lsm::internal::table {
 namespace {
+TEST(TableIteratorTest, CreationIsLazyAndNavigationMatchesReferenceAcrossBlocks) {
+  test::TempDirectory directory;
+  const auto path = directory.path() / "stream.sst";
+  std::vector<Entry> entries;
+  for (std::uint64_t i = 0; i < 200; ++i)
+    entries.push_back({InternalKey(std::to_string(1000 + i / 4), 4 - i % 4, WriteBatch::Type::kPut),
+                       std::string(50, static_cast<char>(i))});
+  ASSERT_TRUE(WriteTable(path, entries, {.block_bytes = 128}).ok());
+  std::unique_ptr<TableReader> opened;
+  ASSERT_TRUE(TableReader::Open(path, opened).ok());
+  std::shared_ptr<const TableReader> reader(std::move(opened));
+  const auto before = TableReader::DataBlocksRead();
+  TableIterator it(reader);
+  reader.reset();
+  EXPECT_EQ(TableReader::DataBlocksRead(), before);
+  it.SeekToFirst();
+  for (const auto& entry : entries) {
+    ASSERT_TRUE(it.Valid()) << it.status().ToString();
+    EXPECT_EQ(it.key(), entry.key);
+    EXPECT_EQ(it.value(), entry.value);
+    it.Next();
+  }
+  EXPECT_FALSE(it.Valid());
+  it.SeekToLast();
+  for (auto entry = entries.rbegin(); entry != entries.rend(); ++entry) {
+    ASSERT_TRUE(it.Valid()) << it.status().ToString();
+    EXPECT_EQ(it.key(), entry->key);
+    EXPECT_EQ(it.value(), entry->value);
+    it.Prev();
+  }
+  for (std::size_t i = 1; i + 1 < entries.size(); ++i) {
+    it.Seek(entries[i].key);
+    ASSERT_TRUE(it.Valid());
+    EXPECT_EQ(it.key(), entries[i].key);
+    it.Prev();
+    EXPECT_EQ(it.key(), entries[i - 1].key);
+    it.Next();
+    EXPECT_EQ(it.key(), entries[i].key);
+  }
+  EXPECT_TRUE(it.status().ok());
+}
+
+TEST(TableIteratorTest, CorruptionInAnUnreadBlockIsDetectedOnTransition) {
+  test::TempDirectory directory;
+  const auto path = directory.path() / "corrupt.sst";
+  const std::vector<Entry> entries{{InternalKey("a", 1, WriteBatch::Type::kPut), "one"},
+                                   {InternalKey("b", 2, WriteBatch::Type::kPut), "two"}};
+  ASSERT_TRUE(WriteTable(path, entries, {.block_bytes = 1}).ok());
+  std::string first;
+  ASSERT_TRUE(EncodeBlock(std::span<const Entry>(entries).first(1), first).ok());
+  std::unique_ptr<TableReader> opened;
+  ASSERT_TRUE(TableReader::Open(path, opened).ok());
+  TableIterator it(std::shared_ptr<const TableReader>(std::move(opened)));
+  it.SeekToFirst();
+  ASSERT_TRUE(it.Valid());
+  {
+    std::fstream file(path, std::ios::in | std::ios::out | std::ios::binary);
+    ASSERT_TRUE(file.is_open());
+    file.seekp(static_cast<std::streamoff>(first.size()));
+    file.put('\xff');
+    file.flush();
+    ASSERT_TRUE(file.good());
+  }
+  std::unique_ptr<platform::File> file;
+  ASSERT_TRUE(platform::File::Open(path, false, file).ok());
+  ASSERT_TRUE(file->Sync().ok());
+  file.reset();
+  it.Next();
+  EXPECT_FALSE(it.Valid());
+  EXPECT_EQ(it.status().code(), StatusCode::kCorruption);
+  it.SeekToFirst();
+  EXPECT_FALSE(it.Valid());
+}
+
 TEST(TableTest, OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen) {
   test::TempDirectory directory;
   const auto path = directory.path() / "damage.sst";

@@ -1,0 +1,63 @@
+Preset CMake variables:
+
+  BUILD_TESTING="ON"
+  CMAKE_BUILD_TYPE="Debug"
+  CMAKE_EXPORT_COMPILE_COMMANDS="ON"
+
+-- Configuring done (28.4s)
+-- Generating done (1.4s)
+-- Build files have been written to: C:/Users/arnav/Downloads/SDE PROJs/lsm storage engine/build/debug
+[1/22] Building CXX object CMakeFiles\lsm.dir\src\memtable.cpp.obj
+[2/22] Building CXX object CMakeFiles\lsm.dir\src\table\table_iterator.cpp.obj
+[3/22] Building CXX object CMakeFiles\lsm.dir\src\wal.cpp.obj
+[4/22] Building CXX object CMakeFiles\lsm.dir\src\file_cleanup.cpp.obj
+[5/22] Building CXX object CMakeFiles\lsm.dir\src\table\table.cpp.obj
+[6/22] Building CXX object CMakeFiles\lsm.dir\src\iterator.cpp.obj
+[7/22] Building CXX object CMakeFiles\lsm.dir\src\compaction.cpp.obj
+[8/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\memtable_test.cpp.obj
+[9/22] Building CXX object CMakeFiles\lsm.dir\src\version_set.cpp.obj
+[10/22] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[11/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\cleanup_test.cpp.obj
+[12/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\wal_test.cpp.obj
+[13/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\iterator_test.cpp.obj
+[14/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\version_set_test.cpp.obj
+[15/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\db_test.cpp.obj
+[16/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[17/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\compaction_test.cpp.obj
+[18/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\table_test.cpp.obj
+[19/22] Building CXX object CMakeFiles\lsm_tests.dir\tests\snapshot_test.cpp.obj
+[20/22] Linking CXX static library lsm.lib
+[21/22] Linking CXX executable lsm_db_process.exe
+[22/22] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = TableIteratorTest.*:TableTest.*
+[==========] Running 9 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from TableIteratorTest
+[ RUN      ] TableIteratorTest.CreationIsLazyAndNavigationMatchesReferenceAcrossBlocks
+[       OK ] TableIteratorTest.CreationIsLazyAndNavigationMatchesReferenceAcrossBlocks (258 ms)
+[ RUN      ] TableIteratorTest.CorruptionInAnUnreadBlockIsDetectedOnTransition
+[       OK ] TableIteratorTest.CorruptionInAnUnreadBlockIsDetectedOnTransition (436 ms)
+[----------] 2 tests from TableIteratorTest (694 ms total)
+
+[----------] 7 tests from TableTest
+[ RUN      ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen
+[       OK ] TableTest.OpenDefersDataChecksAndGetDetectsCorruptionAfterOpen (338 ms)
+[ RUN      ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference
+[       OK ] TableTest.NativeRoundTripKeyValueMixesAndVersionLookupsMatchReference (3005 ms)
+[ RUN      ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions
+[       OK ] TableTest.EmptyTableAndImmutableDestinationAndInvalidOptions (342 ms)
+[ RUN      ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter
+[       OK ] TableTest.EveryByteFlipAndEveryTruncationRejectsDataFilterIndexAndFooter (166 ms)
+[ RUN      ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected
+[       OK ] TableTest.ForgedFooterHandlesAndIndexWithValidChecksumsAreRejected (1 ms)
+[ RUN      ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully
+[       OK ] TableTest.PartialWritesAndSyncFailureAreStickyAndNeverFinishSuccessfully (5 ms)
+[ RUN      ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions
+[       OK ] TableTest.ConcurrentMappedReadsAcrossBlocksMatchKnownVersions (938 ms)
+[----------] 7 tests from TableTest (4797 ms total)
+
+[----------] Global test environment tear-down
+[==========] 9 tests from 2 test suites ran. (5493 ms total)
+[  PASSED  ] 9 tests.
