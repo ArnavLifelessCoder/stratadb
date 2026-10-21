@@ -172,8 +172,13 @@ def run_cycle(args, rng, directory: Path, cycle_dir: Path, base: dict, ids: dict
         raise CycleFailure(f"recovery failed: {output.strip()}")
     observed, levels = parse_dump(dump_path)
 
-    minimum = acknowledged if sync else 0
-    prefix = match_prefix(base, batches, observed, minimum)
+    # Try the prefix that keeps every acknowledged batch first. A batch that
+    # changes nothing (a delete of an absent key) makes neighbouring prefixes
+    # identical, and the smallest match would then count it as lost. Only async
+    # mode may fall back to a shorter prefix.
+    prefix = match_prefix(base, batches, observed, acknowledged)
+    if prefix is None and not sync:
+        prefix = match_prefix(base, batches, observed, 0)
     if prefix is None:
         raise CycleFailure(
             "recovered state is not a valid prefix of the history "
