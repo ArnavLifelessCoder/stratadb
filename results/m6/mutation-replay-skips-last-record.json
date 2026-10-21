@@ -1,0 +1,30 @@
+{
+ "recorded_utc": "2026-10-21T09:14:14.247150+00:00",
+ "platform": "Windows-11-10.0.26300-SP0",
+ "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+ "python": "3.13.15",
+ "source_commit": "4a3187ebc1a36ef12a99e3b251a1aaa8812e5548",
+ "executable": "lsm_crash_writer.exe",
+ "label": "",
+ "mode": "sync",
+ "seed": 24301,
+ "kill": "TerminateProcess",
+ "cycles_requested": 10,
+ "cycles_passed": 0,
+ "failure": {
+  "cycle": 0,
+  "error": "recovered state is not a valid prefix of the history (acknowledged=27, logged=27)",
+  "kept": "C:\\Users\\arnav\\AppData\\Local\\Temp\\claude\\C--Users-arnav-Downloads-SDE-PROJs\\459b1384-75a2-4906-a964-fb7f33f44904\\scratchpad\\crash-mutation\\failed-cycle-0"
+ },
+ "elapsed_s": 3.3,
+ "totals": {
+  "acknowledged_batches": 0,
+  "lost_acknowledged_batches": 0,
+  "cycles_with_lost_tail": 0,
+  "in_flight_batches_applied": 0,
+  "early_kills": 0,
+  "max_l0_tables": 0,
+  "max_depth": 0
+ },
+ "cycles": []
+}

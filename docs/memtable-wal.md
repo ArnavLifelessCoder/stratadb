@@ -105,8 +105,5 @@ contains the exact stream seed. `--seed=N` selects the first seed.
 Other tests cover empty/binary keys, 1 MiB values, concurrent readers and writers,
 every truncation point in a final record, a flipped byte at every position of a
 middle record, and deterministic read/write/sync/truncate failures.
-`tests/crash_smoke.py` uses `proc.kill()` for six sync and six async cycles,
-recording the OS in its JSON result. It records acknowledgments only after
-successful Write calls and verifies recovered values and batch completeness.
-Async recovery may lose a tail, but must not contain holes. These smoke checks
-do not replace the 500-cycle M6 campaign.
+Process-kill recovery is covered by the M6 campaign in `python/crash_test.py`;
+see [crash-testing.md](crash-testing.md).

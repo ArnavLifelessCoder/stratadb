@@ -110,16 +110,16 @@ CI runs this command with the repository's `.clang-tidy`, treating findings as
 errors. On Windows, use the x64 clang-tidy executable under
 `VC/Tools/Llvm/x64/bin` from an initialized VS developer shell.
 
-Run the process-kill smoke test after building:
+Run the kill/recover campaign after building (see [crash-testing.md](crash-testing.md)):
 
 ```powershell
-python tests/crash_smoke.py --executable build/debug/lsm_db_process.exe --output build/crash-Windows-debug.json
+python python/crash_test.py --executable build/debug/lsm_crash_writer.exe --mode sync --cycles 500 --work build/crash/work-sync --output build/crash/Windows-debug-sync.json
+python python/crash_test.py --executable build/debug/lsm_crash_writer.exe --mode async --cycles 500 --work build/crash/work-async --output build/crash/Windows-debug-async.json
 ```
 
-On Linux omit `.exe` and use a Linux-labeled output filename. The script uses
-only the Python standard library. It keeps temporary databases inside the
-build directory and records platform, seed and outcomes in JSON. Its one-byte
-memtable threshold forces flushes; the JSON records SSTable counts after recovery.
+On Linux omit `.exe`. The script uses only the Python standard library and
+records platform, seed, commit and per-cycle outcomes in JSON. CI runs 40
+cycles per mode in every debug and ASan job.
 
 Record five seeded bloom false-positive accuracy trials:
 
