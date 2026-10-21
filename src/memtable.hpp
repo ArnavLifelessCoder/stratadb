@@ -10,6 +10,7 @@
 #include <string_view>
 #include <vector>
 
+#include "internal_iterator.hpp"
 #include "table/block.hpp"
 #include "write_batch.hpp"
 
@@ -33,6 +34,7 @@ class MemTable {
   [[nodiscard]] auto MemoryUsage() const noexcept -> std::size_t { return allocated_.load(); }
 
  private:
+  friend class MemTableIterator;
   static constexpr std::size_t kHeight = 12;
   struct Node {
     std::string_view key;
@@ -53,5 +55,8 @@ class MemTable {
   std::atomic<std::size_t> allocated_{0};
   std::mt19937_64 random_;
 };
+
+auto MakeMemTableIterator(std::shared_ptr<const MemTable> table)
+    -> std::unique_ptr<InternalIterator>;
 
 }  // namespace lsm::internal

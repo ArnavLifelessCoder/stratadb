@@ -13,6 +13,49 @@
 
 namespace lsm::internal {
 namespace {
+TEST(MemTableIteratorTest, NavigationSeeksAndOwnershipMatchExportedReference) {
+  auto table = std::make_shared<MemTable>();
+  for (std::uint64_t i = 0; i < 1000; ++i)
+    ASSERT_TRUE(table
+                    ->Insert(i + 1, WriteBatch::Type::kPut, std::to_string(10000 + i / 4),
+                             std::to_string(i))
+                    .ok());
+  const auto entries = table->Entries();
+  const std::weak_ptr<const MemTable> weak = table;
+  auto it = MakeMemTableIterator(table);
+  EXPECT_FALSE(it->Valid());
+  table.reset();
+  EXPECT_FALSE(weak.expired());
+  it->SeekToFirst();
+  for (const auto& entry : entries) {
+    ASSERT_TRUE(it->Valid());
+    EXPECT_EQ(it->key(), entry.key);
+    EXPECT_EQ(it->value(), entry.value);
+    it->Next();
+  }
+  EXPECT_FALSE(it->Valid());
+  it->SeekToLast();
+  for (auto entry = entries.rbegin(); entry != entries.rend(); ++entry) {
+    ASSERT_TRUE(it->Valid());
+    EXPECT_EQ(it->key(), entry->key);
+    EXPECT_EQ(it->value(), entry->value);
+    it->Prev();
+  }
+  EXPECT_FALSE(it->Valid());
+  for (std::size_t i = 1; i + 1 < entries.size(); ++i) {
+    it->Seek(entries[i].key);
+    ASSERT_TRUE(it->Valid());
+    EXPECT_EQ(it->key(), entries[i].key);
+    it->Prev();
+    EXPECT_EQ(it->key(), entries[i - 1].key);
+    it->Next();
+    EXPECT_EQ(it->key(), entries[i].key);
+  }
+  EXPECT_TRUE(it->status().ok());
+  it.reset();
+  EXPECT_TRUE(weak.expired());
+}
+
 TEST(MemTableTest, FrozenExportAndLookupPreserveVersionsAndTombstones) {
   MemTable table;
   ASSERT_TRUE(table.Insert(1, WriteBatch::Type::kPut, "z", "old").ok());

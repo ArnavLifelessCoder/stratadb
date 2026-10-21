@@ -8,6 +8,63 @@
 
 namespace lsm::internal {
 
+class MemTableIterator final : public InternalIterator {
+ public:
+  explicit MemTableIterator(std::shared_ptr<const MemTable> table) : table_(std::move(table)) {}
+  [[nodiscard]] auto Valid() const -> bool override { return status_.ok() && node_ != nullptr; }
+  void SeekToFirst() override { Set(table_->head_.next[0].load(std::memory_order_acquire)); }
+  void SeekToLast() override {
+    auto* node = &table_->head_;
+    for (std::size_t level = MemTable::kHeight; level-- > 0;) {
+      while (auto* next = node->next[level].load(std::memory_order_acquire)) node = next;
+    }
+    Set(node == &table_->head_ ? nullptr : node);
+  }
+  void Seek(std::string_view target) override {
+    if (!status_.ok()) return;
+    if (target.size() < 8) {
+      status_ = Status::InvalidArgument("short memtable iterator seek");
+      return;
+    }
+    Set(table_->Find(table::UserKey(target), table::Tag(target)));
+  }
+  void Next() override {
+    if (Valid()) Set(node_->next[0].load(std::memory_order_acquire));
+  }
+  void Prev() override {
+    if (!Valid()) return;
+    std::array<MemTable::Node*, MemTable::kHeight> previous{};
+    static_cast<void>(table_->Find(node_->key, node_->tag, &previous));
+    Set(previous[0] == &table_->head_ ? nullptr : previous[0]);
+  }
+  [[nodiscard]] auto key() const -> std::string_view override {
+    return Valid() ? key_ : std::string_view{};
+  }
+  [[nodiscard]] auto value() const -> std::string_view override {
+    return Valid() ? node_->value : std::string_view{};
+  }
+  [[nodiscard]] auto status() const -> Status override { return status_; }
+
+ private:
+  void Set(const MemTable::Node* node) {
+    node_ = node;
+    key_.clear();
+    if (node_ != nullptr) {
+      key_ = node_->key;
+      table::AppendFixed<8>(key_, node_->tag);
+    }
+  }
+  std::shared_ptr<const MemTable> table_;
+  const MemTable::Node* node_ = nullptr;
+  std::string key_;
+  Status status_;
+};
+
+auto MakeMemTableIterator(std::shared_ptr<const MemTable> table)
+    -> std::unique_ptr<InternalIterator> {
+  return std::make_unique<MemTableIterator>(std::move(table));
+}
+
 auto MemTable::Before(const Node& node, std::string_view key, std::uint64_t tag) -> bool {
   const int comparison = node.key.compare(key);
   return comparison < 0 || (comparison == 0 && node.tag > tag);

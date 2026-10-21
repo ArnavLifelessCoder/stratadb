@@ -1,0 +1,35 @@
+[1/9] Building CXX object CMakeFiles\lsm.dir\src\memtable.cpp.obj
+[2/9] Building CXX object CMakeFiles\lsm.dir\src\wal.cpp.obj
+[3/9] Building CXX object CMakeFiles\lsm_tests.dir\tests\memtable_test.cpp.obj
+[4/9] Building CXX object CMakeFiles\lsm.dir\src\db.cpp.obj
+[5/9] Building CXX object CMakeFiles\lsm_tests.dir\tests\wal_test.cpp.obj
+[6/9] Building CXX object CMakeFiles\lsm_tests.dir\tests\flush_test.cpp.obj
+[7/9] Linking CXX static library lsm.lib
+[8/9] Linking CXX executable lsm_db_process.exe
+[9/9] Linking CXX executable lsm_tests.exe
+Randomized test seed: 24301
+Test mode: full
+Note: Google Test filter = MemTableIteratorTest.*:MemTableTest.*
+[==========] Running 6 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from MemTableIteratorTest
+[ RUN      ] MemTableIteratorTest.NavigationSeeksAndOwnershipMatchExportedReference
+[       OK ] MemTableIteratorTest.NavigationSeeksAndOwnershipMatchExportedReference (18 ms)
+[----------] 1 test from MemTableIteratorTest (18 ms total)
+
+[----------] 5 tests from MemTableTest
+[ RUN      ] MemTableTest.FrozenExportAndLookupPreserveVersionsAndTombstones
+[       OK ] MemTableTest.FrozenExportAndLookupPreserveVersionsAndTombstones (0 ms)
+[ RUN      ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership
+[       OK ] MemTableTest.SequenceOrderingTombstonesBinaryKeysAndArenaOwnership (0 ms)
+[ RUN      ] MemTableTest.RandomVersionsMatchMapReference
+[       OK ] MemTableTest.RandomVersionsMatchMapReference (102 ms)
+[ RUN      ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions
+[       OK ] MemTableTest.ConcurrentReadersObserveOnlyPublishedVersions (28 ms)
+[ RUN      ] MemTableTest.ConcurrentReadersTraverseManyKeysAndRetainOlderSnapshots
+[       OK ] MemTableTest.ConcurrentReadersTraverseManyKeysAndRetainOlderSnapshots (273 ms)
+[----------] 5 tests from MemTableTest (404 ms total)
+
+[----------] Global test environment tear-down
+[==========] 6 tests from 2 test suites ran. (423 ms total)
+[  PASSED  ] 6 tests.
