@@ -111,9 +111,10 @@ if(BUILD_TESTING)
   target_link_libraries(lsm_tests PRIVATE lsm::lsm GTest::gtest)
   target_include_directories(lsm_tests PRIVATE src tests)
   lsm_strict_warnings(lsm_tests)
-  add_executable(lsm_db_process tests/db_process.cpp)
-  target_link_libraries(lsm_db_process PRIVATE lsm::lsm)
-  lsm_strict_warnings(lsm_db_process)
+  # Child process for python/crash_test.py.
+  add_executable(lsm_crash_writer tests/crash_writer.cpp)
+  target_link_libraries(lsm_crash_writer PRIVATE lsm::lsm)
+  lsm_strict_warnings(lsm_crash_writer)
   add_test(NAME lsm_tests COMMAND lsm_tests)
   set_tests_properties(lsm_tests PROPERTIES TIMEOUT 1800)
   add_test(NAME seed_maximum
