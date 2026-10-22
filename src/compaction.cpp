@@ -12,27 +12,31 @@ auto PickCompaction(std::shared_ptr<const Version> version, const Options& optio
   for (const auto& file : version->files) {
     levels.at(file.level).push_back(file);
   }
+  // Every level gets a score and the highest one at or above 1 is compacted:
+  // L0 by table count over the trigger, L1+ by size over the level target. L0
+  // must not win just by reaching its trigger: under a steady write load it
+  // is almost always there, and L1 would then grow without bound and make
+  // every L0 compaction rewrite nearly all of it.
   std::uint32_t level = 0;
-  if (levels[0].size() < static_cast<std::size_t>(options.l0_compaction_trigger)) {
-    double best = 1.0;
-    double target = 10.0 * 1024 * 1024;
-    for (std::uint32_t candidate = 1; candidate < 6; ++candidate) {
-      double bytes = 0;
-      for (const auto& file : levels[candidate]) {
-        bytes += static_cast<double>(file.size);
-      }
-      const double score = bytes / target;
-      if (score >= best) {
-        level = candidate;
-        best = score;
-      }
-      target = target > std::numeric_limits<double>::max() / options.level_size_ratio
-                   ? std::numeric_limits<double>::max()
-                   : target * options.level_size_ratio;
+  double best = static_cast<double>(levels[0].size()) /
+                static_cast<double>(std::max(options.l0_compaction_trigger, 1));
+  double target = 10.0 * 1024 * 1024;
+  for (std::uint32_t candidate = 1; candidate < 6; ++candidate) {
+    double bytes = 0;
+    for (const auto& file : levels[candidate]) {
+      bytes += static_cast<double>(file.size);
     }
-    if (level == 0) {
-      return std::nullopt;
+    const double score = bytes / target;
+    if (score > best) {
+      level = candidate;
+      best = score;
     }
+    target = target > std::numeric_limits<double>::max() / options.level_size_ratio
+                 ? std::numeric_limits<double>::max()
+                 : target * options.level_size_ratio;
+  }
+  if (best < 1.0) {
+    return std::nullopt;
   }
   CompactionPlan plan{.base = std::move(version), .level = level, .inputs = {}, .largest = {}};
   if (level == 0) {

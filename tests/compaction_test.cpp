@@ -66,6 +66,26 @@ TEST(CompactionTest, L0SelectsAllFilesAndOverlappingL1Only) {
   EXPECT_EQ(ids, (std::vector<std::uint64_t>{3, 4, 5, 6, 8, 9}));
 }
 
+TEST(CompactionTest, OversizedL1OutscoresAnL0ThatOnlyJustReachedItsTrigger) {
+  constexpr std::uint64_t mib = 1024 * 1024;
+  auto version = std::make_shared<Version>();
+  // L0 score 4/4 = 1; L1 score 50 MiB / 10 MiB = 5.
+  version->files = {File(3, 0, mib, "a", "z"),      File(4, 0, mib, "a", "z"),
+                    File(5, 0, mib, "a", "z"),      File(6, 0, mib, "a", "z"),
+                    File(7, 1, 25 * mib, "a", "m"), File(8, 1, 25 * mib, "n", "z")};
+  auto plan = PickCompaction(version, {}, {});
+  ASSERT_TRUE(plan);
+  EXPECT_EQ(plan->level, 1U);
+  // L1 at 12 MiB scores 1.2; eight L0 tables score 2 and win.
+  version->files = {
+      File(3, 0, mib, "a", "z"),  File(4, 0, mib, "a", "z"),  File(5, 0, mib, "a", "z"),
+      File(6, 0, mib, "a", "z"),  File(9, 0, mib, "a", "z"),  File(10, 0, mib, "a", "z"),
+      File(11, 0, mib, "a", "z"), File(12, 0, mib, "a", "z"), File(7, 1, 12 * mib, "a", "z")};
+  plan = PickCompaction(version, {}, {});
+  ASSERT_TRUE(plan);
+  EXPECT_EQ(plan->level, 0U);
+}
+
 TEST(CompactionTest, HigherLevelsChooseHighestScoreAndRoundRobinKey) {
   auto version = std::make_shared<Version>();
   constexpr std::uint64_t mib = 1024 * 1024;
