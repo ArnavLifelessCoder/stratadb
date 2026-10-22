@@ -14,6 +14,40 @@ Tombstones have empty values.
 The file consists of consecutive data blocks, one filter block, one index block,
 and a 48-byte footer. There is no padding.
 
+```text
+SSTable file
++--------------+--------------+-----+--------------+--------------+-------------+------------------+
+| data block 0 | data block 1 | ... | data block N | filter block | index block | footer, 48 bytes |
++--------------+--------------+-----+--------------+--------------+-------------+------------------+
+
+data block (index block uses the same layout)
++---------------------+-------------------------------+----------------------+-----+
+| entry 0 (full key)  | entries 1..15 (prefix shared) | entry 16 (full key)  | ... |
++---------------------+-------------------------------+----------------------+-----+
+| restart offsets, u32 each | restart count, u32 | CRC32C, u32 over everything before it |
++---------------------------+--------------------+---------------------------------------+
+
+entry
++---------------+-----------------+---------------------+--------------------+-------------+
+| shared varint | unshared varint | value length varint | unshared key bytes | value bytes |
++---------------+-----------------+---------------------+--------------------+-------------+
+
+internal key = user key bytes | tag, 8 bytes little endian = sequence << 8 | type (0 delete, 1 put)
+
+filter block = probe count (1 byte) | bit array | CRC32C (4)
+block handle = offset (u64) | size including the block's CRC (u64)
+
+footer
++----------------------+---------------------+---------------+-------------------------+-------------+
+| filter handle (16 B) | index handle (16 B) | version (4 B) | magic "STRATA03" (8 B)  | CRC32C (4 B)|
++----------------------+---------------------+---------------+-------------------------+-------------+
+```
+
+The index block uses the data-block encoding; each entry maps the exact last
+internal key of a data block to that block's handle (offset and size, two
+little-endian u64s). The filter block is one probe-count byte, the bit array
+and a CRC32C.
+
 | Part | Encoding |
 | --- | --- |
 | Data entry | shared-prefix length, unshared-key length, value length (three varint32s), unshared key bytes, value bytes |
