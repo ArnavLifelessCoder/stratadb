@@ -18,3 +18,16 @@ allow a lost tail. These async runs predate commit 4e4aa59, which made the harne
 prefer the fully acknowledged prefix; before it, a final batch that changed nothing
 (a delete of an absent key) was counted as lost. Their loss counts are therefore
 upper bounds. Pass/fail is unaffected.
+
+## Async rerun with the fixed harness
+
+Rerun from `git archive e72c857` (the m8 tip, which includes the harness fix
+from 4e4aa59 and all M6-M8 engine code):
+
+| File | Result |
+|---|---|
+| `crash-Windows-debug-async-rerun.json` | 500/500 cycles, 103260 acknowledged batches, 0 lost, deepest level L2 |
+| `crash-Windows-asan-async-rerun.json` | 100/100 cycles, 13832 acknowledged batches, 0 lost, deepest level L1 |
+
+With the acknowledged prefix tried first, no acknowledged async batch was lost
+in 600 kill cycles, as expected for process kills that leave the OS cache intact.
