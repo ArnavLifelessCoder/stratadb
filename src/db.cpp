@@ -404,8 +404,21 @@ struct DB::Impl {
       estimate = 0;
       return {};
     };
+    std::size_t since_check = 0;
     auto status = internal::CompactEntries(
         input, plan, oldest, [&](const internal::table::Entry& entry) -> Status {
+          // A long compaction must not hold up the memtable flush that writers
+          // are waiting for. The new L0 table is newer than every input, so it
+          // can be published while this merge runs.
+          if (++since_check == 1024) {
+            since_check = 0;
+            std::unique_lock guard(mutex);
+            if (failure.ok() && immutable) {
+              FlushImmutable(guard);
+              changed.notify_all();
+            }
+            if (!failure.ok()) return failure;
+          }
           if (!pending.empty() && estimate >= target_bytes &&
               internal::table::UserKey(pending.back().key) != internal::table::UserKey(entry.key)) {
             const auto result = flush();
@@ -435,6 +448,54 @@ struct DB::Impl {
     return {.status = status, .bytes = bytes};
   }
 
+  // Background thread only. Writes the immutable memtable to a new L0 table
+  // and publishes it. Called with `guard` held and an immutable memtable
+  // present; returns with `guard` held. Failures become the sticky DB failure.
+  void FlushImmutable(std::unique_lock<std::mutex>& guard) {
+    const auto frozen = immutable;
+    const auto last = immutable_sequence;
+    const auto number = versions->State().metadata.pending_table;
+    const auto previous_wal = versions->State().metadata.previous_wal;
+    guard.unlock();
+    const auto entries = frozen->Entries();
+    const auto path = internal::TablePath(directory, number);
+    auto status = internal::table::WriteTable(
+        path, entries,
+        {.block_bytes = options.block_bytes, .bloom_bits_per_key = options.bloom_bits_per_key});
+    std::error_code error;
+    std::uint64_t size = 0;
+    if (status.ok()) {
+      size = std::filesystem::file_size(path, error);
+      if (error) {
+        status = Status::IOError("flushed table size: " + error.message());
+      }
+    }
+    if (status.ok()) {
+      const std::lock_guard manifest_guard(manifest_mutex);
+      auto edit = versions->State().metadata;
+      edit.flushed_sequence = last;
+      edit.previous_wal = 0;
+      edit.pending_table = 0;
+      edit.added.push_back({.number = number,
+                            .level = 0,
+                            .size = size,
+                            .smallest = std::string(internal::table::UserKey(entries.front().key)),
+                            .largest = std::string(internal::table::UserKey(entries.back().key)),
+                            .reader = {}});
+      status = versions->Apply(edit);
+    }
+    if (status.ok()) {
+      static_cast<void>(internal::RemoveObsolete(internal::WalPath(directory, previous_wal)));
+    }
+    guard.lock();
+    if (status.ok()) {
+      table_bytes += size;
+      immutable.reset();
+    } else {
+      failure = status;
+    }
+  }
+
   [[nodiscard]] auto PlanCompaction() const -> std::optional<internal::CompactionPlan> {
     if (internal::pause_compactions_for_testing.load(std::memory_order_acquire)) {
       return std::nullopt;
@@ -451,49 +512,7 @@ struct DB::Impl {
       });
       cleanup_requested = false;
       if (failure.ok() && immutable) {
-        const auto frozen = immutable;
-        const auto last = immutable_sequence;
-        const auto number = versions->State().metadata.pending_table;
-        const auto previous_wal = versions->State().metadata.previous_wal;
-        guard.unlock();
-        const auto entries = frozen->Entries();
-        const auto path = internal::TablePath(directory, number);
-        auto status = internal::table::WriteTable(
-            path, entries,
-            {.block_bytes = options.block_bytes, .bloom_bits_per_key = options.bloom_bits_per_key});
-        std::error_code error;
-        std::uint64_t size = 0;
-        if (status.ok()) {
-          size = std::filesystem::file_size(path, error);
-          if (error) {
-            status = Status::IOError("flushed table size: " + error.message());
-          }
-        }
-        if (status.ok()) {
-          const std::lock_guard manifest_guard(manifest_mutex);
-          auto edit = versions->State().metadata;
-          edit.flushed_sequence = last;
-          edit.previous_wal = 0;
-          edit.pending_table = 0;
-          edit.added.push_back(
-              {.number = number,
-               .level = 0,
-               .size = size,
-               .smallest = std::string(internal::table::UserKey(entries.front().key)),
-               .largest = std::string(internal::table::UserKey(entries.back().key)),
-               .reader = {}});
-          status = versions->Apply(edit);
-        }
-        if (status.ok()) {
-          static_cast<void>(internal::RemoveObsolete(internal::WalPath(directory, previous_wal)));
-        }
-        guard.lock();
-        if (status.ok()) {
-          table_bytes += size;
-          immutable.reset();
-        } else {
-          failure = status;
-        }
+        FlushImmutable(guard);
       } else if (failure.ok()) {
         auto plan = PlanCompaction();
         if (plan) {
