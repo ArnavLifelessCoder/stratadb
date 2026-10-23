@@ -7,6 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(LSM_SANITIZER "" CACHE STRING "Sanitizer: empty, address, or thread")
 set_property(CACHE LSM_SANITIZER PROPERTY STRINGS "" address thread)
 option(LSM_BUILD_BENCHMARKS "Fetch Google Benchmark for benchmark targets" OFF)
+option(LSM_BUILD_SERVER "Fetch cpp-httplib and build the explorer server" OFF)
 
 if(NOT LSM_SANITIZER MATCHES "^(|address|thread)$")
   message(FATAL_ERROR "Unknown LSM_SANITIZER: ${LSM_SANITIZER}")
@@ -166,4 +167,24 @@ if(LSM_BUILD_BENCHMARKS)
   add_executable(lsm_micro_bench bench/micro_bench.cpp)
   target_link_libraries(lsm_micro_bench PRIVATE lsm::lsm benchmark::benchmark)
   target_include_directories(lsm_micro_bench PRIVATE src)
+endif()
+
+if(LSM_BUILD_SERVER)
+  # The explorer: a local web UI over one DB. Optional TLS and compression
+  # support in cpp-httplib stays off; the server only listens on 127.0.0.1.
+  set(HTTPLIB_USE_OPENSSL_IF_AVAILABLE OFF CACHE BOOL "" FORCE)
+  set(HTTPLIB_USE_ZLIB_IF_AVAILABLE OFF CACHE BOOL "" FORCE)
+  set(HTTPLIB_USE_BROTLI_IF_AVAILABLE OFF CACHE BOOL "" FORCE)
+  set(HTTPLIB_USE_ZSTD_IF_AVAILABLE OFF CACHE BOOL "" FORCE)
+  FetchContent_Declare(httplib
+    GIT_REPOSITORY https://github.com/yhirose/cpp-httplib.git
+    GIT_TAG 89c932f313c6437c38f2982869beacc89c2f2246 # v0.26.0
+    SYSTEM
+  )
+  FetchContent_MakeAvailable(httplib)
+  add_executable(lsm_server explorer/lsm_server.cpp)
+  target_link_libraries(lsm_server PRIVATE lsm::lsm httplib::httplib)
+  target_compile_definitions(lsm_server
+    PRIVATE LSM_EXPLORER_WEB_DIR="${CMAKE_CURRENT_SOURCE_DIR}/explorer/web")
+  lsm_strict_warnings(lsm_server)
 endif()

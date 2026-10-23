@@ -8,7 +8,7 @@ def main() -> int:
     root = Path(__file__).resolve().parents[1]
     files = sorted(
         str(path)
-        for directory in ("include", "src", "tests", "bench")
+        for directory in ("include", "src", "tests", "bench", "explorer")
         for path in (root / directory).rglob("*")
         if path.suffix in {".hpp", ".cpp", ".h", ".cc"}
     )

@@ -35,13 +35,23 @@
       "name": "tsan",
       "inherits": "base",
       "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "LSM_SANITIZER": "thread" }
+    },
+    {
+      "name": "explorer",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "BUILD_TESTING": "OFF",
+        "LSM_BUILD_SERVER": "ON"
+      }
     }
   ],
   "buildPresets": [
     { "name": "debug", "configurePreset": "debug" },
     { "name": "release", "configurePreset": "release" },
     { "name": "asan", "configurePreset": "asan" },
-    { "name": "tsan", "configurePreset": "tsan" }
+    { "name": "tsan", "configurePreset": "tsan" },
+    { "name": "explorer", "configurePreset": "explorer" }
   ],
   "testPresets": [
     {

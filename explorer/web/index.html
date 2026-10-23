@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>stratadb explorer</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --ink: #1c2330; --muted: #5d6778; --line: #dfe3ea;
+    --accent: #2f6fd6; --accent-soft: #e5eefc; --good: #1d8a54; --warn: #b7791f; --bad: #c0392b;
+    --l0: #7c5cd6; --mem: #2f6fd6; --imm: #6b9be8;
+    --mono: ui-monospace, "Cascadia Mono", Consolas, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151b; --panel: #1a1f27; --ink: #e6e9ef; --muted: #98a2b3; --line: #2b323d;
+      --accent: #6b9be8; --accent-soft: #1f2b40; --good: #4fbf85; --warn: #e0a84a; --bad: #e46b5f;
+      --l0: #a58cf0; --mem: #6b9be8; --imm: #9cbcf0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { display: flex; align-items: baseline; gap: 12px; padding: 16px 20px 4px; flex-wrap: wrap; }
+  header h1 { font-size: 18px; margin: 0; }
+  header .sub { color: var(--muted); }
+  #conn { margin-left: auto; font-size: 12px; color: var(--muted); }
+  #conn.down { color: var(--bad); }
+  main { display: grid; gap: 16px; padding: 12px 20px 24px;
+         grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+  @media (max-width: 900px) { main { grid-template-columns: minmax(0, 1fr); } }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; min-width: 0; }
+  section h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 10px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+  input, select, button { font: inherit; color: inherit; }
+  input, select { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; min-width: 0; }
+  input.key { flex: 1 1 140px; } input.value { flex: 2 1 200px; }
+  button { background: var(--accent); color: #fff; border: 0; border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+  button.ghost { background: var(--accent-soft); color: var(--accent); }
+  button:disabled { opacity: .5; cursor: default; }
+  label.inline { display: inline-flex; gap: 4px; align-items: center; color: var(--muted); }
+  .out { font-family: var(--mono); font-size: 12px; background: var(--bg); border: 1px solid var(--line);
+         border-radius: 6px; padding: 8px; min-height: 34px; white-space: pre-wrap; word-break: break-all; }
+  .out.err { color: var(--bad); }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td.mono, .mono { font-family: var(--mono); word-break: break-all; }
+  td.keycell { white-space: nowrap; word-break: normal; width: 1%; padding-right: 12px; }
+  .scan-wrap { max-height: 320px; overflow: auto; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+  .tile { border: 1px solid var(--line); border-radius: 6px; padding: 8px; }
+  .tile .k { color: var(--muted); font-size: 11px; }
+  .tile .v { font-size: 18px; font-variant-numeric: tabular-nums; }
+  .bar { position: relative; height: 18px; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .bar > span { position: absolute; top: 0; bottom: 0; left: 0; }
+  .levels .lv { display: grid; grid-template-columns: 34px minmax(0, 1fr) 132px; gap: 8px; align-items: center; margin: 6px 0; }
+  .levels .lv .meta { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; }
+  .files { display: flex; flex-wrap: wrap; gap: 2px; min-height: 18px; align-items: center; }
+  .files i { display: inline-block; width: 10px; height: 14px; border-radius: 2px; background: var(--accent); opacity: .85; }
+  .files i.l0 { background: var(--l0); }
+  .files .more { font-size: 11px; color: var(--muted); margin-left: 4px; }
+  .over { color: var(--warn); }
+  #events { font-family: var(--mono); font-size: 12px; max-height: 180px; overflow: auto; margin: 0; padding-left: 18px; }
+  #events li { margin: 2px 0; }
+  .muted { color: var(--muted); }
+  .wide { grid-column: 1 / -1; }
+</style>
+</head>
+<body>
+<header>
+  <h1>stratadb explorer</h1>
+  <span class="sub">an LSM-tree storage engine, live</span>
+  <span id="conn">connecting</span>
+</header>
+<main>
+  <div style="display:grid; gap:16px; min-width:0">
+    <section>
+      <h2>Read and write</h2>
+      <div class="row">
+        <input class="key" id="key" placeholder="key" autocomplete="off">
+        <input class="value" id="value" placeholder="value" autocomplete="off">
+      </div>
+      <div class="row">
+        <button id="put">Put</button>
+        <button id="get" class="ghost">Get</button>
+        <button id="del" class="ghost">Delete</button>
+        <label class="inline"><input type="checkbox" id="sync"> sync to disk</label>
+        <label class="inline">read at
+          <select id="readSnap"><option value="">latest</option></select></label>
+      </div>
+      <div id="opOut" class="out muted">Results appear here.</div>
+    </section>
+
+    <section>
+      <h2>Ordered scan</h2>
+      <div class="row">
+        <input class="key" id="scanStart" placeholder="start key (empty = first)" autocomplete="off">
+        <select id="scanLimit"><option>20</option><option selected>50</option><option>200</option></select>
+        <select id="scanSnap"><option value="">latest</option></select>
+        <button id="scan">Scan</button>
+      </div>
+      <div class="scan-wrap"><table id="scanTable"><thead><tr><th>key</th><th>value</th></tr></thead><tbody></tbody></table></div>
+      <div id="scanNote" class="muted" style="font-size:12px;margin-top:6px"></div>
+    </section>
+
+    <section>
+      <h2>Snapshots</h2>
+      <div class="row">
+        <button id="snap">Take snapshot</button>
+        <span class="muted">A snapshot freezes what reads see; later writes stay invisible to it until it is released.</span>
+      </div>
+      <div id="snapList" class="row"></div>
+    </section>
+  </div>
+
+  <div style="display:grid; gap:16px; min-width:0">
+    <section>
+      <h2>Engine</h2>
+      <div class="tiles" id="tiles"></div>
+    </section>
+
+    <section>
+      <h2>Memtable and levels</h2>
+      <div class="levels">
+        <div class="lv"><b>mem</b><div class="bar"><span id="memBar" style="background:var(--mem)"></span></div><div class="meta" id="memMeta"></div></div>
+        <div id="levelRows"></div>
+      </div>
+      <div class="muted" style="font-size:12px;margin-top:6px">
+        L0 tables may overlap and compact together once there are <span id="trigger"></span>; deeper levels
+        hold sorted, non-overlapping tables, each level 10x the one above (L1 target 10 MiB).
+      </div>
+    </section>
+
+    <section>
+      <h2>Bulk load</h2>
+      <div class="row">
+        <select id="loadCount"><option value="100000">100K keys</option><option value="1000000" selected>1M keys</option><option value="5000000">5M keys</option></select>
+        <select id="loadValue"><option value="100" selected>100-byte values</option><option value="1000">1 KB values</option></select>
+        <select id="loadOrder"><option value="random" selected>random order</option><option value="sequential">key order</option></select>
+        <button id="load">Start</button>
+        <button id="loadStop" class="ghost" disabled>Stop</button>
+      </div>
+      <div class="bar"><span id="loadBar" style="background:var(--good)"></span></div>
+      <div id="loadMeta" class="muted" style="font-size:12px;margin-top:6px">Writes keys like key0000042 in batches of 100, to watch flushes and compactions happen.</div>
+    </section>
+
+    <section>
+      <h2>Background work</h2>
+      <ul id="events"><li class="muted">Flushes, compactions and stalls show up here.</li></ul>
+    </section>
+  </div>
+</main>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const fmtInt = (n) => Number(n).toLocaleString("en-US");
+function fmtBytes(n) {
+  const units = ["B", "KiB", "MiB", "GiB"]; let i = 0; n = Number(n);
+  while (n >= 1024 && i < units.length - 1) { n /= 1024; i++; }
+  return (i ? n.toFixed(n < 10 ? 1 : 0) : n) + " " + units[i];
+}
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+async function api(method, path, params) {
+  const body = method === "POST" ? new URLSearchParams(params || {}) : undefined;
+  const url = method === "GET" && params ? path + "?" + new URLSearchParams(params) : path;
+  const res = await fetch(url, { method, body });
+  const data = await res.json().catch(() => ({ error: "bad response (" + res.status + ")" }));
+  if (!res.ok || data.error) throw new Error(data.error || res.statusText);
+  return data;
+}
+
+function show(text, isError) {
+  const out = $("opOut"); out.textContent = text; out.className = "out" + (isError ? " err" : "");
+}
+async function run(fn) { try { await fn(); } catch (e) { show(e.message, true); } }
+
+$("put").onclick = () => run(async () => {
+  const key = $("key").value; if (!key) throw new Error("enter a key");
+  await api("POST", "/api/put", { key, value: $("value").value, sync: $("sync").checked });
+  show("put " + JSON.stringify(key) + (($("sync").checked) ? " (synced to disk)" : ""));
+  refresh();
+});
+$("get").onclick = () => run(async () => {
+  const key = $("key").value; if (!key) throw new Error("enter a key");
+  const params = { key }; if ($("readSnap").value) params.snapshot = $("readSnap").value;
+  const r = await api("GET", "/api/get", params);
+  const where = $("readSnap").value ? " at snapshot #" + $("readSnap").value : "";
+  show(r.found ? JSON.stringify(key) + " = " + JSON.stringify(r.value) + where : JSON.stringify(key) + " not found" + where);
+});
+$("del").onclick = () => run(async () => {
+  const key = $("key").value; if (!key) throw new Error("enter a key");
+  await api("POST", "/api/delete", { key, sync: $("sync").checked });
+  show("deleted " + JSON.stringify(key) + " (a tombstone until compaction drops it)");
+  refresh();
+});
+
+$("scan").onclick = () => run(async () => {
+  const params = { start: $("scanStart").value, limit: $("scanLimit").value };
+  if ($("scanSnap").value) params.snapshot = $("scanSnap").value;
+  const r = await api("GET", "/api/scan", params);
+  const body = $("scanTable").tBodies[0];
+  body.innerHTML = r.entries.map((e) =>
+    `<tr><td class="mono keycell">${esc(e.key)}</td><td class="mono">${esc(e.value.length > 80 ? e.value.slice(0, 80) + "..." : e.value)}</td></tr>`).join("");
+  $("scanNote").textContent = r.entries.length + " entries" + (r.more ? ", more after the last one" : "") +
+    ($("scanSnap").value ? " at snapshot #" + $("scanSnap").value : "");
+});
+
+$("snap").onclick = () => run(async () => {
+  const r = await api("POST", "/api/snapshot");
+  show("took snapshot #" + r.id + "; pick it under \"read at\" or in the scan to read the database as it is now");
+  refresh();
+});
+
+$("load").onclick = () => run(async () => {
+  await api("POST", "/api/load", { count: $("loadCount").value, value_size: $("loadValue").value, order: $("loadOrder").value });
+  refresh();
+});
+$("loadStop").onclick = () => run(async () => { await api("POST", "/api/load/stop"); refresh(); });
+
+function renderSnapshots(ids) {
+  const list = $("snapList");
+  list.innerHTML = ids.length ? "" : '<span class="muted">No snapshots held.</span>';
+  for (const id of ids) {
+    const b = document.createElement("button"); b.className = "ghost"; b.textContent = "release #" + id;
+    b.onclick = () => run(async () => { await api("POST", "/api/snapshot/release", { id }); show("released snapshot #" + id); refresh(); });
+    list.appendChild(b);
+  }
+  for (const sel of [$("readSnap"), $("scanSnap")]) {
+    const keep = sel.value;
+    sel.innerHTML = '<option value="">latest</option>' + ids.map((id) => `<option value="${id}">snapshot #${id}</option>`).join("");
+    sel.value = ids.includes(Number(keep)) ? keep : "";
+  }
+}
+
+let previous = null;
+function logEvent(text) {
+  const list = $("events");
+  if (list.firstElementChild && list.firstElementChild.classList.contains("muted")) list.innerHTML = "";
+  const li = document.createElement("li");
+  li.textContent = new Date().toLocaleTimeString() + "  " + text;
+  list.prepend(li);
+  while (list.children.length > 60) list.lastChild.remove();
+}
+
+function render(s) {
+  const wa = s.user_bytes_written ? (s.disk_bytes_written / s.user_bytes_written).toFixed(2) : "-";
+  const lookups = s.block_cache_hits + s.block_cache_misses;
+  const hit = lookups ? (100 * s.block_cache_hits / lookups).toFixed(1) + "%" : "-";
+  const tiles = [
+    ["writes", fmtInt(s.write_calls)], ["WAL records", fmtInt(s.wal_records)], ["WAL syncs", fmtInt(s.wal_syncs)],
+    ["flushes", fmtInt(s.flushes)], ["compactions", fmtInt(s.compactions)], ["write amp", wa],
+    ["cache hit rate", hit], ["cache used", fmtBytes(s.block_cache_bytes)],
+    ["stall time", (s.stall_micros / 1e6).toFixed(2) + " s"],
+    ["slowed / stopped", fmtInt(s.slowed_writes) + " / " + fmtInt(s.stopped_writes)],
+  ];
+  $("tiles").innerHTML = tiles.map(([k, v]) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
+
+  const memPct = Math.min(100, 100 * s.memtable_bytes / s.memtable_limit);
+  $("memBar").style.width = memPct + "%";
+  $("memMeta").textContent = fmtBytes(s.memtable_bytes) + " / " + fmtBytes(s.memtable_limit);
+  $("trigger").textContent = s.l0_compaction_trigger + " (writes stop at " + s.l0_stop_writes + ")";
+
+  const rows = [];
+  for (let level = 0; level < 7; level++) {
+    const info = s.levels[level] || { files: 0, bytes: 0 };
+    const target = level === 0 ? null : 10 * 1024 * 1024 * Math.pow(s.level_size_ratio, level - 1);
+    const shown = Math.min(info.files, 60);
+    const files = Array.from({ length: shown }, () => `<i class="${level === 0 ? "l0" : ""}"></i>`).join("") +
+      (info.files > shown ? `<span class="more">+${info.files - shown}</span>` : "");
+    const over = target && info.bytes > target;
+    const meta = level === 0
+      ? `${info.files} / ${s.l0_compaction_trigger} tables`
+      : `<span class="${over ? "over" : ""}">${fmtBytes(info.bytes)}</span> / ${fmtBytes(target)}`;
+    rows.push(`<div class="lv"><b>L${level}</b><div class="files">${files || '<span class="more">empty</span>'}</div><div class="meta">${meta}</div></div>`);
+  }
+  $("levelRows").innerHTML = rows.join("");
+
+  const load = s.load;
+  $("load").disabled = load.running; $("loadStop").disabled = !load.running;
+  $("loadBar").style.width = (load.total ? 100 * load.done / load.total : 0) + "%";
+  if (load.total) {
+    const rate = load.elapsed_ms ? fmtInt(Math.round(load.done / (load.elapsed_ms / 1000))) + " writes/s" : "";
+    $("loadMeta").textContent = `${fmtInt(load.done)} / ${fmtInt(load.total)} keys` +
+      (rate ? ", " + rate : "") + (load.running ? "" : " (finished)") + (load.error ? "  error: " + load.error : "");
+  }
+  renderSnapshots(s.snapshots);
+
+  if (previous) {
+    if (s.flushes > previous.flushes) logEvent(`flush: memtable written to L0 (${s.flushes - previous.flushes})`);
+    if (s.compactions > previous.compactions) {
+      const changes = s.levels.map((l, i) => {
+        const before = (previous.levels[i] || { files: 0 }).files;
+        return l.files !== before ? `L${i} ${before}->${l.files}` : null;
+      }).filter(Boolean).join(", ");
+      logEvent(`compaction (${s.compactions - previous.compactions})` + (changes ? ": " + changes : ""));
+    }
+    if (s.stopped_writes > previous.stopped_writes) logEvent(`write stop: L0 reached ${s.l0_stop_writes} tables, writers waited for compaction`);
+    else if (s.slowed_writes > previous.slowed_writes) logEvent(`write slowdown: ${s.slowed_writes - previous.slowed_writes} writes delayed 1 ms (L0 at 8+ tables)`);
+  }
+  previous = s;
+}
+
+async function refresh() {
+  try {
+    render(await api("GET", "/api/stats"));
+    $("conn").textContent = "connected"; $("conn").className = "";
+  } catch (e) {
+    $("conn").textContent = "server not reachable"; $("conn").className = "down";
+  }
+}
+refresh();
+setInterval(refresh, 500);
+</script>
+</body>
+</html>
