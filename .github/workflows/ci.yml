@@ -102,3 +102,22 @@ jobs:
             grep -E "(error|warning):" "$RUNNER_TEMP/tidy.log" | head -n 20 | sed 's/^/::error::/'
             exit 1
           }
+
+  explorer:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - run: python -m pip install pytest==8.4.2
+      - run: cmake --preset explorer
+      - name: Build
+        run: |
+          set -o pipefail
+          cmake --build --preset explorer 2>&1 | tee "$RUNNER_TEMP/build.log" || {
+            grep -E "error|Error" "$RUNNER_TEMP/build.log" | head -n 20 | sed 's/^/::error::/'
+            exit 1
+          }
+      - name: End-to-end server tests
+        run: LSM_SERVER=build/explorer/lsm_server python -m pytest -q tests/test_server.py
