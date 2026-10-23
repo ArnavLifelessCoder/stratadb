@@ -122,6 +122,8 @@ struct DB::Impl {
   std::uint64_t stall_micros = 0;
   std::uint64_t slowed_writes = 0;
   std::uint64_t stopped_writes = 0;
+  std::uint64_t flushes = 0;
+  std::uint64_t compactions = 0;
   Status failure;
   std::map<const Snapshot*, std::unique_ptr<Snapshot>> snapshots;
   internal::CompactionPointers compaction_pointers;
@@ -490,6 +492,7 @@ struct DB::Impl {
     guard.lock();
     if (status.ok()) {
       table_bytes += size;
+      ++flushes;
       immutable.reset();
     } else {
       failure = status;
@@ -522,6 +525,7 @@ struct DB::Impl {
           guard.lock();
           if (result.status.ok()) {
             table_bytes += result.bytes;
+            ++compactions;
             compaction_pointers[plan->level] = plan->largest;
           } else {
             failure = result.status;
@@ -778,13 +782,18 @@ auto DB::GetStats() -> Stats {
   stats.memtable_bytes =
       impl_->table->MemoryUsage() + (impl_->immutable ? impl_->immutable->MemoryUsage() : 0);
   stats.level_file_counts.resize(1);
+  stats.level_bytes.resize(1);
   const auto version = impl_->versions->State().version;
   for (const auto& file : version->files) {
     if (stats.level_file_counts.size() <= file.level) {
       stats.level_file_counts.resize(static_cast<std::size_t>(file.level) + 1);
+      stats.level_bytes.resize(static_cast<std::size_t>(file.level) + 1);
     }
     ++stats.level_file_counts[file.level];
+    stats.level_bytes[file.level] += file.size;
   }
+  stats.flushes = impl_->flushes;
+  stats.compactions = impl_->compactions;
   stats.write_calls = impl_->write_calls;
   stats.wal_records = impl_->wal_records;
   stats.stall_micros = impl_->stall_micros;

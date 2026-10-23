@@ -176,6 +176,29 @@ TEST(WritePathTest, WritesSlowDownFromEightL0TablesBeforeStopping) {
   EXPECT_GE(stats.stall_micros, 2000U);
 }
 
+TEST(WritePathTest, StatsCountFlushesCompactionsAndBytesPerLevel) {
+  test::TempDirectory directory;
+  std::unique_ptr<DB> db;
+  ASSERT_TRUE(
+      DB::Open({.memtable_bytes = 1, .l0_compaction_trigger = 2}, directory.path(), &db).ok());
+  for (unsigned i = 0; i < 8; ++i) {
+    ASSERT_TRUE(db->Put({}, std::to_string(i), std::string(100, 'v')).ok());
+  }
+  ASSERT_TRUE(WaitFor([&] {
+    const auto stats = db->GetStats();
+    return stats.flushes >= 4 && stats.compactions >= 1;
+  }));
+  const auto stats = db->GetStats();
+  ASSERT_EQ(stats.level_bytes.size(), stats.level_file_counts.size());
+  std::uint64_t tables = 0;
+  for (std::size_t level = 0; level < stats.level_bytes.size(); ++level) {
+    // A level has bytes exactly when it has tables.
+    EXPECT_EQ(stats.level_bytes[level] > 0, stats.level_file_counts[level] > 0) << level;
+    tables += stats.level_file_counts[level];
+  }
+  EXPECT_GT(tables, 0U);
+}
+
 TEST(WritePathTest, BlockCacheServesRepeatedReadsWithinItsByteLimit) {
   for (const std::size_t capacity : {std::size_t{0}, std::size_t{16} << 10, std::size_t{8} << 20}) {
     SCOPED_TRACE(capacity);

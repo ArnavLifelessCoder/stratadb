@@ -36,6 +36,11 @@ struct Stats {
   std::uint64_t user_bytes_written = 0;
   std::uint64_t disk_bytes_written = 0;
   std::vector<std::uint64_t> level_file_counts;
+  // Table bytes per level, same indexing as level_file_counts.
+  std::vector<std::uint64_t> level_bytes;
+  // Background work completed during this Open session.
+  std::uint64_t flushes = 0;
+  std::uint64_t compactions = 0;
   std::uint64_t wal_syncs = 0;
   std::uint64_t recovered_tail_bytes = 0;
   std::size_t memtable_bytes = 0;
