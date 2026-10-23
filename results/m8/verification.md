@@ -40,8 +40,8 @@ Built with zero compiler warnings in both presets.
 
 | File | Result |
 |---|---|
-| `test-debug.log` | GoogleTest 126 tests.; CTest 5/5 entries passed; `GROUP_COMMIT writes=1600 wal_records=164 wal_syncs=164` |
-| `test-asan.log` | GoogleTest 126 tests.; CTest 5/5 entries passed; `GROUP_COMMIT writes=1600 wal_records=167 wal_syncs=167` |
+| `test-debug.log` | GoogleTest 126 tests passed; CTest 5/5 entries passed; `GROUP_COMMIT writes=1600 wal_records=164 wal_syncs=164` |
+| `test-asan.log` | GoogleTest 126 tests passed; CTest 5/5 entries passed; `GROUP_COMMIT writes=1600 wal_records=167 wal_syncs=167` |
 | `crash-Windows-asan-async.json` | 50/50 cycles, 10784 acknowledged batches, 0 lost, deepest level L2 |
 | `crash-Windows-asan-sync.json` | 50/50 cycles, 9912 acknowledged batches, 0 lost, deepest level L2 |
 | `crash-Windows-debug-async.json` | 200/200 cycles, 65338 acknowledged batches, 0 lost, deepest level L2 |
