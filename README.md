@@ -120,6 +120,17 @@ python python/crash_test.py --executable build/debug/lsm_crash_writer --mode syn
 python python/crash_test.py --executable build/debug/lsm_crash_writer --mode async --cycles 500 --work build/crash/async --output build/crash/async.json
 ```
 
+Explorer, a local web UI that shows the engine working (reads and writes,
+scans, snapshots, a bulk loader, and live memtable, level, compaction and stall
+statistics); see [docs/explorer.md](docs/explorer.md):
+
+```sh
+cmake --preset explorer && cmake --build --preset explorer
+build/explorer/lsm_server --db=explorer-db --port=8080   # then open http://127.0.0.1:8080
+```
+
+![stratadb explorer](docs/explorer.jpg)
+
 Benchmarks (release build, builds LevelDB 1.23 from source):
 
 ```sh
