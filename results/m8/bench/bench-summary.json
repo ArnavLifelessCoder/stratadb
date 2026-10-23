@@ -1,0 +1,1131 @@
+{
+ "source": "bench-raw.json",
+ "machine": {
+  "platform": "Windows-11-10.0.26300-SP0",
+  "machine": "AMD64",
+  "python": "3.13.15",
+  "logical_cpus": 32,
+  "ram_bytes": 16162496512,
+  "cores": 16,
+  "os_build": "26300",
+  "max_mhz": 2401,
+  "os": "Microsoft Windows 11 Home",
+  "cpu": "AMD Ryzen 9 8940HX with Radeon Graphics",
+  "cmake_build_type": "Release",
+  "cmake_cxx_compiler": "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe",
+  "cmake_cxx_flags_release": "/O2 /Ob2 /DNDEBUG",
+  "source_commit": "2d48b8514183980efc06e3650127013a5fe3e442",
+  "source": "git archive of source_commit"
+ },
+ "settings": {
+  "key_bytes": 16,
+  "value_bytes": 100,
+  "memtable_bytes": 4194304,
+  "block_bytes": 4096,
+  "block_cache_bytes": 67108864,
+  "bloom_bits_per_key": 10,
+  "compression": "none (LevelDB built without Snappy, kNoCompression set)",
+  "sync_writes": false,
+  "checksums_on_read": "both verify block CRCs on reads from a file",
+  "threads": 1
+ },
+ "parameters": {
+  "num": 10000000,
+  "reads": 1000000,
+  "ycsb_ops": 1000000,
+  "bloom_num": 2000000,
+  "runs": 5,
+  "seed": 24301,
+  "cpus": "not pinned"
+ },
+ "rows": {
+  "fillseq/lsm": {
+   "ops_per_sec": {
+    "median": 47492.7,
+    "min": 44425.2,
+    "max": 57882.3,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 11000,
+    "min": 7900,
+    "max": 14200,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 27400,
+    "min": 27100,
+    "max": 58900,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 143000,
+    "min": 129600,
+    "max": 283500,
+    "n": 5
+   },
+   "write_amp_os": {
+    "median": 4.900947474137931,
+    "min": 4.897181365517241,
+    "max": 4.941758590517241,
+    "n": 5
+   },
+   "write_amp_os_through_close": {
+    "median": 5.025126645689655,
+    "min": 5.011124619827586,
+    "max": 5.0322738836206895,
+    "n": 5
+   },
+   "write_amp_engine": {
+    "median": 4.900947474137931,
+    "min": 4.895640362068965,
+    "max": 4.940217588793104,
+    "n": 5
+   }
+  },
+  "fillrandom/lsm": {
+   "ops_per_sec": {
+    "median": 19619.4,
+    "min": 6486.15,
+    "max": 21854.1,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 14300,
+    "min": 9000,
+    "max": 14700,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 41900,
+    "min": 38100,
+    "max": 85400,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 15592200,
+    "min": 12290500,
+    "max": 15760800,
+    "n": 5
+   },
+   "write_amp_os": {
+    "median": 10.36323113362069,
+    "min": 10.32070769913793,
+    "max": 10.501397318965518,
+    "n": 5
+   },
+   "write_amp_os_through_close": {
+    "median": 11.056548786206896,
+    "min": 11.040336675,
+    "max": 11.088411809482759,
+    "n": 5
+   },
+   "write_amp_engine": {
+    "median": 10.361600162931035,
+    "min": 10.309900736206897,
+    "max": 10.496760726724139,
+    "n": 5
+   }
+  },
+  "readrandom/lsm": {
+   "ops_per_sec": {
+    "median": 99108.8,
+    "min": 88209.4,
+    "max": 106967,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 8900,
+    "min": 8300,
+    "max": 9800,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 20200,
+    "min": 17700,
+    "max": 24200,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 46700,
+    "min": 37400,
+    "max": 73900,
+    "n": 5
+   }
+  },
+  "readseq/lsm": {
+   "ops_per_sec": {
+    "median": 1170090.0,
+    "min": 1050100.0,
+    "max": 1345980.0,
+    "n": 5
+   }
+  },
+  "ycsb-a/lsm": {
+   "ops_per_sec": {
+    "median": 66600.3,
+    "min": 51695,
+    "max": 78128.3,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 11900,
+    "min": 9100,
+    "max": 15400,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 29000,
+    "min": 23700,
+    "max": 71300,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 96400,
+    "min": 91200,
+    "max": 160700,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 11300,
+    "min": 9300,
+    "max": 15200,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 29000,
+    "min": 23500,
+    "max": 76000,
+    "n": 5
+   },
+   "U_p50_ns": {
+    "median": 13400,
+    "min": 9000,
+    "max": 15500,
+    "n": 5
+   },
+   "U_p99_ns": {
+    "median": 29300,
+    "min": 24300,
+    "max": 50500,
+    "n": 5
+   }
+  },
+  "ycsb-b/lsm": {
+   "ops_per_sec": {
+    "median": 113815,
+    "min": 92654.2,
+    "max": 123425,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 8100,
+    "min": 7900,
+    "max": 10600,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 24800,
+    "min": 20400,
+    "max": 31500,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 66900,
+    "min": 51600,
+    "max": 83700,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 7900,
+    "min": 7700,
+    "max": 10200,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 22200,
+    "min": 19400,
+    "max": 27400,
+    "n": 5
+   },
+   "U_p50_ns": {
+    "median": 11700,
+    "min": 11000,
+    "max": 15600,
+    "n": 5
+   },
+   "U_p99_ns": {
+    "median": 46400,
+    "min": 37100,
+    "max": 62400,
+    "n": 5
+   }
+  },
+  "ycsb-c/lsm": {
+   "ops_per_sec": {
+    "median": 112753,
+    "min": 99068.2,
+    "max": 127462,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 8900,
+    "min": 8100,
+    "max": 10300,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 23300,
+    "min": 20600,
+    "max": 26700,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 58400,
+    "min": 34700,
+    "max": 67900,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 8900,
+    "min": 8100,
+    "max": 10300,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 23300,
+    "min": 20600,
+    "max": 26700,
+    "n": 5
+   }
+  },
+  "ycsb-f/lsm": {
+   "ops_per_sec": {
+    "median": 36180.5,
+    "min": 34456.6,
+    "max": 44402,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 15800,
+    "min": 14100,
+    "max": 16600,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 46000,
+    "min": 44300,
+    "max": 62700,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 165600,
+    "min": 118500,
+    "max": 5984500,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 10700,
+    "min": 10300,
+    "max": 11500,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 27700,
+    "min": 26000,
+    "max": 49500,
+    "n": 5
+   },
+   "M_p50_ns": {
+    "median": 22700,
+    "min": 21500,
+    "max": 24400,
+    "n": 5
+   },
+   "M_p99_ns": {
+    "median": 65100,
+    "min": 52300,
+    "max": 74900,
+    "n": 5
+   }
+  },
+  "ycsb-d/lsm": {
+   "ops_per_sec": {
+    "median": 187172,
+    "min": 137446,
+    "max": 204227,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 1700,
+    "min": 1500,
+    "max": 2800,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 21200,
+    "min": 18000,
+    "max": 36600,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 56900,
+    "min": 38900,
+    "max": 96500,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 1400,
+    "min": 1300,
+    "max": 2100,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 19900,
+    "min": 17000,
+    "max": 34100,
+    "n": 5
+   },
+   "I_p50_ns": {
+    "median": 10900,
+    "min": 9700,
+    "max": 14300,
+    "n": 5
+   },
+   "I_p99_ns": {
+    "median": 49900,
+    "min": 30900,
+    "max": 71100,
+    "n": 5
+   }
+  },
+  "ycsb-e/lsm": {
+   "ops_per_sec": {
+    "median": 13234.7,
+    "min": 11425.2,
+    "max": 14985.3,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 68000,
+    "min": 59900,
+    "max": 74400,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 260500,
+    "min": 181700,
+    "max": 609300,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 835700,
+    "min": 585400,
+    "max": 859500,
+    "n": 5
+   },
+   "I_p50_ns": {
+    "median": 15900,
+    "min": 15300,
+    "max": 21000,
+    "n": 5
+   },
+   "I_p99_ns": {
+    "median": 71300,
+    "min": 62900,
+    "max": 102200,
+    "n": 5
+   },
+   "S_p50_ns": {
+    "median": 70300,
+    "min": 62000,
+    "max": 77000,
+    "n": 5
+   },
+   "S_p99_ns": {
+    "median": 263600,
+    "min": 183000,
+    "max": 613600,
+    "n": 5
+   }
+  },
+  "bloom10-fill/lsm": {
+   "ops_per_sec": {
+    "median": 31359.7,
+    "min": 29598.4,
+    "max": 33126.6,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 14000,
+    "min": 8900,
+    "max": 14500,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 35000,
+    "min": 28000,
+    "max": 56200,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 1387100,
+    "min": 197500,
+    "max": 3976100,
+    "n": 5
+   },
+   "write_amp_os": {
+    "median": 6.261165103448276,
+    "min": 6.181830556034483,
+    "max": 6.317034288793104,
+    "n": 5
+   },
+   "write_amp_os_through_close": {
+    "median": 7.622680706896552,
+    "min": 7.573766219827586,
+    "max": 7.783442004310345,
+    "n": 5
+   },
+   "write_amp_engine": {
+    "median": 6.243311396551724,
+    "min": 6.166555193965517,
+    "max": 6.29625361637931,
+    "n": 5
+   }
+  },
+  "bloom10-missing/lsm": {
+   "ops_per_sec": {
+    "median": 699875,
+    "min": 654592,
+    "max": 773952,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 1000,
+    "min": 900,
+    "max": 1100,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 6800,
+    "min": 5700,
+    "max": 7400,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 12900,
+    "min": 12300,
+    "max": 15000,
+    "n": 5
+   },
+   "data_blocks_read_per_lookup": {
+    "median": 0.014354,
+    "min": 0.012069,
+    "max": 0.016444,
+    "n": 5
+   }
+  },
+  "bloom0-fill/lsm": {
+   "ops_per_sec": {
+    "median": 33322.4,
+    "min": 28856.7,
+    "max": 41085.4,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 12200,
+    "min": 8600,
+    "max": 14300,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 34200,
+    "min": 32300,
+    "max": 47700,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 1341200,
+    "min": 172500,
+    "max": 6481200,
+    "n": 5
+   },
+   "write_amp_os": {
+    "median": 6.298198189655173,
+    "min": 6.189643543103449,
+    "max": 6.511901237068965,
+    "n": 5
+   },
+   "write_amp_os_through_close": {
+    "median": 7.501975405172414,
+    "min": 7.390496297413793,
+    "max": 7.726916534482759,
+    "n": 5
+   },
+   "write_amp_engine": {
+    "median": 6.26116011637931,
+    "min": 6.179777474137931,
+    "max": 6.458496142241379,
+    "n": 5
+   }
+  },
+  "bloom0-missing/lsm": {
+   "ops_per_sec": {
+    "median": 101352,
+    "min": 47933.3,
+    "max": 108758,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 9300,
+    "min": 8700,
+    "max": 19600,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 18100,
+    "min": 17700,
+    "max": 36200,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 33800,
+    "min": 27100,
+    "max": 94500,
+    "n": 5
+   },
+   "data_blocks_read_per_lookup": {
+    "median": 1.92199,
+    "min": 1.65813,
+    "max": 4.38126,
+    "n": 5
+   }
+  },
+  "fillseq/leveldb": {
+   "ops_per_sec": {
+    "median": 105197,
+    "min": 101303,
+    "max": 117752,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 7300,
+    "min": 5800,
+    "max": 7400,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 18300,
+    "min": 17400,
+    "max": 23000,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 86600,
+    "min": 84600,
+    "max": 91800,
+    "n": 5
+   },
+   "write_amp_os": {
+    "median": 2.193008444827586,
+    "min": 2.1930078336206895,
+    "max": 2.193008621551724,
+    "n": 5
+   },
+   "write_amp_os_through_close": {
+    "median": 2.193008444827586,
+    "min": 2.1930078336206895,
+    "max": 2.193008621551724,
+    "n": 5
+   }
+  },
+  "fillrandom/leveldb": {
+   "ops_per_sec": {
+    "median": 42224.6,
+    "min": 40841,
+    "max": 47138.6,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 8800,
+    "min": 7000,
+    "max": 9200,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 23200,
+    "min": 21100,
+    "max": 24000,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 1203000,
+    "min": 135800,
+    "max": 1254000,
+    "n": 5
+   },
+   "write_amp_os": {
+    "median": 9.504219448275862,
+    "min": 9.45770610862069,
+    "max": 9.55487067413793,
+    "n": 5
+   },
+   "write_amp_os_through_close": {
+    "median": 9.504223055172414,
+    "min": 9.457709714655172,
+    "max": 9.554874281896552,
+    "n": 5
+   }
+  },
+  "readrandom/leveldb": {
+   "ops_per_sec": {
+    "median": 67703.2,
+    "min": 66037.8,
+    "max": 91975.5,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 13200,
+    "min": 8700,
+    "max": 13500,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 29000,
+    "min": 24600,
+    "max": 32800,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 58100,
+    "min": 47200,
+    "max": 91100,
+    "n": 5
+   }
+  },
+  "readseq/leveldb": {
+   "ops_per_sec": {
+    "median": 3109580.0,
+    "min": 2637560.0,
+    "max": 3595980.0,
+    "n": 5
+   }
+  },
+  "ycsb-a/leveldb": {
+   "ops_per_sec": {
+    "median": 73058.2,
+    "min": 67639.7,
+    "max": 84315.4,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 9600,
+    "min": 7700,
+    "max": 10400,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 33500,
+    "min": 32000,
+    "max": 34300,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 116200,
+    "min": 105700,
+    "max": 125500,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 14000,
+    "min": 11800,
+    "max": 14700,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 35500,
+    "min": 34000,
+    "max": 36500,
+    "n": 5
+   },
+   "U_p50_ns": {
+    "median": 8300,
+    "min": 6600,
+    "max": 8500,
+    "n": 5
+   },
+   "U_p99_ns": {
+    "median": 23100,
+    "min": 19100,
+    "max": 23500,
+    "n": 5
+   }
+  },
+  "ycsb-b/leveldb": {
+   "ops_per_sec": {
+    "median": 98694,
+    "min": 92152,
+    "max": 124693,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 9600,
+    "min": 7400,
+    "max": 10500,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 25100,
+    "min": 22000,
+    "max": 27100,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 66900,
+    "min": 55500,
+    "max": 80000,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 9600,
+    "min": 7500,
+    "max": 10500,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 24800,
+    "min": 21700,
+    "max": 26800,
+    "n": 5
+   },
+   "U_p50_ns": {
+    "median": 8900,
+    "min": 6900,
+    "max": 9800,
+    "n": 5
+   },
+   "U_p99_ns": {
+    "median": 32900,
+    "min": 27400,
+    "max": 35600,
+    "n": 5
+   }
+  },
+  "ycsb-c/leveldb": {
+   "ops_per_sec": {
+    "median": 108536,
+    "min": 97472.4,
+    "max": 120081,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 8000,
+    "min": 6900,
+    "max": 8900,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 20300,
+    "min": 18900,
+    "max": 22500,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 38700,
+    "min": 34400,
+    "max": 70300,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 8000,
+    "min": 6900,
+    "max": 8900,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 20300,
+    "min": 18900,
+    "max": 22500,
+    "n": 5
+   }
+  },
+  "ycsb-f/leveldb": {
+   "ops_per_sec": {
+    "median": 56958.8,
+    "min": 52844.2,
+    "max": 70029.8,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 14600,
+    "min": 11800,
+    "max": 15200,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 41300,
+    "min": 36800,
+    "max": 42600,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 126000,
+    "min": 116300,
+    "max": 126400,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 11500,
+    "min": 9400,
+    "max": 12300,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 28600,
+    "min": 25500,
+    "max": 29900,
+    "n": 5
+   },
+   "M_p50_ns": {
+    "median": 19600,
+    "min": 15800,
+    "max": 20400,
+    "n": 5
+   },
+   "M_p99_ns": {
+    "median": 49200,
+    "min": 46500,
+    "max": 51200,
+    "n": 5
+   }
+  },
+  "ycsb-d/leveldb": {
+   "ops_per_sec": {
+    "median": 160614,
+    "min": 148379,
+    "max": 215733,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 1700,
+    "min": 1300,
+    "max": 1900,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 21600,
+    "min": 18600,
+    "max": 22600,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 54700,
+    "min": 40400,
+    "max": 68800,
+    "n": 5
+   },
+   "R_p50_ns": {
+    "median": 1500,
+    "min": 1200,
+    "max": 1700,
+    "n": 5
+   },
+   "R_p99_ns": {
+    "median": 21500,
+    "min": 18400,
+    "max": 22600,
+    "n": 5
+   },
+   "I_p50_ns": {
+    "median": 7800,
+    "min": 6100,
+    "max": 7900,
+    "n": 5
+   },
+   "I_p99_ns": {
+    "median": 26200,
+    "min": 23000,
+    "max": 31800,
+    "n": 5
+   }
+  },
+  "ycsb-e/leveldb": {
+   "ops_per_sec": {
+    "median": 26375.4,
+    "min": 26186.2,
+    "max": 28875.1,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 35400,
+    "min": 33500,
+    "max": 37000,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 76900,
+    "min": 70000,
+    "max": 79900,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 115500,
+    "min": 108900,
+    "max": 161100,
+    "n": 5
+   },
+   "I_p50_ns": {
+    "median": 8800,
+    "min": 8700,
+    "max": 13200,
+    "n": 5
+   },
+   "I_p99_ns": {
+    "median": 42900,
+    "min": 37900,
+    "max": 46500,
+    "n": 5
+   },
+   "S_p50_ns": {
+    "median": 36200,
+    "min": 34300,
+    "max": 37900,
+    "n": 5
+   },
+   "S_p99_ns": {
+    "median": 77200,
+    "min": 70200,
+    "max": 80400,
+    "n": 5
+   }
+  },
+  "bloom10-fill/leveldb": {
+   "ops_per_sec": {
+    "median": 53505.1,
+    "min": 52622.3,
+    "max": 57017.8,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 8200,
+    "min": 6600,
+    "max": 8500,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 22800,
+    "min": 22100,
+    "max": 24500,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 125000,
+    "min": 121700,
+    "max": 137300,
+    "n": 5
+   },
+   "write_amp_os": {
+    "median": 6.364599767241379,
+    "min": 6.197860245689655,
+    "max": 6.563094456896552,
+    "n": 5
+   },
+   "write_amp_os_through_close": {
+    "median": 6.364617775862069,
+    "min": 6.197860922413793,
+    "max": 6.563095137931034,
+    "n": 5
+   }
+  },
+  "bloom10-missing/leveldb": {
+   "ops_per_sec": {
+    "median": 220916,
+    "min": 160419,
+    "max": 289870,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 2800,
+    "min": 2100,
+    "max": 5400,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 17100,
+    "min": 13600,
+    "max": 18200,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 27400,
+    "min": 20600,
+    "max": 38800,
+    "n": 5
+   }
+  },
+  "bloom0-fill/leveldb": {
+   "ops_per_sec": {
+    "median": 61150.5,
+    "min": 55390.6,
+    "max": 64915.5,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 8200,
+    "min": 6500,
+    "max": 8600,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 22800,
+    "min": 22400,
+    "max": 24300,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 123700,
+    "min": 109000,
+    "max": 139300,
+    "n": 5
+   },
+   "write_amp_os": {
+    "median": 6.397840465517241,
+    "min": 6.145414956896552,
+    "max": 6.502031159482758,
+    "n": 5
+   },
+   "write_amp_os_through_close": {
+    "median": 6.397840780172414,
+    "min": 6.145418142241379,
+    "max": 6.502049172413793,
+    "n": 5
+   }
+  },
+  "bloom0-missing/leveldb": {
+   "ops_per_sec": {
+    "median": 116839,
+    "min": 95396.2,
+    "max": 131878,
+    "n": 5
+   },
+   "p50_ns": {
+    "median": 5600,
+    "min": 4700,
+    "max": 9400,
+    "n": 5
+   },
+   "p99_ns": {
+    "median": 36600,
+    "min": 22400,
+    "max": 44900,
+    "n": 5
+   },
+   "p999_ns": {
+    "median": 63800,
+    "min": 47500,
+    "max": 82400,
+    "n": 5
+   }
+  }
+ }
+}

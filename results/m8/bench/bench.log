@@ -1,0 +1,156 @@
+ycsb-a.trace: 1000000 ops {'R': 500301, 'U': 499699}
+ycsb-b.trace: 1000000 ops {'R': 950343, 'U': 49657}
+ycsb-c.trace: 1000000 ops {'R': 1000000}
+ycsb-d.trace: 1000000 ops {'R': 950036, 'I': 49964}
+ycsb-e.trace: 1000000 ops {'S': 949949, 'I': 50051}
+ycsb-f.trace: 1000000 ops {'R': 499531, 'M': 500469}
+run 1/5 lsm
+  lsm      fillseq                57,882 ops/s
+  lsm      fillrandom             21,854 ops/s
+  lsm      readrandom            102,585 ops/s
+  lsm      readseq             1,345,980 ops/s
+  lsm      ycsb-a                 72,296 ops/s
+  lsm      ycsb-b                113,815 ops/s
+  lsm      ycsb-c                112,753 ops/s
+  lsm      ycsb-f                 35,256 ops/s
+  lsm      ycsb-d                147,816 ops/s
+  lsm      ycsb-e                 14,985 ops/s
+  lsm      bloom10-fill           32,937 ops/s
+  lsm      bloom10-missing        773,952 ops/s
+  lsm      bloom0-fill            41,085 ops/s
+  lsm      bloom0-missing         88,447 ops/s
+run 1/5 leveldb
+  leveldb  fillseq               117,752 ops/s
+  leveldb  fillrandom             46,132 ops/s
+  leveldb  readrandom             91,976 ops/s
+  leveldb  readseq             3,595,980 ops/s
+  leveldb  ycsb-a                 84,315 ops/s
+  leveldb  ycsb-b                124,693 ops/s
+  leveldb  ycsb-c                117,787 ops/s
+  leveldb  ycsb-f                 59,560 ops/s
+  leveldb  ycsb-d                215,733 ops/s
+  leveldb  ycsb-e                 26,186 ops/s
+  leveldb  bloom10-fill           52,622 ops/s
+  leveldb  bloom10-missing        289,870 ops/s
+  leveldb  bloom0-fill            64,001 ops/s
+  leveldb  bloom0-missing        116,839 ops/s
+run 2/5 leveldb
+  leveldb  fillseq               111,482 ops/s
+  leveldb  fillrandom             47,139 ops/s
+  leveldb  readrandom             85,965 ops/s
+  leveldb  readseq             3,396,790 ops/s
+  leveldb  ycsb-a                 75,920 ops/s
+  leveldb  ycsb-b                116,150 ops/s
+  leveldb  ycsb-c                120,081 ops/s
+  leveldb  ycsb-f                 70,030 ops/s
+  leveldb  ycsb-d                160,614 ops/s
+  leveldb  ycsb-e                 26,375 ops/s
+  leveldb  bloom10-fill           54,068 ops/s
+  leveldb  bloom10-missing        220,916 ops/s
+  leveldb  bloom0-fill            60,118 ops/s
+  leveldb  bloom0-missing         97,354 ops/s
+run 2/5 lsm
+  lsm      fillseq                49,306 ops/s
+  lsm      fillrandom              6,486 ops/s
+  lsm      readrandom            106,967 ops/s
+  lsm      readseq             1,274,310 ops/s
+  lsm      ycsb-a                 78,128 ops/s
+  lsm      ycsb-b                104,501 ops/s
+  lsm      ycsb-c                105,003 ops/s
+  lsm      ycsb-f                 36,180 ops/s
+  lsm      ycsb-d                204,227 ops/s
+  lsm      ycsb-e                 11,830 ops/s
+  lsm      bloom10-fill           33,127 ops/s
+  lsm      bloom10-missing        759,810 ops/s
+  lsm      bloom0-fill            28,857 ops/s
+  lsm      bloom0-missing         47,933 ops/s
+run 3/5 lsm
+  lsm      fillseq                46,436 ops/s
+  lsm      fillrandom             16,138 ops/s
+  lsm      readrandom             88,209 ops/s
+  lsm      readseq             1,050,100 ops/s
+  lsm      ycsb-a                 51,695 ops/s
+  lsm      ycsb-b                 92,654 ops/s
+  lsm      ycsb-c                 99,068 ops/s
+  lsm      ycsb-f                 34,457 ops/s
+  lsm      ycsb-d                137,446 ops/s
+  lsm      ycsb-e                 11,425 ops/s
+  lsm      bloom10-fill           29,637 ops/s
+  lsm      bloom10-missing        686,109 ops/s
+  lsm      bloom0-fill            32,503 ops/s
+  lsm      bloom0-missing        108,758 ops/s
+run 3/5 leveldb
+  leveldb  fillseq               101,303 ops/s
+  leveldb  fillrandom             40,841 ops/s
+  leveldb  readrandom             66,038 ops/s
+  leveldb  readseq             2,637,560 ops/s
+  leveldb  ycsb-a                 67,640 ops/s
+  leveldb  ycsb-b                 96,607 ops/s
+  leveldb  ycsb-c                103,996 ops/s
+  leveldb  ycsb-f                 52,844 ops/s
+  leveldb  ycsb-d                148,379 ops/s
+  leveldb  ycsb-e                 26,368 ops/s
+  leveldb  bloom10-fill           57,018 ops/s
+  leveldb  bloom10-missing        240,767 ops/s
+  leveldb  bloom0-fill            61,150 ops/s
+  leveldb  bloom0-missing        131,878 ops/s
+run 4/5 leveldb
+  leveldb  fillseq               105,197 ops/s
+  leveldb  fillrandom             42,225 ops/s
+  leveldb  readrandom             67,703 ops/s
+  leveldb  readseq             3,109,580 ops/s
+  leveldb  ycsb-a                 73,058 ops/s
+  leveldb  ycsb-b                 98,694 ops/s
+  leveldb  ycsb-c                108,536 ops/s
+  leveldb  ycsb-f                 56,959 ops/s
+  leveldb  ycsb-d                149,554 ops/s
+  leveldb  ycsb-e                 28,875 ops/s
+  leveldb  bloom10-fill           52,946 ops/s
+  leveldb  bloom10-missing        160,419 ops/s
+  leveldb  bloom0-fill            64,916 ops/s
+  leveldb  bloom0-missing         95,396 ops/s
+run 4/5 lsm
+  lsm      fillseq                47,493 ops/s
+  lsm      fillrandom             19,882 ops/s
+  lsm      readrandom             99,109 ops/s
+  lsm      readseq             1,170,090 ops/s
+  lsm      ycsb-a                 65,358 ops/s
+  lsm      ycsb-b                121,815 ops/s
+  lsm      ycsb-c                126,059 ops/s
+  lsm      ycsb-f                 42,305 ops/s
+  lsm      ycsb-d                187,172 ops/s
+  lsm      ycsb-e                 13,235 ops/s
+  lsm      bloom10-fill           29,598 ops/s
+  lsm      bloom10-missing        654,592 ops/s
+  lsm      bloom0-fill            33,322 ops/s
+  lsm      bloom0-missing        106,136 ops/s
+run 5/5 lsm
+  lsm      fillseq                44,425 ops/s
+  lsm      fillrandom             19,619 ops/s
+  lsm      readrandom             98,987 ops/s
+  lsm      readseq             1,168,110 ops/s
+  lsm      ycsb-a                 66,600 ops/s
+  lsm      ycsb-b                123,425 ops/s
+  lsm      ycsb-c                127,462 ops/s
+  lsm      ycsb-f                 44,402 ops/s
+  lsm      ycsb-d                203,612 ops/s
+  lsm      ycsb-e                 13,402 ops/s
+  lsm      bloom10-fill           31,360 ops/s
+  lsm      bloom10-missing        699,875 ops/s
+  lsm      bloom0-fill            33,692 ops/s
+  lsm      bloom0-missing        101,352 ops/s
+run 5/5 leveldb
+  leveldb  fillseq               103,835 ops/s
+  leveldb  fillrandom             41,686 ops/s
+  leveldb  readrandom             66,371 ops/s
+  leveldb  readseq             2,816,980 ops/s
+  leveldb  ycsb-a                 72,738 ops/s
+  leveldb  ycsb-b                 92,152 ops/s
+  leveldb  ycsb-c                 97,472 ops/s
+  leveldb  ycsb-f                 53,505 ops/s
+  leveldb  ycsb-d                176,112 ops/s
+  leveldb  ycsb-e                 27,250 ops/s
+  leveldb  bloom10-fill           53,505 ops/s
+  leveldb  bloom10-missing        204,713 ops/s
+  leveldb  bloom0-fill            55,391 ops/s
+  leveldb  bloom0-missing        119,853 ops/s
