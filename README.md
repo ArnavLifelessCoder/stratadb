@@ -13,6 +13,10 @@ tests those rules directly, with differential tests against `std::map`, a
 kill-and-recover campaign of hundreds of cycles, and a comparison against
 LevelDB on the same machine.
 
+**Website:** [arnavlifelesscoder.github.io/stratadb](https://arnavlifelesscoder.github.io/stratadb/),
+the demo, durability totals and LevelDB comparison on one page, read from the
+committed results.
+
 **Demo:** [watch the explorer](docs/explorer-demo.gif), a local web UI over the
 engine, read a key at a snapshot while it is overwritten, then load 1M keys and
 show the flushes, compactions and write stalls as they happen
