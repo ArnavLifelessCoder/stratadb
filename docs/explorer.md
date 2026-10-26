@@ -3,6 +3,17 @@
 `explorer/` is a local web UI for one database: a small HTTP server
 (`lsm_server`, built on cpp-httplib) and a single page with no build step.
 
+![stratadb explorer demo](explorer-demo.gif)
+
+The recording above is `explorer-demo.gif`: a key read at a snapshot while it is
+overwritten, then a 1M-key random load with its flushes, compactions and write
+stalls, then a scan. `scripts/record_demo.py` regenerates it by driving the real
+server through headless Edge or Chrome:
+
+```sh
+python scripts/record_demo.py --server build/explorer/lsm_server --browser <path to msedge or chrome>
+```
+
 ![stratadb explorer after a 1M-key random load](explorer.jpg)
 
 The page shows:

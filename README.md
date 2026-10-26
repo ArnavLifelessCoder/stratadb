@@ -13,6 +13,13 @@ tests those rules directly, with differential tests against `std::map`, a
 kill-and-recover campaign of hundreds of cycles, and a comparison against
 LevelDB on the same machine.
 
+**Demo:** [watch the explorer](docs/explorer-demo.gif), a local web UI over the
+engine, read a key at a snapshot while it is overwritten, then load 1M keys and
+show the flushes, compactions and write stalls as they happen
+([how to run it](docs/explorer.md)).
+
+![stratadb explorer demo](docs/explorer-demo.gif)
+
 ## Results
 
 Against LevelDB 1.23 built from source with matching settings (4 MiB memtable,
@@ -128,8 +135,6 @@ statistics); see [docs/explorer.md](docs/explorer.md):
 cmake --preset explorer && cmake --build --preset explorer
 build/explorer/lsm_server --db=explorer-db --port=8080   # then open http://127.0.0.1:8080
 ```
-
-![stratadb explorer](docs/explorer.jpg)
 
 Benchmarks (release build, builds LevelDB 1.23 from source):
 
