@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>stratadb</title>
+<meta name="description" content="An LSM-tree key-value storage engine in C++20, crash-tested and benchmarked against LevelDB.">
+<style>
+  :root {
+    --bg: #f7f8fa; --panel: #ffffff; --ink: #18202c; --muted: #5b6577; --line: #e1e5ec;
+    --accent: #2f6fd6; --accent-soft: #e6eefb; --ours: #2f6fd6; --theirs: #e08a2c;
+    --good: #1d8a54; --mono: ui-monospace, "Cascadia Mono", Consolas, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #11141a; --panel: #181d25; --ink: #e7eaf0; --muted: #9aa3b3; --line: #29303b;
+      --accent: #6d9ff0; --accent-soft: #1d2a3f; --ours: #6d9ff0; --theirs: #f0a85a; --good: #52c28a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 48px 0 24px; }
+  header h1 { font-size: 40px; line-height: 1.1; margin: 0 0 8px; letter-spacing: -0.02em; }
+  header p.lede { font-size: 19px; color: var(--muted); margin: 0 0 20px; max-width: 760px; }
+  .links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .links a { text-decoration: none; padding: 8px 14px; border-radius: 8px; background: var(--accent); color: #fff; font-weight: 600; font-size: 15px; }
+  .links a.ghost { background: var(--accent-soft); color: var(--accent); }
+  section { padding: 28px 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 24px; margin: 0 0 6px; }
+  section p.sub { color: var(--muted); margin: 0 0 18px; max-width: 780px; }
+  .demo img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .card .big { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .card .label { color: var(--muted); font-size: 14px; }
+  .legend { display: flex; gap: 16px; font-size: 14px; color: var(--muted); margin: 0 0 10px; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .chart { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+  .bar-row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 12px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .bar-row:last-child { border-bottom: 0; }
+  .bar-row .name { font-size: 14px; }
+  .bar-row .name small { display: block; color: var(--muted); font-size: 12px; }
+  .bars { display: grid; gap: 3px; }
+  .bar { display: flex; align-items: center; gap: 8px; font-size: 12px; font-variant-numeric: tabular-nums; color: var(--muted); }
+  .bar span { height: 12px; border-radius: 3px; min-width: 2px; }
+  .ratio { font-size: 12px; font-weight: 600; }
+  .ratio.win { color: var(--good); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  th { color: var(--muted); font-weight: 600; font-size: 13px; }
+  tr:last-child td { border-bottom: 0; }
+  .table-wrap { overflow-x: auto; }
+  .arch { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .arch .card h3 { margin: 0 0 4px; font-size: 16px; }
+  .arch .card p { margin: 0; color: var(--muted); font-size: 14px; }
+  .note { color: var(--muted); font-size: 14px; }
+  code { font-family: var(--mono); font-size: 0.92em; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+  pre { font-family: var(--mono); font-size: 13px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; overflow-x: auto; }
+  footer { padding: 28px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+  @media (max-width: 600px) {
+    header h1 { font-size: 30px; }
+    .bar-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>stratadb</h1>
+    <p class="lede">An embedded key-value storage engine in C++20, built on the log-structured merge tree
+      design behind LevelDB and RocksDB: a write-ahead log, a skiplist memtable, leveled SSTables with bloom
+      filters, snapshots, and a block cache. Crash-tested with hundreds of kill cycles and benchmarked against
+      LevelDB on the same machine.</p>
+    <div class="links">
+      <a href="https://github.com/ArnavLifelessCoder/stratadb">Source on GitHub</a>
+      <a class="ghost" href="https://github.com/ArnavLifelessCoder/stratadb/blob/main/README.md">README</a>
+      <a class="ghost" href="https://github.com/ArnavLifelessCoder/stratadb/blob/main/docs/explorer.md">Run the explorer</a>
+    </div>
+  </header>
+
+  <section class="demo">
+    <h2>The engine, live</h2>
+    <p class="sub">A recording of the explorer, a local web UI over one database: a key is read at a snapshot while
+      it is overwritten, then 1M keys are loaded and the flushes, compactions and write stalls appear as they happen.
+      The page itself needs the C++ server, so this site shows a recording.</p>
+    <img src="explorer-demo.gif" alt="stratadb explorer: snapshot read, then a 1M-key load filling the levels" loading="lazy">
+  </section>
+
+  <section>
+    <h2>Durability</h2>
+    <p class="sub">A writer process is killed with <code>SIGKILL</code> / <code>TerminateProcess</code> at random
+      moments, including during recovery, and the recovered database must equal a prefix of the logged history
+      that contains every acknowledged sync write. Totals across the recorded campaigns:</p>
+    <div class="cards" id="crashCards"><div class="card"><div class="label">loading results</div></div></div>
+  </section>
+
+  <section>
+    <h2>Against LevelDB</h2>
+    <p class="sub" id="benchIntro">Loading results.</p>
+    <div class="legend"><span><i style="background:var(--ours)"></i>stratadb</span><span><i style="background:var(--theirs)"></i>LevelDB 1.23</span></div>
+    <div class="chart" id="chart"></div>
+    <p class="note" id="benchNote"></p>
+    <div class="table-wrap" style="margin-top:16px"><table id="waTable"></table></div>
+  </section>
+
+  <section>
+    <h2>How it is built</h2>
+    <div class="arch">
+      <div class="card"><h3>Write path</h3><p>Writers queue; the leader appends the group as one WAL record with one sync,
+        then inserts into an arena skiplist with lock-free readers.</p></div>
+      <div class="card"><h3>Flush and manifest</h3><p>A full memtable becomes an L0 table through write-temp, sync, rename;
+        a manifest log of version edits names every live file and WAL.</p></div>
+      <div class="card"><h3>Leveled compaction</h3><p>The highest-scoring level is compacted, L0 by table count and deeper
+        levels by size, with snapshot-aware version and tombstone dropping.</p></div>
+      <div class="card"><h3>Reads</h3><p>Memtables, then L0 newest first, then one table per level: key range, bloom filter,
+        index, CRC-checked data block from a sharded LRU cache.</p></div>
+      <div class="card"><h3>Iterators and snapshots</h3><p>Streaming merging iterators pin their version; a table is deleted
+        only after every version, iterator and snapshot using it is gone.</p></div>
+      <div class="card"><h3>Testing</h3><p>Differential tests against <code>std::map</code> over 10,000 seeds, fault injection,
+        every-byte corruption checks, ASan and TSan in CI.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Try it</h2>
+    <pre>git clone https://github.com/ArnavLifelessCoder/stratadb.git && cd stratadb
+cmake --preset explorer && cmake --build --preset explorer
+build/explorer/lsm_server --db=explorer-db --port=8080    # open http://127.0.0.1:8080</pre>
+  </section>
+
+  <footer id="footer">Every number on this page is read from result files committed in the repository.</footer>
+</div>
+
+<script>
+"use strict";
+const fmt = (n) => n >= 1e6 ? (n / 1e6).toFixed(2) + "M" : n >= 1e3 ? Math.round(n / 1e3).toLocaleString("en-US") + "K" : String(Math.round(n));
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const LABELS = [
+  ["fillseq", "Sequential load", "10M puts, key order"],
+  ["fillrandom", "Random load", "10M puts, random order"],
+  ["readrandom", "Point reads", "1M uniform gets"],
+  ["readseq", "Full scan", "all 10M keys"],
+  ["ycsb-a", "YCSB A", "50% read, 50% update"],
+  ["ycsb-b", "YCSB B", "95% read, 5% update"],
+  ["ycsb-c", "YCSB C", "100% read"],
+  ["ycsb-d", "YCSB D", "read latest"],
+  ["ycsb-e", "YCSB E", "short scans"],
+  ["ycsb-f", "YCSB F", "read-modify-write"],
+  ["bloom10-missing", "Missing keys", "bloom filter on"],
+  ["bloom0-missing", "Missing keys", "bloom filter off"],
+];
+
+async function loadBench() {
+  const summary = await (await fetch("data/bench-summary.json")).json();
+  const rows = summary.rows, p = summary.parameters, m = summary.machine;
+  document.getElementById("benchIntro").textContent =
+    `Throughput in operations per second, median of ${p.runs} runs, ${p.num.toLocaleString("en-US")} keys ` +
+    `(16-byte keys, 100-byte values), single-threaded, matching settings for both engines ` +
+    `(4 MiB memtable, 4 KiB blocks, 64 MiB cache, 10 bloom bits per key, no compression). ` +
+    `Machine: ${m.cpu}, ${(m.ram_bytes / 2 ** 30).toFixed(0)} GiB RAM, ${m.os}.`;
+  const max = Math.max(...LABELS.flatMap(([k]) => ["lsm", "leveldb"].map((e) => rows[`${k}/${e}`]?.ops_per_sec.median || 0)));
+  const scale = (v) => Math.max(0.5, 100 * Math.log10(v) / Math.log10(max));
+  document.getElementById("chart").innerHTML = LABELS.map(([key, name, detail]) => {
+    const ours = rows[`${key}/lsm`]?.ops_per_sec, theirs = rows[`${key}/leveldb`]?.ops_per_sec;
+    if (!ours || !theirs) return "";
+    const ratio = ours.median / theirs.median;
+    const ratioText = ratio >= 1 ? `${ratio.toFixed(2)}x LevelDB` : `${ratio.toFixed(2)}x LevelDB`;
+    return `<div class="bar-row"><div class="name">${esc(name)}<small>${esc(detail)}</small></div><div class="bars">
+      <div class="bar"><span style="width:${scale(ours.median)}%;background:var(--ours)"></span>${fmt(ours.median)}
+        <span class="ratio ${ratio >= 1 ? "win" : ""}">${ratioText}</span></div>
+      <div class="bar"><span style="width:${scale(theirs.median)}%;background:var(--theirs)"></span>${fmt(theirs.median)}</div>
+    </div></div>`;
+  }).join("");
+  document.getElementById("benchNote").textContent =
+    "Bar lengths use a log scale. Faster on point reads, read-heavy YCSB and missing-key lookups; about half as fast " +
+    "on loads and two to three times slower on scans. The README explains why, including LevelDB's trivial moves " +
+    "that let sequential loads skip rewrites.";
+  const wa = (k, e) => rows[`${k}/${e}`]?.write_amp_os?.median;
+  const blocks = rows["bloom10-missing/lsm"]?.data_blocks_read_per_lookup?.median;
+  const blocksOff = rows["bloom0-missing/lsm"]?.data_blocks_read_per_lookup?.median;
+  document.getElementById("waTable").innerHTML = `
+    <tr><th>Measure</th><th>stratadb</th><th>LevelDB</th></tr>
+    <tr><td>Write amplification, random load (disk bytes / user bytes)</td><td>${wa("fillrandom", "lsm").toFixed(2)}</td><td>${wa("fillrandom", "leveldb").toFixed(2)}</td></tr>
+    <tr><td>Write amplification, sequential load</td><td>${wa("fillseq", "lsm").toFixed(2)}</td><td>${wa("fillseq", "leveldb").toFixed(2)}</td></tr>
+    <tr><td>Data blocks read per missing-key lookup, bloom on / off</td><td>${blocks.toFixed(3)} / ${blocksOff.toFixed(3)}</td><td>not exposed</td></tr>`;
+}
+
+async function loadCrash() {
+  const files = await (await fetch("data/crash-files.json")).json();
+  const runs = await Promise.all(files.map(async (f) => (await fetch("data/" + f)).json()));
+  let cycles = 0, syncCycles = 0, syncAcked = 0, syncLost = 0, failures = 0, acked = 0;
+  for (const r of runs) {
+    cycles += r.cycles_passed; acked += r.totals.acknowledged_batches;
+    if (r.failure) failures++;
+    if (r.mode === "sync") { syncCycles += r.cycles_passed; syncAcked += r.totals.acknowledged_batches; syncLost += r.totals.lost_acknowledged_batches; }
+  }
+  const card = (big, label) => `<div class="card"><div class="big">${big}</div><div class="label">${label}</div></div>`;
+  document.getElementById("crashCards").innerHTML =
+    card(cycles.toLocaleString("en-US"), `kill-and-recover cycles in ${runs.length} campaigns, ${failures} failed`) +
+    card(acked.toLocaleString("en-US"), "acknowledged write batches checked after recovery") +
+    card(syncLost.toLocaleString("en-US"), `acknowledged sync writes lost, of ${syncAcked.toLocaleString("en-US")} over ${syncCycles.toLocaleString("en-US")} sync cycles`) +
+    card("ASan + TSan", "every test also runs under sanitizers; TSan on Linux CI");
+}
+
+Promise.all([loadBench(), loadCrash()]).catch((e) => {
+  document.getElementById("footer").textContent = "Could not load result files: " + e.message;
+});
+</script>
+</body>
+</html>
